@@ -6,7 +6,7 @@ interface CategoryCardProps {
   description?: string;
 }
 
-const CategoryCard = ({ title, image, description }: CategoryCardProps) => {
+const CategoryCard = ({ title, image }: CategoryCardProps) => {
   return (
     <div className="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-100 aspect-video flex flex-col justify-center">
       <Image

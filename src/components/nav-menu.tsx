@@ -147,13 +147,13 @@ export default function NavMenu() {
 const ListItem = ({
   className,
   title,
-  children,
+  // children,
   href,
   ...props
 }: {
   className?: string;
   title: string;
-  children?: React.ReactNode;
+  // children?: React.ReactNode;
   href: string;
 }) => {
   return (

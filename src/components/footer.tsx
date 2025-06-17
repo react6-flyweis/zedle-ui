@@ -53,7 +53,7 @@ export default function Footer() {
               </Button>
             </div>
             <p className="text-sm text-muted-foreground mt-2">
-              we won't spam, read our{" "}
+              we won&apos;t spam, read our{" "}
               <Link href="/email-policy" className="underline">
                 email policy
               </Link>
