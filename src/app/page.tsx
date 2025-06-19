@@ -5,6 +5,7 @@ import { Cities } from "@/components/cities";
 import { PartnerSignup } from "@/components/partner-signup";
 import { Statistics } from "@/components/statistics";
 import { MobileAppDownload } from "@/components/mobile-app-download";
+import { AdCarousel } from "@/components/ad-carousel";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <PartnerSignup />
       <Statistics />
       <MobileAppDownload />
+      <AdCarousel />
     </div>
   );
 }
