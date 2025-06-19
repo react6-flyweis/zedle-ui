@@ -107,10 +107,10 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/about"
+                href="/faq"
                 className="text-muted-foreground hover:text-foreground"
               >
-                About Us
+                Frequently Asked Questions
               </Link>
             </li>
           </ul>
