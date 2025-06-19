@@ -4,6 +4,7 @@ import { LogisticsBooking } from "@/components/logistics-booking";
 import { Cities } from "@/components/cities";
 import { PartnerSignup } from "@/components/partner-signup";
 import { Statistics } from "@/components/statistics";
+import { MobileAppDownload } from "@/components/mobile-app-download";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Cities />
       <PartnerSignup />
       <Statistics />
+      <MobileAppDownload />
     </div>
   );
 }
