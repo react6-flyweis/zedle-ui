@@ -27,10 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-accent `}
       >
         <Header />
-        <main className="bg-accent">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
