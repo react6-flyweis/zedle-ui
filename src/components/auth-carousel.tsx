@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from "react";
 
 const carouselImages = [
-  "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800&h=600&fit=crop&crop=center",
+  "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop&crop=center",
   "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&h=600&fit=crop&crop=center",
   "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&h=600&fit=crop&crop=center",
-  "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&h=600&fit=crop&crop=center"
+  "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&h=600&fit=crop&crop=center",
 ];
 
 export function AuthCarousel() {
@@ -25,7 +25,7 @@ export function AuthCarousel() {
   };
 
   return (
-    <div className="flex-1 relative w-full h-full min-h-[500px] overflow-hidden">
+    <div className="flex-1 relative w-full h-full overflow-hidden rounded-r-3xl shadow-lg">
       {/* Background slides */}
       {carouselImages.map((image, index) => (
         <div
@@ -41,16 +41,22 @@ export function AuthCarousel() {
         />
       ))}
 
+      {/* Text overlay */}
+      <div className="absolute w-4/5 bottom-20 left-1/2 transform -translate-x-1/2 bg-gray-500/50 backdrop-blur-sm rounded-lg p-6 z-10">
+        <p className="text-white text-center leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+
       {/* Dot indicators */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex justify-around z-10 shadow-lg p-3 border-2 border-gray-600/50 rounded-full w-1/3">
         {carouselImages.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-200 ${
-              index === currentSlide
-                ? "bg-white scale-110 shadow-lg"
-                : "bg-white bg-opacity-50 hover:bg-opacity-75"
+            className={`size-2 rounded-full transition-all duration-200 border ${
+              index === currentSlide ? "bg-white scale-110 " : ""
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
