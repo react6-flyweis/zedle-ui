@@ -3,6 +3,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
 
 // Import icons
@@ -15,85 +16,88 @@ import foodIcon from "@/assets/icons/food.png";
 import travelIcon from "@/assets/icons/travel.png";
 import hairDresserIcon from "@/assets/icons/hairdresser.png";
 
-export default function ChoosePage() {
-  const [selectedUserType, setSelectedUserType] = useState<string | null>(null);
+const userTypes = [
+  {
+    iconSrc: userIcon,
+    title: "User",
+    description: "Order and enjoy our services",
+  },
+  {
+    iconSrc: vendorIcon,
+    title: "Vendor",
+    description: "Sell your products and services",
+  },
+  {
+    iconSrc: partnerIcon,
+    title: "Delivery Partner",
+    description: "Deliver orders and earn money",
+  },
+];
+const serviceOptions = [
+  {
+    iconSrc: groceryIcon,
+    title: "Grocery Delivery",
+  },
+  {
+    iconSrc: truckIcon,
+    title: "Logistics",
+  },
+  {
+    iconSrc: foodIcon,
+    title: "Food Delivery",
+  },
+  {
+    iconSrc: travelIcon,
+    title: "Travel & Tourism",
+  },
+  {
+    iconSrc: hairDresserIcon,
+    title: "Enterprise Hub",
+  },
+];
 
-  const userTypes = [
-    {
-      iconSrc: userIcon,
-      title: "User",
-      description: "Order and enjoy our services",
-    },
-    {
-      iconSrc: vendorIcon,
-      title: "Vendor",
-      description: "Sell your products and services",
-    },
-    {
-      iconSrc: partnerIcon,
-      title: "Delivery Partner",
-      description: "Deliver orders and earn money",
-    },
-  ];
-  const serviceOptions = [
-    {
-      iconSrc: groceryIcon,
-      title: "Grocery Delivery",
-    },
-    {
-      iconSrc: truckIcon,
-      title: "Logistics",
-    },
-    {
-      iconSrc: foodIcon,
-      title: "Food Delivery",
-    },
-    {
-      iconSrc: travelIcon,
-      title: "Travel & Tourism",
-    },
-    {
-      iconSrc: hairDresserIcon,
-      title: "Enterprise Hub",
-    },
-  ];
-
-  const UserTypeButtons = () => (
-    <div className="w-full space-y-3">
-      {userTypes.map((userType, index) => (
-        <Card
-          key={index}
-          className="p-0 overflow-hidden border border-primary transition-colors"
+const UserTypeButtons = ({
+  setSelectedUserType,
+}: {
+  setSelectedUserType: (type: string) => void;
+}) => (
+  <div className="w-full space-y-3">
+    {userTypes.map((userType, index) => (
+      <Card
+        key={index}
+        className="p-0 overflow-hidden border border-primary transition-colors"
+      >
+        <Button
+          variant="ghost"
+          className="w-full h-auto p-6 justify-start text-left hover:bg-pink-50 rounded-none"
+          onClick={() => setSelectedUserType(userType.title)}
         >
-          <Button
-            variant="ghost"
-            className="w-full h-auto p-6 justify-start text-left hover:bg-pink-50 rounded-none"
-            onClick={() => setSelectedUserType(userType.title)}
-          >
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Image
-                  src={userType.iconSrc}
-                  alt={userType.title}
-                  className="max-h-8 max-w-8 object-contain"
-                />
+          <div className="flex items-center space-x-4">
+            <div className="relative">
+              <Image
+                src={userType.iconSrc}
+                alt={userType.title}
+                className="max-h-8 max-w-8 object-contain"
+              />
+            </div>
+            <div>
+              <div className="font-semibold text-gray-900 text-xl">
+                {userType.title}
               </div>
-              <div>
-                <div className="font-semibold text-gray-900 text-xl">
-                  {userType.title}
-                </div>
-                <div className="text-gray-600 text-sm">
-                  {userType.description}
-                </div>
+              <div className="text-gray-600 text-sm">
+                {userType.description}
               </div>
             </div>
-          </Button>
-        </Card>
-      ))}
-    </div>
-  );
+          </div>
+        </Button>
+      </Card>
+    ))}
+  </div>
+);
 
-  const ServiceButtons = () => (
+const ServiceButtons = ({ activeTab }: { activeTab: string }) => {
+  const router = useRouter();
+  return (
     <div className="w-full space-y-2">
       {serviceOptions.map((service, index) => (
         <Card
@@ -103,6 +107,13 @@ export default function ChoosePage() {
           <Button
             variant="ghost"
             className="w-full h-auto p-4 justify-start text-left hover:bg-pink-50 rounded-none"
+            onClick={() => {
+              const targetPath =
+                activeTab === "signup"
+                  ? `/signup?category=${encodeURIComponent(service.title)}`
+                  : `/login?category=${encodeURIComponent(service.title)}`;
+              router.push(targetPath);
+            }}
           >
             <div className="relative mr-3">
               <Image
@@ -119,10 +130,17 @@ export default function ChoosePage() {
       ))}
     </div>
   );
+};
+
+export default function ChoosePage() {
+  const searchParams = useSearchParams();
+  const defaultTab = searchParams.get("signup") ? "signup" : "login";
+  const [selectedUserType, setSelectedUserType] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState(defaultTab);
 
   return (
     <div className=" flex items-center justify-center">
-      <Tabs defaultValue="login" className="w-full">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-2 mb-8 bg-transparent">
           <TabsTrigger
             value="login"
@@ -139,11 +157,19 @@ export default function ChoosePage() {
         </TabsList>
 
         <TabsContent value="login" className="flex justify-center">
-          {!selectedUserType ? <UserTypeButtons /> : <ServiceButtons />}
+          {!selectedUserType ? (
+            <UserTypeButtons setSelectedUserType={setSelectedUserType} />
+          ) : (
+            <ServiceButtons activeTab={activeTab} />
+          )}
         </TabsContent>
 
         <TabsContent value="signup" className="flex justify-center">
-          {!selectedUserType ? <UserTypeButtons /> : <ServiceButtons />}
+          {!selectedUserType ? (
+            <UserTypeButtons setSelectedUserType={setSelectedUserType} />
+          ) : (
+            <ServiceButtons activeTab={activeTab} />
+          )}
         </TabsContent>
       </Tabs>
     </div>
