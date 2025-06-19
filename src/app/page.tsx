@@ -6,6 +6,7 @@ import { PartnerSignup } from "@/components/partner-signup";
 import { Statistics } from "@/components/statistics";
 import { MobileAppDownload } from "@/components/mobile-app-download";
 import { AdCarousel } from "@/components/ad-carousel";
+import { Testimonials } from "@/components/testimonials";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Statistics />
       <MobileAppDownload />
       <AdCarousel />
+      <Testimonials />
     </div>
   );
 }
