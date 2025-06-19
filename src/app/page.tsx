@@ -1,6 +1,7 @@
 import { Categories } from "@/components/categories";
 import { Hero } from "@/components/hero";
 import { LogisticsBooking } from "@/components/logistics-booking";
+import { Cities } from "@/components/cities";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <LogisticsBooking />
       <Categories />
+      <Cities />
     </div>
   );
 }
