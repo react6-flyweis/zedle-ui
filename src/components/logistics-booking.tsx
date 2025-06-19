@@ -1,18 +1,18 @@
 import Image from "next/image";
-import {  ArrowLeftRight, Calendar, Plus } from "lucide-react";
+import { ArrowLeftRight, Calendar, Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { AnimatedInput } from "@/components/ui/animated-input";
 
 import logisticTruckIcon from "@/assets/icons/logistic-truck.png";
 
-export function LogisticsBooking () {
+export function LogisticsBooking() {
   return (
-    <section className="relative -mt-40 z-10">
+    <section className="relative -mt-32 z-10">
       <div className="container mx-auto px-4">
         <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6">
           {/* Header */}
-          <div className="flex">
+          <div className="flex mb-4">
             <div className="flex items-center gap-2 mb-3 border-b-3 border-primary pb-3">
               <Image
                 src={logisticTruckIcon}
@@ -28,14 +28,10 @@ export function LogisticsBooking () {
             <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Pickup Point */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-600">
-                  Pickup Point
-                </label>
                 <div className="relative">
-                  <Input
+                  <AnimatedInput
                     type="text"
-                    placeholder="Kolkata"
-                    defaultValue="Kolkata"
+                    placeholder="Pickup Point"
                     className="pr-10  rounded-none"
                   />
                   <ArrowLeftRight className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -44,14 +40,10 @@ export function LogisticsBooking () {
 
               {/* Dropoff Point */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-600">
-                  Dropoff Point
-                </label>
                 <div className="relative">
-                  <Input
+                  <AnimatedInput
                     type="text"
-                    placeholder="Dumdum"
-                    defaultValue="Dumdum"
+                    placeholder="Drop off Point"
                     className="pr-10 rounded-none"
                   />
                   <ArrowLeftRight className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -60,14 +52,10 @@ export function LogisticsBooking () {
 
               {/* Date */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-600">
-                  Date
-                </label>
                 <div className="relative">
-                  <Input
+                  <AnimatedInput
                     type="text"
-                    placeholder="07 Nov 22 - 13 Nov 22"
-                    defaultValue="07 Nov 22 - 13 Nov 22"
+                    placeholder="Date"
                     className="pr-10  rounded-none"
                   />
                   <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -88,4 +76,4 @@ export function LogisticsBooking () {
       </div>
     </section>
   );
-};
+}
