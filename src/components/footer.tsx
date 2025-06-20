@@ -122,14 +122,6 @@ export default function Footer() {
           <ul className="space-y-3">
             <li>
               <Link
-                href="/traffic"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                Traffic
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="/contact"
                 className="text-muted-foreground hover:text-foreground"
               >
@@ -138,18 +130,26 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/bookings"
+                href="/signup"
                 className="text-muted-foreground hover:text-foreground"
               >
-                Bookings
+                Add your restaurant
               </Link>
             </li>
             <li>
               <Link
-                href="/business"
+                href="/signup"
                 className="text-muted-foreground hover:text-foreground"
               >
-                Create a business account
+                Sign up to deliver
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/signup"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                Add your grocery shop
               </Link>
             </li>
           </ul>
