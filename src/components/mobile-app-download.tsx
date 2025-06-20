@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-
-import zedleAppImage from "@/assets/images/zedle-app.png";
 import appStoreImage from "@/assets/images/app-store.png";
 import playStoreImage from "@/assets/images/play-store.png";
+import zedleAppImage from "@/assets/images/zedle-app.png";
+import { Button } from "@/components/ui/button";
 
 export function MobileAppDownload() {
   return (

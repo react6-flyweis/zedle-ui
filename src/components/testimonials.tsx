@@ -1,11 +1,10 @@
 "use client";
 
-import { Button } from "./ui/button";
 import { ChevronLeftIcon, ChevronRightIcon, QuoteIcon } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-
-import quoteIcon from "@/assets/icons/quote.png";
 import Image from "next/image";
+import quoteIcon from "@/assets/icons/quote.png";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Button } from "./ui/button";
 
 const testimonials = [
   {

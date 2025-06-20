@@ -1,15 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import Image from "next/image";
-
-import logo from "@/assets/images/logo-horizontal.png";
-import appStoreLogo from "@/assets/images/app-store.png";
-import googlePlayLogo from "@/assets/images/play-store.png";
+import Link from "next/link";
 import facebookIcon from "@/assets/icons/facebook.png";
 import instagramIcon from "@/assets/icons/instagram.png";
 import snapchatIcon from "@/assets/icons/snapchat.png";
 import tiktokIcon from "@/assets/icons/tiktok.png";
+import appStoreLogo from "@/assets/images/app-store.png";
+import logo from "@/assets/images/logo-horizontal.png";
+import googlePlayLogo from "@/assets/images/play-store.png";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Footer() {
   return (

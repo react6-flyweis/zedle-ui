@@ -1,11 +1,11 @@
+import { AdCarousel } from "@/components/ad-carousel";
 import { Categories } from "@/components/categories";
+import { Cities } from "@/components/cities";
 import { Hero } from "@/components/hero";
 import { LogisticsBooking } from "@/components/logistics-booking";
-import { Cities } from "@/components/cities";
+import { MobileAppDownload } from "@/components/mobile-app-download";
 import { PartnerSignup } from "@/components/partner-signup";
 import { Statistics } from "@/components/statistics";
-import { MobileAppDownload } from "@/components/mobile-app-download";
-import { AdCarousel } from "@/components/ad-carousel";
 import { Testimonials } from "@/components/testimonials";
 
 export default function Home() {

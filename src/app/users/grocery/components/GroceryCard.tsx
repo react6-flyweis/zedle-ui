@@ -1,13 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { Heart } from "lucide-react";
-
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-
-import heartIcon from "../assets/icons/Heart.png";
 import Image from "next/image";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import heartIcon from "../assets/icons/Heart.png";
 
 interface GroceryCardProps {
   id: number;

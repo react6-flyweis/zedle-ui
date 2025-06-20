@@ -1,9 +1,9 @@
 "use client";
 
-import saleAdImage from "@/assets/images/sale-ad.jpg";
+import Image from "next/image";
 import fashionAdImage from "@/assets/images/fashion-ad.jpg";
 import houseAdImage from "@/assets/images/house-ad.png";
-import Image from "next/image";
+import saleAdImage from "@/assets/images/sale-ad.jpg";
 
 const carouselItems = [
   {

@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
-import NavMenu from "@/components/nav-menu";
-
-import logo from "@/assets/images/logo-horizontal.png";
 import { MenuIcon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import logo from "@/assets/images/logo-horizontal.png";
+import NavMenu from "@/components/nav-menu";
+import { Button } from "@/components/ui/button";
 
 export default function Header() {
   return (

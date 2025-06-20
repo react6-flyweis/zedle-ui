@@ -1,10 +1,9 @@
+import Image from "next/image";
+import partnerWithUsBg from "@/assets/images/partner-with-us.png";
+import rideWithUsBg from "@/assets/images/ride-with-us.png";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-
-import partnerWithUsBg from "@/assets/images/partner-with-us.png";
-import rideWithUsBg from "@/assets/images/ride-with-us.png";
 
 export function PartnerSignup() {
   return (
@@ -41,7 +40,7 @@ export function PartnerSignup() {
                 <div
                   className={cn(
                     "inline-flex items-center rounded-b-md px-3 py-2 text-sm font-medium absolute top-0 left-10",
-                    "bg-white text-black"
+                    "bg-white text-black",
                   )}
                 >
                   {card.description}

@@ -1,8 +1,9 @@
 // Import category images
-import vegetableFruitsImg from "./assets/vegetable-fruits.png";
+
 import chipsBeveragesImg from "./assets/chips-bevarages.png";
 import dairyImg from "./assets/dairy.png";
 import homeCareImg from "./assets/home-care.png";
+import vegetableFruitsImg from "./assets/vegetable-fruits.png";
 
 import CategoryCard from "./components/CategoryCard";
 import GroceryCard from "./components/GroceryCard";

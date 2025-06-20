@@ -1,10 +1,8 @@
-import Image from "next/image";
 import { ArrowLeftRight, Calendar, Plus } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { AnimatedInput } from "@/components/ui/animated-input";
-
+import Image from "next/image";
 import logisticTruckIcon from "@/assets/icons/logistic-truck.png";
+import { AnimatedInput } from "@/components/ui/animated-input";
+import { Button } from "@/components/ui/button";
 
 export function LogisticsBooking() {
   return (

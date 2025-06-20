@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import deliveryBackgroundImage from "@/assets/images/delivery-bg.jpg";
+import { Button } from "@/components/ui/button";
 
 export function Hero() {
   return (

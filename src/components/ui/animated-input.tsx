@@ -1,4 +1,4 @@
-import { ComponentProps, useId } from "react";
+import { type ComponentProps, useId } from "react";
 
 import { Input } from "@/components/ui/input";
 

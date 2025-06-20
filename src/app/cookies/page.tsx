@@ -2,7 +2,7 @@ const Cookies = () => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-8 m-10 max-w-5xl mx-auto">
       <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">
-      Cookies
+        Cookies
       </h1>
       <div className="text-center space-y-2">
         <p className="">
