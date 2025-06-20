@@ -6,9 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "biome check .",
-    "format": "biome format .",
-    "lint:fix": "biome check . --fix",
+    "lint": "biome check src",
+    "format": "biome format src",
+    "lint:fix": "biome check src --fix",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
