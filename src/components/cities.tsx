@@ -40,8 +40,8 @@ export function Cities() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-4">
-          {cities.map((city, index) => (
-            <div key={index} className="flex items-center text-white">
+          {cities.map((city) => (
+            <div key={city} className="flex items-center text-white">
               <ChevronRight className="size-5 mr-2" />
               <span className="text-sm font-medium">{city}</span>
             </div>

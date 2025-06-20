@@ -8,7 +8,8 @@ export function AnimatedInput({
   name,
   ...props
 }: ComponentProps<typeof Input>) {
-  const elId = id || useId();
+  const rId = useId();
+  const elId = id || rId;
   return (
     <div className="group relative">
       <label

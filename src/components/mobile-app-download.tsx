@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/a11y/useValidAnchor: <explanation> */
 import Image from "next/image";
 import appStoreImage from "@/assets/images/app-store.png";
 import playStoreImage from "@/assets/images/play-store.png";

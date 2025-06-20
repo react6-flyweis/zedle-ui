@@ -24,9 +24,9 @@ export function Statistics() {
     <section className="py-5 bg-primary">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats.map((stat, index) => (
+          {stats.map((stat) => (
             <Card
-              key={index}
+              key={stat.label}
               className="border-0 bg-transparent border-r-1 rounded-none shadow-none text-center p-5 gap-2"
             >
               <div className="text-3xl md:text-4xl font-bold text-white mb-2">

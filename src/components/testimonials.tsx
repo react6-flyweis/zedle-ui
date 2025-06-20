@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeftIcon, ChevronRightIcon, QuoteIcon } from "lucide-react";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import quoteIcon from "@/assets/icons/quote.png";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -72,8 +72,8 @@ export function Testimonials() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="relative flex">
+          {testimonials.map((testimonial) => (
+            <div key={testimonial.name} className="relative flex">
               {/* Pink vertical line on the left */}
 
               <div className="flex justify-center items-center">

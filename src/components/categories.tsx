@@ -71,9 +71,9 @@ export function Categories() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* First row - 3 cards */}
-        {categories.map((category, index) => (
+        {categories.map((category) => (
           <CategoryCard
-            key={index}
+            key={category.title}
             title={category.title}
             image={category.image}
             description={category.description}

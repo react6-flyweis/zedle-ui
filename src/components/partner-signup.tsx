@@ -23,9 +23,9 @@ export function PartnerSignup() {
               image: rideWithUsBg,
               buttonText: "Join Now",
             },
-          ].map((card, index) => (
+          ].map((card) => (
             <Card
-              key={index}
+              key={card.title}
               className="relative overflow-hidden border-0 shadow-xl"
             >
               <CardHeader className="absolute inset-0 z-0">

@@ -98,13 +98,13 @@ export default function NavMenu() {
     <div className="hidden md:block">
       <NavigationMenu>
         <NavigationMenuList>
-          {navigationItems.map((item, index) => (
+          {navigationItems.map((item) => (
             <NavigationMenuItem
-              key={index}
+              key={item.href}
               className={cn(item.type !== "link" && "relative")}
             >
               {item.type === "link" ? (
-                <Link href={item.href!} passHref>
+                <Link href={item.href} passHref>
                   <NavigationMenuLink
                     className={cn(
                       navigationMenuTriggerStyle(),
@@ -124,9 +124,9 @@ export default function NavMenu() {
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="min-w-[200px] rounded-none bg-accent ">
                     <ul className="">
-                      {item.items?.map((subItem, subIndex) => (
+                      {item.items?.map((subItem) => (
                         <ListItem
-                          key={subIndex}
+                          key={subItem.href}
                           title={subItem.title}
                           href={subItem.href}
                         />
