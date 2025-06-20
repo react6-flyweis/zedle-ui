@@ -1,11 +1,32 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+
+import carouselImage1 from "../assets/login-carousel-1.jpg";
+import carouselImage2 from "../assets/login-carousel-2.jpg";
+import carouselImage3 from "../assets/login-carousel-3.jpg";
+import carouselImage4 from "../assets/login-carousel-4.jpg";
 
 const carouselImages = [
-  "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop&crop=center",
-  "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&h=600&fit=crop&crop=center",
-  "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&h=600&fit=crop&crop=center",
-  "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&h=600&fit=crop&crop=center",
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 1",
+    image: carouselImage1,
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 2",
+    image: carouselImage2,
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 3",
+    image: carouselImage3,
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 4",
+    image: carouselImage4,
+  },
 ];
 
 export function AuthCarousel() {
@@ -27,14 +48,14 @@ export function AuthCarousel() {
   return (
     <div className="flex-1 relative w-full h-full overflow-hidden rounded-r-3xl shadow-lg">
       {/* Background slides */}
-      {carouselImages.map((image, index) => (
+      {carouselImages.map((slide, index) => (
         <div
-          key={index}
+          key={slide.title}
           className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
             index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            backgroundImage: `url('${image}')`,
+            backgroundImage: `url('${slide.image.src}')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -44,16 +65,16 @@ export function AuthCarousel() {
       {/* Text overlay */}
       <div className="absolute w-4/5 bottom-20 left-1/2 transform -translate-x-1/2 bg-gray-500/50 backdrop-blur-sm rounded-lg p-6 z-10">
         <p className="text-white text-center leading-relaxed">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          {carouselImages[currentSlide].title}
         </p>
       </div>
 
       {/* Dot indicators */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex justify-around z-10 shadow-lg p-3 border-2 border-gray-600/50 rounded-full w-1/3">
-        {carouselImages.map((_, index) => (
+        {carouselImages.map((slide, index) => (
           <button
-            key={index}
+            key={slide.title}
+            type="button"
             onClick={() => goToSlide(index)}
             className={`size-2 rounded-full transition-all duration-200 border ${
               index === currentSlide ? "bg-white scale-110 " : ""

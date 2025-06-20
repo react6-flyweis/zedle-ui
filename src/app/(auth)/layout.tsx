@@ -1,5 +1,4 @@
-import { AuthCarousel } from "@/components/auth-carousel";
-import React from "react";
+import { AuthCarousel } from "./components/auth-carousel";
 
 export default function AuthLayout({
   children,
