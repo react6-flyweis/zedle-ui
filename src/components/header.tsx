@@ -2,10 +2,20 @@ import { MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/logo-horizontal.png";
-import NavMenu from "@/components/nav-menu";
+import { NavMenu, NavigationItem } from "@/components/nav-menu";
 import { Button } from "@/components/ui/button";
 
-export default function Header() {
+interface HeaderProps {
+  chipMenuStyle?: boolean;
+  navigation?: NavigationItem[];
+  showAuthButtons?: boolean;
+}
+
+export default function Header({
+  chipMenuStyle,
+  navigation,
+  showAuthButtons = true,
+}: HeaderProps) {
   return (
     <header className="w-full bg-accent shadow border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,17 +26,19 @@ export default function Header() {
           </Link>
 
           {/* Navigation */}
-          <NavMenu />
+          <NavMenu navigationItems={navigation} chipStyle={chipMenuStyle} />
 
           {/* Auth Buttons */}
-          <div className="flex items-center space-x-4">
-            <Link href="/choose?signin=true">
-              <Button className="rounded-full">Log In</Button>
-            </Link>
-            <Link href="/choose?signup=true">
-              <Button className="rounded-full">Sign up</Button>
-            </Link>
-          </div>
+          {showAuthButtons && (
+            <div className="flex items-center space-x-4">
+              <Link href="/choose?signin=true">
+                <Button className="rounded-full">Log In</Button>
+              </Link>
+              <Link href="/choose?signup=true">
+                <Button className="rounded-full">Sign up</Button>
+              </Link>
+            </div>
+          )}
 
           {/* Mobile menu button */}
           <Button variant="ghost" size="icon" className="md:hidden">

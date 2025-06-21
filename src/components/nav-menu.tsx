@@ -11,8 +11,26 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 
-// Define the navigation structure
-const navigationItems = [
+// Define navigation item types
+export type NavigationItem =
+  | {
+      title: string;
+      type: "link";
+      href: string;
+      icon?: React.ReactNode;
+    }
+  | {
+      title: string;
+      type: "dropdown";
+      items: {
+        title: string;
+        href: string;
+        description?: string;
+      }[];
+    };
+
+// Default navigation structure
+const defaultNavigationItems: NavigationItem[] = [
   {
     title: "Home",
     href: "/",
@@ -93,14 +111,22 @@ const navigationItems = [
   },
 ];
 
-export default function NavMenu() {
+interface NavMenuProps {
+  chipStyle?: boolean;
+  navigationItems?: NavigationItem[];
+}
+
+export function NavMenu({
+  chipStyle = false,
+  navigationItems = defaultNavigationItems,
+}: NavMenuProps) {
   return (
     <div className="hidden md:block">
-      <NavigationMenu>
-        <NavigationMenuList>
+      <NavigationMenu viewport={false}>
+        <NavigationMenuList className={cn(chipStyle && "gap-5")}>
           {navigationItems.map((item) => (
             <NavigationMenuItem
-              key={item.href}
+              key={item.title + item.type}
               className={cn(item.type !== "link" && "relative")}
             >
               {item.type === "link" ? (
@@ -108,21 +134,39 @@ export default function NavMenu() {
                   <NavigationMenuLink
                     className={cn(
                       navigationMenuTriggerStyle(),
-                      "bg-transparent hover:bg-transparent hover:text-primary",
+                      chipStyle
+                        ? "bg-transparent hover:bg-primary hover:text-white rounded-full flex flex-row  hover:[&>svg]:text-white!"
+                        : "bg-transparent hover:bg-transparent hover:text-primary"
                     )}
                   >
-                    {item.title}
+                    <span>{item.title}</span>
+                    {item.icon && (
+                      <span className="ml-2 inline-flex items-center">
+                        {item.icon}
+                      </span>
+                    )}
                   </NavigationMenuLink>
                 </Link>
               ) : (
                 <>
-                  <NavigationMenuTrigger className="bg-transparent hover:bg-transparent hover:text-primary data-[state=open]:bg-transparent data-[state=open]:text-primary data-[active]:bg-transparent focus:bg-transparent [&>svg]:hidden">
+                  <NavigationMenuTrigger
+                    className={cn(
+                      chipStyle
+                        ? "bg-transparent hover:bg-primary hover:text-white rounded-full data-[state=open]:bg-primary data-[state=open]:text-white data-[active]:bg-primary data-[active]:text-white focus:bg-primary focus:text-white [&>svg]:hidden"
+                        : "bg-transparent hover:bg-transparent hover:text-primary data-[state=open]:bg-transparent data-[state=open]:text-primary data-[active]:bg-transparent focus:bg-transparent [&>svg]:hidden"
+                    )}
+                  >
                     <span className="flex items-center">
                       {item.title}
-                      <ChevronsDown className="relative top-[1px] ml-1 size-3 transition duration-300" />
+                      <ChevronsDown
+                        className={cn(
+                          "relative top-[1px] ml-1 size-3 transition duration-300",
+                          chipStyle && "group-hover:text-white"
+                        )}
+                      />
                     </span>
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="min-w-[200px] rounded-none bg-accent ">
+                  <NavigationMenuContent className="min-w-60 rounded-none bg-accent z-50">
                     <ul className="">
                       {item.items?.map((subItem) => (
                         <ListItem
@@ -163,7 +207,7 @@ const ListItem = ({
           href={href}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className,
+            className
           )}
           {...props}
         >
