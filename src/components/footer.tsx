@@ -19,11 +19,7 @@ export default function Footer() {
         <div className="space-y-8 lg:col-span-2">
           <Image src={logo} alt="Logo" className="h-10 w-auto mr-3" />
           <div className="flex gap-2">
-            <Image
-              src={appStoreLogo}
-              alt="App Store"
-              className="h-11 w-auto bg-black p-2 rounded-sm"
-            />
+            <Image src={appStoreLogo} alt="App Store" className="h-11 w-auto" />
             <Image
               src={googlePlayLogo}
               alt="Google Play"
