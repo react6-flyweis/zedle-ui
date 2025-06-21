@@ -1,12 +1,12 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
-import { NavigationItem } from "@/components/nav-menu";
+import type { NavigationItem } from "@/components/nav-menu";
 import { SearchIcon, ShoppingBagIcon } from "lucide-react";
 
-export const groceryNavigation: NavigationItem[] = [
+const groceryNavigation: NavigationItem[] = [
   {
     title: "Home",
-    href: "/",
+    href: "/users/grocery",
     type: "link",
   },
   {
