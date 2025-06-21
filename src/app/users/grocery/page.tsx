@@ -7,6 +7,7 @@ import vegetableFruitsImg from "./assets/vegetable-fruits.png";
 
 import CategoryCard from "./components/CategoryCard";
 import GroceryCard from "./components/GroceryCard";
+import GroceryHero from "./components/GroceryHero";
 
 const categories = [
   {
@@ -104,56 +105,61 @@ const hotDeals = [
 
 export default function GroceryPage() {
   return (
-    <div className="py-10 sm:px-6 lg:px-8">
-      {/* Header Section */}
-      <div className="text-left my-5">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          Our Categories
-        </h2>
-        <p className="text-lg text-gray-600">
-          Lorem ipsum is simply dummy text of the printing and typesetting
-          industry.
-        </p>
-      </div>
+    <div>
+      {/* Hero Section */}
+      <GroceryHero />
 
-      {/* Categories Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {categories.map((category) => (
-          <CategoryCard
-            key={category.id}
-            title={category.title}
-            image={category.image}
-            bgColor={category.bgColor}
-            textColor={category.textColor}
-          />
-        ))}
-      </div>
-
-      {/* Hot Deals Section */}
-      <div>
+      <div className="py-10 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="text-left my-5">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Hot Deals</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Our Categories
+          </h2>
           <p className="text-lg text-gray-600">
             Lorem ipsum is simply dummy text of the printing and typesetting
             industry.
           </p>
         </div>
 
-        {/* Hot Deals Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {hotDeals.map((product) => (
-            <GroceryCard
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              weight={product.weight}
-              currentPrice={product.currentPrice}
-              originalPrice={product.originalPrice}
-              discount={product.discount}
-              image={product.image}
+        {/* Categories Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {categories.map((category) => (
+            <CategoryCard
+              key={category.id}
+              title={category.title}
+              image={category.image}
+              bgColor={category.bgColor}
+              textColor={category.textColor}
             />
           ))}
+        </div>
+
+        {/* Hot Deals Section */}
+        <div>
+          {/* Header Section */}
+          <div className="text-left my-5">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Hot Deals</h2>
+            <p className="text-lg text-gray-600">
+              Lorem ipsum is simply dummy text of the printing and typesetting
+              industry.
+            </p>
+          </div>
+
+          {/* Hot Deals Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {hotDeals.map((product) => (
+              <GroceryCard
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                weight={product.weight}
+                currentPrice={product.currentPrice}
+                originalPrice={product.originalPrice}
+                discount={product.discount}
+                image={product.image}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
