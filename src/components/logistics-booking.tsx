@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export function LogisticsBooking() {
   return (
-    <section className="relative -mt-32 z-10">
+    <section className="relative -mt-32 z-10 mb-10">
       <div className="container mx-auto px-4">
         <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6">
           {/* Header */}
