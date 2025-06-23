@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import UserInfo from "@/components/cart/user-info";
 import DeliveryAddress from "@/components/cart/delivery-address";
+import OrderSummary from "@/components/cart/order-summary";
 
 interface CartItem {
   id: string;
@@ -67,6 +68,7 @@ export default function CartPage() {
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column - User Info, Address, Payment */}
+        <div className="lg:col-span-2 space-y-6 pl-14">
           <UserInfo name="Randy Lipshutz" phone="+1 778 4521 369" />
           <DeliveryAddress
             onAddressSelect={setSelectedAddressId}
@@ -76,149 +78,16 @@ export default function CartPage() {
 
         {/* Right Column - Order Summary */}
         <div className="space-y-6">
-          {/* Order Items */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Image
-                  src="/assets/icons/grocery.png"
-                  alt="Fresh Vegetables"
-                  width={24}
-                  height={24}
-                />
-                <span>Fresh Vegetables</span>
-              </CardTitle>
-              <p className="text-sm text-gray-600">East New York</p>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {cartItems.map((item) => (
-                <div key={item.id} className="space-y-3">
-                  <div className="flex gap-3">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      width={60}
-                      height={60}
-                      className="rounded-lg object-cover"
-                    />
-                    <div className="flex-1">
-                      <h4 className="font-medium text-gray-900">{item.name}</h4>
-                      <div className="flex items-center gap-3 mt-2">
-                        <div className="flex items-center border rounded-lg">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 w-8 p-0"
-                            onClick={() => updateQuantity(item.id, -1)}
-                          >
-                            <Minus className="w-4 h-4" />
-                          </Button>
-                          <span className="px-3 py-1 text-sm font-medium">
-                            {item.quantity}
-                          </span>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 w-8 p-0"
-                            onClick={() => updateQuantity(item.id, 1)}
-                          >
-                            <Plus className="w-4 h-4" />
-                          </Button>
-                        </div>
-                        <div className="text-right">
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm text-gray-500 line-through">
-                              ${item.originalPrice.toFixed(2)}
-                            </span>
-                            <span className="font-semibold text-gray-900">
-                              ${item.price.toFixed(2)}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {item.suggestions && (
-                    <div className="bg-gray-50 p-3 rounded-lg">
-                      <p className="text-sm text-gray-600 italic">
-                        {item.suggestions}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
-
-              {/* Apply Coupon */}
-              <div className="border-t pt-4">
-                <div className="flex items-center gap-2 p-3 border-2 border-dashed border-gray-300 rounded-lg">
-                  <Tag className="w-5 h-5 text-gray-500" />
-                  <Input
-                    placeholder="Apply Coupon"
-                    value={couponCode}
-                    onChange={(e) => setCouponCode(e.target.value)}
-                    className="border-0 bg-transparent p-0 focus-visible:ring-0"
-                  />
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={applyCoupon}
-                    className="text-teal-600 hover:text-teal-700"
-                  >
-                    Apply
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Bill Details */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Bill Details</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex justify-between">
-                <span className="text-gray-600">Item Total</span>
-                <span className="font-medium">${itemTotal.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Delivery Fee | 2.8 kms</span>
-                <span className="font-medium">${deliveryFee.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Extra discount for you</span>
-                <span className="font-medium text-green-600">
-                  ${extraDiscount.toFixed(2)}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Delivery Tip</span>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-red-500 hover:text-red-600 p-0 h-auto"
-                >
-                  Add tip
-                </Button>
-              </div>
-
-              <div className="border-t pt-3">
-                <div className="flex justify-between text-lg font-semibold">
-                  <span>TO PAY</span>
-                  <span>${totalAmount.toFixed(2)}</span>
-                </div>
-              </div>
-
-              {savings > 0 && (
-                <div className="bg-teal-50 p-3 rounded-lg mt-4">
-                  <p className="text-center text-teal-700 font-medium">
-                    Savings of ${savings.toFixed(2)}
-                  </p>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+          <OrderSummary
+            cartItems={cartItems}
+            onUpdateQuantity={updateQuantity}
+            onApplyCoupon={applyCoupon}
+            itemTotal={itemTotal}
+            deliveryFee={deliveryFee}
+            extraDiscount={extraDiscount}
+            totalAmount={totalAmount}
+            savings={savings}
+          />
         </div>
       </div>
     </div>
