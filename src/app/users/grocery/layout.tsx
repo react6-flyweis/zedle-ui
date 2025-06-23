@@ -1,7 +1,11 @@
+import Image from "next/image";
+import { SearchIcon } from "lucide-react";
+
+import cartIcon from "@/assets/icons/cart-icon.png";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+
 import type { NavigationItem } from "@/components/nav-menu";
-import { SearchIcon, ShoppingBagIcon } from "lucide-react";
 
 const groceryNavigation: NavigationItem[] = [
   {
@@ -24,7 +28,15 @@ const groceryNavigation: NavigationItem[] = [
     title: "Cart",
     href: "/users/grocery/cart",
     type: "link",
-    icon: <ShoppingBagIcon />,
+    icon: (
+      <Image
+        src={cartIcon}
+        alt="Cart Icon"
+        width={24}
+        height={24}
+        className="size-4"
+      />
+    ),
   },
   {
     title: "My Orders",
