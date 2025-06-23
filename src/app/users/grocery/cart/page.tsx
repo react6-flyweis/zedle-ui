@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import UserInfo from "@/components/cart/user-info";
 import DeliveryAddress from "@/components/cart/delivery-address";
+import PaymentMethod from "@/components/cart/payment-method";
 import OrderSummary from "@/components/cart/order-summary";
 
 interface CartItem {
@@ -26,34 +27,37 @@ export default function CartPage() {
       price: 40.0,
       originalPrice: 65.0,
       quantity: 1,
-      image: "/assets/products/tomato.jpg",
+      image:
+        "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80",
       suggestions: "Any suggestions? We will pass it on...",
     },
   ]);
 
+  const [couponCode] = useState("");
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(
     "1",
   );
+  const [selectedCardId, setSelectedCardId] = useState<string | null>("1"); // Default to first card
 
   const updateQuantity = (id: string, change: number) => {
     setCartItems((items) =>
       items.map((item) =>
         item.id === id
           ? { ...item, quantity: Math.max(0, item.quantity + change) }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
   const itemTotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
   const deliveryFee = 5.0;
   const extraDiscount = -5.0;
   const savings = cartItems.reduce(
     (sum, item) => sum + (item.originalPrice - item.price) * item.quantity,
-    0
+    0,
   );
   const totalAmount = itemTotal + deliveryFee + extraDiscount;
 
@@ -62,6 +66,16 @@ export default function CartPage() {
       // Add coupon logic here
       console.log("Applying coupon:", couponCode);
     }
+  };
+
+  const handleCardSelect = (cardId: string) => {
+    setSelectedCardId(cardId);
+  };
+
+  const handlePayNow = () => {
+    // Add payment processing logic here
+    console.log("Processing payment with card:", selectedCardId);
+    // You can add navigation to payment processing page or show success message
   };
 
   return (
@@ -74,6 +88,20 @@ export default function CartPage() {
             onAddressSelect={setSelectedAddressId}
             selectedAddressId={selectedAddressId}
           />
+          <PaymentMethod
+            isAddressSelected={!!selectedAddressId}
+            onCardSelect={handleCardSelect}
+          />
+          {/* Pay Now Button */}
+          {selectedCardId && selectedAddressId && (
+            <Button
+              onClick={handlePayNow}
+              size="lg"
+              className="w-full rounded-full h-12"
+            >
+              Pay Now - ${totalAmount.toFixed(2)}
+            </Button>
+          )}
         </div>
 
         {/* Right Column - Order Summary */}
