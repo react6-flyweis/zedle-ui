@@ -4,7 +4,9 @@ import ProductCategories from "../components/ProductCategories";
 
 import productsHeroCharacter from "../assets/products-hero-character.png";
 import productsHeroBg from "../assets/products-hero-bg.jpg";
+import personalisedImage from "../assets/personalised.png";
 import { HeroComponent } from "@/components/HeroComponent";
+import Image from "next/image";
 
 const products = [
   {
@@ -99,6 +101,14 @@ export default function ProductsPage() {
           </div>
         </div>
       </section>
+
+      <div className="px-10">
+        <Image
+          src={personalisedImage}
+          alt="Personalised Recommendations"
+          className="w-full h-auto object-cover"
+        />
+      </div>
     </div>
   );
 }
