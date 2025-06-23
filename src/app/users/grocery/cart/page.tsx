@@ -2,11 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { MapPin, User, CreditCard, Plus, Minus, Tag } from "lucide-react";
-import Image from "next/image";
+import UserInfo from "@/components/cart/user-info";
+import DeliveryAddress from "@/components/cart/delivery-address";
 
 interface CartItem {
   id: string;
@@ -33,7 +30,9 @@ export default function CartPage() {
     },
   ]);
 
-  const [couponCode, setCouponCode] = useState("");
+  const [selectedAddressId, setSelectedAddressId] = useState<string | null>(
+    "1",
+  );
 
   const updateQuantity = (id: string, change: number) => {
     setCartItems((items) =>
@@ -68,70 +67,11 @@ export default function CartPage() {
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column - User Info, Address, Payment */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* User Info */}
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3">
-                <Avatar className="w-12 h-12 bg-black">
-                  <AvatarFallback className="bg-black text-white">
-                    <User className="w-6 h-6" />
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Logged in</h3>
-                  <p className="text-gray-600">
-                    Randy Lipshutz | +1 778 4521 369
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Delivery Address */}
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-start gap-3">
-                <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-gray-900 mb-1">
-                    Add a delivery address
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    You seem to be in the new location
-                  </p>
-
-                  <div className="flex items-center gap-2 mb-4">
-                    <MapPin className="w-4 h-4 text-red-500" />
-                    <span className="text-gray-700">Add New Address</span>
-                  </div>
-
-                  <Button
-                    variant="outline"
-                    className="text-teal-600 border-teal-600 hover:bg-teal-50"
-                  >
-                    ADD NEW
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Payment Method */}
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">
-                  <CreditCard className="w-6 h-6 text-gray-500" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Payment</h3>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <UserInfo name="Randy Lipshutz" phone="+1 778 4521 369" />
+          <DeliveryAddress
+            onAddressSelect={setSelectedAddressId}
+            selectedAddressId={selectedAddressId}
+          />
         </div>
 
         {/* Right Column - Order Summary */}
