@@ -4,6 +4,9 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RotateCcwIcon } from "lucide-react";
 import type { Order } from "@/types/orders";
+import { CancelOrderDialog } from "./cancel-order-dialog";
+import { RateOrderDialog } from "./rate-order-dialog";
+import { TrackPackageDialog } from "./track-package-dialog";
 
 interface OrderCardProps {
   order: Order;
@@ -55,15 +58,19 @@ export function OrderCard({ order }: OrderCardProps) {
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <Button className="px-6 py-2 rounded-full text-sm min-w-[140px]">
-              Track package
-            </Button>
-            <Button
-              variant="outline"
-              className="px-6 py-2 rounded-full min-w-[140px]"
-            >
-              Write a product review
-            </Button>
+            <TrackPackageDialog orderId={order.id}>
+              <Button className="px-6 py-2 rounded-full text-sm min-w-[140px]">
+                Track package
+              </Button>
+            </TrackPackageDialog>
+            <RateOrderDialog orderId={order.id}>
+              <Button
+                variant="outline"
+                className="px-6 py-2 rounded-full min-w-[140px]"
+              >
+                Write a product review
+              </Button>
+            </RateOrderDialog>
           </div>
         </div>
 
@@ -90,9 +97,11 @@ export function OrderCard({ order }: OrderCardProps) {
                   <Button size="sm" className="rounded-full">
                     View your item
                   </Button>
-                  <Button size="sm" className="rounded-full">
-                    Cancel your order
-                  </Button>
+                  <CancelOrderDialog orderId={order.id}>
+                    <Button size="sm" className="rounded-full">
+                      Cancel your order
+                    </Button>
+                  </CancelOrderDialog>
                 </div>
               </div>
             </div>
