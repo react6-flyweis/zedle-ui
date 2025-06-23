@@ -18,6 +18,7 @@ export type NavigationItem =
       type: "link";
       href: string;
       icon?: React.ReactNode;
+      items?: never;
     }
   | {
       title: string;
@@ -27,6 +28,8 @@ export type NavigationItem =
         href: string;
         description?: string;
       }[];
+      href?: never;
+      icon?: never;
     };
 
 // Default navigation structure
@@ -123,10 +126,10 @@ export function NavMenu({
   return (
     <div className="hidden md:block">
       <NavigationMenu viewport={false}>
-        <NavigationMenuList className={cn(chipStyle && "gap-5")}>
+        <NavigationMenuList className={cn(chipStyle && "gap-3 xl:gap-5")}>
           {navigationItems.map((item) => (
             <NavigationMenuItem
-              key={item.title + item.type}
+              key={item.title + item.type + item.href}
               className={cn(item.type !== "link" && "relative")}
             >
               {item.type === "link" ? (
