@@ -123,9 +123,9 @@ export default function GrocerySearchPage() {
             </div>
             <ScrollArea className="w-full whitespace-nowrap">
               <div className="flex gap-2 pb-2">
-                {recentKeywordsList.map((keyword, index) => (
+                {recentKeywordsList.map((keyword) => (
                   <Button
-                    key={index}
+                    key={keyword}
                     variant="outline"
                     size="sm"
                     onClick={() => handleKeywordClick(keyword)}
@@ -145,34 +145,37 @@ export default function GrocerySearchPage() {
           <h2 className="text-lg font-semibold text-gray-800 mb-4">
             Suggested Categories
           </h2>
-          <div className="space-y-10">
+          <div className="space-y-10 flex flex-col">
             {suggestedCategories.map((category) => (
-              <div
-                key={category.id}
-                onClick={() => handleKeywordClick(category.name)}
-              >
-                <div className="flex items-center">
-                  <div className="relative w-32 h-20 rounded-lg overflow-hidden flex-shrink-0 mr-4">
-                    <Image
-                      src={category.image}
-                      alt={category.name}
-                      width={200}
-                      height={150}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-medium text-gray-800 mb-1">
-                      {category.name}
-                    </h3>
-                    <div className="flex items-center gap-1">
-                      <StarIcon className="size-4" />
-                      <span className="text-sm font-medium text-gray-700">
-                        {category.rating}
-                      </span>
+              <div className="">
+                <button
+                  type="button"
+                  key={category.id}
+                  onClick={() => handleKeywordClick(category.name)}
+                >
+                  <div className="flex items-center">
+                    <div className="relative w-32 h-20 rounded-lg overflow-hidden flex-shrink-0 mr-4">
+                      <Image
+                        src={category.image}
+                        alt={category.name}
+                        width={200}
+                        height={150}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-medium text-gray-800 mb-1">
+                        {category.name}
+                      </h3>
+                      <div className="flex items-center gap-1">
+                        <StarIcon className="size-4" />
+                        <span className="text-sm font-medium text-gray-700">
+                          {category.rating}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </button>
               </div>
             ))}
           </div>
