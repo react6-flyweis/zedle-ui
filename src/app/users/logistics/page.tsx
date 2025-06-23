@@ -2,14 +2,14 @@ import Image from "next/image";
 import personalisedLogisticsImage from "@/assets/images/personalised-logistics.png";
 import { AdCarousel } from "@/components/ad-carousel";
 import { Cities } from "@/components/cities";
-import { Hero } from "@/components/hero";
+import { MainMap } from "./components/MainMap";
 import { LogisticsBooking } from "@/components/logistics-booking";
 import { Testimonials } from "@/components/testimonials";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Hero />
+      <MainMap />
       <LogisticsBooking />
       <Cities />
       <AdCarousel />
