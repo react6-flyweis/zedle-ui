@@ -1,25 +1,22 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
+import couponIcon from "@/assets/icons/coupon.png";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
-import couponIcon from "@/assets/icons/coupon.png";
-import Image from "next/image";
+import { Input } from "@/components/ui/input";
 
 interface CouponSectionProps {
   onApplyCoupon?: (couponCode: string) => void;
 }
 
-export default function CouponSection({ 
-  onApplyCoupon
-}: CouponSectionProps) {
+export default function CouponSection({ onApplyCoupon }: CouponSectionProps) {
   const [couponCode, setCouponCode] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
