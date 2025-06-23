@@ -1,3 +1,5 @@
+import Image from "next/image";
+import personalisedLogisticsImage from "@/assets/images/personalised-logistics.png";
 import { AdCarousel } from "@/components/ad-carousel";
 import { Categories } from "@/components/categories";
 import { Cities } from "@/components/cities";
@@ -20,6 +22,13 @@ export default function Home() {
       <MobileAppDownload />
       <AdCarousel />
       <Testimonials />
+      <div className="px-10">
+        <Image
+          src={personalisedLogisticsImage}
+          alt="Personalised Recommendations"
+          className="w-full h-auto object-cover"
+        />
+      </div>
     </div>
   );
 }
