@@ -2,9 +2,9 @@ import Image from "next/image";
 import personalisedLogisticsImage from "@/assets/images/personalised-logistics.png";
 import { AdCarousel } from "@/components/ad-carousel";
 import { Cities } from "@/components/cities";
-import { MainMap } from "./components/MainMap";
 import { LogisticsBooking } from "@/components/logistics-booking";
 import { Testimonials } from "@/components/testimonials";
+import { MainMap } from "./components/MainMap";
 
 export default function Home() {
   return (

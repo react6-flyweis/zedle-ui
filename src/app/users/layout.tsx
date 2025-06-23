@@ -177,7 +177,7 @@ function getNavigationForPath(pathname: string): NavigationItem[] {
   if (pathname.startsWith("/users/enterprise-hub")) {
     return [...enterpriseNavigation, categories];
   }
-  
+
   // Default to grocery navigation
   return [...groceryNavigation, categories];
 }
