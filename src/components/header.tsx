@@ -2,7 +2,7 @@ import { MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/logo-horizontal.png";
-import { NavMenu, NavigationItem } from "@/components/nav-menu";
+import { type NavigationItem, NavMenu } from "@/components/nav-menu";
 import { Button } from "@/components/ui/button";
 
 interface HeaderProps {

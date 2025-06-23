@@ -1,15 +1,26 @@
 "use client";
 
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
+import amexIcon from "@/assets/icons/amex.png";
+import discoverIcon from "@/assets/icons/discover.png";
+import mastercardIcon from "@/assets/icons/master-card.png";
+import visaIcon from "@/assets/icons/visa.png";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
-  CardNumberInput,
   CardCvcInput,
   CardExpiryInput,
+  CardNumberInput,
 } from "@/components/ui/card-input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -18,19 +29,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import Image from "next/image";
-
-import visaIcon from "@/assets/icons/visa.png";
-import mastercardIcon from "@/assets/icons/master-card.png";
-import amexIcon from "@/assets/icons/amex.png";
-import discoverIcon from "@/assets/icons/discover.png";
+import { Input } from "@/components/ui/input";
 
 const cardFormSchema = z.object({
   cardNumber: z

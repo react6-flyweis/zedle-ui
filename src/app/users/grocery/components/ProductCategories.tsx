@@ -1,19 +1,18 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "motion/react";
-
+import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import certifiedOrganic from "../assets/certified-organics.png";
 import chipsImage from "../assets/chips.png";
 import coffeeImage from "../assets/coffee.png";
 import cookiesImage from "../assets/cookies.png";
+import exoticFruits from "../assets/exotic-fruits.png";
 import freshFruitsImage from "../assets/fresh-fruits.png";
 import freshVegetablesImage from "../assets/fresh-vegetables.png";
 import leafySeasoningsImage from "../assets/leafy-seasonings.png";
 import liquidDrinksImage from "../assets/liquid-drinks.png";
-import exoticFruits from "../assets/exotic-fruits.png";
-import certifiedOrganic from "../assets/certified-organics.png";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 const categories = [
   {

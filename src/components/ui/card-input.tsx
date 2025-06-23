@@ -1,6 +1,6 @@
-import { useId, type ComponentProps } from "react";
+import { CalendarIcon, CreditCardIcon, LockIcon } from "lucide-react";
+import { type ComponentProps, useId } from "react";
 import { usePaymentInputs } from "react-payment-inputs";
-import { CreditCardIcon, LockIcon, CalendarIcon } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";

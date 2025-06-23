@@ -2,8 +2,8 @@
 
 import Link, { type LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
+import { cn } from "@/lib/utils";
 
 interface ActiveLinkProps extends LinkProps {
   children: React.ReactNode;

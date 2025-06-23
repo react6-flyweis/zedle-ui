@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { SearchIcon } from "lucide-react";
+import Image from "next/image";
 
 import cartIcon from "@/assets/icons/cart-icon.png";
 import Footer from "@/components/footer";

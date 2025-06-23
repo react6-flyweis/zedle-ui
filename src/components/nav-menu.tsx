@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronsDown } from "lucide-react";
+import { ActiveLink } from "@/components/ui/active-link";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,7 +11,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { ActiveLink } from "@/components/ui/active-link";
 import { cn } from "@/lib/utils";
 
 // Define navigation item types

@@ -1,14 +1,13 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Package, SearchIcon } from "lucide-react";
-import { OrderCard } from "@/components/orders/order-card";
-import type { Order } from "@/types/orders";
-import { Input } from "@/components/ui/input";
 import Image from "next/image";
-
 import shoppingBagIcon from "@/assets/icons/shopping-bag.png";
+import { OrderCard } from "@/components/orders/order-card";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import type { Order } from "@/types/orders";
 import ordersImage from "../assets/orders.jpg";
 
 // Mock data for orders

@@ -1,10 +1,10 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import BillDetails from "./bill-details";
 import CartItemCard from "./cart-item-card";
 import CouponSection from "./coupon-section";
-import BillDetails from "./bill-details";
 
 interface CartItem {
   id: string;

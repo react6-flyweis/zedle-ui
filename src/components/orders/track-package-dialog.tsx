@@ -1,13 +1,12 @@
 "use client";
 
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Check } from "lucide-react";
-import type { ReactNode } from "react";
 import Image from "next/image";
-
+import type { ReactNode } from "react";
 import deliveryTrackImage from "@/assets/images/delivery-track.png";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 interface TrackPackageDialogProps {
   children: ReactNode;

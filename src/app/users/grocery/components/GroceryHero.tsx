@@ -1,10 +1,10 @@
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import groceryHeroBg from "../assets/grocery-hero-bg.jpg";
 import groceryHeroCharacter from "../assets/grocery-hero-charector.png";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 export default function GroceryHero() {
   return (
@@ -90,7 +90,7 @@ export default function GroceryHero() {
                 className={cn(
                   "w-80 flex flex-col items-end gap-1",
                   step === 1 && "mr-9",
-                  step === 3 && "mr-7"
+                  step === 3 && "mr-7",
                 )}
               >
                 {/* Step Number with Outline */}

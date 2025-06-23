@@ -1,7 +1,7 @@
 "use client";
 
+import { Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Plus, Minus } from "lucide-react";
 
 interface CartItem {
   id: string;

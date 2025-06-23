@@ -1,7 +1,7 @@
+import Image, { type StaticImageData } from "next/image";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import Image, { StaticImageData } from "next/image";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 export function HeroComponent({
@@ -94,7 +94,7 @@ export function HeroComponent({
                 className={cn(
                   "w-80 flex flex-col items-end gap-1",
                   step === 1 && "mr-9",
-                  step === 3 && "mr-7"
+                  step === 3 && "mr-7",
                 )}
               >
                 {/* Step Number with Outline */}

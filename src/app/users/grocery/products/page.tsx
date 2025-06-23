@@ -1,12 +1,11 @@
+import Image from "next/image";
 import React from "react";
+import { HeroComponent } from "@/components/HeroComponent";
+import personalisedImage from "../assets/personalised.png";
+import productsHeroBg from "../assets/products-hero-bg.jpg";
+import productsHeroCharacter from "../assets/products-hero-character.png";
 import GroceryCard from "../components/GroceryCard";
 import ProductCategories from "../components/ProductCategories";
-
-import productsHeroCharacter from "../assets/products-hero-character.png";
-import productsHeroBg from "../assets/products-hero-bg.jpg";
-import personalisedImage from "../assets/personalised.png";
-import { HeroComponent } from "@/components/HeroComponent";
-import Image from "next/image";
 
 const products = [
   {

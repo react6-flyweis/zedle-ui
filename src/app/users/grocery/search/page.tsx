@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
 import { SearchIcon, StarIcon } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
-import shoppingBagIcon from "@/assets/icons/shopping-bag.png";
 import Image from "next/image";
+import { useState } from "react";
+import shoppingBagIcon from "@/assets/icons/shopping-bag.png";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const recentKeywords = [
