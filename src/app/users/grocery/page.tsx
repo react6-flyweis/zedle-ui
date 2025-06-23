@@ -1,9 +1,10 @@
-// Import category images
+import Image from "next/image";
 
 import chipsBeveragesImg from "./assets/chips-bevarages.png";
 import dairyImg from "./assets/dairy.png";
 import homeCareImg from "./assets/home-care.png";
 import vegetableFruitsImg from "./assets/vegetable-fruits.png";
+import personalisedImage from "./assets/personalised.png";
 
 import CategoryCard from "./components/CategoryCard";
 import GroceryCard from "./components/GroceryCard";
@@ -161,6 +162,13 @@ export default function GroceryPage() {
             ))}
           </div>
         </div>
+      </div>
+      <div className="px-10">
+        <Image
+          src={personalisedImage}
+          alt="Personalised Recommendations"
+          className="w-full h-auto object-cover"
+        />
       </div>
     </div>
   );
