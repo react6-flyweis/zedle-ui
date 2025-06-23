@@ -79,43 +79,48 @@ export default function CartPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Column - User Info, Address, Payment */}
-        <div className="lg:col-span-2 space-y-6 pl-14">
-          <UserInfo name="Randy Lipshutz" phone="+1 778 4521 369" />
-          <DeliveryAddress
-            onAddressSelect={setSelectedAddressId}
-            selectedAddressId={selectedAddressId}
-          />
-          <PaymentMethod
-            isAddressSelected={!!selectedAddressId}
-            onCardSelect={handleCardSelect}
-          />
-          {/* Pay Now Button */}
-          {selectedCardId && selectedAddressId && (
-            <Button
-              onClick={handlePayNow}
-              size="lg"
-              className="w-full rounded-full h-12"
-            >
-              Pay Now - ${totalAmount.toFixed(2)}
-            </Button>
-          )}
+    <div className="min-h-screen max-w-6xl mx-auto p-4">
+      <div className="flex">
+        <div className="w-4">
+          <div className="h-full border-l-2 border-dashed border-gray-500"></div>
         </div>
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Column - User Info, Address, Payment */}
+          <div className="lg:col-span-2 space-y-6">
+            <UserInfo name="Randy Lipshutz" phone="+1 778 4521 369" />
+            <DeliveryAddress
+              onAddressSelect={setSelectedAddressId}
+              selectedAddressId={selectedAddressId}
+            />
+            <PaymentMethod
+              isAddressSelected={!!selectedAddressId}
+              onCardSelect={handleCardSelect}
+            />
+            {/* Pay Now Button */}
+            {selectedCardId && selectedAddressId && (
+              <Button
+                onClick={handlePayNow}
+                size="lg"
+                className="w-full rounded-full h-12"
+              >
+                Pay Now - ${totalAmount.toFixed(2)}
+              </Button>
+            )}
+          </div>
 
-        {/* Right Column - Order Summary */}
-        <div className="space-y-6">
-          <OrderSummary
-            cartItems={cartItems}
-            onUpdateQuantity={updateQuantity}
-            onApplyCoupon={applyCoupon}
-            itemTotal={itemTotal}
-            deliveryFee={deliveryFee}
-            extraDiscount={extraDiscount}
-            totalAmount={totalAmount}
-            savings={savings}
-          />
+          {/* Right Column - Order Summary */}
+          <div className="space-y-6">
+            <OrderSummary
+              cartItems={cartItems}
+              onUpdateQuantity={updateQuantity}
+              onApplyCoupon={applyCoupon}
+              itemTotal={itemTotal}
+              deliveryFee={deliveryFee}
+              extraDiscount={extraDiscount}
+              totalAmount={totalAmount}
+              savings={savings}
+            />
+          </div>
         </div>
       </div>
     </div>
