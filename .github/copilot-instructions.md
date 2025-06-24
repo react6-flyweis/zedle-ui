@@ -17,6 +17,9 @@
 - use shadcn components for where possible.
 - Use functional components and hooks in React.
 
+- use PascalCase for component names and component filenames.
+- Use camelCase for variables and function names.
+
 - if image is given for reference, try to match the design as closely as possible.
 
 - Follow best practices for code quality and maintainability.
