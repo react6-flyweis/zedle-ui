@@ -18,6 +18,12 @@ interface CartItem {
 }
 
 interface OrderSummaryProps {
+  category: {
+    id: string;
+    image: string;
+    title: string;
+    description: string;
+  };
   cartItems: CartItem[];
   onUpdateQuantity: (id: string, change: number) => void;
   onApplyCoupon: () => void;
@@ -29,6 +35,7 @@ interface OrderSummaryProps {
 }
 
 export default function OrderSummary({
+  category,
   cartItems,
   onUpdateQuantity,
   onApplyCoupon,
@@ -42,16 +49,16 @@ export default function OrderSummary({
     <Card className="rounded-none shadow-none">
       <CardHeader className="flex">
         <Image
-          src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80"
-          alt="Fresh Vegetables"
+          src={category.image}
+          alt={category.title}
           width={60}
           height={60}
           className="size-13 rounded object-cover"
         />
         <div className="flex flex-col gap-1">
-          <CardTitle>Fresh Vegetables</CardTitle>
+          <CardTitle>{category.title}</CardTitle>
           <p className="text-sm text-gray-600 border-b-2 border-primary pb-1 w-fit">
-            East New York
+            {category.description}
           </p>
         </div>
       </CardHeader>

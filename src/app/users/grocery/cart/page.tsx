@@ -114,6 +114,13 @@ export default function CartPage() {
         {/* Right Column - Order Summary */}
         <div className="space-y-6">
           <OrderSummary
+            category={{
+              id: "1",
+              image:
+                "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80",
+              title: "Fresh Vegetables",
+              description: "East New York",
+            }}
             cartItems={cartItems}
             onUpdateQuantity={updateQuantity}
             onApplyCoupon={applyCoupon}
