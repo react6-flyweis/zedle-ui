@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar, Clock, Camera, Weight, Ruler } from "lucide-react";
+import { PriceQuotationsDialog } from "../components/PriceQuotationDialog";
 
 import packagesImage from "../assets/packages.jpg";
 
@@ -36,6 +37,7 @@ type FormData = z.infer<typeof formSchema>;
 
 export default function AddPackagePage() {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [showQuotationsDialog, setShowQuotationsDialog] = useState(false);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -62,6 +64,8 @@ export default function AddPackagePage() {
 
   const onSubmit = (data: FormData) => {
     console.log("Form submitted:", data);
+    // Show price quotations dialog
+    setShowQuotationsDialog(true);
   };
 
   return (
@@ -294,6 +298,12 @@ export default function AddPackagePage() {
           </Form>
         </div>
       </div>
+
+      {/* Price Quotations Dialog */}
+      <PriceQuotationsDialog
+        open={showQuotationsDialog}
+        onOpenChange={setShowQuotationsDialog}
+      />
     </div>
   );
 }
