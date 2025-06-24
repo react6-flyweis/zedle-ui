@@ -55,8 +55,8 @@ const logisticsNavigation: NavigationItem[] = [
     type: "link",
   },
   {
-    title: "Booking",
-    href: "/users/logistics/booking",
+    title: "Bookings",
+    href: "/users/logistics/bookings",
     type: "link",
   },
   {
