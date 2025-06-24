@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import DeliveryAddress from "@/components/cart/delivery-address";
-import OrderSummary from "@/components/cart/order-summary";
-import PaymentMethod from "@/components/cart/payment-method";
-import UserInfo from "@/components/cart/user-info";
+import DeliveryAddress from "@/components/checkout/delivery-address";
+import OrderSummary from "@/components/checkout/order-summary";
+import PaymentMethod from "@/components/checkout/payment-method";
+import UserInfo from "@/components/checkout/user-info";
 import { Button } from "@/components/ui/button";
 
 interface CartItem {
