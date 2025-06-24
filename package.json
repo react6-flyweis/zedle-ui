@@ -9,7 +9,8 @@
     "lint": "biome check src",
     "format": "biome format src",
     "lint:fix": "biome check src --fix",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
@@ -33,6 +34,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-payment-inputs": "^1.1.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.4",
     "typescript": "^5"
