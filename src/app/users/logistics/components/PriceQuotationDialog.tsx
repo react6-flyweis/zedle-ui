@@ -1,14 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface ServiceProvider {
@@ -220,8 +221,11 @@ export function PriceQuotationsDialog({
                     <p className="text-sm">Price quote: ${provider.price}</p>
                   </div>
 
-                  <Button className="w-full h-8 text-sm bg-green-600 hover:bg-green-700 disabled:bg-green-800">
-                    Accept
+                  <Button
+                    className="w-full h-8 text-sm bg-green-600 hover:bg-green-700 disabled:bg-green-800"
+                    asChild
+                  >
+                    <Link href="/users/logistics/checkout/">Accept</Link>
                   </Button>
                 </div>
               ))}
