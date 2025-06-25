@@ -101,18 +101,21 @@ export function BookingCard({ booking }: BookingCardProps) {
             <span className="text-sm">{booking.cargo}</span>
           </div>
 
-          {/* Address - only show on hover */}
-          <div className="space-y-1 hidden group-hover:block">
-            <p className="text-sm text-white/80 flex items-center justify-center">
-              <span className="text-green-400 mr-2">📍</span>
-              {booking.address.split(",")[0]}
-            </p>
-            <p className="text-sm text-white/80 flex items-center justify-center">
-              <span className="text-green-400 mr-2">📍</span>
-              {booking.address.split(",").slice(1).join(",").trim()}
-            </p>
+          {/* Pickup & Delivery Addresses */}
+          <div className="justify-center pace-y-1 hidden group-hover:flex">
+            <div className="relative flex flex-col">
+              <div className="absolute left-0 top-1.5 h-[70%] w-1.5 border-r border-dashed border-white"></div>
+              {[booking.pickupAddress, booking.deliveryAddress].map(
+                (address) => (
+                  <div key={address} className="flex items-center mb-1">
+                    <div className="bg-green-400 mr-2 size-3 rounded-full z-10"></div>
+                    <p className="text-sm text-white/80 flex">{address}</p>
+                  </div>
+                ),
+              )}
+            </div>
           </div>
-        </div>{" "}
+        </div>
         {/* Action Buttons - only show on hover */}
         <div className="hidden group-hover:flex justify-center mt-4">
           {booking.status === "ongoing" && (

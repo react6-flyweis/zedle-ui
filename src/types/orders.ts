@@ -22,8 +22,9 @@ export interface LogisticsBooking {
   customerName: string;
   vehicleType: string;
   cargo: string;
-  address: string;
   status: "ongoing" | "completed" | "canceled";
   backgroundImage?: string;
   avatar?: string;
+  pickupAddress: string;
+  deliveryAddress: string;
 }
