@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { CancelOrderDialog } from "@/components/orders/cancel-order-dialog";
 import { RateOrderDialog } from "@/components/orders/rate-order-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -129,8 +130,13 @@ export function BookingCard({ booking }: BookingCardProps) {
                   Cancel Order
                 </Button>
               </CancelOrderDialog>
-              <Button className="flex-1 bg-yellow-500 hover:bg-yellow-600 py-3 px-4 text-sm font-bold">
-                Track Order
+              <Button
+                className="flex-1 bg-yellow-500 hover:bg-yellow-600 py-3 px-4 text-sm font-bold"
+                asChild
+              >
+                <Link href={`/users/logistics/track/${booking._id}`}>
+                  Track Order
+                </Link>
               </Button>
             </div>
           )}
