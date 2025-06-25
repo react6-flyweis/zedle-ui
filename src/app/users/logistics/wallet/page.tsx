@@ -86,6 +86,9 @@ export default function WalletPage() {
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
   const [topUpOpen, setTopUpOpen] = useState(false);
   const [topUpAmount, setTopUpAmount] = useState("");
+  // Redeem dialog state
+  const [redeemOpen, setRedeemOpen] = useState(false);
+  const [redeemAmount, setRedeemAmount] = useState("");
 
   const formatAmount = (amount: number) => {
     const formattedAmount = Math.abs(amount).toLocaleString();
@@ -97,6 +100,13 @@ export default function WalletPage() {
     console.log("Top up amount:", topUpAmount);
     setTopUpOpen(false);
     setTopUpAmount("");
+  };
+
+  const handleRedeemNext = () => {
+    // Handle redeem logic here
+    console.log("Redeem amount:", redeemAmount);
+    setRedeemOpen(false);
+    setRedeemAmount("");
   };
 
   return (
@@ -159,7 +169,42 @@ export default function WalletPage() {
                 </DialogContent>
               </Dialog>
               {/* Redeem Dialog */}
-              <Button variant="outline">Redeem</Button>
+              <Dialog open={redeemOpen} onOpenChange={setRedeemOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="outline">Redeem</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader className="space-y-4">
+                    <DialogTitle className="text-xl font-semibold text-left">
+                      Enter Your Redeem Amount
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-6 mt-6">
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="redeem-amount"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Enter your amount
+                      </label>
+                      <Input
+                        id="redeem-amount"
+                        placeholder="Enter amount"
+                        value={redeemAmount}
+                        onChange={(e) => setRedeemAmount(e.target.value)}
+                        className="h-12 text-base"
+                      />
+                    </div>
+                    <Button
+                      onClick={handleRedeemNext}
+                      className="w-full h-12 font-medium"
+                      disabled={!redeemAmount.trim()}
+                    >
+                      NEXT
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </CardContent>
