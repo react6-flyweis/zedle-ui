@@ -1,5 +1,4 @@
 "use client";
-
 import { ChevronDown, Settings2Icon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -7,11 +6,19 @@ import walletIcon from "@/assets/icons/wallet.png";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 // Mock transaction data
@@ -77,10 +84,19 @@ const transactions = [
 export default function WalletPage() {
   const [filterValue, setFilterValue] = useState<string>("Daily");
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
+  const [topUpOpen, setTopUpOpen] = useState(false);
+  const [topUpAmount, setTopUpAmount] = useState("");
 
   const formatAmount = (amount: number) => {
     const formattedAmount = Math.abs(amount).toLocaleString();
     return amount < 0 ? `-$${formattedAmount}` : `+$${formattedAmount}`;
+  };
+
+  const handleTopUpNext = () => {
+    // Handle top-up logic here
+    console.log("Top up amount:", topUpAmount);
+    setTopUpOpen(false);
+    setTopUpAmount("");
   };
 
   return (
@@ -106,7 +122,43 @@ export default function WalletPage() {
               <span className="text-lg opacity-90">USD</span>
             </div>
             <div className="flex gap-2">
-              <Button variant="outline">Top up</Button>
+              <Dialog open={topUpOpen} onOpenChange={setTopUpOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="outline">Top up</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader className="space-y-4">
+                    <DialogTitle className="text-xl font-semibold text-left">
+                      Enter Your Top up Amount
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-6">
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="topup-amount"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Enter your amount
+                      </label>
+                      <Input
+                        id="topup-amount"
+                        placeholder="Enter amount"
+                        value={topUpAmount}
+                        onChange={(e) => setTopUpAmount(e.target.value)}
+                        className="h-12 text-base"
+                      />
+                    </div>
+                    <Button
+                      onClick={handleTopUpNext}
+                      className="w-full h-12 font-medium"
+                      disabled={!topUpAmount.trim()}
+                    >
+                      NEXT
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+              {/* Redeem Dialog */}
               <Button variant="outline">Redeem</Button>
             </div>
           </div>
