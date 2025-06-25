@@ -1,10 +1,20 @@
+"use client";
+
 import { ArrowLeftRight, Calendar, Plus } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import logisticTruckIcon from "@/assets/icons/logistic-truck.png";
 import { AnimatedInput } from "@/components/ui/animated-input";
 import { Button } from "@/components/ui/button";
 
 export function LogisticsBooking() {
+  const router = useRouter();
+
+  const handleSearchVehicles = () => {
+    // Logic to search vehicles based on the input fields
+    router.push("/users/logistics/add-package");
+  };
+
   return (
     <section className="relative -mt-32 z-10 mb-10">
       <div className="container mx-auto px-4">
@@ -67,7 +77,7 @@ export function LogisticsBooking() {
                 <Plus className="h-4 w-4 mr-1" />
                 Add Promo Code
               </Button>
-              <Button>Search Vehicles</Button>
+              <Button onClick={handleSearchVehicles}>Search Vehicles</Button>
             </div>
           </div>
         </div>
