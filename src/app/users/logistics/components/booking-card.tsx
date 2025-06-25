@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { CancelOrderDialog } from "@/components/orders/cancel-order-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { LogisticsBooking } from "@/types/orders";
-
 import bookingBgImage from "../assets/booking-bg.jpg";
 import bookingVehicleImage from "../assets/booking-vehicle.png";
 
@@ -120,12 +120,14 @@ export function BookingCard({ booking }: BookingCardProps) {
         <div className="hidden group-hover:flex justify-center mt-4">
           {booking.status === "ongoing" && (
             <div className="flex space-x-3 mt-4">
-              <Button
-                variant="destructive"
-                className="flex-1 py-3 px-4 text-sm font-bold"
-              >
-                Cancel Order
-              </Button>
+              <CancelOrderDialog orderId={booking._id} title="Booking">
+                <Button
+                  variant="destructive"
+                  className="flex-1 py-3 px-4 text-sm font-bold"
+                >
+                  Cancel Order
+                </Button>
+              </CancelOrderDialog>
               <Button className="flex-1 bg-yellow-500 hover:bg-yellow-600 py-3 px-4 text-sm font-bold">
                 Track Order
               </Button>

@@ -33,6 +33,7 @@ import { Input } from "../ui/input";
 interface CancelOrderDialogProps {
   children: React.ReactNode;
   orderId: string;
+  title?: string; // Optional title prop for customization
 }
 
 const formSchema = z.object({
@@ -55,6 +56,7 @@ const cancellationReasons = [
 export function CancelOrderDialog({
   children,
   orderId,
+  title = "Order", // Default title if not provided
 }: CancelOrderDialogProps) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -93,7 +95,7 @@ export function CancelOrderDialog({
       <DialogContent className="sm:max-w-md p-0 gap-0">
         <DialogHeader className="p-6 pb-0">
           <DialogTitle className="text-xl font-semibold text-foreground">
-            Cancel This Order
+            Cancel This {title}
           </DialogTitle>
         </DialogHeader>
 
@@ -188,7 +190,7 @@ export function CancelOrderDialog({
                 disabled={isSubmitting}
                 className="w-full font-medium py-3 rounded-lg"
               >
-                {isSubmitting ? "CANCELLING..." : "CANCEL THIS BOOKING"}
+                CANCEL THIS {title.toUpperCase()}
               </Button>
             </div>
           </form>
