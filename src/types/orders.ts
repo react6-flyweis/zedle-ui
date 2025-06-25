@@ -18,7 +18,7 @@ export interface Order {
 }
 
 export interface LogisticsBooking {
-  id: string;
+  _id: string;
   customerName: string;
   vehicleType: string;
   cargo: string;

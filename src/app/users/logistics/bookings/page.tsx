@@ -8,17 +8,17 @@ import { BookingCard } from "../components/booking-card";
 // Sample data - replace with actual API data
 const sampleBookings: LogisticsBooking[] = [
   {
-    id: "1",
+    _id: "1",
     customerName: "Omar Smith",
     vehicleType: "Truck Type",
     cargo: "Cargo",
     pickupAddress: "Warehouse 1, 123 Main St, Shiloh, Hawaii 81063",
-    deliveryAddress: "901 Thornridge Cir. Shiloh, Hawaii 81063",
+    deliveryAddress: "901 Thornr_idge Cir. Shiloh, Hawaii 81063",
     status: "ongoing",
     backgroundImage: "/assets/images/delivery-bg.jpg",
   },
   {
-    id: "2",
+    _id: "2",
     customerName: "Omar Smith",
     vehicleType: "Truck Type",
     cargo: "Cargo",
@@ -28,7 +28,7 @@ const sampleBookings: LogisticsBooking[] = [
     backgroundImage: "/assets/images/personalised-logistics.png",
   },
   {
-    id: "3",
+    _id: "3",
     customerName: "Omar Smith",
     vehicleType: "Truck Type",
     cargo: "Cargo",
@@ -38,7 +38,7 @@ const sampleBookings: LogisticsBooking[] = [
     backgroundImage: "/assets/images/delivery-bg.jpg",
   },
   {
-    id: "4",
+    _id: "4",
     customerName: "Omar Smith",
     vehicleType: "Truck Type",
     cargo: "Cargo",
@@ -48,7 +48,7 @@ const sampleBookings: LogisticsBooking[] = [
     backgroundImage: "/assets/images/personalised-logistics.png",
   },
   {
-    id: "5",
+    _id: "5",
     customerName: "Omar Smith",
     vehicleType: "Truck Type",
     cargo: "Cargo",
@@ -58,7 +58,7 @@ const sampleBookings: LogisticsBooking[] = [
     backgroundImage: "/assets/images/delivery-bg.jpg",
   },
   {
-    id: "6",
+    _id: "6",
     customerName: "Omar Smith",
     vehicleType: "Truck Type",
     cargo: "Cargo",
@@ -96,7 +96,7 @@ export default function BookingsPage() {
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {bookings.map((booking) => (
-            <BookingCard key={booking.id} booking={booking} />
+            <BookingCard key={booking._id} booking={booking} />
           ))}
         </div>
 
