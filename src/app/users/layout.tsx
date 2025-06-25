@@ -105,13 +105,18 @@ const travelNavigation: NavigationItem[] = [
     type: "link",
   },
   {
-    title: "Bookings",
-    href: "/users/travel-tourism/bookings",
+    title: "Search",
+    href: "/users/travel-tourism/search",
     type: "link",
   },
   {
-    title: "My Trips",
-    href: "/users/travel-tourism/trips",
+    title: "Services",
+    href: "/users/travel-tourism/services",
+    type: "link",
+  },
+  {
+    title: "Favorites",
+    href: "/users/travel-tourism/favorites",
     type: "link",
   },
 ];
