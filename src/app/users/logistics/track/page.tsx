@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 import packageIcon from "../assets/package.png";
+import { MapTracker } from "../components/MapTracker";
 
 interface TrackingStep {
   id: string;
@@ -116,6 +117,7 @@ const TrackingPage = () => {
   return (
     <div className="">
       {/* Map Tracker */}
+      <MapTracker className="mb-4" trackingSteps={trackingSteps} />
 
       <Card className="rounded-none gap-4">
         <CardHeader className="flex flex-col items-center">
