@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
-import packageIcon from "../assets/package.png";
-import { MapTracker } from "../components/MapTracker";
-import type { ITrackingStep } from "../types/tracking";
+import packageIcon from "../../assets/package.png";
+import { MapTracker } from "../../components/MapTracker";
+import type { ITrackingStep } from "../../types/tracking";
 
 const TrackingPage = () => {
   const trackingId = "#9876654 32212";
