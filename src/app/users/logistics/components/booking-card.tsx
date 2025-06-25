@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { CancelOrderDialog } from "@/components/orders/cancel-order-dialog";
+import { RateOrderDialog } from "@/components/orders/rate-order-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -136,9 +137,11 @@ export function BookingCard({ booking }: BookingCardProps) {
 
           {booking.status === "completed" && (
             <div className="flex justify-center mt-4">
-              <Button className="bg-green-500 hover:bg-green-600 py-3 px-6 text-sm font-bold">
-                Rate Driver
-              </Button>
+              <RateOrderDialog orderId={booking._id} title="Driver">
+                <Button className="bg-green-500 hover:bg-green-600 py-3 px-6 text-sm font-bold">
+                  Rate Driver
+                </Button>
+              </RateOrderDialog>
             </div>
           )}
         </div>

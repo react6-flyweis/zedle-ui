@@ -26,6 +26,7 @@ import { Textarea } from "@/components/ui/textarea";
 interface RateOrderDialogProps {
   children: React.ReactNode;
   orderId: string;
+  title?: "Order" | "Driver";
 }
 
 const formSchema = z.object({
@@ -36,7 +37,11 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export function RateOrderDialog({ children, orderId }: RateOrderDialogProps) {
+export function RateOrderDialog({
+  children,
+  orderId,
+  title = "Order",
+}: RateOrderDialogProps) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hoveredRating, setHoveredRating] = useState(0);
@@ -94,17 +99,9 @@ export function RateOrderDialog({ children, orderId }: RateOrderDialogProps) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-2xl p-0 gap-0">
-        <DialogHeader className="p-6 pb-4 relative">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-4 top-4 rounded-full w-8 h-8 bg-black text-white hover:bg-gray-800"
-            onClick={() => setOpen(false)}
-          >
-            <XIcon className="h-4 w-4" />
-          </Button>
+        <DialogHeader className="p-6 pb-4">
           <DialogTitle className="text-lg font-semibold text-foreground">
-            Rate your order
+            Rate your {title}
           </DialogTitle>
         </DialogHeader>
 
@@ -143,7 +140,7 @@ export function RateOrderDialog({ children, orderId }: RateOrderDialogProps) {
               {/* Review Section */}
               <div className="">
                 <h3 className="text-sm font-medium text-foreground mb-3">
-                  Review your order
+                  Review your {title}
                 </h3>
 
                 <FormField
