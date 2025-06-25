@@ -25,7 +25,7 @@ export const MapTracker = ({ trackingSteps = [] }: MapTrackerProps) => {
   const initialViewState = {
     longitude: currentLocation?.location.coordinates?.longitude || 0,
     latitude: currentLocation?.location.coordinates?.latitude || 0,
-    zoom: 10,
+    zoom: 5,
     pitch: 0,
     bearing: 0,
   };
