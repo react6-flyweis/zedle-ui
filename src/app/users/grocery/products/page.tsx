@@ -74,6 +74,9 @@ export default function ProductsPage() {
   return (
     <div className="">
       <HeroComponent
+        title={["Feast Your Senses,", "Fast and Fresh"]}
+        subtitle="Order Restaurant food, takeaway and groceries."
+        inputTitle="Enter a postcode to see what we deliver"
         characterImage={productsHeroCharacter}
         backgroundImage={productsHeroBg}
       />

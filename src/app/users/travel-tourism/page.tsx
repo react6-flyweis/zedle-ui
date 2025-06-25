@@ -92,6 +92,9 @@ export default function TravelTourismPage() {
   return (
     <div className="">
       <HeroComponent
+        title={["Your Trusted Partner", "In Every Journey"]}
+        subtitle="Request for any travel you need"
+        inputTitle="Enter a postcode to see what we deliver"
         characterImage={travelTourismCharacter}
         backgroundImage={travelTourismBackground}
       />

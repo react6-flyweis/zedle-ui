@@ -5,9 +5,17 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 export function HeroComponent({
+  title,
+  subtitle,
+  inputTitle,
   characterImage,
   backgroundImage,
 }: {
+  title: string[];
+  subtitle: string;
+  inputTitle: string;
+  description?: string;
+  inputPlaceholder?: string;
   characterImage: string | StaticImageData;
   backgroundImage: string | StaticImageData;
 }) {
@@ -30,22 +38,27 @@ export function HeroComponent({
         <div className="flex-1 z-10 p-8">
           <div className="w-2/3">
             {/* Subtitle */}
-            <p className="text-gray-800 font-medium">
-              Order Restaurant food, takeaway and groceries.
-            </p>
+            <p className="text-gray-800 font-medium">{subtitle}</p>
 
             {/* Main Title */}
-            <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-4">
-              Feast Your Senses,
-              <br />
-              <span className="text-primary">Fast and Fresh</span>
+            <h1 className="text-4xl flex flex-col font-bold  leading-tight mb-4">
+              {title.map((line, index) => (
+                <span
+                  key={line}
+                  className={cn(
+                    index === title.length - 1
+                      ? "text-primary"
+                      : " text-gray-900",
+                  )}
+                >
+                  {line}
+                </span>
+              ))}
             </h1>
 
             {/* Search Section */}
             <div className="space-y-2">
-              <p className="text-gray-600 text-sm">
-                Enter a postcode to see what we deliver
-              </p>
+              <p className="text-gray-600 text-sm">{inputTitle}</p>
 
               {/* Search Input */}
               <div className="flex rounded-full shadow-lg h-12 bg-white">
