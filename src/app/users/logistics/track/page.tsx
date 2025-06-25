@@ -5,106 +5,118 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 import packageIcon from "../assets/package.png";
 import { MapTracker } from "../components/MapTracker";
-
-interface TrackingStep {
-  id: string;
-  title: string;
-  location: string;
-  status: "completed" | "current" | "pending";
-  date?: string;
-  time?: string;
-}
-
-interface TrackingEvent {
-  step: string;
-  place: string;
-  date: string;
-  delay?: string;
-}
+import type { ITrackingStep } from "../types/tracking";
 
 const TrackingPage = () => {
   const trackingId = "#9876654 32212";
 
-  const trackingSteps: TrackingStep[] = [
+  const trackingSteps: ITrackingStep[] = [
     {
       id: "pickup",
       title: "Empty Pickup",
-      location: "Container yard",
+      location: {
+        city: "Gujarat",
+        description: "Container yard",
+        coordinates: {
+          latitude: 23.0225,
+          longitude: 72.5714,
+        },
+      },
       status: "completed",
-      date: "4 days ahead",
+      date: "Dec 16th, 2024",
     },
     {
       id: "door-pickup",
       title: "Door Pickup",
-      location: "Gujarat",
+      location: {
+        city: "Gujarat",
+        description: "Warehouse",
+        coordinates: {
+          latitude: 23.03,
+          longitude: 72.58,
+        },
+      },
       status: "completed",
+      date: "Dec 17th, 2024",
+    },
+    {
+      id: "get-in",
+      title: "Get In",
+      location: {
+        city: "Gujarat",
+        description: "Loading point",
+        coordinates: {
+          latitude: 23.035,
+          longitude: 72.59,
+        },
+      },
+      status: "completed",
+      date: "Dec 18th, 2024",
+    },
+    {
+      id: "loaded",
+      title: "Loaded",
+      location: {
+        city: "Gujarat",
+        description: "Loaded at site",
+        coordinates: {
+          latitude: 23.04,
+          longitude: 72.6,
+        },
+      },
+      status: "completed",
+      date: "Dec 19th, 2024",
     },
     {
       id: "departure",
       title: "Departure",
-      location: "Rajasthan",
+      location: {
+        city: "Vadodara",
+        description: "Departed from Vadodara",
+        coordinates: {
+          latitude: 22.310696,
+          longitude: 73.192635,
+        },
+      },
       status: "current",
-      date: "4 days ahead",
+      date: "Dec 20th, 2024",
     },
     {
       id: "arrival",
       title: "Arrival",
-      location: "Mumbai",
+      location: {
+        city: "Surat",
+        description: "Yet to arrive",
+        coordinates: {
+          latitude: 21.17024,
+          longitude: 72.831062,
+        },
+      },
       status: "pending",
-      date: "On January 31st",
-    },
-    {
-      id: "delivery",
-      title: "Door Delivery",
-      location: "Thane",
-      status: "pending",
-      date: "On January 31st",
-    },
-    {
-      id: "return",
-      title: "Empty Return",
-      location: "Container yard",
-      status: "pending",
-    },
-  ];
-
-  const trackingEvents: TrackingEvent[] = [
-    {
-      step: "Empty pickup",
-      place: "Gujarat",
-      date: "Dec 16th, 2024",
-    },
-    {
-      step: "Door pickup",
-      place: "Gujarat",
-      date: "Dec 17th, 2024",
-    },
-    {
-      step: "Get in",
-      place: "Gujarat",
-      date: "Dec 18th, 2024",
-    },
-    {
-      step: "Loaded",
-      place: "Gujarat",
-      date: "Dec 19th, 2024",
-    },
-    {
-      step: "Departure",
-      place: "Rajasthan",
-      date: "Dec 20th, 2024",
-    },
-    {
-      step: "Arrival",
-      place: "Mumbai",
       date: "Dec 21st, 2024",
     },
     {
-      step: "Door delivery",
-      place: "Thane",
+      id: "door-delivery",
+      title: "Door Delivery",
+      location: {
+        city: "Thane",
+        description: "Delivered to customer",
+        coordinates: {
+          latitude: 19.2183,
+          longitude: 72.9781,
+        },
+      },
+      status: "pending",
       date: "Dec 22nd, 2024",
     },
   ];
+
+  const trackingEvents = trackingSteps.map((step) => ({
+    step: step.title,
+    place: step.location.city || "",
+    date: step.date || "",
+    delay: step.delay || "-",
+  }));
 
   const getStepColor = (status: string) => {
     if (status === "pending") {
@@ -185,7 +197,9 @@ const TrackingPage = () => {
                     <p className="text-sm font-medium text-gray-900">
                       {step.title}
                     </p>
-                    <p className="text-xs text-gray-500">{step.location}</p>
+                    <p className="text-xs text-gray-500">
+                      {step.location.city}
+                    </p>
                     {step.date && (
                       <p className="text-xs text-gray-400">{step.date}</p>
                     )}
@@ -216,7 +230,7 @@ const TrackingPage = () => {
                     <td className="p-3 font-semibold">{event.step}</td>
                     <td className="p-3">{event.place}</td>
                     <td className="p-3">{event.date}</td>
-                    <td className="p-3">{event.delay || "-"}</td>
+                    <td className="p-3">{"-"}</td>
                   </tr>
                 ))}
               </tbody>
