@@ -1,3 +1,5 @@
+import Image from "next/image";
+import personalisedTourTravelImage from "../../assets/tour-travels-personalised-app.png";
 import { CustomerReviewsSection } from "../../components/CustomerReviewsSection";
 import { FacilitiesSection } from "../../components/FacilitiesSection";
 import { HotelHero } from "../../components/HotelHero";
@@ -17,6 +19,13 @@ export default function Page() {
         longitude={-0.09}
       />
       <CustomerReviewsSection />
+      <div className="px-10">
+        <Image
+          src={personalisedTourTravelImage}
+          alt="Personalised Recommendations"
+          className="w-full h-auto object-cover"
+        />
+      </div>
     </>
   );
 }
