@@ -1,7 +1,7 @@
 "use client";
 
 import { MapPin } from "lucide-react";
-import MapBoxMap, { Layer, Marker, Source } from "react-map-gl/mapbox";
+import MapBoxMap, { Marker } from "react-map-gl/mapbox";
 import { Card, CardContent } from "@/components/ui/card";
 
 // import dynamic from "next/dynamic";
