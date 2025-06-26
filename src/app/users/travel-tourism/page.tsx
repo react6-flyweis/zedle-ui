@@ -1,8 +1,8 @@
+import Image from "next/image";
 import { HeroComponent } from "@/components/HeroComponent";
-
+import personalisedTourTravelImage from "./assets/tour-travels-personalised-app.png";
 import travelTourismBackground from "./assets/travel-tourism-bg.jpg";
 import travelTourismCharacter from "./assets/travel-tourism-charecter.png";
-
 import { HotelCard, type IHotel } from "./components/HotelCard";
 import { PopularTray } from "./components/PopularTray";
 
@@ -118,6 +118,13 @@ export default function TravelTourismPage() {
             <HotelCard key={hotel.id} hotel={hotel} />
           ))}
         </div>
+      </div>
+      <div className="px-10">
+        <Image
+          src={personalisedTourTravelImage}
+          alt="Personalised Recommendations"
+          className="w-full h-auto object-cover"
+        />
       </div>
     </div>
   );
