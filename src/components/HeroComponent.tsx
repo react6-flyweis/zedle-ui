@@ -28,7 +28,7 @@ export function HeroComponent({
         <Image
           src={characterImage}
           alt="Grocery delivery person"
-          className="object-contain w-64 -mb-14"
+          className="object-contain max-w-72 -mb-12"
           priority
         />
       </div>
