@@ -1,6 +1,6 @@
-import { FacilitiesSection } from "../components/FacilitiesSection";
-import { HotelHero } from "../components/HotelHero";
-import { LocationSection } from "./components/LocationSection";
+import { FacilitiesSection } from "../../components/FacilitiesSection";
+import { HotelHero } from "../../components/HotelHero";
+import { LocationSection } from "../../components/LocationSection";
 
 export default function Page() {
   return (
