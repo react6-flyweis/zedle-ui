@@ -1,7 +1,10 @@
 import { HeroComponent } from "@/components/HeroComponent";
+
 import travelTourismBackground from "./assets/travel-tourism-bg.jpg";
 import travelTourismCharacter from "./assets/travel-tourism-charecter.png";
+
 import { HotelCard, type IHotel } from "./components/HotelCard";
+import { PopularTray } from "./components/PopularTray";
 
 // Sample hotel data
 const hotels: IHotel[] = [
@@ -98,7 +101,8 @@ export default function TravelTourismPage() {
         characterImage={travelTourismCharacter}
         backgroundImage={travelTourismBackground}
       />
-      <div className="container mx-auto px-4 py-8">
+      <PopularTray />
+      <div className="p-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Recommended Hotels
