@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { SelectDateDrawer } from "@/components/SelectDateDrawer";
+import { Button } from "@/components/ui/button";
 import personalisedTourTravelImage from "../../assets/tour-travels-personalised-app.png";
 import { CustomerReviewsSection } from "../../components/CustomerReviewsSection";
 import { FacilitiesSection } from "../../components/FacilitiesSection";
@@ -7,7 +9,7 @@ import { LocationSection } from "../../components/LocationSection";
 
 export default function Page() {
   return (
-    <>
+    <div>
       <HotelHero />
       <FacilitiesSection />
       <LocationSection
@@ -26,6 +28,13 @@ export default function Page() {
           className="w-full h-auto object-cover"
         />
       </div>
-    </>
+      <div className="fixed bottom-0 w-full flex justify-center px-10">
+        <SelectDateDrawer>
+          <Button className="h-14 text-xl w-full rounded-t rounded-b-none">
+            Select Date
+          </Button>
+        </SelectDateDrawer>
+      </div>
+    </div>
   );
 }
