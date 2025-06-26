@@ -1,3 +1,4 @@
+import { CustomerReviewsSection } from "../../components/CustomerReviewsSection";
 import { FacilitiesSection } from "../../components/FacilitiesSection";
 import { HotelHero } from "../../components/HotelHero";
 import { LocationSection } from "../../components/LocationSection";
@@ -15,6 +16,7 @@ export default function Page() {
         latitude={51.505}
         longitude={-0.09}
       />
+      <CustomerReviewsSection />
     </>
   );
 }
