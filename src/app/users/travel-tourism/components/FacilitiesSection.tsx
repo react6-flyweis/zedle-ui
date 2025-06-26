@@ -47,14 +47,14 @@ export function FacilitiesSection() {
           {facilities.map(({ icon: Icon, label }) => (
             <Card
               key={label}
-              className="w-36 h-36 flex flex-col items-center justify-center border-2 rounded border-muted-foreground bg-transparent hover:shadow-md transition"
+              className="w-36 h-36 flex flex-col items-center justify-center border-2 rounded border-muted-foreground bg-transparent hover:bg-primary hover:border-primary hover:text-white group transition"
             >
               <CardContent className="flex flex-col items-center justify-center p-4">
                 <Icon
-                  className="w-12 h-12 text-primary mb-3"
+                  className="w-12 h-12 text-primary mb-3 group-hover:text-white transition-colors"
                   strokeWidth={2.2}
                 />
-                <span className="text-base font-medium text-muted-foreground">
+                <span className="text-base font-medium text-muted-foreground group-hover:text-white transition-colors">
                   {label}
                 </span>
               </CardContent>
