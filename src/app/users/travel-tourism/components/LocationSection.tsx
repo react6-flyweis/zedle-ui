@@ -1,8 +1,10 @@
 "use client";
 
 import { MapPin } from "lucide-react";
+import Image from "next/image";
 import MapBoxMap, { Marker } from "react-map-gl/mapbox";
 import { Card, CardContent } from "@/components/ui/card";
+import mapPointerImage from "../assets/map-pointer.png";
 
 // import dynamic from "next/dynamic";
 // const ReactMapGL = dynamic(() => import("react-map-gl/mapbox"), { ssr: false });
@@ -37,9 +39,20 @@ export const LocationSection: React.FC<LocationSectionProps> = ({
           mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         >
           <Marker latitude={latitude} longitude={longitude} anchor="center">
-            <div className="bg-white size-8 p-2 rounded-full shadow-md">
-              <MapPin className="text-red-500 size-8" />
-            </div>
+            <Card className="relative gap-0 p-5 w-44">
+              <p className="font-semibold">{title}</p>
+              <p className="">{subtitle}</p>
+
+              <div className="absolute -right-5 -top-5 bg-gray-800 size-12 flex justify-center item-center p-2 rounded-full shadow-md">
+                <Image
+                  src={mapPointerImage}
+                  alt="Map Pointer"
+                  className="max-h-10 max-w-10"
+                  width={60}
+                  height={60}
+                />
+              </div>
+            </Card>
           </Marker>
         </MapBoxMap>
         <Card className="absolute left-10 top-0 w-72 bg-gray-700 rounded text-white shadow-lg flex items-center justify-center">
