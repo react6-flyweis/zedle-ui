@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { HeroComponent } from "@/components/HeroComponent";
 import personalisedTourTravelImage from "./assets/tour-travels-personalised-app.png";
 import travelTourismBackground from "./assets/travel-tourism-bg.jpg";
@@ -115,7 +116,12 @@ export default function TravelTourismPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {hotels.map((hotel) => (
-            <HotelCard key={hotel.id} hotel={hotel} />
+            <Link
+              href={`/users/travel-tourism/hotel/${hotel.id}`}
+              key={hotel.id}
+            >
+              <HotelCard hotel={hotel} />
+            </Link>
           ))}
         </div>
       </div>
