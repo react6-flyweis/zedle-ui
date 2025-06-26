@@ -1,3 +1,7 @@
+import { HeroComponent } from "@/components/HeroComponent";
+
+import tourTravelsServicesCharacter from "../assets/tour-travels-services-character.png";
+import tourTravelsBg from "../assets/travel-tourism-bg.jpg";
 import { ServiceCard } from "../components/ServiceCard";
 
 const services = [
@@ -46,6 +50,13 @@ const services = [
 function page() {
   return (
     <div>
+      <HeroComponent
+        title={["Your Trusted Partner", "In Every Journey"]}
+        subtitle="Request for any travel you need"
+        inputTitle="Enter a postcode to see what we deliver"
+        characterImage={tourTravelsServicesCharacter}
+        backgroundImage={tourTravelsBg}
+      />
       <div className="max-w-6xl mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
         {services.map((service) => (
           <ServiceCard key={service.title} {...service} />
