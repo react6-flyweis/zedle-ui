@@ -1,5 +1,6 @@
+import Image from "next/image";
 import { HeroComponent } from "@/components/HeroComponent";
-
+import personalisedTourTravelImage from "../assets/tour-travels-personalised-app.png";
 import tourTravelsServicesCharacter from "../assets/tour-travels-services-character.png";
 import tourTravelsBg from "../assets/travel-tourism-bg.jpg";
 import { ServiceCard } from "../components/ServiceCard";
@@ -61,6 +62,13 @@ function page() {
         {services.map((service) => (
           <ServiceCard key={service.title} {...service} />
         ))}
+      </div>
+      <div className="px-10">
+        <Image
+          src={personalisedTourTravelImage}
+          alt="Personalised Recommendations"
+          className="w-full h-auto object-cover"
+        />
       </div>
     </div>
   );
