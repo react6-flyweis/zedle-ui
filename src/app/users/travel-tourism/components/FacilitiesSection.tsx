@@ -14,7 +14,7 @@ function DescriptionSection() {
   return (
     <div className="">
       <div className="mb-2">
-        <p className="text-muted-foreground text-semibold text-sm">
+        <p className="text-muted-foreground text-semibold font-semibold">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -39,7 +39,7 @@ function DescriptionSection() {
 
 export function FacilitiesSection() {
   return (
-    <section className="py-8 px-4 container mx-auto space-y-8">
+    <section className="p-8 py-12 container mx-auto space-y-8">
       <DescriptionSection />
       <div>
         <h2 className="text-2xl font-semibold mb-4">Facilities</h2>

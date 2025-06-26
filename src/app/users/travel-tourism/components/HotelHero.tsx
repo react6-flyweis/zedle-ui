@@ -9,7 +9,7 @@ export const HotelHero = () => {
     "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80";
   return (
     <section
-      className="flex h-60 p-5  relative"
+      className="flex h-[50vh] p-10  relative"
       style={{
         background: `url(${image}) center center / cover no-repeat`,
       }}
@@ -38,7 +38,7 @@ export const HotelHero = () => {
           </Badge>
         </div>
 
-        <Button className="absolute -bottom-8 -left-6 pl-5  rounded-l-none">
+        <Button className="absolute -bottom-16 -left-10 w-52 pl-5 h-12  rounded-l-none">
           <ClockIcon className="text-white" />
           <span>Open until 3:00 AM</span>
         </Button>
@@ -49,7 +49,7 @@ export const HotelHero = () => {
           <Image
             src={image}
             alt="Mountain"
-            className="object-cover rounded-xl h-52 w-96"
+            className="object-cover rounded-xl h-60 w-96"
             priority
             height={200}
             width={400}
