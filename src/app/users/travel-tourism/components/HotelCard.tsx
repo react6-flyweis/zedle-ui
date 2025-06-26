@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { HeartIcon, Star } from "lucide-react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,11 +12,22 @@ export interface IHotel {
   image: string;
 }
 
-export function HotelCard({ hotel }: { hotel: IHotel }) {
+export function HotelCard({
+  hotel,
+  isFavorite = false,
+}: {
+  hotel: IHotel;
+  isFavorite?: boolean;
+}) {
   return (
     <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 p-0">
       <CardContent className="p-0">
         <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+          {isFavorite && (
+            <div className="z-10 flex justify-center items-center absolute top-3 left-3 size-8 bg-white rounded-full">
+              <HeartIcon className="size-5 text-red-500 fill-red-500" />
+            </div>
+          )}
           <Image
             src={hotel.image}
             alt={hotel.name}
