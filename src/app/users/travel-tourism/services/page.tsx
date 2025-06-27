@@ -1,9 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
-import personalisedTourTravelImage from "../assets/tour-travels-personalised-app.png";
 
 import { ServiceCard } from "../components/ServiceCard";
-import { ServicesHero } from "./components/ServicesHero";
 
 const services = [
   {
@@ -47,27 +44,18 @@ const services = [
     image:
       "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
     alt: "Local Guides",
+    href: "/users/travel-tourism/services/guide",
   },
 ];
 
 function page() {
   return (
-    <div>
-      <ServicesHero />
-      <div className="max-w-6xl mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {services.map((service) => (
-          <Link href={service.href || "#"} key={service.title}>
-            <ServiceCard key={service.title} {...service} />
-          </Link>
-        ))}
-      </div>
-      <div className="px-10">
-        <Image
-          src={personalisedTourTravelImage}
-          alt="Personalised Recommendations"
-          className="w-full h-auto object-cover"
-        />
-      </div>
+    <div className="max-w-6xl mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {services.map((service) => (
+        <Link href={service.href || "#"} key={service.title}>
+          <ServiceCard key={service.title} {...service} />
+        </Link>
+      ))}
     </div>
   );
 }
