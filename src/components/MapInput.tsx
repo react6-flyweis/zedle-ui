@@ -1,9 +1,11 @@
 "use client";
 
-import MapBoxMap from "react-map-gl/mapbox";
-import "mapbox-gl/dist/mapbox-gl.css";
+import { throttle } from "lodash-es";
 import { useCallback, useRef, useState } from "react";
 import type { MapRef, ViewState } from "react-map-gl/mapbox";
+import MapBoxMap from "react-map-gl/mapbox";
+
+import "mapbox-gl/dist/mapbox-gl.css";
 
 interface LocationProps {
   value: {
@@ -28,8 +30,9 @@ export const MapInput: React.FC<LocationProps> = ({ value, onChange }) => {
   });
   const mapRef = useRef<MapRef | null>(null);
 
-  const handleMove = useCallback(
-    (evt: { viewState: ViewState & { padding?: unknown } }) => {
+  // Throttle the handleMove callback to limit update frequency
+  const throttledHandleMove = useCallback(
+    throttle((evt: { viewState: ViewState & { padding?: unknown } }) => {
       setViewState((prev) => ({
         ...prev,
         ...evt.viewState,
@@ -41,8 +44,8 @@ export const MapInput: React.FC<LocationProps> = ({ value, onChange }) => {
       if (onChange) {
         onChange(evt.viewState.latitude, evt.viewState.longitude);
       }
-    },
-    [onChange],
+    }, 200),
+    [],
   );
 
   return (
@@ -51,7 +54,7 @@ export const MapInput: React.FC<LocationProps> = ({ value, onChange }) => {
         ref={mapRef}
         initialViewState={viewState}
         viewState={viewState}
-        onMove={handleMove}
+        onMove={throttledHandleMove}
         mapStyle="mapbox://styles/mapbox/streets-v11"
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         style={{ width: "100%", height: "100%" }}
