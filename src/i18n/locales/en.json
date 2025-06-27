@@ -7,5 +7,10 @@
     "cityExplorations": "City Explorations",
     "adventureExperiences": "Adventure Experiences",
     "showButton": "Show"
+  },
+  "hotelLodge": {
+    "title": "Hotel & Lodge Listings 🏩",
+    "description": "Lorem ipsum is simply dummy text of the printing and typesetting industry.",
+    "filterIconAlt": "Filter Icon"
   }
 }
