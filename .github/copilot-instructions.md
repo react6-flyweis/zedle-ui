@@ -20,6 +20,9 @@
 - use PascalCase for component names and component filenames.
 - Use camelCase for variables and function names.
 
+- Do not hardcode strings, use i18n for internationalization.
+- Use `next-intl` for internationalization and localization.
+
 - if image is given for reference, try to match the design as closely as possible.
 
 - Follow best practices for code quality and maintainability.
