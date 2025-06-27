@@ -1,11 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
-import { HeroComponent } from "@/components/HeroComponent";
-import personalisedTourTravelImage from "./assets/tour-travels-personalised-app.png";
-import travelTourismBackground from "./assets/travel-tourism-bg.jpg";
-import travelTourismCharacter from "./assets/travel-tourism-charecter.png";
+
 import { HotelCard, type IHotel } from "./components/HotelCard";
 import { PopularTray } from "./components/PopularTray";
+import { TravelTourismHero } from "./components/TravelTourismHero";
+import { TravelTourismPersonalised } from "./components/TravelTourismPersonalised";
 
 // Sample hotel data
 const hotels: IHotel[] = [
@@ -95,13 +93,7 @@ const hotels: IHotel[] = [
 export default function TravelTourismPage() {
   return (
     <div className="">
-      <HeroComponent
-        title={["Your Trusted Partner", "In Every Journey"]}
-        subtitle="Request for any travel you need"
-        inputTitle="Enter a postcode to see what we deliver"
-        characterImage={travelTourismCharacter}
-        backgroundImage={travelTourismBackground}
-      />
+      <TravelTourismHero />
       <PopularTray />
       <div className="p-8">
         <div className="mb-8">
@@ -125,13 +117,7 @@ export default function TravelTourismPage() {
           ))}
         </div>
       </div>
-      <div className="px-10">
-        <Image
-          src={personalisedTourTravelImage}
-          alt="Personalised Recommendations"
-          className="w-full h-auto object-cover"
-        />
-      </div>
+      <TravelTourismPersonalised />
     </div>
   );
 }
