@@ -22,6 +22,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { MapInput } from "../MapInput";
 
 const addressFormSchema = z.object({
   address: z.string().min(1, "Address is required"),
@@ -29,6 +30,16 @@ const addressFormSchema = z.object({
   area: z.string().min(1, "Area is required"),
   zipCode: z.string().min(5, "Valid zip code is required"),
   type: z.enum(["home", "work", "other"]),
+  location: z.object({
+    latitude: z
+      .number()
+      .min(-90, "Invalid latitude")
+      .max(90, "Invalid latitude"),
+    longitude: z
+      .number()
+      .min(-180, "Invalid longitude")
+      .max(180, "Invalid longitude"),
+  }),
 });
 
 type AddressFormValues = z.infer<typeof addressFormSchema>;
@@ -49,6 +60,10 @@ export function AddressDrawer({ children, onSubmit }: AddressDrawerProps) {
       area: "",
       zipCode: "",
       type: "home",
+      location: {
+        latitude: 0,
+        longitude: 0,
+      },
     },
   });
 
@@ -77,38 +92,19 @@ export function AddressDrawer({ children, onSubmit }: AddressDrawerProps) {
           >
             <div className="border border-gray-500">
               {/* Map Section */}
-              <div className="relative h-64 bg-gray-100 overflow-hidden mb-4">
-                {/* Simulated Google Maps */}
-                <div className="absolute inset-0">
-                  {/* Map background with streets pattern */}
-                  <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-200 relative">
-                    {/* Street lines */}
-                    <div className="absolute inset-0">
-                      {/* Horizontal streets */}
-                      <div className="absolute top-1/4 left-0 right-0 h-0.5 bg-white opacity-60"></div>
-                      <div className="absolute top-2/4 left-0 right-0 h-0.5 bg-white opacity-60"></div>
-                      <div className="absolute top-3/4 left-0 right-0 h-0.5 bg-white opacity-60"></div>
-                      {/* Vertical streets */}
-                      <div className="absolute left-1/4 top-0 bottom-0 w-0.5 bg-white opacity-60"></div>
-                      <div className="absolute left-2/4 top-0 bottom-0 w-0.5 bg-white opacity-60"></div>
-                      <div className="absolute left-3/4 top-0 bottom-0 w-0.5 bg-white opacity-60"></div>
-                    </div>
 
-                    {/* Location pin */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                      <div className="relative">
-                        <MapPinIcon className="h-10 w-10 text-red-500 drop-shadow-lg" />
-                        <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-red-500 rounded-full opacity-30"></div>
-                      </div>
-                    </div>
-
-                    {/* Some colored areas to simulate map regions */}
-                    <div className="absolute top-1/3 left-1/4 w-16 h-12 bg-green-200 opacity-40 rounded"></div>
-                    <div className="absolute bottom-1/4 right-1/3 w-20 h-16 bg-blue-200 opacity-40 rounded"></div>
-                    <div className="absolute top-1/6 right-1/4 w-12 h-8 bg-yellow-200 opacity-40 rounded"></div>
-                  </div>
-                </div>
-              </div>
+              <FormField
+                control={form.control}
+                name="location"
+                render={({ field }) => (
+                  <FormItem className="h-56">
+                    <FormControl>
+                      <MapInput {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
