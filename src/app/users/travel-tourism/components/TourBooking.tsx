@@ -19,6 +19,7 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
+import { PriceQuotationsDialog } from "../../logistics/components/PriceQuotationDialog";
 
 interface PlaceSuggestion {
   id: string;
@@ -74,6 +75,8 @@ const TourBooking = ({
       promoCode: "",
     },
   });
+
+  const [quotationDialogOpen, setQuotationDialogOpen] = useState(false);
 
   // Autocomplete state
   const [pickupSuggestions, setPickupSuggestions] = useState<PlaceSuggestion[]>(
@@ -274,7 +277,9 @@ const TourBooking = ({
             <CardContent>
               <Form {...form}>
                 <form
-                  onSubmit={form.handleSubmit(() => {})}
+                  onSubmit={form.handleSubmit(() => {
+                    setQuotationDialogOpen(true);
+                  })}
                   className="flex flex-col items-end gap-4"
                 >
                   <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -421,6 +426,10 @@ const TourBooking = ({
           </Card>
         </div>
       </div>
+      <PriceQuotationsDialog
+        open={quotationDialogOpen}
+        onOpenChange={setQuotationDialogOpen}
+      />
     </div>
   );
 };
