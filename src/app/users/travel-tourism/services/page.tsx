@@ -22,6 +22,7 @@ const services = [
     image:
       "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80",
     alt: "Hotel Listings",
+    href: "/users/travel-tourism/services/hotel-lodge",
   },
   {
     title: "Transport & Car Rentals",
