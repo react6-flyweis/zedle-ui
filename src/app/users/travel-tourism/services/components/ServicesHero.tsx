@@ -1,6 +1,6 @@
+import tourTravelsBg from "@/app/users/travel-tourism/assets/travel-tourism-bg.jpg";
 import { HeroComponent } from "@/components/HeroComponent";
-import tourTravelsServicesCharacter from "../assets/tour-travels-services-character.png";
-import tourTravelsBg from "../assets/travel-tourism-bg.jpg";
+import tourTravelsServicesCharacter from "../assets/travel-tourism-services-character.png";
 
 export function ServicesHero() {
   return (
