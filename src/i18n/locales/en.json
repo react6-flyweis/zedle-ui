@@ -70,6 +70,32 @@
     "description": "Lorem ipsum is simply dummy text of the printing and typesetting industry.",
     "filterIconAlt": "Filter Icon"
   },
+  "tourBooking": {
+    "logisticsTruckIconAlt": "Logistics Truck Icon",
+    "getDriversQuotation": "Get driver's quotation",
+    "pickupPoint": "Pickup Point",
+    "dropoffPoint": "Dropoff Point",
+    "date": "Date",
+    "addPromoCode": "Add Promo Code",
+    "next": "Next",
+    "pickupPointRequired": "Pickup point is required",
+    "dropoffPointRequired": "Dropoff point is required",
+    "dateRequired": "Date is required"
+  },
+  "GuideCard": {
+    "avatarAlt": "Avatar of {name}",
+    "email": "Email",
+    "phone": "Phone",
+    "rating": "Rating"
+  },
+  "guide": {
+    "title": "Local Guides & Translators",
+    "description": "Find trusted local guides and translators to enhance your travel experience.",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "rating": "Rating"
+  },
   "location": {
     "geolocationNotSupported": "Geolocation is not supported by your browser.",
     "permissionDenied": "Permission to access location was denied.",
