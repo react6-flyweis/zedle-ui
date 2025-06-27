@@ -28,6 +28,41 @@
       "resort": "Resort",
       "villa": "Villa",
       "lodge": "Lodge"
+    },
+    "customerRatings": {
+      "50orMore": "50% or more",
+      "40orMore": "40% or more",
+      "30orMore": "30% or more",
+      "20orMore": "20% or more",
+      "10orMore": "10% or more"
+    },
+    "deals": {
+      "freeWiFi": "Free Wi-Fi",
+      "parking": "Parking",
+      "breakfastIncluded": "Breakfast included",
+      "swimmingPool": "Swimming pool",
+      "airConditioning": "Air conditioning",
+      "fitnessCenter": "Fitness center",
+      "kitchenKitchenette": "Kitchen/Kitchenette",
+      "petFriendly": "Pet-friendly",
+      "restaurantBar": "Restaurant/bar"
+    },
+    "discounts": {
+      "freeCancellation": "Free cancellation",
+      "payAtProperty": "Pay at property",
+      "specialDiscounts": "Special discounts or offers"
+    },
+    "starRating": {
+      "3stars": "3+ Stars",
+      "4stars": "4+ Stars",
+      "5starsOnly": "5 Stars Only"
+    },
+    "sortBy": {
+      "relevance": "Relevance",
+      "popularity": "Popularity",
+      "priceLowToHigh": "Price - Low to High",
+      "priceHighToLow": "Price - High to Low",
+      "discount": "Discount"
     }
   },
   "hotelLodge": {

@@ -1,6 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { X } from "lucide-react";
+import { Star, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { type PropsWithChildren, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -14,6 +14,7 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Sheet,
   SheetContent,
@@ -31,8 +32,53 @@ const propertyOptions = [
   { value: "lodge", label: "property.lodge" },
 ];
 
+const customerRatingOptions = [
+  { value: "50", label: "customerRatings.50orMore" },
+  { value: "40", label: "customerRatings.40orMore" },
+  { value: "30", label: "customerRatings.30orMore" },
+  { value: "20", label: "customerRatings.20orMore" },
+  { value: "10", label: "customerRatings.10orMore" },
+];
+
+const dealsOptions = [
+  { value: "freeWiFi", label: "deals.freeWiFi" },
+  { value: "parking", label: "deals.parking" },
+  { value: "breakfastIncluded", label: "deals.breakfastIncluded" },
+  { value: "swimmingPool", label: "deals.swimmingPool" },
+  { value: "airConditioning", label: "deals.airConditioning" },
+  { value: "fitnessCenter", label: "deals.fitnessCenter" },
+  { value: "kitchenKitchenette", label: "deals.kitchenKitchenette" },
+  { value: "petFriendly", label: "deals.petFriendly" },
+  { value: "restaurantBar", label: "deals.restaurantBar" },
+];
+
+const discountOptions = [
+  { value: "freeCancellation", label: "discounts.freeCancellation" },
+  { value: "payAtProperty", label: "discounts.payAtProperty" },
+  { value: "specialDiscounts", label: "discounts.specialDiscounts" },
+];
+
+const starRatingOptions = [
+  { value: "3", label: "starRating.3stars" },
+  { value: "4", label: "starRating.4stars" },
+  { value: "5", label: "starRating.5starsOnly" },
+];
+
+const sortOptions = [
+  { value: "relevance", label: "sortBy.relevance" },
+  { value: "popularity", label: "sortBy.popularity" },
+  { value: "priceLowToHigh", label: "sortBy.priceLowToHigh" },
+  { value: "priceHighToLow", label: "sortBy.priceHighToLow" },
+  { value: "discount", label: "sortBy.discount" },
+];
+
 const filterSchema = z.object({
   property: z.array(z.string()).optional(),
+  customerRating: z.array(z.string()).optional(),
+  deals: z.array(z.string()).optional(),
+  discounts: z.array(z.string()).optional(),
+  starRating: z.array(z.string()).optional(),
+  sortBy: z.string().optional(),
 });
 
 type FilterValues = z.infer<typeof filterSchema>;
@@ -174,6 +220,232 @@ export default function HotelFilterDrawer({ children }: PropsWithChildren) {
                                     </div>
                                   </FormControl>
                                 ))}
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                      </TabsContent>
+
+                      <TabsContent value="ratings">
+                        <div className="space-y-4">
+                          <FormField
+                            control={form.control}
+                            name="customerRating"
+                            render={({ field }) => (
+                              <FormItem>
+                                {customerRatingOptions.map((option) => (
+                                  <FormControl key={option.value}>
+                                    <div className="flex items-center space-x-3 py-1">
+                                      <Checkbox
+                                        checked={field.value?.includes(
+                                          option.value,
+                                        )}
+                                        onCheckedChange={(checked) => {
+                                          if (checked) {
+                                            field.onChange([
+                                              ...(field.value || []),
+                                              option.value,
+                                            ]);
+                                          } else {
+                                            field.onChange(
+                                              (field.value || []).filter(
+                                                (v) => v !== option.value,
+                                              ),
+                                            );
+                                          }
+                                        }}
+                                        id={`rating-${option.value}`}
+                                      />
+                                      <FormLabel
+                                        htmlFor={`rating-${option.value}`}
+                                        className="font-normal cursor-pointer"
+                                      >
+                                        {t(option.label)}
+                                      </FormLabel>
+                                    </div>
+                                  </FormControl>
+                                ))}
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                      </TabsContent>
+
+                      <TabsContent value="deals">
+                        <div className="space-y-4">
+                          <FormField
+                            control={form.control}
+                            name="deals"
+                            render={({ field }) => (
+                              <FormItem>
+                                {dealsOptions.map((option) => (
+                                  <FormControl key={option.value}>
+                                    <div className="flex items-center space-x-3 py-1">
+                                      <Checkbox
+                                        checked={field.value?.includes(
+                                          option.value,
+                                        )}
+                                        onCheckedChange={(checked) => {
+                                          if (checked) {
+                                            field.onChange([
+                                              ...(field.value || []),
+                                              option.value,
+                                            ]);
+                                          } else {
+                                            field.onChange(
+                                              (field.value || []).filter(
+                                                (v) => v !== option.value,
+                                              ),
+                                            );
+                                          }
+                                        }}
+                                        id={`deals-${option.value}`}
+                                      />
+                                      <FormLabel
+                                        htmlFor={`deals-${option.value}`}
+                                        className="font-normal cursor-pointer"
+                                      >
+                                        {t(option.label)}
+                                      </FormLabel>
+                                    </div>
+                                  </FormControl>
+                                ))}
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                      </TabsContent>
+
+                      <TabsContent value="discounts">
+                        <div className="space-y-4">
+                          <FormField
+                            control={form.control}
+                            name="discounts"
+                            render={({ field }) => (
+                              <FormItem>
+                                {discountOptions.map((option) => (
+                                  <FormControl key={option.value}>
+                                    <div className="flex items-center space-x-3 py-1">
+                                      <Checkbox
+                                        checked={field.value?.includes(
+                                          option.value,
+                                        )}
+                                        onCheckedChange={(checked) => {
+                                          if (checked) {
+                                            field.onChange([
+                                              ...(field.value || []),
+                                              option.value,
+                                            ]);
+                                          } else {
+                                            field.onChange(
+                                              (field.value || []).filter(
+                                                (v) => v !== option.value,
+                                              ),
+                                            );
+                                          }
+                                        }}
+                                        id={`discounts-${option.value}`}
+                                      />
+                                      <FormLabel
+                                        htmlFor={`discounts-${option.value}`}
+                                        className="font-normal cursor-pointer"
+                                      >
+                                        {t(option.label)}
+                                      </FormLabel>
+                                    </div>
+                                  </FormControl>
+                                ))}
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                      </TabsContent>
+
+                      <TabsContent value="amenities">
+                        <div className="space-y-4">
+                          <FormField
+                            control={form.control}
+                            name="starRating"
+                            render={({ field }) => (
+                              <FormItem>
+                                {starRatingOptions.map((option) => (
+                                  <FormControl key={option.value}>
+                                    <div className="flex items-center space-x-3 py-1">
+                                      <Checkbox
+                                        checked={field.value?.includes(
+                                          option.value,
+                                        )}
+                                        onCheckedChange={(checked) => {
+                                          if (checked) {
+                                            field.onChange([
+                                              ...(field.value || []),
+                                              option.value,
+                                            ]);
+                                          } else {
+                                            field.onChange(
+                                              (field.value || []).filter(
+                                                (v) => v !== option.value,
+                                              ),
+                                            );
+                                          }
+                                        }}
+                                        id={`star-${option.value}`}
+                                      />
+                                      <FormLabel
+                                        htmlFor={`star-${option.value}`}
+                                        className="font-normal cursor-pointer flex items-center space-x-2"
+                                      >
+                                        <span>{t(option.label)}</span>
+                                        <div className="flex">
+                                          {Array.from(
+                                            { length: parseInt(option.value) },
+                                            (_, i) => (
+                                              <Star
+                                                key={`star-${option.value}-${i}`}
+                                                className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                                              />
+                                            ),
+                                          )}
+                                        </div>
+                                      </FormLabel>
+                                    </div>
+                                  </FormControl>
+                                ))}
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                      </TabsContent>
+
+                      <TabsContent value="sort">
+                        <div className="space-y-4">
+                          <FormField
+                            control={form.control}
+                            name="sortBy"
+                            render={({ field }) => (
+                              <FormItem>
+                                <RadioGroup
+                                  onValueChange={field.onChange}
+                                  value={field.value}
+                                  className="space-y-1"
+                                >
+                                  {sortOptions.map((option) => (
+                                    <FormControl key={option.value}>
+                                      <div className="flex items-center space-x-3 py-1">
+                                        <RadioGroupItem
+                                          value={option.value}
+                                          id={`sort-${option.value}`}
+                                        />
+                                        <FormLabel
+                                          htmlFor={`sort-${option.value}`}
+                                          className="font-normal cursor-pointer"
+                                        >
+                                          {t(option.label)}
+                                        </FormLabel>
+                                      </div>
+                                    </FormControl>
+                                  ))}
+                                </RadioGroup>
                               </FormItem>
                             )}
                           />
