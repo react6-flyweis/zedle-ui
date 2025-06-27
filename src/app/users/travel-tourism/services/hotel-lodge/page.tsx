@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { HotelCard } from "../../components/HotelCard";
-import { TravelTourismHero } from "../../components/TravelTourismHero";
 import tuneIcon from "../assets/tune.png";
 import HotelFilterDrawer from "../components/HotelFilterDrawer";
 
@@ -95,45 +94,38 @@ const hotels = [
 export default function HotelLodgePage() {
   const t = useTranslations("hotelLodge");
   return (
-    <div className="">
-      <TravelTourismHero />
-
-      <div className="p-8">
-        <div className="flex items-center justify-between mb-8">
-          <div className="">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              {t("title")}
-            </h1>
-            <p className="text-gray-600">{t("description")}</p>
-          </div>
-          <div className="">
-            <HotelFilterDrawer>
-              <Button
-                size="icon"
-                className="size-12 rounded-full flex justify-center items-center"
-              >
-                <Image
-                  src={tuneIcon}
-                  className="max-h-7 max-w-7"
-                  alt={t("filterIconAlt")}
-                  height={50}
-                  width={50}
-                />
-              </Button>
-            </HotelFilterDrawer>
-          </div>
+    <div className="p-8">
+      <div className="flex items-center justify-between mb-8">
+        <div className="">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {t("title")}
+          </h1>
+          <p className="text-gray-600">{t("description")}</p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {hotels.map((hotel) => (
-            <Link
-              href={`/users/travel-tourism/hotel/${hotel.id}`}
-              key={hotel.id}
+        <div className="">
+          <HotelFilterDrawer>
+            <Button
+              size="icon"
+              className="size-12 rounded-full flex justify-center items-center"
             >
-              <HotelCard hotel={hotel} />
-            </Link>
-          ))}
+              <Image
+                src={tuneIcon}
+                className="max-h-7 max-w-7"
+                alt={t("filterIconAlt")}
+                height={50}
+                width={50}
+              />
+            </Button>
+          </HotelFilterDrawer>
         </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {hotels.map((hotel) => (
+          <Link href={`/users/travel-tourism/hotel/${hotel.id}`} key={hotel.id}>
+            <HotelCard hotel={hotel} />
+          </Link>
+        ))}
       </div>
     </div>
   );
