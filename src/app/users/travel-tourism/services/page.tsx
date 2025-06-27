@@ -28,6 +28,7 @@ const services = [
     image:
       "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80",
     alt: "Transport Rentals",
+    href: "/users/travel-tourism/services/transport",
   },
   {
     title: "Adventure & Experience Packages",
@@ -36,6 +37,7 @@ const services = [
     image:
       "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80",
     alt: "Adventure Packages",
+    href: "/users/travel-tourism/services/adventure",
   },
   {
     title: "Local Guides & Translators",
