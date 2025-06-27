@@ -1,8 +1,7 @@
 import Image from "next/image";
-import { HeroComponent } from "@/components/HeroComponent";
+import Link from "next/link";
 import personalisedTourTravelImage from "../assets/tour-travels-personalised-app.png";
-import tourTravelsServicesCharacter from "../assets/tour-travels-services-character.png";
-import tourTravelsBg from "../assets/travel-tourism-bg.jpg";
+
 import { ServiceCard } from "../components/ServiceCard";
 import { ServicesHero } from "./components/ServicesHero";
 
@@ -14,6 +13,7 @@ const services = [
     image:
       "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
     alt: "Tour Booking",
+    href: "/users/travel-tourism/services/tour",
   },
   {
     title: "Hotel & Lodge Listings",
@@ -55,7 +55,9 @@ function page() {
       <ServicesHero />
       <div className="max-w-6xl mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
         {services.map((service) => (
-          <ServiceCard key={service.title} {...service} />
+          <Link href={service.href || "#"} key={service.title}>
+            <ServiceCard key={service.title} {...service} />
+          </Link>
         ))}
       </div>
       <div className="px-10">
