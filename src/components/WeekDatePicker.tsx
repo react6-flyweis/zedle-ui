@@ -62,6 +62,7 @@ export const WeekDatePicker = ({
             variant="ghost"
             size="icon"
             className="rounded"
+            type="button"
             onClick={() => setWeekStart(subDays(weekStart, 7))}
           >
             <ChevronLeft className="h-4 w-4 text-primary" />
@@ -69,6 +70,7 @@ export const WeekDatePicker = ({
           <Button
             variant="ghost"
             size="icon"
+            type="button"
             onClick={() => setWeekStart(addDays(weekStart, 7))}
           >
             <ChevronRight className="h-4 w-4 text-primary" />
