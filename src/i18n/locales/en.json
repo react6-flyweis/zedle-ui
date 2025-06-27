@@ -8,6 +8,28 @@
     "adventureExperiences": "Adventure Experiences",
     "showButton": "Show"
   },
+  "hotelsFilter": {
+    "title": "Filters",
+    "close": "Close Filters",
+    "clear": "Clear Filters",
+    "apply": "Apply",
+    "tabs": {
+      "property": "Property",
+      "customerRatings": "Customer Ratings",
+      "deals": "Deals",
+      "discounts": "Discounts",
+      "amenities": "Amenities",
+      "sortBy": "Sort by"
+    },
+    "property": {
+      "hotel": "Hotel",
+      "apartment": "Apartment",
+      "hostel": "Hostel",
+      "resort": "Resort",
+      "villa": "Villa",
+      "lodge": "Lodge"
+    }
+  },
   "hotelLodge": {
     "title": "Hotel & Lodge Listings 🏩",
     "description": "Lorem ipsum is simply dummy text of the printing and typesetting industry.",

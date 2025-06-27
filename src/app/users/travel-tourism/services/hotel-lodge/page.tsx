@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { HotelCard } from "../../components/HotelCard";
 import { TravelTourismHero } from "../../components/TravelTourismHero";
 import tuneIcon from "../assets/tune.png";
+import HotelFilterDrawer from "../components/HotelFilterDrawer";
 
 const hotels = [
   {
@@ -106,18 +107,20 @@ export default function HotelLodgePage() {
             <p className="text-gray-600">{t("description")}</p>
           </div>
           <div className="">
-            <Button
-              size="icon"
-              className="size-12 rounded-full flex justify-center items-center"
-            >
-              <Image
-                src={tuneIcon}
-                className="max-h-7 max-w-7"
-                alt={t("filterIconAlt")}
-                height={50}
-                width={50}
-              />
-            </Button>
+            <HotelFilterDrawer>
+              <Button
+                size="icon"
+                className="size-12 rounded-full flex justify-center items-center"
+              >
+                <Image
+                  src={tuneIcon}
+                  className="max-h-7 max-w-7"
+                  alt={t("filterIconAlt")}
+                  height={50}
+                  width={50}
+                />
+              </Button>
+            </HotelFilterDrawer>
           </div>
         </div>
 
