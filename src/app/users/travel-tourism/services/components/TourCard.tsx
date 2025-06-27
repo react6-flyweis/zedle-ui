@@ -13,8 +13,8 @@ interface TourCardProps {
 export function TourCard({ image, title, rating }: TourCardProps) {
   const t = useTranslations("tour");
   return (
-    <Card className="relative overflow-hidden rounded-xl shadow-md group gap-1 p-0">
-      <div className="relative h-48 w-full">
+    <Card className="relative overflow-hidden rounded-md shadow-md group gap-1 p-0">
+      <div className="relative h-52 w-full">
         <Image
           src={image}
           alt={title}
@@ -35,7 +35,7 @@ export function TourCard({ image, title, rating }: TourCardProps) {
         <Button
           size="sm"
           variant="secondary"
-          className="mt-auto px-4 py-2 text-sm font-medium"
+          className="mt-auto px-4 py-2 text-sm font-medium rounded"
         >
           <Send className="w-4 h-4 mr-2" />
           {t("showButton")}
