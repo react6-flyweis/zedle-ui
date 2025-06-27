@@ -102,5 +102,13 @@
     "positionUnavailable": "Location information is unavailable.",
     "timeout": "The request to get your location timed out.",
     "unknownError": "An unknown error occurred while retrieving your location."
+  },
+  "transport": {
+    "title": "Transport & Car Rentals",
+    "subtitle": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+  },
+  "adventure": {
+    "bookingTitle": "Adventure Booking & Reservations",
+    "bookingSubtitle": "Choose your next adventure experience."
   }
 }
