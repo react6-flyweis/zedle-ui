@@ -1,1 +1,11 @@
-{}
+{
+  "tour": {
+    "bookingTitle": "Tour Booking & Reservations",
+    "bookingSubtitle": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "guidedTours": "Guided Tours",
+    "safaris": "Safaris",
+    "cityExplorations": "City Explorations",
+    "adventureExperiences": "Adventure Experiences",
+    "showButton": "Show"
+  }
+}
