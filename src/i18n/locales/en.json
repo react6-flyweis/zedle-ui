@@ -121,5 +121,10 @@
     "restaurants": "Restaurants",
     "scrollLeft": "Scroll left",
     "scrollRight": "Scroll right"
+  },
+  "restaurants": {
+    "topRestaurants": "Top {count} Restaurants",
+    "topRestaurantsDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "restaurant": "Restaurant"
   }
 }
