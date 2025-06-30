@@ -5,18 +5,17 @@ import type { FC } from "react";
 import MapBoxMap, { Layer, Marker, Source } from "react-map-gl/mapbox";
 import { useUserLocation } from "@/hooks/useUserLocation";
 
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? "";
 interface TourBookingMapProps {
   pickupCoords: [number, number] | null;
   dropoffCoords: [number, number] | null;
   routeGeoJson: GeoJSON.FeatureCollection | null;
-  mapboxToken: string;
 }
 
 export const TourBookingMap: FC<TourBookingMapProps> = ({
   pickupCoords,
   dropoffCoords,
   routeGeoJson,
-  mapboxToken,
 }) => {
   const { location: userLocation } = useUserLocation();
 
@@ -30,7 +29,7 @@ export const TourBookingMap: FC<TourBookingMapProps> = ({
         zoom: 14,
       }}
       mapStyle="mapbox://styles/mapbox/streets-v11"
-      mapboxAccessToken={mapboxToken}
+      mapboxAccessToken={MAPBOX_TOKEN}
     >
       {/* Pickup Marker */}
       {pickupCoords && (
