@@ -1,9 +1,10 @@
+import { CustomerReviewsSection } from "@/components/CustomerReviewsSection";
+import { LocationSection } from "@/components/map/LocationSection";
 import { SelectDateDrawer } from "@/components/SelectDateDrawer";
 import { Button } from "@/components/ui/button";
-import { CustomerReviewsSection } from "../../components/CustomerReviewsSection";
+
 import { FacilitiesSection } from "../../components/FacilitiesSection";
 import { HotelHero } from "../../components/HotelHero";
-import { LocationSection } from "../../components/LocationSection";
 import { TravelTourismPersonalised } from "../../components/TravelTourismPersonalised";
 
 export default function Page() {
