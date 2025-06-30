@@ -73,6 +73,12 @@ const foodNavigation: NavigationItem[] = [
     type: "link",
   },
   {
+    title: "Search",
+    href: "/users/food/search",
+    type: "link",
+    icon: <SearchIcon />,
+  },
+  {
     title: "Restaurants",
     href: "/users/food/restaurants",
     type: "link",
