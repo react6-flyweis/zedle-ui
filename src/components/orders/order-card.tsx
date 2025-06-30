@@ -1,6 +1,7 @@
 "use client";
 
 import { RotateCcwIcon } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import type { Order } from "@/types/orders";
@@ -8,11 +9,7 @@ import { CancelOrderDialog } from "./cancel-order-dialog";
 import { RateOrderDialog } from "./rate-order-dialog";
 import { TrackPackageDialog } from "./track-package-dialog";
 
-interface OrderCardProps {
-  order: Order;
-}
-
-export function OrderCard({ order }: OrderCardProps) {
+export function OrderCard({ order }: { order: Order }) {
   return (
     <Card className="border border-gray-600 rounded-xl shadow-sm p-0 gap-0">
       <CardHeader className="p-5 pb-3 border-b  border-gray-600">
@@ -79,9 +76,13 @@ export function OrderCard({ order }: OrderCardProps) {
           {order.items.map((item) => (
             <div key={item.id} className="flex gap-4">
               <div className="w-20 h-20 bg-muted rounded-lg flex-shrink-0 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center">
-                  <span className="text-white text-2xl">🍅</span>
-                </div>
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  width={80}
+                  height={80}
+                  className="object-cover w-full h-full"
+                />
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold mb-1">{item.name}</h3>
