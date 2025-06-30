@@ -114,5 +114,12 @@
   "search": {
     "loading": "Loading suggestions...",
     "noResults": "No results found."
+  },
+  "categories": {
+    "topCategories": "Top Categories",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "restaurants": "Restaurants",
+    "scrollLeft": "Scroll left",
+    "scrollRight": "Scroll right"
   }
 }
