@@ -35,8 +35,8 @@ export function HotelCard({
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
           {/* Rating Badge */}
-          <div className="absolute top-3 right-3">
-            <Badge className="bg-black/80 text-white border-0 px-2 py-1 text-xs font-medium">
+          <div className="absolute top-0 right-3 z-10">
+            <Badge className="bg-black text-white border-0 p-2 py-3 text-sm font-medium flex items-center rounded-t-none">
               <Star className="w-3 h-3 fill-current mr-1" />
               {hotel.rating}
             </Badge>
