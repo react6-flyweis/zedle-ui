@@ -1,11 +1,10 @@
-import Image from "next/image";
 import { SelectDateDrawer } from "@/components/SelectDateDrawer";
 import { Button } from "@/components/ui/button";
-import personalisedTourTravelImage from "../../assets/tour-travels-personalised-app.png";
 import { CustomerReviewsSection } from "../../components/CustomerReviewsSection";
 import { FacilitiesSection } from "../../components/FacilitiesSection";
 import { HotelHero } from "../../components/HotelHero";
 import { LocationSection } from "../../components/LocationSection";
+import { TravelTourismPersonalised } from "../../components/TravelTourismPersonalised";
 
 export default function Page() {
   return (
@@ -21,13 +20,7 @@ export default function Page() {
         longitude={-0.09}
       />
       <CustomerReviewsSection />
-      <div className="px-10">
-        <Image
-          src={personalisedTourTravelImage}
-          alt="Personalised Recommendations"
-          className="w-full h-auto object-cover"
-        />
-      </div>
+      <TravelTourismPersonalised />
       <div className="fixed bottom-0 w-full flex justify-center px-10">
         <SelectDateDrawer>
           <Button className="h-14 text-xl w-full rounded-t rounded-b-none">
