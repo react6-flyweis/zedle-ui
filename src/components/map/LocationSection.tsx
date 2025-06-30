@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import MapBoxMap, { Marker } from "react-map-gl/mapbox";
+import mapPointerImage from "@/assets/icons/map-pointer.png";
 import { Card, CardContent } from "@/components/ui/card";
-import mapPointerImage from "../assets/map-pointer.png";
 
 // import dynamic from "next/dynamic";
 // const ReactMapGL = dynamic(() => import("react-map-gl/mapbox"), { ssr: false });
