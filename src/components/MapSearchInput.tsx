@@ -17,7 +17,7 @@ import { AnimatedInput } from "./ui/animated-input";
 
 interface MapSearchInputProps {
   placeholder: string;
-  value?: SearchBoxSuggestion | null;
+  // value?: SearchBoxSuggestion | null;
   onChange?: (value: SearchBoxFeatureProperties | null) => void;
   className?: string;
 }
