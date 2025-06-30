@@ -133,5 +133,9 @@
     "deliveryTime": "Delivery in ${min} - ${max} minutes",
     "openUntil": "Open until ${time}",
     "reviews": "reviews"
+  },
+  "offers": {
+    "allOffersFrom": "All Offers from {restaurant}",
+    "searchPlaceholder": "Search from menu..."
   }
 }

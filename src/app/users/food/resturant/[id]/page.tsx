@@ -1,5 +1,7 @@
 import { CustomerReviewsSection } from "@/components/CustomerReviewsSection";
 import { LocationSection } from "@/components/map/LocationSection";
+import { OffersSection } from "@/components/OffersSection";
+
 import { FoodDeliveryPersonalized } from "../../components/FoodDeliveryPersonalized";
 import { RestaurantHero } from "../../components/RestaurantHero";
 
@@ -7,6 +9,7 @@ export default function Page() {
   return (
     <div>
       <RestaurantHero />
+      <OffersSection />
       <LocationSection
         title="Mount Bromo"
         subtitle="New York"
