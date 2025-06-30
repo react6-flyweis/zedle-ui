@@ -158,5 +158,12 @@
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     "discount": "{percent}%",
     "restaurant": "Restaurant"
+  },
+  "foodSearchPage": {
+    "searchPlaceholder": "Search for groceries...",
+    "shoppingBagAlt": "Shopping Bag",
+    "recentKeywords": "Recent Keywords",
+    "clearAll": "Clear All",
+    "suggestedRestaurants": "Suggested Restaurants"
   }
 }
