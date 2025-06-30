@@ -1,10 +1,12 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Calendar, Camera, Clock, Ruler, Weight } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -16,11 +18,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Calendar, Clock, Camera, Weight, Ruler } from "lucide-react";
-import { PriceQuotationsDialog } from "../components/PriceQuotationDialog";
-
 import packagesImage from "../assets/packages.jpg";
+import { PriceQuotationsDialog } from "../components/PriceQuotationDialog";
 
 const formSchema = z.object({
   description: z.string().min(1, "Description is required"),
