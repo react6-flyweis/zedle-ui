@@ -77,7 +77,7 @@ export function CategoriesTray() {
   };
 
   return (
-    <section className="relative p-6 bg-muted/30 rounded-xl">
+    <section className="relative p-8 bg-muted/30 rounded-xl">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <h2 className="text-xl md:text-2xl font-bold text-foreground">
