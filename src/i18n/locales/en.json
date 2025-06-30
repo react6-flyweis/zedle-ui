@@ -110,5 +110,9 @@
   "adventure": {
     "bookingTitle": "Adventure Booking & Reservations",
     "bookingSubtitle": "Choose your next adventure experience."
+  },
+  "search": {
+    "loading": "Loading suggestions...",
+    "noResults": "No results found."
   }
 }
