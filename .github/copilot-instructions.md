@@ -22,6 +22,7 @@
 
 - Do not hardcode strings, use i18n for internationalization.
 - Use `next-intl` for internationalization and localization.
+- Add strings keys in the `src/i18n/locales/en.json` files for translations.
 
 - if image is given for reference, try to match the design as closely as possible.
 
