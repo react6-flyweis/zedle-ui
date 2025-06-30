@@ -137,5 +137,20 @@
   "offers": {
     "allOffersFrom": "All Offers from {restaurant}",
     "searchPlaceholder": "Search from menu..."
+  },
+  "RestaurantInfoSection": {
+    "deliveryInfo": "Delivery information",
+    "contactInfo": "Contact information",
+    "operationalTimes": "Operational Times",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "estimatedTime": "Estimated time until delivery",
+    "contactDescription": "If you have allergies or other dietary restrictions, please contact the restaurant. The restaurant will provide food-specific information upon request.",
+    "phoneNumber": "Phone number"
   }
 }
