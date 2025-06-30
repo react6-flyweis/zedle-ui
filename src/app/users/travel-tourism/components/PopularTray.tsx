@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import Image from "next/image";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
@@ -94,20 +94,20 @@ export function PopularTray() {
           <Button
             variant="outline"
             size="icon"
-            className="border-muted-foreground/20"
+            className="border-primary bg-transparent rounded"
             onClick={() => scroll("left")}
             aria-label="Scroll left"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ChevronLeft className="size-6 text-primary" />
           </Button>
           <Button
             variant="outline"
             size="icon"
-            className="border-muted-foreground/20"
+            className="border-primary bg-transparent rounded"
             onClick={() => scroll("right")}
             aria-label="Scroll right"
           >
-            <ArrowRight className="w-5 h-5" />
+            <ChevronRight className="size-6 text-primary" />
           </Button>
         </div>
       </div>
