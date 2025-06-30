@@ -152,5 +152,11 @@
     "estimatedTime": "Estimated time until delivery",
     "contactDescription": "If you have allergies or other dietary restrictions, please contact the restaurant. The restaurant will provide food-specific information upon request.",
     "phoneNumber": "Phone number"
+  },
+  "allRestaurants": {
+    "title": "All Restaurants",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "discount": "{percent}%",
+    "restaurant": "Restaurant"
   }
 }
