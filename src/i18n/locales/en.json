@@ -126,5 +126,12 @@
     "topRestaurants": "Top {count} Restaurants",
     "topRestaurantsDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     "restaurant": "Restaurant"
+  },
+  "RestaurantHero": {
+    "slogan": "I'm lovin' it!",
+    "minimumOrder": "Minimum order: $${amount}",
+    "deliveryTime": "Delivery in ${min} - ${max} minutes",
+    "openUntil": "Open until ${time}",
+    "reviews": "reviews"
   }
 }
