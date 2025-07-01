@@ -84,7 +84,11 @@
     "next": "Next",
     "pickupPointRequired": "Pickup point is required",
     "dropoffPointRequired": "Dropoff point is required",
-    "dateRequired": "Date is required"
+    "dateRequired": "Date is required",
+    "loaderIconAlt": "Loading icon",
+    "routeLoading": "Calculating route...",
+    "alertIconAlt": "Alert icon",
+    "routeError": "Unable to calculate route. Please try again."
   },
   "GuideCard": {
     "avatarAlt": "Avatar of {name}",
