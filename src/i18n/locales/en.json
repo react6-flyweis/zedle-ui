@@ -179,5 +179,10 @@
   "popularSalons": {
     "heading": "Popular Salons",
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+  },
+  "Pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {page}"
   }
 }
