@@ -1,3 +1,5 @@
+"use client";
+
 import { Clock, Loader2, MapPin } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useUserAddress } from "@/hooks/useUserAddress";

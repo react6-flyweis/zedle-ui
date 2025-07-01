@@ -1,4 +1,5 @@
-// src/hooks/useUserAddress.ts
+"use client";
+
 import { useEffect, useState } from "react";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import { getAddressFromCoordinates } from "@/lib/mapbox";
