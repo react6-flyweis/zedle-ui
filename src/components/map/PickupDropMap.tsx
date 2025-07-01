@@ -8,13 +8,13 @@ import { useUserLocation } from "@/hooks/useUserLocation";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? "";
-interface TourBookingMapProps {
+interface PickupDropMapProps {
   pickupCoords: [number, number] | null;
   dropoffCoords: [number, number] | null;
   routeGeoJson: GeoJSON.FeatureCollection | null;
 }
 
-export const TourBookingMap: FC<TourBookingMapProps> = ({
+export const PickupDropMap: FC<PickupDropMapProps> = ({
   pickupCoords,
   dropoffCoords,
   routeGeoJson,
@@ -95,4 +95,4 @@ export const TourBookingMap: FC<TourBookingMapProps> = ({
   );
 };
 
-export default TourBookingMap;
+export default PickupDropMap;

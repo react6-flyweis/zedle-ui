@@ -4,11 +4,10 @@ import type { SearchBoxFeatureProperties } from "@mapbox/search-js-core/dist/sea
 import { AlertTriangle, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import PickupDropMap from "@/components/map/PickupDropMap";
 import { useMapboxRoute } from "@/hooks/useMapboxRoute";
-
 import { PriceQuotationsDialog } from "../../logistics/components/PriceQuotationDialog";
 import { TourBookingForm } from "./TourBookingForm";
-import { TourBookingMap } from "./TourBookingMap";
 
 export const TourBooking = () => {
   const [quotationDialogOpen, setQuotationDialogOpen] = useState(false);
@@ -55,7 +54,7 @@ export const TourBooking = () => {
     <div className="w-full">
       <div className="h-[90vh] relative mb-6">
         {/* Map Side */}
-        <TourBookingMap
+        <PickupDropMap
           pickupCoords={pickupCoords}
           dropoffCoords={dropoffCoords}
           routeGeoJson={routeGeoJson}
