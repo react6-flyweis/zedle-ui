@@ -147,7 +147,7 @@ export function NavMenu({
                     activeClassName={cn(
                       chipStyle
                         ? "bg-primary text-white shadow-md border-primary/20"
-                        : "bg-primary text-primary",
+                        : "text-primary",
                     )}
                     href={item.href}
                     exact={true}
