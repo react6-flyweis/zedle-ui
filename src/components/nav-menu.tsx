@@ -75,32 +75,26 @@ const defaultNavigationItems: NavigationItem[] = [
       {
         title: "Restaurants",
         href: "/vendors/restaurants",
-        description: "Food and dining establishments",
       },
       {
         title: "Grocery Stores",
         href: "/vendors/grocery",
-        description: "Grocery and convenience stores",
       },
       {
         title: "Retail Stores",
         href: "/vendors/retail",
-        description: "Retail and shopping outlets",
       },
       {
         title: "Grocery Delivery",
         href: "/vendors/grocery-delivery",
-        description: "Grocery delivery service providers",
       },
       {
         title: "Food Delivery",
         href: "/vendors/food-delivery",
-        description: "Food delivery and restaurant partners",
       },
       {
         title: "Logistics",
         href: "/vendors/logistics",
-        description: "Logistics and courier services",
       },
     ],
   },
@@ -193,33 +187,21 @@ export function NavMenu({
                   <ActiveLink
                     className={cn(
                       navigationMenuTriggerStyle(),
-                      "group/nav flex-row transition-all duration-200 ease-in-out",
+                      "flex-row transition-all duration-200 ease-in-out",
                       chipStyle
-                        ? "bg-transparent hover:bg-primary hover:text-white rounded-full px-4 py-2 flex items-center gap-2 font-medium"
+                        ? "bg-transparent hover:bg-primary hover:text-white rounded-full px-4 py-2 flex items-center gap-2 font-medium hover:[&>svg]:text-white! hover:[&>img]:invert hover:[&>img]:brightness-0"
                         : "bg-transparent hover:bg-muted hover:text-primary px-3 py-2 rounded-md font-medium",
                     )}
                     activeClassName={cn(
                       chipStyle
-                        ? "bg-primary text-white shadow-md border-primary/20"
+                        ? "bg-primary text-white shadow-md border-primary/20 [&>svg]:text-white! [&>img]:invert [&>img]:brightness-0"
                         : "text-primary",
                     )}
                     href={item.href}
                     exact={true}
                   >
                     <span>{item.title}</span>
-                    {item.icon && (
-                      <span
-                        className={cn(
-                          "inline-flex items-center transition-colors duration-200",
-                          "[&>svg]:size-4 [&>img]:size-4",
-                          chipStyle
-                            ? "[&>svg]:text-current [&>img]:brightness-0 [&>img]:invert group-hover/nav:[&>img]:brightness-0 group-hover/nav:[&>img]:invert"
-                            : "[&>svg]:text-primary group-hover/nav:[&>svg]:text-primary [&>img]:filter [&>img]:brightness-0 [&>img]:contrast-200",
-                        )}
-                      >
-                        {item.icon}
-                      </span>
-                    )}
+                    {item.icon}
                   </ActiveLink>
                 </NavigationMenuLink>
               ) : (
