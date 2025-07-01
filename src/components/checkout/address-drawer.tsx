@@ -1,8 +1,8 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Briefcase, Home, MapPin, MapPinIcon } from "lucide-react";
-import { useState } from "react";
+import { Briefcase, Home, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
@@ -22,6 +22,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useUserLocation } from "@/hooks/useUserLocation";
 import { MapInput } from "../MapInput";
 
 const addressFormSchema = z.object({
@@ -51,6 +52,7 @@ interface AddressDrawerProps {
 
 export function AddressDrawer({ children, onSubmit }: AddressDrawerProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { location: userLocation } = useUserLocation();
 
   const form = useForm<AddressFormValues>({
     resolver: zodResolver(addressFormSchema),
@@ -66,6 +68,16 @@ export function AddressDrawer({ children, onSubmit }: AddressDrawerProps) {
       },
     },
   });
+
+  useEffect(() => {
+    // Set default location to user's current location if available
+    if (userLocation?.latitude && userLocation?.longitude) {
+      form.setValue("location", {
+        latitude: userLocation.latitude,
+        longitude: userLocation.longitude,
+      });
+    }
+  }, [userLocation, form]);
 
   const handleSubmit = (data: AddressFormValues) => {
     console.log("Saving address:", data);
