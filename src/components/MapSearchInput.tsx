@@ -31,7 +31,7 @@ export function MapSearchInput({
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const { suggestions, loading } = useMapboxSuggestions(query);
-  const { retrieved, retrieve } = useRetrieveMapboxSuggestion();
+  const { retrieve } = useRetrieveMapboxSuggestion();
 
   const [highlightedIdx, setHighlightedIdx] = useState<number>(-1);
 
@@ -58,18 +58,19 @@ export function MapSearchInput({
   }
 
   const handleSelect = (address: SearchBoxSuggestion) => {
+    setQuery(
+      address.full_address || `${address.name} ${address.place_formatted}`,
+    ); // Set input to selected value
     setOpen(false);
-    retrieve(address);
+    retrieve(address).then((retrieved) => {
+      if (retrieved) {
+        onChange?.(retrieved);
+      }
+    });
   };
 
-  useEffect(() => {
-    if (retrieved) {
-      onChange?.(retrieved);
-    }
-  }, [retrieved, onChange]);
-
   return (
-    <Popover open={open} onOpenChange={setOpen} modal={false}>
+    <Popover open={open} onOpenChange={setOpen} modal={true}>
       <PopoverTrigger asChild>
         <div className={cn("relative w-full", className)}>
           <AnimatedInput
@@ -78,19 +79,27 @@ export function MapSearchInput({
             placeholder={placeholder}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
-            onFocus={() => setOpen(true)}
             aria-autocomplete="list"
             aria-controls="map-suggestion-list"
             aria-expanded={open}
             autoComplete="off"
             role="combobox"
             className="pr-10 rounded-none"
+            onBlur={(e) => {
+              // Only close if focus moves outside popover
+              if (
+                !e.relatedTarget ||
+                !e.currentTarget.parentElement?.contains(e.relatedTarget)
+              ) {
+                setOpen(false);
+              }
+            }}
           />
           <ArrowLeftRight className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         </div>
       </PopoverTrigger>
       <PopoverContent
-        className="p-0 w-full rounded overflow-auto z-50"
+        className="p-0 w-[var(--radix-popover-trigger-width)] max-h-72 rounded overflow-auto z-50"
         align="start"
         sideOffset={4}
         id="map-suggestion-list"
@@ -101,6 +110,12 @@ export function MapSearchInput({
         }}
         side="bottom"
         collisionPadding={8}
+        onBlur={(e) => {
+          // Close popover if focus leaves popover content
+          if (!e.relatedTarget || !e.currentTarget.contains(e.relatedTarget)) {
+            setOpen(false);
+          }
+        }}
       >
         {loading ? (
           <div className="p-4 text-center text-muted-foreground text-sm">
@@ -111,37 +126,27 @@ export function MapSearchInput({
             {t("search.noResults")}
           </div>
         ) : (
-          <select
-            className="divide-y divide-border w-full"
-            size={suggestions.length > 0 ? suggestions.length : 1}
-            onChange={(e) => {
-              const idx = e.target.selectedIndex;
-              const s = suggestions[idx];
-              if (s) handleSelect(s);
-            }}
-            tabIndex={-1}
-            aria-activedescendant={
-              highlightedIdx >= 0 ? `option-${highlightedIdx}` : undefined
-            }
-          >
+          <ul className="divide-y divide-border w-full">
             {suggestions.map((s, idx) => (
-              <option
+              <li
                 key={s.mapbox_id || idx}
                 id={`option-${idx}`}
-                value={s.mapbox_id}
                 className={cn(
-                  "w-full text-left cursor-pointer px-4 py-2 transition-colors text-sm",
+                  "w-full text-left cursor-pointer px-4 py-2 transition-colors text-sm whitespace-normal break-words",
                   idx === highlightedIdx
                     ? "bg-accent text-accent-foreground"
                     : "hover:bg-accent hover:text-accent-foreground",
                 )}
-                aria-selected={idx === highlightedIdx}
                 onMouseEnter={() => setHighlightedIdx(idx)}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  handleSelect(s);
+                }}
               >
                 {s.full_address || `${s.name}, ${s.place_formatted}`}
-              </option>
+              </li>
             ))}
-          </select>
+          </ul>
         )}
       </PopoverContent>
     </Popover>

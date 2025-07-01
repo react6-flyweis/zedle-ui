@@ -19,6 +19,7 @@ export function useRetrieveMapboxSuggestion() {
     try {
       const properties = await retrieveMapboxSuggestion(place);
       setRetrieved(properties);
+      return properties;
     } catch (err: unknown) {
       setRetrieveError(err instanceof Error ? err.message : "Unknown error");
       setRetrieved(null);
