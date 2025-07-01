@@ -90,6 +90,15 @@
     "alertIconAlt": "Alert icon",
     "routeError": "Unable to calculate route. Please try again."
   },
+  "logisticsBooking": {
+    "truckIconAlt": "Logistics Truck Icon",
+    "logisticsTitle": "Logistics",
+    "pickupLabel": "Pickup Point",
+    "dropoffLabel": "Dropoff Point",
+    "dateLabel": "Date",
+    "addPromoCode": "Add Promo Code",
+    "searchVehicles": "Search Vehicles"
+  },
   "GuideCard": {
     "avatarAlt": "Avatar of {name}",
     "email": "Email",
@@ -216,5 +225,10 @@
   "SubHeader": {
     "addressError": "Unable to fetch address",
     "userLocationFallback": "Your location"
+  },
+  "header": {
+    "LogIn": "Log In",
+    "SignUp": "Sign up",
+    "Menu": "Menu"
   }
 }
