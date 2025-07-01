@@ -23,7 +23,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useUserLocation } from "@/hooks/useUserLocation";
-import { MapInput } from "../MapInput";
+import { MapInput } from "../map/MapInput";
 
 const addressFormSchema = z.object({
   address: z.string().min(1, "Address is required"),

@@ -22,7 +22,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { MapInput } from "./MapInput";
+import { MapInput } from "./map/MapInput";
 import { WeekDatePicker } from "./WeekDatePicker";
 
 const dateFormSchema = z.object({
