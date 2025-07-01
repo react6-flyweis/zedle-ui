@@ -115,6 +115,7 @@ const travelNavigation: NavigationItem[] = [
     href: "/users/travel-tourism/search",
     type: "link",
   },
+
   {
     title: "Services",
     href: "/users/travel-tourism/services",
@@ -130,17 +131,23 @@ const travelNavigation: NavigationItem[] = [
 const enterpriseNavigation: NavigationItem[] = [
   {
     title: "Home",
-    href: "/users/enterprise-hub",
+    href: "/users/enterprise",
     type: "link",
   },
   {
-    title: "Dashboard",
-    href: "/users/enterprise-hub/dashboard",
+    title: "Search",
+    href: "/users/enterprise/search",
+    type: "link",
+    icon: <SearchIcon />,
+  },
+  {
+    title: "Services",
+    href: "/users/enterprise/services",
     type: "link",
   },
   {
-    title: "Analytics",
-    href: "/users/enterprise-hub/analytics",
+    title: "Favorites",
+    href: "/users/enterprise/favorites",
     type: "link",
   },
 ];
@@ -167,7 +174,7 @@ const categories = {
     },
     {
       title: "Enterprise Hub",
-      href: "/users/enterprise-hub",
+      href: "/users/enterprise",
     },
   ],
 };
@@ -185,7 +192,7 @@ function getNavigationForPath(pathname: string): NavigationItem[] {
   if (pathname.startsWith("/users/travel-tourism")) {
     return [...travelNavigation, categories];
   }
-  if (pathname.startsWith("/users/enterprise-hub")) {
+  if (pathname.startsWith("/users/enterprise")) {
     return [...enterpriseNavigation, categories];
   }
 
