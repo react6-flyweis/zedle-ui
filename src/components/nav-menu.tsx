@@ -267,15 +267,18 @@ const ListItem = ({
         <ActiveLink
           href={href}
           className={cn(
-            "block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground group",
+            "relative block select-none rounded-md p-3 leading-none no-underline outline-none group group/li hover:bg-transparent hover:text-primary",
             className,
           )}
-          activeClassName="bg-primary/10 text-primary font-medium"
+          activeClassName="text-primary font-medium is-active"
           {...props}
         >
           <div className="flex items-center space-x-3">
-            <div className="flex-shrink-0">
-              <div className="size-2 rounded-full bg-muted-foreground/40 group-hover:bg-primary transition-colors duration-200"></div>
+            <div className="flex-shrink-0 flex items-center">
+              <div className="flex justify-end w-4">
+                <div className="h-0.5 w-0 bg-primary invisible group-[.is-active]:visible group-hover/li:visible group-[.is-active]:w-4 group-hover/li:w-4 transition-all duration-300"></div>
+              </div>
+              <div className="size-3 border border-muted-foreground rounded-full bg-muted group-hover/li:bg-primary group-[.is-active]:bg-primary transition-colors duration-200"></div>
             </div>
             <div className="flex-1 min-w-0">
               <div className="text-sm font-medium leading-none truncate">
