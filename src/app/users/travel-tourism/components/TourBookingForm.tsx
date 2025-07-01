@@ -9,7 +9,7 @@ import type { FC } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import logisticTruckIcon from "@/assets/icons/logistic-truck.png";
-import { MapSearchInput } from "@/components/MapSearchInput";
+import { MapSearchInput } from "@/components/map/MapSearchInput";
 import { AnimatedInput } from "@/components/ui/animated-input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

@@ -13,7 +13,7 @@ import {
 import { useMapboxSuggestions } from "@/hooks/useMapboxSuggestions";
 import { useRetrieveMapboxSuggestion } from "@/hooks/useRetrieveMapboxSuggestion";
 import { cn } from "@/lib/utils";
-import { AnimatedInput } from "./ui/animated-input";
+import { AnimatedInput } from "../ui/animated-input";
 
 interface MapSearchInputProps {
   placeholder: string;
