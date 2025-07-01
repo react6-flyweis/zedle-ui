@@ -17,7 +17,7 @@ export function HeroComponent({
   description?: string;
   inputPlaceholder?: string;
   characterImage: string | StaticImageData;
-  backgroundImage: string | StaticImageData;
+  backgroundImage?: string | StaticImageData;
 }) {
   return (
     <section className="relative overflow-hidden h-[60vh]">
@@ -78,12 +78,15 @@ export function HeroComponent({
         {/* Right Side - Notification Cards */}
         <div className="relative flex-1 flex w-full items-center justify-center h-full">
           <div className="absolute bg-primary w-full h-[95%] right-0 bottom-0 -z-10 rounded-tl-full"></div>
-          <Image
-            src={backgroundImage}
-            alt="Grocery Hero Background"
-            className="absolute left-10 bottom-0 rounded-tl-4xl h-[85%] w-60 -z-10"
-            priority
-          />
+          {backgroundImage && (
+            <Image
+              src={backgroundImage}
+              alt="Grocery Hero Background"
+              className="absolute left-10 bottom-0 rounded-tl-4xl h-[85%] w-60 -z-10"
+              priority
+            />
+          )}
+
           <div className="flex flex-col items-end max-w-sm">
             {[
               {
