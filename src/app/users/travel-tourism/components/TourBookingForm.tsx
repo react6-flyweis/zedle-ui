@@ -24,11 +24,7 @@ import {
 type TourBookingFormProps = {
   onPickupChange: (value: SearchBoxFeatureProperties | null) => void;
   onDropoffChange: (value: SearchBoxFeatureProperties | null) => void;
-  onDateChange: (value: string) => void;
   onSubmit: () => void;
-  pickupPoint?: string;
-  dropoffPoint?: string;
-  date?: string;
 };
 
 const createTourBookingSchema = (t: (key: string) => string) =>
@@ -42,11 +38,7 @@ const createTourBookingSchema = (t: (key: string) => string) =>
 export const TourBookingForm: FC<TourBookingFormProps> = ({
   onPickupChange,
   onDropoffChange,
-  onDateChange,
   onSubmit,
-  pickupPoint = "",
-  dropoffPoint = "",
-  date = "",
 }) => {
   const t = useTranslations("tourBooking");
   const tourBookingSchema = createTourBookingSchema(t);
@@ -55,9 +47,9 @@ export const TourBookingForm: FC<TourBookingFormProps> = ({
   const form = useForm<TourBookingFormValues>({
     resolver: zodResolver(tourBookingSchema),
     defaultValues: {
-      pickupPoint,
-      dropoffPoint,
-      date,
+      pickupPoint: "",
+      dropoffPoint: "",
+      date: "",
       promoCode: "",
     },
   });
@@ -97,7 +89,7 @@ export const TourBookingForm: FC<TourBookingFormProps> = ({
                         placeholder={t("pickupPoint")}
                         {...field}
                         onChange={(value) => {
-                          field.onChange(value?.mapbox_id);
+                          field.onChange(value?.full_address);
                           onPickupChange(value);
                         }}
                       />
@@ -119,7 +111,7 @@ export const TourBookingForm: FC<TourBookingFormProps> = ({
                         {...field}
                         placeholder={t("dropoffPoint")}
                         onChange={(value) => {
-                          field.onChange(value?.mapbox_id);
+                          field.onChange(value?.full_address);
                           onDropoffChange(value);
                         }}
                       />
@@ -140,10 +132,6 @@ export const TourBookingForm: FC<TourBookingFormProps> = ({
                           {...field}
                           placeholder={t("date")}
                           className="pr-10 rounded-none"
-                          onChange={(e) => {
-                            field.onChange(e.target.value);
-                            onDateChange(e.target.value);
-                          }}
                         />
                       </FormControl>
                       <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />

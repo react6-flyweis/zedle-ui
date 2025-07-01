@@ -18,11 +18,8 @@ export const TourBooking = () => {
   const [dropoffCoords, setDropoffCoords] = useState<[number, number] | null>(
     null,
   );
-  const [pickupPoint, setPickupPoint] = useState<string>("");
-  const [dropoffPoint, setDropoffPoint] = useState<string>("");
-  const [date, setDate] = useState<string>("");
 
-  const t = useTranslations("TourBooking");
+  const t = useTranslations("tourBooking");
 
   // Use custom hook for route fetching
   const {
@@ -36,7 +33,6 @@ export const TourBooking = () => {
 
   // Handlers for form
   const handlePickupChange = (value: SearchBoxFeatureProperties | null) => {
-    setPickupPoint(value?.mapbox_id || "");
     setPickupCoords(
       value?.coordinates
         ? [value.coordinates.longitude, value.coordinates.latitude]
@@ -44,16 +40,13 @@ export const TourBooking = () => {
     );
   };
   const handleDropoffChange = (value: SearchBoxFeatureProperties | null) => {
-    setDropoffPoint(value?.mapbox_id || "");
     setDropoffCoords(
       value?.coordinates
         ? [value.coordinates.longitude, value.coordinates.latitude]
         : null,
     );
   };
-  const handleDateChange = (value: string) => {
-    setDate(value);
-  };
+
   const handleFormSubmit = () => {
     setQuotationDialogOpen(true);
   };
@@ -92,11 +85,7 @@ export const TourBooking = () => {
           <TourBookingForm
             onPickupChange={handlePickupChange}
             onDropoffChange={handleDropoffChange}
-            onDateChange={handleDateChange}
             onSubmit={handleFormSubmit}
-            pickupPoint={pickupPoint}
-            dropoffPoint={dropoffPoint}
-            date={date}
           />
         </div>
       </div>
