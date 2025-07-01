@@ -165,5 +165,11 @@
     "recentKeywords": "Recent Keywords",
     "clearAll": "Clear All",
     "suggestedRestaurants": "Suggested Restaurants"
+  },
+  "OurServicesTray": {
+    "title": "Our Services",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "scrollLeft": "Scroll left",
+    "scrollRight": "Scroll right"
   }
 }
