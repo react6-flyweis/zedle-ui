@@ -208,5 +208,9 @@
     "searchTitle": "Search any service you need from this salon",
     "searchPlaceholder": "Search from services...",
     "servicesTitle": "Services"
+  },
+  "SubHeader": {
+    "addressError": "Unable to fetch address",
+    "userLocationFallback": "Your location"
   }
 }
