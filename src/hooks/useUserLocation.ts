@@ -1,16 +1,14 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useUserLocationStore } from "../store/UserLocationStore";
 
 export function useUserLocation() {
   const t = useTranslations("location");
-  const [location, setLocation] = useState<{
-    latitude: number;
-    longitude: number;
-  } | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const { location, error, setLocation, setError } = useUserLocationStore();
 
   useEffect(() => {
+    if (location) return;
     if (!navigator.geolocation) {
       setError(t("geolocationNotSupported"));
       return;
@@ -35,7 +33,7 @@ export function useUserLocation() {
         }
       },
     );
-  }, [t]);
+  }, [t, location, setLocation, setError]);
 
   return { location, error };
 }
