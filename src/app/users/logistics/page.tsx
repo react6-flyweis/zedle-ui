@@ -4,13 +4,11 @@ import { AdCarousel } from "@/components/ad-carousel";
 import { Cities } from "@/components/cities";
 import { LogisticsBooking } from "@/components/logistics-booking";
 import { Testimonials } from "@/components/testimonials";
-import { MainMap } from "./components/MainMap";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <MainMap />
-      <LogisticsBooking />
+      <LogisticsBooking withMap />
       <Cities />
       <AdCarousel />
       <Testimonials />
