@@ -8,7 +8,7 @@ export default function RootLayout({
 }>) {
   return (
     <div lang="en">
-      <Header />
+      <Header centeredNavigation />
       <main>{children}</main>
       <Footer />
     </div>

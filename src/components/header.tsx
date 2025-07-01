@@ -10,23 +10,27 @@ interface HeaderProps {
   chipMenuStyle?: boolean;
   navigation?: NavigationItem[];
   showAuthButtons?: boolean;
+  centeredNavigation?: boolean;
 }
 
 export default function Header({
   chipMenuStyle,
   navigation,
   showAuthButtons = true,
+  centeredNavigation = false,
 }: HeaderProps) {
   return (
     <>
       <SubHeader />
       <header className="w-full bg-accent shadow border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-16 gap-5">
             {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <Image src={logo} alt="Zedle" className="h-8 w-auto" />
-            </Link>
+            <div className={centeredNavigation ? "flex-none" : "flex-1"}>
+              <Link href="/" className="">
+                <Image src={logo} alt="Zedle" className="h-8 w-auto" />
+              </Link>
+            </div>
 
             {/* Navigation */}
             <NavMenu navigationItems={navigation} chipStyle={chipMenuStyle} />
