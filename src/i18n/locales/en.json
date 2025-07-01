@@ -1,4 +1,8 @@
 {
+  "common": {
+    "view": "View",
+    "avgServicePrice": "Avg service price"
+  },
   "tour": {
     "bookingTitle": "Tour Booking & Reservations",
     "bookingSubtitle": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -171,5 +175,9 @@
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     "scrollLeft": "Scroll left",
     "scrollRight": "Scroll right"
+  },
+  "popularSalons": {
+    "heading": "Popular Salons",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
   }
 }
