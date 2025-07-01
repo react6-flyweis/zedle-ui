@@ -187,5 +187,12 @@
     "previous": "Previous",
     "next": "Next",
     "page": "Page {page}"
+  },
+  "enterpriseSearchPage": {
+    "searchPlaceholder": "Search for salons, services...",
+    "shoppingBagAlt": "Shopping bag",
+    "recentKeywords": "Recent Keywords",
+    "clearAll": "Clear All",
+    "suggestedRequests": "Past Requests"
   }
 }
