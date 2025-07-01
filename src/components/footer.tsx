@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import facebookIcon from "@/assets/icons/facebook.png";
 import instagramIcon from "@/assets/icons/instagram.png";
 import snapchatIcon from "@/assets/icons/snapchat.png";
@@ -7,6 +8,7 @@ import tiktokIcon from "@/assets/icons/tiktok.png";
 import appStoreLogo from "@/assets/images/app-store.png";
 import logo from "@/assets/images/logo-horizontal.png";
 import googlePlayLogo from "@/assets/images/play-store.png";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -151,12 +153,26 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* App Download Section */}
-      <div className="py-3 px-5  border-t bg-primary text-white">
-        <div className="flex flex-col sm:flex-row items-center justify-between">
-          <p className="mb-4 sm:mb-0">
-            Company &copy; Registered with House of companies.
+      {/* Sub footer */}
+      <div className="py-3 px-5 border-t bg-primary text-white">
+        <div className="flex flex-col sm:flex-row items-center justify-between w-full">
+          <p className="mb-2 sm:mb-0 text-xs">
+            Order.uk Copyright {new Date().getFullYear()}, All Rights Reserved.
           </p>
+          <div className="flex flex-wrap gap-4 text-xs font-medium">
+            <Link href="/privacy-policy" className="hover:underline">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:underline">
+              Terms
+            </Link>
+            <Link href="/pricing" className="hover:underline">
+              Pricing
+            </Link>
+            <Link href="/privacy-policy#donotsell" className="hover:underline">
+              Do not sell or share my personal information
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
