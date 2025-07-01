@@ -1,9 +1,12 @@
 "use client";
 
 import type { SearchBoxFeatureProperties } from "@mapbox/search-js-core/dist/searchbox/types";
+import { AlertTriangle, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { useMapboxRoute } from "@/hooks/useMapboxRoute";
+
 import { PriceQuotationsDialog } from "../../logistics/components/PriceQuotationDialog";
-import { useMapboxRoute } from "../hooks/useMapboxRoute";
 import { TourBookingForm } from "./TourBookingForm";
 import { TourBookingMap } from "./TourBookingMap";
 
@@ -19,8 +22,14 @@ export const TourBooking = () => {
   const [dropoffPoint, setDropoffPoint] = useState<string>("");
   const [date, setDate] = useState<string>("");
 
+  const t = useTranslations("TourBooking");
+
   // Use custom hook for route fetching
-  const routeGeoJson = useMapboxRoute({
+  const {
+    routeGeoJson,
+    loading: routeLoading,
+    error: routeError,
+  } = useMapboxRoute({
     pickupCoords,
     dropoffCoords,
   });
@@ -58,6 +67,25 @@ export const TourBooking = () => {
           dropoffCoords={dropoffCoords}
           routeGeoJson={routeGeoJson}
         />
+        {/* Loading and Error States */}
+        {routeLoading && (
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-md bg-background/80 border border-border shadow">
+              <span className="animate-spin text-primary">
+                <Loader2 size={20} aria-label={t("loaderIconAlt")} />
+              </span>
+              <span>{t("routeLoading")}</span>
+            </div>
+          </div>
+        )}
+        {routeError && (
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-md bg-destructive/80 border border-destructive text-destructive-foreground shadow">
+              <AlertTriangle size={20} aria-label={t("alertIconAlt")} />
+              <span>{t("routeError")}</span>
+            </div>
+          </div>
+        )}
         {/* Booking Card overlays map */}
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 w-full max-w-5xl px-2">
           {/* Form Side */}
