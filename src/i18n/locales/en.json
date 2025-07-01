@@ -203,5 +203,10 @@
     "responseTime": "Response time: ${min}-${max} min",
     "openUntil": "Open until ${time}",
     "reviews": "reviews"
+  },
+  "servicesSection": {
+    "searchTitle": "Search any service you need from this salon",
+    "searchPlaceholder": "Search from services...",
+    "servicesTitle": "Services"
   }
 }
