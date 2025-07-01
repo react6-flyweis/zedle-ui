@@ -14,7 +14,9 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Hero />
-      <LogisticsBooking />
+      <div className="-mt-28">
+        <LogisticsBooking />
+      </div>
       <Categories />
       <Cities />
       <PartnerSignup />
