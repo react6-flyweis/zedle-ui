@@ -1,15 +1,16 @@
-import { Star } from "lucide-react";
+import { HeartIcon, Star } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface SalonCardProps {
-  image?: string;
+  image: string;
   rating?: number;
   name: string;
   address: string;
   avgPrice: number;
+  isFavorite?: boolean;
 }
 
 export function SalonCard({
@@ -18,21 +19,27 @@ export function SalonCard({
   name,
   address,
   avgPrice,
+  isFavorite = false,
 }: SalonCardProps) {
   const t = useTranslations("common");
   return (
     <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 p-0">
       <CardContent className="p-0">
         <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
-          {image && (
-            <Image
-              src={image}
-              alt={name}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-              priority
-            />
+          {isFavorite && (
+            <div className="z-10 flex justify-center items-center absolute top-3 left-3 size-8 bg-white rounded-full">
+              <HeartIcon className="size-5 text-red-500 fill-red-500" />
+            </div>
           )}
+
+          <Image
+            src={image}
+            alt={name}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            priority
+          />
+
           {/* Rating Badge */}
           <div className="absolute top-0 right-3 z-10">
             <div className="bg-blue-950 text-white border-0 p-2 py-3 text-sm font-medium flex items-center rounded-t-none rounded-b-md shadow">
