@@ -1,9 +1,16 @@
 import { MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import logo from "@/assets/images/logo-horizontal.png";
 import { type NavigationItem, NavMenu } from "@/components/nav-menu";
 import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import SubHeader from "./SubHeader";
 
 interface HeaderProps {
@@ -19,6 +26,8 @@ export default function Header({
   showAuthButtons = true,
   centeredNavigation = false,
 }: HeaderProps) {
+  const t = useTranslations("header");
+
   return (
     <>
       <SubHeader />
@@ -32,25 +41,60 @@ export default function Header({
               </Link>
             </div>
 
-            {/* Navigation */}
-            <NavMenu navigationItems={navigation} chipStyle={chipMenuStyle} />
+            {/* Desktop Navigation */}
+            <div className="hidden md:block">
+              <NavMenu navigationItems={navigation} chipStyle={chipMenuStyle} />
+            </div>
 
-            {/* Auth Buttons */}
+            {/* Desktop Auth Buttons */}
             {showAuthButtons && (
-              <div className="flex items-center space-x-4">
+              <div className="hidden md:flex items-center space-x-4">
                 <Link href="/choose?signin=true">
-                  <Button className="rounded-full">Log In</Button>
+                  <Button className="rounded-full">{t("LogIn")}</Button>
                 </Link>
                 <Link href="/choose?signup=true">
-                  <Button className="rounded-full">Sign up</Button>
+                  <Button className="rounded-full">{t("SignUp")}</Button>
                 </Link>
               </div>
             )}
 
             {/* Mobile menu button */}
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <MenuIcon className="h-6 w-6" />
-            </Button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden"
+                  aria-label={t("Menu")}
+                >
+                  <MenuIcon className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="md:hidden p-6 pt-8">
+                <SheetTitle className="sr-only">Sidebar</SheetTitle>
+                <div className="flex flex-col gap-6">
+                  <NavMenu
+                    navigationItems={navigation}
+                    chipStyle={chipMenuStyle}
+                    vertical
+                  />
+                  {showAuthButtons && (
+                    <div className="flex flex-col gap-3 mt-4">
+                      <Link href="/choose?signin=true">
+                        <Button className="rounded-full w-full">
+                          {t("LogIn")}
+                        </Button>
+                      </Link>
+                      <Link href="/choose?signup=true">
+                        <Button className="rounded-full w-full">
+                          {t("SignUp")}
+                        </Button>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </header>

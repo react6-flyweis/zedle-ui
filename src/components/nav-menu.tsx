@@ -117,14 +117,68 @@ const defaultNavigationItems: NavigationItem[] = [
 ];
 
 interface NavMenuProps {
-  chipStyle?: boolean;
   navigationItems?: NavigationItem[];
+  chipStyle?: boolean;
+  vertical?: boolean;
 }
 
 export function NavMenu({
   chipStyle = false,
   navigationItems = defaultNavigationItems,
+  vertical = false,
 }: NavMenuProps) {
+  if (vertical) {
+    return (
+      <nav>
+        <ul className="flex flex-col gap-2">
+          {navigationItems.map((item) =>
+            item.type === "link" ? (
+              <li key={item.title + item.href}>
+                <ActiveLink
+                  href={item.href}
+                  className={cn(
+                    "block w-full px-4 py-2 rounded-md text-base font-medium transition-colors hover:bg-accent hover:text-primary",
+                    chipStyle && "rounded-full",
+                  )}
+                  activeClassName="bg-primary text-white"
+                  exact={true}
+                >
+                  {item.title}
+                </ActiveLink>
+              </li>
+            ) : (
+              <li key={item.title + "dropdown"} className="relative group">
+                <span className="block w-full px-4 py-2 rounded-md text-base font-medium cursor-pointer select-none group-hover:bg-accent">
+                  {item.title}
+                </span>
+                <ul className="hidden group-hover:block absolute left-full top-0 min-w-[180px] bg-card border rounded-lg shadow-lg z-50 p-2 ml-2">
+                  {item.items.map((subItem) => (
+                    <li key={subItem.href}>
+                      <ActiveLink
+                        href={subItem.href}
+                        className="block px-3 py-2 rounded-md text-sm hover:bg-accent hover:text-primary transition-colors"
+                        activeClassName="bg-primary/10 text-primary font-medium"
+                      >
+                        <div className="flex flex-col">
+                          <span>{subItem.title}</span>
+                          {subItem.description && (
+                            <span className="text-xs text-muted-foreground mt-1">
+                              {subItem.description}
+                            </span>
+                          )}
+                        </div>
+                      </ActiveLink>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ),
+          )}
+        </ul>
+      </nav>
+    );
+  }
+
   return (
     <div className="hidden md:block">
       <NavigationMenu viewport={false}>
