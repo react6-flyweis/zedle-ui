@@ -194,5 +194,14 @@
     "recentKeywords": "Recent Keywords",
     "clearAll": "Clear All",
     "suggestedRequests": "Past Requests"
+  },
+  "salonHero": {
+    "orderIconAlt": "Order Icon",
+    "responseTimeIconAlt": "Response Time Icon",
+    "salonImageAlt": "Salon Image",
+    "minimumOrderDay": "Minimum order: ${days} day before",
+    "responseTime": "Response time: ${min}-${max} min",
+    "openUntil": "Open until ${time}",
+    "reviews": "reviews"
   }
 }
