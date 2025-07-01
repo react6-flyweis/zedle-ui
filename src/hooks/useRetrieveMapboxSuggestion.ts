@@ -18,6 +18,9 @@ export function useRetrieveMapboxSuggestion() {
     setRetrieved(null);
     try {
       const properties = await retrieveMapboxSuggestion(place);
+      properties.full_address =
+        properties.full_address ||
+        `${properties.name}, ${properties.place_formatted}`;
       setRetrieved(properties);
       return properties;
     } catch (err: unknown) {
