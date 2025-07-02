@@ -16,6 +16,11 @@
     "actions": {
       "reject": "Reject",
       "accept": "Accept"
+    },
+    "orders": {
+      "heroImageAlt": "Delivery partner hero image",
+      "ongoingRequestsTitle": "Ongoing Delivery Requests",
+      "ongoingRequestsDescription": "Track and manage your current delivery requests efficiently. Stay updated with real-time status and details for each order."
     }
   }
 }
