@@ -20,6 +20,10 @@ export default getRequestConfig(async () => {
     // Use Next.js server context to determine which messages to load
     const userMessages = (await import(`./locales/${locale}.json`)).default;
     messages.push(userMessages);
+  } else if (pathname.startsWith("/delivery-partner")) {
+    const vendorMessages = (await import(`./locales/${locale}/delivery.json`))
+      .default;
+    messages.push(vendorMessages);
     // } else if (pathname.startsWith("/vendor")) {
     //   const vendorMessages = (await import(`./locales/${locale}/vendor.json`))
     //     .default;
