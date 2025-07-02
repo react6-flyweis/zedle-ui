@@ -28,7 +28,7 @@ export default function DeliveryPartnerLayout({
 }) {
   return (
     <>
-      <Header navigation={deliveryPartnerNavigation} />
+      <Header chipMenuStyle navigation={deliveryPartnerNavigation} />
       <main>{children}</main>
       <DeliveryPartnerPersonalized />
       <Footer />
