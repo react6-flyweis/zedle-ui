@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
+import orderCardPoster from "../assets/order-card-poster.jpg";
+
 export type Order = {
   id: string;
   date: string;
@@ -12,16 +14,15 @@ export type Order = {
   address2: string;
   paymentMethod: string;
   total: string;
-  image: string;
 };
 
-export function OrderCard({ order }: { order: Order }) {
+export function NewOrderCard({ order }: { order: Order }) {
   const t = useTranslations("card");
   return (
     <Card className="relative overflow-hidden group p-0 rounded">
       <div className="relative h-80">
         <Image
-          src={order.image}
+          src={orderCardPoster}
           alt={t("orderImageAlt")}
           fill
           className="object-cover absolute z-0"

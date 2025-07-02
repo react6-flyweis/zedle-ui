@@ -3,7 +3,7 @@
 import { RefreshCw } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { OrderCard } from "./OrderCard";
+import { NewOrderCard } from "./NewOrderCard";
 
 const mockOrders = [
   {
@@ -13,8 +13,6 @@ const mockOrders = [
     address2: "2464 Royal Ln. Mesa, New Jersey",
     paymentMethod: "Card",
     total: "$25.40",
-    image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop",
   },
   {
     id: "123456789",
@@ -23,8 +21,6 @@ const mockOrders = [
     address2: "2464 Royal Ln. Mesa, New Jersey",
     paymentMethod: "Card",
     total: "$25.40",
-    image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop",
   },
   {
     id: "123456789",
@@ -33,8 +29,6 @@ const mockOrders = [
     address2: "2464 Royal Ln. Mesa, New Jersey",
     paymentMethod: "Cash",
     total: "$25.40",
-    image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop",
   },
   {
     id: "123456789",
@@ -43,8 +37,6 @@ const mockOrders = [
     address2: "2464 Royal Ln. Mesa, New Jersey",
     paymentMethod: "Cash",
     total: "$25.40",
-    image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop",
   },
 ];
 
@@ -67,7 +59,7 @@ export function NewOrders() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {mockOrders.map((order, index) => (
-          <OrderCard key={`${order.id}-${index}`} order={order} />
+          <NewOrderCard key={`${order.id}-${index}`} order={order} />
         ))}
       </div>
     </div>
