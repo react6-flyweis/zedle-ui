@@ -1,0 +1,18 @@
+{
+  "SubHeader": {
+    "addressError": "Unable to fetch address",
+    "userLocationFallback": "Your location"
+  },
+  "header": {
+    "LogIn": "Log In",
+    "SignUp": "Sign up",
+    "Menu": "Menu"
+  },
+  "location": {
+    "geolocationNotSupported": "Geolocation is not supported by your browser.",
+    "permissionDenied": "Permission to access location was denied.",
+    "positionUnavailable": "Location information is unavailable.",
+    "timeout": "The request to get your location timed out.",
+    "unknownError": "An unknown error occurred while retrieving your location."
+  }
+}

@@ -113,13 +113,6 @@
     "phone": "Phone",
     "rating": "Rating"
   },
-  "location": {
-    "geolocationNotSupported": "Geolocation is not supported by your browser.",
-    "permissionDenied": "Permission to access location was denied.",
-    "positionUnavailable": "Location information is unavailable.",
-    "timeout": "The request to get your location timed out.",
-    "unknownError": "An unknown error occurred while retrieving your location."
-  },
   "transport": {
     "title": "Transport & Car Rentals",
     "subtitle": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
@@ -221,14 +214,5 @@
     "searchTitle": "Search any service you need from this salon",
     "searchPlaceholder": "Search from services...",
     "servicesTitle": "Services"
-  },
-  "SubHeader": {
-    "addressError": "Unable to fetch address",
-    "userLocationFallback": "Your location"
-  },
-  "header": {
-    "LogIn": "Log In",
-    "SignUp": "Sign up",
-    "Menu": "Menu"
   }
 }
