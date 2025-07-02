@@ -3,7 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { OtpVerificationDialog } from "../components/OtpVerificationDialog";
 
 // Zod schema for form validation
 const loginSchema = z.object({
@@ -33,39 +35,49 @@ const loginSchema = z.object({
         message: "Please enter a valid email address or phone number",
       },
     ),
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-      "Password must contain at least one uppercase letter, one lowercase letter, and one number",
-    ),
-  agreedToTerms: z.boolean().refine((val) => val === true, {
-    message: "You must agree to the terms and conditions",
-  }),
+  password: z.string().min(5, "Password is required"),
 });
 
 type LoginForm = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [showPassword, setShowPassword] = useState(false);
+  const [otpDialogOpen, setOtpDialogOpen] = useState(false);
 
   const form = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       emailOrPhone: "",
       password: "",
-      agreedToTerms: false,
     },
   });
 
   const onSubmit = (data: LoginForm) => {
     // Handle login logic here
-    console.log("Login submitted:", data);
+    // Show OTP dialog on submit
+    setOtpDialogOpen(true);
+    // console.log("Login submitted:", data);
+  };
+
+  const handleNext = () => {
+    // Handle next step after OTP verification
+    const category = searchParams.get("category") || "grocery";
+    const userType = searchParams.get("type") || "users";
+    const userPath = userType === "delivery" ? "delivery-partner" : "users";
+    const targetPath = `/${userPath}/${userType !== "delivery" ? category : ""}`;
+    router.push(targetPath);
   };
 
   return (
     <div className="w-full">
+      {/* OTP Verification Dialog */}
+      <OtpVerificationDialog
+        open={otpDialogOpen}
+        onOpenChange={setOtpDialogOpen}
+        onVerify={handleNext}
+      />
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">LOG IN</h1>
         <p className="text-sm text-gray-600">
@@ -133,37 +145,6 @@ export default function LoginPage() {
                     </Link>
                   </div>
                   <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Terms and Conditions */}
-            <FormField
-              control={form.control}
-              name="agreedToTerms"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-2 space-y-0">
-                  <FormControl>
-                    <input
-                      type="checkbox"
-                      checked={field.value}
-                      onChange={field.onChange}
-                      className="mt-1 h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
-                    />
-                  </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormLabel className="text-sm text-gray-600 leading-relaxed">
-                      By creating an account, I agree to our{" "}
-                      <Link href="/terms" className="text-primary nowrap">
-                        Terms of use
-                      </Link>{" "}
-                      and{" "}
-                      <Link href="/privacy" className="text-primary nowrap">
-                        Privacy Policy
-                      </Link>
-                    </FormLabel>
-                    <FormMessage />
-                  </div>
                 </FormItem>
               )}
             />
