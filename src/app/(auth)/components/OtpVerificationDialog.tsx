@@ -90,7 +90,7 @@ export function OtpVerificationDialog({
               </Link>
             </div>
             <p className="text-muted-foreground text-sm mt-2">
-              {t("subtitle")}
+              {t("subtitle", { length: otpLength })}
             </p>
           </DialogHeader>
           <Form {...form}>
