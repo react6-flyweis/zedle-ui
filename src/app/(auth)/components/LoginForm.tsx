@@ -1,0 +1,185 @@
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { OtpVerificationDialog } from "./OtpVerificationDialog";
+
+// Zod schema for form validation
+const loginSchema = z.object({
+  emailOrPhone: z
+    .string()
+    .min(1, "Email or phone number is required")
+    .refine(
+      (value) => {
+        // Check if it's a valid email or phone number
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^\+?[\d\s-()]{10,}$/;
+        return emailRegex.test(value) || phoneRegex.test(value);
+      },
+      {
+        message: "Please enter a valid email address or phone number",
+      },
+    ),
+  password: z.string().min(5, "Password is required"),
+});
+
+type LoginForm = z.infer<typeof loginSchema>;
+
+export function LoginForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [showPassword, setShowPassword] = useState(false);
+  const [otpDialogOpen, setOtpDialogOpen] = useState(false);
+
+  const form = useForm<LoginForm>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      emailOrPhone: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = (data: LoginForm) => {
+    setOtpDialogOpen(true);
+  };
+
+  const handleNext = () => {
+    const category = searchParams.get("category") || "grocery";
+    const userType = searchParams.get("type") || "users";
+    const userPath = userType === "delivery" ? "delivery-partner" : "users";
+    const targetPath = `/${userPath}/${userType !== "delivery" ? category : ""}`;
+    router.push(targetPath);
+  };
+
+  return (
+    <>
+      <OtpVerificationDialog
+        open={otpDialogOpen}
+        onOpenChange={setOtpDialogOpen}
+        onVerify={handleNext}
+      />
+      <div className="flex justify-between">
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">LOG IN</h1>
+        <p className="text-sm text-gray-600">
+          Don't have an account?{" "}
+          <Link href="/signup" className=" font-medium">
+            Create Account
+          </Link>
+        </p>
+      </div>
+      <div className="space-y-6">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            {/* Email/Phone Input */}
+            <FormField
+              control={form.control}
+              name="emailOrPhone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-sm font-medium text-gray-700">
+                    Email / Phone Number
+                  </FormLabel>
+                  <FormControl>
+                    <Input {...field} type="text" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* Password Input */}
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-sm font-medium text-gray-700">
+                    Password
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Input
+                        {...field}
+                        type={showPassword ? "text" : "password"}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                      >
+                        {showPassword ? (
+                          <EyeOff size={20} />
+                        ) : (
+                          <Eye size={20} />
+                        )}
+                      </button>
+                    </div>
+                  </FormControl>
+                  <div className="text-right">
+                    <Link
+                      href="/forgot-password"
+                      className="text-sm text-primary hover:text-purple-700"
+                    >
+                      Forgot password?
+                    </Link>
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* Login Button */}
+            <Button
+              type="submit"
+              className="w-full h-12 rounded-full"
+              disabled={form.formState.isSubmitting}
+            >
+              {form.formState.isSubmitting ? "Logging in..." : "Log In"}
+            </Button>
+          </form>
+        </Form>
+        {/* Divider */}
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-300" />
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-accent text-gray-500">OR</span>
+          </div>
+        </div>
+        {/* Social Login Buttons */}
+        <div className="space-y-3">
+          <Button
+            type="button"
+            variant="outline"
+            size="lg"
+            className="w-full rounded-full"
+          >
+            Continue with Google
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            size="lg"
+            className="w-full rounded-full"
+          >
+            Continue with Facebook
+          </Button>
+        </div>
+      </div>
+    </>
+  );
+}
