@@ -13,7 +13,8 @@ const testimonials = [
     rating: 66,
     feedback:
       "Be welcomed and every all pairs avoided. But in certain and owing to the claims of duty or business it frequently occur.",
-    avatar: "/assets/images/user-1.jpg", // placeholder path
+    avatar:
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=256&h=256&facepad=2", // unsplash avatar
   },
   {
     name: "Luca Theodore",
@@ -21,7 +22,8 @@ const testimonials = [
     rating: 68,
     feedback:
       "The principle of selection he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
-    avatar: "/assets/images/user-2.jpg", // placeholder path
+    avatar:
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=256&h=256&facepad=2", // unsplash avatar
   },
   {
     name: "Lucian Manroe",
@@ -29,7 +31,8 @@ const testimonials = [
     rating: 66,
     feedback:
       "Love or pursues desires obtain pain itself, because pain because occasionally circumstances occur some great pleasure.",
-    avatar: "/assets/images/user-3.jpg", // placeholder path
+    avatar:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=256&h=256&facepad=2", // unsplash avatar
   },
 ];
 
