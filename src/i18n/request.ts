@@ -21,9 +21,9 @@ export default getRequestConfig(async () => {
     const userMessages = (await import(`./locales/${locale}.json`)).default;
     messages.push(userMessages);
   } else if (pathname.startsWith("/delivery-partner")) {
-    const vendorMessages = (await import(`./locales/${locale}/delivery.json`))
+    const partnerMessages = (await import(`./locales/${locale}/delivery.json`))
       .default;
-    messages.push(vendorMessages);
+    messages.push(partnerMessages);
     // } else if (pathname.startsWith("/vendor")) {
     //   const vendorMessages = (await import(`./locales/${locale}/vendor.json`))
     //     .default;
