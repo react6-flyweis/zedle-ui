@@ -1,11 +1,11 @@
 "use client";
 
+import { format } from "date-fns";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-
 import orderCardPoster from "../assets/order-card-poster.jpg";
 
 export type OrderBase = {
@@ -49,7 +49,7 @@ export function OrderCard({ order }: { order: IOrder }) {
 
   return (
     <Card className="relative overflow-hidden group p-0 rounded">
-      <div className="relative h-80">
+      <div className="relative py-8">
         <Image
           src={orderCardPoster}
           alt={t("orderImageAlt")}
@@ -60,22 +60,22 @@ export function OrderCard({ order }: { order: IOrder }) {
         <div className="absolute inset-0 bg-black/50 z-0" />
         <div className="relative z-10 h-full w-full flex flex-col justify-center space-y-4">
           <div className="top-8 left-0 w-full flex flex-col items-center">
-            <div className="text-2xl font-bold text-white text-center">
-              {order.date}
+            <div className="text-xl text-white text-center">
+              {format(order.date, "MMM dd, yyyy, hh:mm a")}
               {order.status === "completed" && (
                 <span className="ml-4 text-2xl font-bold">${order.total}</span>
               )}
             </div>
             <div className="text-base text-white/90 text-center mt-1">
+              {order.status === "running" && (
+                <div className="text-lg text-white font-semibold mt-1">
+                  {order.vehicleType}
+                </div>
+              )}
               {order.status === "running"
-                ? t("orderNo") + ": : #" + order.orderNo
-                : t("bookingId") + ": " + order.id}
+                ? `${t("orderNo")}: : #${order.orderNo}`
+                : `${t("bookingId")}: ${order.id}`}
             </div>
-            {order.status === "running" && (
-              <div className="text-lg text-white font-semibold mt-1">
-                {order.vehicleType}
-              </div>
-            )}
           </div>
           <div className="flex justify-center">
             <div className="relative flex flex-col">
@@ -135,7 +135,7 @@ export function OrderCard({ order }: { order: IOrder }) {
                     {t("rating")}
                   </span>
                   <span className="flex items-center gap-1">
-                    {[...Array(order.rating)].map((_, i) => (
+                    {[...Array(Math.floor(order.rating))].map((_, i) => (
                       <Star
                         key={`${order.id}-star-${i}`}
                         className="w-4 h-4 text-yellow-400 fill-yellow-400"
@@ -184,19 +184,18 @@ export function OrderCard({ order }: { order: IOrder }) {
               </div>
             </div>
           )}
-          {order.status === "running" && <div className="h-8" />}
           {/* Action Buttons */}
           {order.status === "pending" && (
-            <div className="px-8 pb-8 flex justify-between gap-4 transition-opacity duration-200">
+            <div className="px-8 flex justify-between gap-4 transition-opacity duration-200">
               <Button
-                className="flex-1 bg-destructive hover:bg-destructive/90 text-white text-lg font-semibold rounded-lg py-6 mr-2"
+                className="flex-1 bg-destructive hover:bg-destructive/90"
                 type="button"
                 variant="destructive"
               >
                 {t("actions.reject")}
               </Button>
               <Button
-                className="flex-1 bg-green-600 hover:bg-green-700 text-white text-lg font-semibold rounded-lg py-6 ml-2"
+                className="flex-1 bg-green-600 hover:bg-green-700"
                 type="button"
               >
                 {t("actions.accept")}
@@ -204,23 +203,12 @@ export function OrderCard({ order }: { order: IOrder }) {
             </div>
           )}
           {order.status === "running" && (
-            <div className="px-8 pb-8 flex justify-center transition-opacity duration-200">
+            <div className="px-8 flex justify-center transition-opacity duration-200">
               <Button
-                className="w-full bg-primary hover:bg-primary/90 text-white text-lg font-semibold rounded-lg py-6"
+                className="w-full bg-yellow-500 hover:bg-yellow-600 text-foreground"
                 type="button"
               >
                 {t("actions.start")}
-              </Button>
-            </div>
-          )}
-          {order.status === "completed" && (
-            <div className="px-8 pb-8 flex justify-center transition-opacity duration-200">
-              <Button
-                className="w-full bg-muted text-muted-foreground text-lg font-semibold rounded-lg py-6 cursor-default"
-                type="button"
-                disabled
-              >
-                {t("actions.completed")}
               </Button>
             </div>
           )}
