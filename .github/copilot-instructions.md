@@ -22,11 +22,15 @@
 
 - Do not hardcode strings, use i18n for internationalization.
 - Use `next-intl` for internationalization and localization.
-- Add strings keys in the `src/i18n/locales/en.json` files for translations.
+- Add strings keys in the `src/i18n/locales/en/{namespace}.json` files for translations.
+
 
 - don't use translations for mock data, use hardcoded strings for mock data.
 
 - if image is given for reference, try to match the design as closely as possible.
+
+- use unsplash images for mock data where applicable.
+- Use `next/image` for image optimization.
 
 - Follow best practices for code quality and maintainability.
 - Ensure the code is modular and reusable.
