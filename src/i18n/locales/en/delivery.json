@@ -32,5 +32,11 @@
       "runningOrders": "Running Orders",
       "completedOrders": "Completed Orders"
     }
+  },
+  "route": {
+    "startLabel": "Start",
+    "startButton": "Click here when you start",
+    "chat": "Chat",
+    "call": "Call"
   }
 }
