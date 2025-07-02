@@ -1,5 +1,6 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { DeliveryPartnerPersonalized } from "./components/DeliveryPartnerPersonalized";
 
 export default function DeliveryPartnerLayout({
   children,
@@ -10,6 +11,7 @@ export default function DeliveryPartnerLayout({
     <>
       <Header />
       <main>{children}</main>
+      <DeliveryPartnerPersonalized />
       <Footer />
     </>
   );
