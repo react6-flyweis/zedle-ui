@@ -5,7 +5,7 @@ import ordersHeroPoster from "../assets/bookings-hero.jpg";
 const HeroSection = () => {
   const t = useTranslations("orders");
   return (
-    <section className="relative w-full h-[340px] md:h-[420px] flex items-center justify-center overflow-hidden rounded-xl">
+    <section className="relative w-full h-[340px] md:h-[420px] flex items-start justify-center p-8 pt-12">
       <Image
         src={ordersHeroPoster}
         alt={t("heroImageAlt")}
