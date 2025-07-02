@@ -2,5 +2,20 @@
   "status": {
     "online": "Online",
     "offline": "Offline"
+  },
+  "section": {
+    "newOrdersTitle": "New Orders",
+    "newOrdersSubtitle": "Orders after 4 PM, will be delivered next day.",
+    "refresh": "Refresh"
+  },
+  "card": {
+    "orderImageAlt": "Order image",
+    "bookingId": "Booking ID",
+    "items": "ITEMS",
+    "paymentMethod": "PAYMENT METHOD",
+    "actions": {
+      "reject": "Reject",
+      "accept": "Accept"
+    }
   }
 }
