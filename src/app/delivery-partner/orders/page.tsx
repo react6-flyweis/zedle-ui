@@ -1,5 +1,13 @@
 import HeroSection from "../components/HeroSection";
+import OrdersTabs from "../components/OrdersTabs";
 
 export default function OrdersPage() {
-  return <HeroSection />;
+  return (
+    <div className="">
+      <HeroSection />
+      <div className="-mt-48 relative">
+        <OrdersTabs />
+      </div>
+    </div>
+  );
 }
