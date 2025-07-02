@@ -20,16 +20,19 @@ const userTypes = [
   {
     iconSrc: userIcon,
     title: "User",
+    key: "user",
     description: "Order and enjoy our services",
   },
   {
     iconSrc: vendorIcon,
     title: "Vendor",
+    key: "vendor",
     description: "Sell your products and services",
   },
   {
     iconSrc: partnerIcon,
     title: "Delivery Partner",
+    key: "delivery",
     description: "Deliver orders and earn money",
   },
 ];
@@ -70,7 +73,7 @@ const UserTypeButtons = ({
         <Button
           variant="ghost"
           className="w-full h-auto p-6 justify-start text-left hover:bg-pink-50 rounded-none"
-          onClick={() => setSelectedUserType(userType.title)}
+          onClick={() => setSelectedUserType(userType.key)}
         >
           <div className="flex items-center space-x-4">
             <div className="relative">
@@ -95,8 +98,19 @@ const UserTypeButtons = ({
   </div>
 );
 
-const ServiceButtons = ({ activeTab }: { activeTab: string }) => {
+const ServiceButtons = () => {
+  const searchParams = useSearchParams();
   const router = useRouter();
+
+  const serviceButtonClickHandler = (serviceTitle: string) => {
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.set("category", serviceTitle);
+    const targetPath = searchParams.get("signup")
+      ? `/signup?${newSearchParams.toString()}`
+      : `/login?${newSearchParams.toString()}`;
+    router.push(targetPath);
+  };
+
   return (
     <div className="w-full space-y-2">
       {serviceOptions.map((service) => (
@@ -107,13 +121,7 @@ const ServiceButtons = ({ activeTab }: { activeTab: string }) => {
           <Button
             variant="ghost"
             className="w-full h-auto p-4 justify-start text-left hover:bg-pink-50 rounded-none"
-            onClick={() => {
-              const targetPath =
-                activeTab === "signup"
-                  ? `/signup?category=${encodeURIComponent(service.title)}`
-                  : `/login?category=${encodeURIComponent(service.title)}`;
-              router.push(targetPath);
-            }}
+            onClick={() => serviceButtonClickHandler(service.title)}
           >
             <div className="relative mr-3">
               <Image
@@ -134,10 +142,20 @@ const ServiceButtons = ({ activeTab }: { activeTab: string }) => {
 
 // Component that uses useSearchParams
 function ChoosePageContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const defaultTab = searchParams.get("signup") ? "signup" : "login";
-  const [selectedUserType, setSelectedUserType] = useState<string | null>(null);
+  const selectedType = searchParams.get("type");
+  const [selectedUserType, setSelectedUserType] = useState(selectedType || "");
   const [activeTab, setActiveTab] = useState(defaultTab);
+
+  const selectUserTypeHandler = (type: string) => {
+    setSelectedUserType(type);
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.set("type", type.toLowerCase());
+    if (type === "delivery") return router.push(`/login?${newSearchParams}`);
+    router.push(`?${newSearchParams}`);
+  };
 
   return (
     <div className=" flex items-center justify-center">
@@ -159,17 +177,17 @@ function ChoosePageContent() {
 
         <TabsContent value="login" className="flex justify-center">
           {!selectedUserType ? (
-            <UserTypeButtons setSelectedUserType={setSelectedUserType} />
+            <UserTypeButtons setSelectedUserType={selectUserTypeHandler} />
           ) : (
-            <ServiceButtons activeTab={activeTab} />
+            <ServiceButtons />
           )}
         </TabsContent>
 
         <TabsContent value="signup" className="flex justify-center">
           {!selectedUserType ? (
-            <UserTypeButtons setSelectedUserType={setSelectedUserType} />
+            <UserTypeButtons setSelectedUserType={selectUserTypeHandler} />
           ) : (
-            <ServiceButtons activeTab={activeTab} />
+            <ServiceButtons />
           )}
         </TabsContent>
       </Tabs>
