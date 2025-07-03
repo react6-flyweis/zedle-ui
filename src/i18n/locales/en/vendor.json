@@ -1,0 +1,7 @@
+{
+  "order": {
+    "quantity": "Quantity",
+    "reject": "Reject",
+    "accept": "Accept"
+  }
+}
