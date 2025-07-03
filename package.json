@@ -27,6 +27,7 @@
     "next-intl": "^4.3.1",
     "radix-ui": "latest",
     "react": "^19.0.0",
+    "react-day-picker": "^9.7.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.58.1",
     "react-map-gl": "^8.0.4",
