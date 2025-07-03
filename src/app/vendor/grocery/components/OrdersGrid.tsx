@@ -37,6 +37,42 @@ const mockOrders: IGroceryOrder[] = [
     unit: "1 Kg",
     quantity: 1,
   },
+  {
+    id: "5",
+    imageUrl:
+      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
+    name: "Organic Broccoli",
+    price: 60,
+    unit: "500 g",
+    quantity: 3,
+  },
+  {
+    id: "6",
+    imageUrl:
+      "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?auto=format&fit=crop&w=400&q=80",
+    name: "Red Apple",
+    price: 50,
+    unit: "1 Kg",
+    quantity: 2,
+  },
+  {
+    id: "7",
+    imageUrl:
+      "https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80",
+    name: "Banana",
+    price: 25,
+    unit: "1 Dozen",
+    quantity: 1,
+  },
+  {
+    id: "8",
+    imageUrl:
+      "https://images.unsplash.com/photo-1506089676908-3592f7389d4d?auto=format&fit=crop&w=400&q=80",
+    name: "Brown Eggs",
+    price: 70,
+    unit: "12 pcs",
+    quantity: 1,
+  },
 ];
 
 export function OrdersGrid() {
