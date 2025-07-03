@@ -1,6 +1,8 @@
 {
   "order": {
     "quantity": "Quantity",
+    "removeFromList": "Remove From List",
+    "edit": "Edit",
     "reject": "Reject",
     "accept": "Accept",
     "rejectConfirmTitle": "Are You Sure Want\nTo Reject This Order?"
