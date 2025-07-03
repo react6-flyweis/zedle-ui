@@ -38,5 +38,16 @@
     "ifsc": "IFSC code",
     "add": "Add",
     "close": "Close"
+  },
+  "actions": {
+    "add": "Add",
+    "edit": "Edit",
+    "continue": "Continue",
+    "next": "Next",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close"
   }
 }
