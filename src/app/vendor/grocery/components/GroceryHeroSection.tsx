@@ -12,13 +12,23 @@ interface HeroSectionProps {
 export function GroceryHeroSection({ onSearch }: HeroSectionProps) {
   const t = useTranslations("groceryHero");
 
+  // Define sort options as translation keys
+  const sortOptions = [
+    "vegetablesFruits",
+    "dairyProducts",
+    "homeCare",
+    "chipsBeverages",
+    "otherCategory",
+  ];
+
   return (
     <VendorHeroSection
       title={t("ongoingOrdersTitle")}
       subtitle={t("ongoingOrdersSubtitle")}
       poster={groceryPoster}
       onSearch={(query) => onSearch?.(query)}
-      onSort={() => console.log("Sort options clicked")}
+      sortOptions={sortOptions}
+      onSort={() => {}}
     />
   );
 }
