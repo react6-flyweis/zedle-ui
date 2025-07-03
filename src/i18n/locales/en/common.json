@@ -16,10 +16,16 @@
     "unknownError": "An unknown error occurred while retrieving your location."
   },
   "withdraw": {
+    "enterAmountTitle": "Enter Your Withdraw Amount",
+    "enterAmountLabel": "Enter your amount",
+    "enterAmountPlaceholder": "Enter amount",
     "selectBankTitle": "Select Bank Account",
     "selectBankDescription": "Lorem Ipsum is simply dummy text",
     "withdraw": "Withdraw",
-    "addNewBank": "Add New Bank Account"
+    "addNewBank": "Add New Bank Account",
+    "next": "Next",
+    "successTitle": "Successfully Withdrawn",
+    "successDescription": "Amount will be Received in 24 Hours."
   },
   "bank": {
     "addBankTitle": "Add Bank Details",
