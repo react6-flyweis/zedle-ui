@@ -3,7 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { OtpVerificationDialog } from "../components/OtpVerificationDialog";
 
 // Zod schema for form validation
 const signupSchema = z
@@ -56,6 +58,10 @@ type SignupForm = z.infer<typeof signupSchema>;
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [otpDialogOpen, setOtpDialogOpen] = useState(false);
+  const [signupData, setSignupData] = useState<SignupForm | null>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const form = useForm<SignupForm>({
     resolver: zodResolver(signupSchema),
@@ -68,12 +74,25 @@ export default function SignupPage() {
   });
 
   const onSubmit = (data: SignupForm) => {
-    // Handle signup logic here
-    console.log("Signup submitted:", data);
+    setSignupData(data);
+    setOtpDialogOpen(true);
+  };
+
+  const handleOtpVerify = () => {
+    if (signupData) {
+      // Preserve all current params and add emailOrPhone if not present
+      const params = new URLSearchParams(searchParams.toString());
+      router.push(`/setup?${params.toString()}`);
+    }
   };
 
   return (
     <div className="w-full">
+      <OtpVerificationDialog
+        open={otpDialogOpen}
+        onOpenChange={setOtpDialogOpen}
+        onVerify={handleOtpVerify}
+      />
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">
           CREATE ACCOUNT
