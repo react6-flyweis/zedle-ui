@@ -6,8 +6,10 @@
   },
   "hero": {
     "calendar": "Calendar",
+    "calendarIconAlt": "Calendar icon",
     "add": "Add",
     "sortBy": "Sort by",
+    "sortIconAlt": "Sort icon",
     "searchPlaceholder": "Search here..."
   },
   "groceryHero": {
