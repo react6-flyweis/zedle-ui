@@ -1,8 +1,10 @@
 "use client";
-import { CalendarIcon, SearchIcon, SortAscIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import calendarClockIcon from "@/assets/icons/calendar-clock.png";
+import sortIcon from "@/assets/icons/sort-icon.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import groceryPoster from "../assets/vendor-grocery-poster.jpg";
@@ -31,6 +33,7 @@ export function GroceryHeroSection({ onSearch }: HeroSectionProps) {
           className="object-cover w-full h-full brightness-75"
           priority
         />
+        <div className="absolute inset-0 bg-black/30" />
       </div>
       <div className="w-full max-w-5xl mx-auto px-4 text-center">
         <div className="max-w-xl mx-auto">
@@ -51,12 +54,30 @@ export function GroceryHeroSection({ onSearch }: HeroSectionProps) {
             />
             <SearchIcon className="absolute right-5 text-white size-6" />
           </div>
-          <Button variant="secondary" className="flex gap-2 h-12">
-            <CalendarIcon className="w-5 h-5" />
+          <Button
+            variant="secondary"
+            className="flex gap-2 h-12  text-primary rounded font-bold w-32"
+          >
+            <Image
+              src={calendarClockIcon}
+              alt={t("calendarIconAlt")}
+              className="max-h-6 max-w-6"
+              width={50}
+              height={50}
+            />
             {t("calendar")}
           </Button>
-          <Button variant="secondary" className="flex gap-2 h-12">
-            <SortAscIcon className="w-5 h-5" />
+          <Button
+            variant="secondary"
+            className="flex gap-2 h-12  text-primary rounded font-bold w-32"
+          >
+            <Image
+              src={sortIcon}
+              alt={t("sortIconAlt")}
+              className="max-h-6 max-w-6"
+              width={50}
+              height={50}
+            />
             {t("sortBy")}
           </Button>
         </div>
