@@ -73,28 +73,24 @@ const defaultNavigationItems: NavigationItem[] = [
     type: "dropdown" as const,
     items: [
       {
-        title: "Restaurants",
-        href: "/vendors/restaurants",
-      },
-      {
-        title: "Grocery Stores",
-        href: "/vendors/grocery",
-      },
-      {
-        title: "Retail Stores",
-        href: "/vendors/retail",
-      },
-      {
         title: "Grocery Delivery",
-        href: "/vendors/grocery-delivery",
-      },
-      {
-        title: "Food Delivery",
-        href: "/vendors/food-delivery",
+        href: "/vendor/grocery",
       },
       {
         title: "Logistics",
-        href: "/vendors/logistics",
+        href: "/vendor/logistics",
+      },
+      {
+        title: "Food Delivery",
+        href: "/vendor/food",
+      },
+      {
+        title: "Travel & Tourism",
+        href: "/vendor/travel-tourism",
+      },
+      {
+        title: "Enterprise Hub",
+        href: "/vendor/enterprise-hub",
       },
     ],
   },
