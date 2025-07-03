@@ -1,7 +1,9 @@
+"use client";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { ConfirmDialog } from "./ConfirmDialog";
 
 export interface IGroceryOrder {
   id: string;
@@ -40,9 +42,16 @@ export function GroceryOrderCard({
         </div>
       </CardContent>
       <CardFooter className="flex gap-0 p-0 h-11">
-        <Button className="flex-1 h-full rounded-none bg-amber-600 hover:bg-destructive/90">
-          {t("reject")}
-        </Button>
+        <ConfirmDialog
+          onConfirm={() => {
+            // Handle order rejection logic here
+          }}
+          title={t("rejectConfirmTitle")}
+        >
+          <Button className="flex-1 h-full rounded-none bg-amber-600 hover:bg-destructive/90">
+            {t("reject")}
+          </Button>
+        </ConfirmDialog>
         <Button className="flex-1 h-full rounded-none bg-green-600 hover:bg-green-700">
           {t("accept")}
         </Button>

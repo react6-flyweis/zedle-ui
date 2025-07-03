@@ -2,7 +2,8 @@
   "order": {
     "quantity": "Quantity",
     "reject": "Reject",
-    "accept": "Accept"
+    "accept": "Accept",
+    "rejectConfirmTitle": "Are You Sure Want\nTo Reject This Order?"
   },
   "hero": {
     "calendar": "Calendar",
