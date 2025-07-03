@@ -13,5 +13,22 @@
   "groceryHero": {
     "ongoingOrdersTitle": "Showing Ongoing Orders on your Shop.",
     "ongoingOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+  },
+  "editor": {
+    "addProductTitle": "Add A Product",
+    "updateProductTitle": "Update Product",
+    "enterProductDescriptions": "Enter Product Descriptions",
+    "productCategory": "Product Category",
+    "selectCategory": "Select...",
+    "categoryRequired": "Product category is required.",
+    "productName": "Product Name",
+    "nameRequired": "Product name is required.",
+    "size": "Size",
+    "price": "Price",
+    "priceRequired": "Price is required.",
+    "description": "Description",
+    "productImages": "Product Images",
+    "addButton": "Add",
+    "updateButton": "Update"
   }
 }
