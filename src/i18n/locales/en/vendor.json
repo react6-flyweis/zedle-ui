@@ -12,6 +12,7 @@
     "calendarIconAlt": "Calendar icon",
     "add": "Add",
     "sortBy": "Sort by",
+    "category": "Category",
     "sortIconAlt": "Sort icon",
     "searchPlaceholder": "Search here..."
   },
@@ -35,5 +36,13 @@
     "productImages": "Product Images",
     "addButton": "Add",
     "updateButton": "Update"
+  },
+  "groceryFilters": {
+    "all": "All",
+    "vegetablesFruits": "Vegetables & Fruits",
+    "dairyProducts": "Dairy Products",
+    "homeCare": "Home Care",
+    "chipsBeverages": "Chips and Beverages",
+    "otherCategory": "Other"
   }
 }

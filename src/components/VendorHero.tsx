@@ -1,11 +1,16 @@
 "use client";
-import { Plus, SearchIcon } from "lucide-react";
+import { Filter, Plus, SearchIcon } from "lucide-react";
 import Image, { type StaticImageData } from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import calendarClockIcon from "@/assets/icons/calendar-clock.png";
-import sortIcon from "@/assets/icons/sort-icon.png";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { CalendarDialog } from "./CalendarDialog";
 
@@ -13,11 +18,13 @@ interface HeroSectionProps {
   subtitle: string;
   title: string;
   poster: string | StaticImageData;
-  onSort: () => void;
+  onSort: (filters: string[]) => void;
   onAdd?: () => void;
   addButtonText?: string;
   sortOptions?: string[];
+  filterOptions?: string[];
   onSearch?: (query: string) => void;
+  onFilterChange?: (filters: string[]) => void;
 }
 
 export function VendorHeroSection({
@@ -27,11 +34,24 @@ export function VendorHeroSection({
   onAdd,
   addButtonText,
   onSearch,
+  sortOptions = [],
+  onSort,
 }: HeroSectionProps) {
   const t = useTranslations("hero");
   const [query, setQuery] = useState("");
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+
+  // Handle filter change
+  const handleFilterToggle = (option: string) => {
+    setSelectedFilters((prev) => {
+      const updated = prev.includes(option)
+        ? prev.filter((f) => f !== option)
+        : [...prev, option];
+      if (onSort) onSort(updated);
+      return updated;
+    });
+  };
 
   useEffect(() => {
     if (onSearch) {
@@ -96,25 +116,49 @@ export function VendorHeroSection({
               {t("calendar")}
             </Button>
           )}
-          <Button
-            variant="secondary"
-            className="flex gap-2 h-12  text-primary rounded font-bold w-32"
-          >
-            <Image
-              src={sortIcon}
-              alt={t("sortIconAlt")}
-              className="max-h-6 max-w-6"
-              width={50}
-              height={50}
-            />
-            {t("sortBy")}
-          </Button>
+          {/* Sort/Filter Button wrapped in DropdownMenu */}
+          {sortOptions.length > 0 && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="secondary"
+                  className="flex h-12  rounded shadow bg-white text-primary "
+                >
+                  <Filter className="size-5 text-primary" />
+                  <span className="font-semibold">{t("sortBy")}</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-64 mt-2">
+                <div className="px-3 pt-2 pb-1 text-primary font-bold">
+                  {t("category")}
+                </div>
+                {sortOptions.map((option) => (
+                  <DropdownMenuItem
+                    key={option}
+                    onSelect={() => handleFilterToggle(option)}
+                    className="flex justify-between items-center text-primary focus:bg-primary/10 cursor-pointer"
+                  >
+                    <span>{option}</span>
+                    <span className="flex items-center justify-center">
+                      <input
+                        type="checkbox"
+                        checked={selectedFilters.includes(option)}
+                        readOnly
+                        className="accent-primary w-5 h-5 rounded border border-primary cursor-pointer"
+                        tabIndex={-1}
+                      />
+                    </span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
       </div>
       <CalendarDialog
         open={isCalendarOpen}
         onOpenChange={setIsCalendarOpen}
-        onSelectDate={setSelectedDate}
+        onSelectDate={() => {}}
       />
     </div>
   );
