@@ -15,6 +15,12 @@
     "timeout": "The request to get your location timed out.",
     "unknownError": "An unknown error occurred while retrieving your location."
   },
+  "withdraw": {
+    "selectBankTitle": "Select Bank Account",
+    "selectBankDescription": "Lorem Ipsum is simply dummy text",
+    "withdraw": "Withdraw",
+    "addNewBank": "Add New Bank Account"
+  },
   "bank": {
     "addBankTitle": "Add Bank Details",
     "addBankDescription": "Lorem Ipsum is simply dummy text",
