@@ -14,5 +14,17 @@
     "positionUnavailable": "Location information is unavailable.",
     "timeout": "The request to get your location timed out.",
     "unknownError": "An unknown error occurred while retrieving your location."
+  },
+  "bank": {
+    "addBankTitle": "Add Bank Details",
+    "addBankDescription": "Lorem Ipsum is simply dummy text",
+    "bankName": "Enter your bank name",
+    "branch": "Branch",
+    "accountHolder": "Account holder name",
+    "accountNumber": "Account number",
+    "reAccountNumber": "Re-enter account number",
+    "ifsc": "IFSC code",
+    "add": "Add",
+    "close": "Close"
   }
 }
