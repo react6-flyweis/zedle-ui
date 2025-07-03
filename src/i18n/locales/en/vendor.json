@@ -3,5 +3,13 @@
     "quantity": "Quantity",
     "reject": "Reject",
     "accept": "Accept"
+  },
+  "groceryHero": {
+    "calendar": "Calendar",
+    "sortBy": "Sort by",
+    "heroImageAlt": "Grocery store background image",
+    "ongoingOrdersTitle": "Showing Ongoing Orders on your Shop.",
+    "ongoingOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
+    "searchPlaceholder": "Search here..."
   }
 }
