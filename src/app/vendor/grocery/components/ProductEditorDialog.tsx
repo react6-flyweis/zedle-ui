@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PlusIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -27,10 +28,29 @@ const productSchema = z.object({
   category: z.string().min(1),
   name: z.string().min(1),
   size: z.string().optional(),
-  price: z.string().min(1),
+  price: z.coerce.number().min(1),
   description: z.string().optional(),
   images: z.array(z.any()).max(3).optional(),
 });
+
+export type ProductCategory =
+  | "Vegetables & Fruits"
+  | "Dairy Products"
+  | "Meat & Seafood"
+  | "Bakery"
+  | "Snacks & Beverages"
+  | "Other";
+
+export interface IGroceryProduct {
+  id: string;
+  category: ProductCategory;
+  name: string;
+  size?: string;
+  price: string;
+  quantity?: number;
+  description?: string;
+  images?: string[];
+}
 
 type ProductFormValues = z.infer<typeof productSchema>;
 
@@ -45,20 +65,33 @@ const PRODUCT_CATEGORIES = [
 interface ProductEditorDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  data?: Partial<ProductFormValues>;
+  data?: IGroceryProduct;
 }
 
 export function ProductEditorDialog({
   open,
   onOpenChange,
-  data = {},
+  data,
 }: ProductEditorDialogProps) {
   const t = useTranslations("editor");
   const mode = data && Object.keys(data).length > 0 ? "update" : "add";
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(productSchema),
-    defaultValues: data,
   });
+
+  useEffect(() => {
+    if (data) {
+      form.reset({
+        category: data.category || "",
+        name: data.name || "",
+        size: data.size || "",
+        price: data.price ? parseFloat(data.price) : 0,
+        description: data.description || "",
+        images: data.images || [],
+      });
+    }
+  }, [data, form]);
+
   const { setValue, watch } = form;
   const images = watch("images") || [];
 
