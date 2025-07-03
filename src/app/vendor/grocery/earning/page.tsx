@@ -12,6 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { WithdrawDialog } from "@/components/wallet/WithdrawDialog";
 import { cn } from "@/lib/utils";
 
 // Mock transaction data
@@ -107,9 +108,11 @@ export default function VendorEarningPage() {
             </div>
             <div className="flex gap-2">
               {/* Withdraw Dialog */}
-              <Button variant="outline" className="border-primary">
-                Withdraw
-              </Button>
+              <WithdrawDialog>
+                <Button variant="outline" className="border-primary">
+                  Withdraw
+                </Button>
+              </WithdrawDialog>
             </div>
           </div>
         </CardContent>
