@@ -18,9 +18,9 @@ export default getRequestConfig(async () => {
   const partnerMessages = (await import(`./locales/${locale}/delivery.json`))
     .default;
   const userMessages = (await import(`./locales/${locale}.json`)).default;
-
+  const vendorMessages = await import(`./locales/${locale}/vendor.json`);
   const authMessages = (await import(`./locales/${locale}/auth.json`)).default;
-  messages.push(partnerMessages, userMessages, authMessages);
+  messages.push(partnerMessages, userMessages, authMessages, vendorMessages);
 
   // if (pathname.startsWith("/user")) {
   //   // Use Next.js server context to determine which messages to load
