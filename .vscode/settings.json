@@ -3,5 +3,5 @@
   "editor.codeActionsOnSave": {
     "quickfix.biome": "explicit"
   },
-  "cSpell.words": ["dropoff", "mapbox"]
+  "cSpell.words": ["dropoff", "Geolocation", "IFSC", "mapbox"]
 }
