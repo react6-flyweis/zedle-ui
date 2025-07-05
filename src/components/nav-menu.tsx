@@ -82,7 +82,7 @@ const defaultNavigationItems: NavigationItem[] = [
       },
       {
         title: "Food Delivery",
-        href: "/vendor/food",
+        href: "/vendor/food-delivery",
       },
       {
         title: "Travel & Tourism",
