@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
@@ -15,6 +16,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { ImageInput } from "@/components/ui/image-input";
 import { Input } from "@/components/ui/input";
 import {
   Stepper,
@@ -23,6 +25,7 @@ import {
   StepperNext,
   StepperStep,
 } from "@/components/ui/stepper";
+import { cn } from "@/lib/utils";
 
 const vendorGrocerySignupSchema = z.object({
   businessName: z.string().min(1, "required"),
@@ -32,6 +35,9 @@ const vendorGrocerySignupSchema = z.object({
   zipCode: z.string().min(1, "required"),
   yearBuild: z.string().optional(),
   description: z.string().min(1, "required"),
+  videoTour: z.string().url("invalidUrl").optional(),
+  storeShopPhotos: z.any().optional(),
+  additionalPhotos: z.any().optional(),
   agree: z.literal(true, {
     errorMap: () => ({ message: "mustAgree" }),
   }),
@@ -51,6 +57,8 @@ export default function VendorGrocerySignup() {
       zipCode: "",
       yearBuild: "",
       description: "",
+      videoTour: "",
+      storeShopPhotos: undefined,
     },
   });
 
@@ -88,7 +96,7 @@ export default function VendorGrocerySignup() {
   };
 
   return (
-    <div className="max-w-xl mx-auto bg-muted rounded-xl p-8">
+    <div className="">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Stepper indicatorStyle="line">
@@ -277,16 +285,92 @@ export default function VendorGrocerySignup() {
               label={steps[2].label}
               onValidate={steps[2].onValidate}
             >
-              <div className="space-y-6">
-                {/* Photos and Videos Upload Fields */}
+              <div className="space-y-4">
+                {/* Video Tour Field */}
+                <FormField
+                  control={form.control}
+                  name="videoTour"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t("videoTour")}</FormLabel>
+                      <span className="block text-xs text-muted-foreground mb-2">
+                        {t("videoTourHint")}
+                      </span>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="url"
+                          placeholder={t("videoTourPlaceholder")}
+                          className="bg-background border border-input rounded-md px-3 py-2 w-full"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                {/* Store/Shop Photos Upload */}
+                <FormField
+                  control={form.control}
+                  name="storeShopPhotos"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t("storeShopPhotos")}</FormLabel>
+                      <FormControl>
+                        <ImageInput {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
             </StepperStep>
             <StepperStep
               label={steps[3].label}
               onValidate={steps[3].onValidate}
             >
-              <div className="space-y-6">
-                {/* Store/Shop Image Upload Field */}
+              <div className="space-y-4">
+                {/* Additional Photos Grid */}
+                <FormField
+                  control={form.control}
+                  name="additionalPhotos"
+                  render={({ field: { onChange, value, ...rest } }) => (
+                    <FormItem>
+                      <FormLabel>{t("addAdditionalPhotos")}</FormLabel>
+                      <FormControl>
+                        <div className="grid grid-cols-5 gap-2 gap-x-4">
+                          {/* Generate 8 upload slots */}
+                          {Array.from({ length: 8 }).map((_, index) => {
+                            // Use a unique key based on a stable prefix and slot position
+                            const slotKey = `photo-upload-slot-${index}-additional`;
+                            return (
+                              <label
+                                key={slotKey}
+                                className={cn(
+                                  "min-h-32 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer hover:border-primary/60 transition-colors bg-gray-50",
+                                  { "col-span-4 row-span-2": index === 1 },
+                                )}
+                              >
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={(e) => {
+                                    onChange(e.target.files);
+                                  }}
+                                  {...rest}
+                                />
+                                <div className="w-10 h-10 rounded-full bg-gray-400 flex items-center justify-center">
+                                  <PlusIcon className="w-6 h-6 text-white" />
+                                </div>
+                              </label>
+                            );
+                          })}
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
             </StepperStep>
             {/* Stepper navigation buttons */}
