@@ -342,58 +342,49 @@ function StepperIndicator({
           const isActive = stepIndex === currentStep;
 
           return (
-            <div
-              className="flex flex-col justify-center text-center flex-1 px-2"
-              key={`step-${stepIndex}`}
-            >
-              <div className="w-full flex-1 flex items-center relative min-h-8">
-                {index > 0 && (
+            <div className="flex items-center">
+              <div
+                className="flex flex-col justify-center text-center flex-1 px-2"
+                key={`step-${stepIndex}`}
+              >
+                <div className="w-full  flex items-center relative min-h-8 justify-center">
                   <div
                     className={cn(
-                      "h-0.5 flex-1",
-                      stepIndex <= currentStep ? "bg-primary" : "bg-muted",
-                      "z-0",
-                    )}
-                  />
-                )}
-                <div
-                  className={cn(
-                    "rounded-full size-8 flex items-center justify-center text-xs font-medium border-2 border-white shadow-md bg-white z-10 transition-colors duration-200",
-                    isCompleted
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : isActive
+                      "rounded-full size-8 flex items-center justify-center text-xs font-medium border-2 border-white shadow-md bg-white z-10 transition-colors duration-200",
+                      isCompleted
                         ? "bg-primary text-primary-foreground border-primary"
-                        : "bg-muted text-muted-foreground border-muted",
-                  )}
-                  style={{ position: "relative" }}
-                >
-                  {isLoading && isActive ? (
-                    <LoaderCircle className="animate-spin size-4" />
-                  ) : isCompleted ? (
-                    <Check className="size-4" />
-                  ) : (
-                    stepIndex
-                  )}
-                </div>
-                {index < steps.length - 1 && (
-                  <div
-                    className={cn(
-                      "h-0.5 flex-1",
-                      stepIndex < currentStep ? "bg-primary" : "bg-muted",
-                      "z-0",
+                        : isActive
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "bg-muted text-muted-foreground border-muted",
                     )}
-                  />
+                  >
+                    {isLoading && isActive ? (
+                      <LoaderCircle className="animate-spin size-4" />
+                    ) : isCompleted ? (
+                      <Check className="size-4" />
+                    ) : (
+                      stepIndex
+                    )}
+                  </div>
+                </div>
+                {step.label && (
+                  <div className="mt-2">
+                    <div className="text-sm font-medium">{step.label}</div>
+                    {step.description && (
+                      <div className="text-sm text-muted-foreground">
+                        {step.description}
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
-              {step.label && (
-                <div className="mt-2">
-                  <div className="text-sm font-medium">{step.label}</div>
-                  {step.description && (
-                    <div className="text-sm text-muted-foreground">
-                      {step.description}
-                    </div>
+              {index < steps.length - 1 && (
+                <div
+                  className={cn(
+                    "flex-1 h-1",
+                    isCompleted ? "bg-primary" : "bg-border",
                   )}
-                </div>
+                />
               )}
             </div>
           );
