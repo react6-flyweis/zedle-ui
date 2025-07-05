@@ -23,6 +23,11 @@
 - Do not hardcode strings, use i18n for internationalization.
 - Use `next-intl` for internationalization and localization.
 - Add strings keys in the `src/i18n/locales/en/{namespace}.json` files for translations.
+    - auth.json for all authentication related strings.
+    - common.json for common strings.
+    - vendor.json for vendor related strings.
+    - delivery.json for delivery partner related strings.
+    - locales/en.json for user related strings.
 
 
 - don't use translations for mock data, use hardcoded strings for mock data.
