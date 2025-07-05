@@ -44,5 +44,9 @@
     "homeCare": "Home Care",
     "chipsBeverages": "Chips and Beverages",
     "otherCategory": "Other"
+  },
+  "foodHero": {
+    "ongoingOrdersTitle": "Showing Ongoing Orders on your Shop.",
+    "ongoingOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
   }
 }
