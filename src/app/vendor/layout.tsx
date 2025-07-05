@@ -43,43 +43,23 @@ const groceryNavigation: NavigationItem[] = [
 //   },
 // ];
 
-// const foodNavigation: NavigationItem[] = [
-//   {
-//     title: "Home",
-//     href: "/vendor/food",
-//     type: "link",
-//   },
-//   {
-//     title: "Search",
-//     href: "/vendor/food/search",
-//     type: "link",
-//     icon: <SearchIcon />,
-//   },
-//   {
-//     title: "Restaurants",
-//     href: "/vendor/food/restaurants",
-//     type: "link",
-//   },
-//   {
-//     title: "Cart",
-//     href: "/vendor/food/cart",
-//     type: "link",
-//     icon: (
-//       <Image
-//         src={cartIcon}
-//         alt="Cart Icon"
-//         width={24}
-//         height={24}
-//         className="size-4"
-//       />
-//     ),
-//   },
-//   {
-//     title: "Orders",
-//     href: "/vendor/food/orders",
-//     type: "link",
-//   },
-// ];
+const foodNavigation: NavigationItem[] = [
+  {
+    title: "Home",
+    href: "/vendor/food-delivery",
+    type: "link",
+  },
+  {
+    title: "Food menu",
+    href: "/vendor/food-delivery/menu",
+    type: "link",
+  },
+  {
+    title: "Earning",
+    href: "/vendor/food-delivery/earning",
+    type: "link",
+  },
+];
 
 // const travelNavigation: NavigationItem[] = [
 //   {
@@ -136,9 +116,9 @@ function getNavigationForPath(pathname: string): NavigationItem[] {
   //   if (pathname.startsWith("/vendor/logistics")) {
   //     return [...logisticsNavigation];
   //   }
-  //   if (pathname.startsWith("/vendor/food")) {
-  //     return [...foodNavigation];
-  //   }
+  if (pathname.startsWith("/vendor/food")) {
+    return foodNavigation;
+  }
   //   if (pathname.startsWith("/vendor/travel-tourism")) {
   //     return [...travelNavigation];
   //   }
