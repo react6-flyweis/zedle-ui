@@ -50,8 +50,8 @@
     "ongoingOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
   },
   "menuEditor": {
-    "addProductTitle": "Add Product",
-    "updateProductTitle": "Update Product",
+    "addProductTitle": "Add a Food",
+    "updateProductTitle": "Edit this Food",
     "foodCategory": "Food Category",
     "selectCategory": "Select Category",
     "foodName": "Food Name",
