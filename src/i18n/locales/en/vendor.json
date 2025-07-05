@@ -48,5 +48,30 @@
   "foodHero": {
     "ongoingOrdersTitle": "Showing Ongoing Orders on your Shop.",
     "ongoingOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+  },
+  "menuEditor": {
+    "addProductTitle": "Add Product",
+    "updateProductTitle": "Update Product",
+    "foodCategory": "Food Category",
+    "selectCategory": "Select Category",
+    "foodName": "Food Name",
+    "size": "Size",
+    "price": "Price",
+    "description": "Description",
+    "ingredients": "Ingredients",
+    "foodImages": "Food Images",
+    "addButton": "Add Product",
+    "updateButton": "Update Product",
+    "salt": "Salt",
+    "chicken": "Chicken",
+    "onion": "Onion",
+    "garlic": "Garlic",
+    "peppers": "Peppers",
+    "ginger": "Ginger",
+    "broccoli": "Broccoli",
+    "olive": "Olive",
+    "cheese": "Cheese",
+    "mushroom": "Mushroom",
+    "sweetcorn": "Sweet Corn"
   }
 }
