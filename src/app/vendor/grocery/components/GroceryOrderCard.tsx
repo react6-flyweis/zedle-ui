@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { ConfirmDialog } from "./ConfirmDialog";
 
 export interface IGroceryOrder {
   id: string;
