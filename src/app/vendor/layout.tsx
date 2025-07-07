@@ -25,23 +25,23 @@ const groceryNavigation: NavigationItem[] = [
   },
 ];
 
-// const logisticsNavigation: NavigationItem[] = [
-//   {
-//     title: "Home",
-//     href: "/vendor/logistics",
-//     type: "link",
-//   },
-//   {
-//     title: "Bookings",
-//     href: "/vendor/logistics/bookings",
-//     type: "link",
-//   },
-//   {
-//     title: "Wallet",
-//     href: "/vendor/logistics/wallet",
-//     type: "link",
-//   },
-// ];
+const logisticsNavigation: NavigationItem[] = [
+  {
+    title: "Home",
+    href: "/vendor/logistics",
+    type: "link",
+  },
+  {
+    title: "Orders",
+    href: "/vendor/logistics/Orders",
+    type: "link",
+  },
+  {
+    title: "Wallet",
+    href: "/vendor/logistics/wallet",
+    type: "link",
+  },
+];
 
 const foodNavigation: NavigationItem[] = [
   {
@@ -113,9 +113,9 @@ function getNavigationForPath(pathname: string): NavigationItem[] {
   if (pathname.startsWith("/vendor/grocery")) {
     return groceryNavigation;
   }
-  //   if (pathname.startsWith("/vendor/logistics")) {
-  //     return [...logisticsNavigation];
-  //   }
+  if (pathname.startsWith("/vendor/logistics")) {
+    return logisticsNavigation;
+  }
   if (pathname.startsWith("/vendor/food")) {
     return foodNavigation;
   }
