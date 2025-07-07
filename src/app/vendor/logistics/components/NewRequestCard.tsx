@@ -2,6 +2,7 @@
 
 import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -88,12 +89,14 @@ export function NewRequestCard({ request }: { request: INewRequest }) {
                 ))}
               </div>
             </div>
-            <Button
-              className="w-full bg-yellow-500 hover:bg-yellow-600"
-              type="button"
-            >
-              {t("viewFullRequest")}
-            </Button>
+            <Link href={`/vendor/logistics/package/${request.id}`}>
+              <Button
+                className="w-full bg-yellow-500 hover:bg-yellow-600"
+                type="button"
+              >
+                {t("viewFullRequest")}
+              </Button>
+            </Link>
           </div>
         </div>
       </CardContent>
