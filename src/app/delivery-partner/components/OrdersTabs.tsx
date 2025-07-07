@@ -3,10 +3,10 @@ import type { StaticImageData } from "next/image";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import orderCompletedIcon from "@/assets/icons/order-completed.png";
+import orderPendingIcon from "@/assets/icons/order-pending.png";
+import orderRunningIcon from "@/assets/icons/order-running.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import orderCompletedIcon from "../assets/order-completed.png";
-import orderPendingIcon from "../assets/order-pending.png";
-import orderRunningIcon from "../assets/order-running.png";
 import { type IOrder, OrderCard, type OrderStatus } from "./OrderCard";
 
 const mockOrders: IOrder[] = [
