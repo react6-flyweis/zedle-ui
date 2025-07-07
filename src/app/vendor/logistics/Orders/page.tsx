@@ -1,13 +1,14 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import vendorLogisticsHeroPoster from "../assets/vendor-logistics-hero-poster.jpg";
+import { LogisticOrdersTabs } from "../components/LogisticOrdersTabs";
 
 export default function OrdersPage() {
   const t = useTranslations("logisticsHero");
 
   return (
     <div className="">
-      <div className="relative py-10 flex flex-col w-full">
+      <div className="relative py-20 flex flex-col w-full">
         <div className="absolute inset-0 -z-10">
           <Image
             src={vendorLogisticsHeroPoster}
@@ -26,6 +27,9 @@ export default function OrdersPage() {
             {t("ongoingOrdersSubtitle")}
           </p>
         </div>
+      </div>
+      <div className="-mt-28 mb-16 relative">
+        <LogisticOrdersTabs />
       </div>
     </div>
   );
