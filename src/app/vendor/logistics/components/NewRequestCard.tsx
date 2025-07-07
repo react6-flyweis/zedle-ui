@@ -40,7 +40,7 @@ export function NewRequestCard({ request }: { request: INewRequest }) {
       <CardContent className="w-full flex flex-col items-center justify-center">
         <Image
           src={requestCardBg}
-          alt={t("ongoingOrdersTitle")}
+          alt={t("bgImageAlt")}
           className="absolute object-cover w-full  h-full rounded-t z-0"
           width={600}
           height={320}

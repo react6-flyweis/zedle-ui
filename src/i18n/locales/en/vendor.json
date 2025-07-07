@@ -69,7 +69,8 @@
       "withdraw": "Withdraw",
       "start": "Start"
     },
-    "dateFormat": "MMM dd, yyyy, hh:mm a"
+    "dateFormat": "MMM dd, yyyy, hh:mm a",
+    "bgImageAlt": "Card background image"
   },
   "menuEditor": {
     "addProductTitle": "Add a Food",
