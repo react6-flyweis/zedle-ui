@@ -56,7 +56,20 @@
   "requestCard": {
     "pickupPoint": "Pickup Point",
     "dropPoint": "Drop Point",
-    "viewFullRequest": "View Full Request"
+    "viewFullRequest": "View Full Request",
+    "orderImageAlt": "Order background image",
+    "orderNo": "Order No",
+    "bookingId": "Booking ID",
+    "itemsDimensions": "Items Dimensions",
+    "paymentMethod": "Payment Method",
+    "customerName": "Customer Name",
+    "shipmentStatus": "Shipment Status",
+    "rating": "Rating",
+    "actions": {
+      "withdraw": "Withdraw",
+      "start": "Start"
+    },
+    "dateFormat": "MMM dd, yyyy, hh:mm a"
   },
   "menuEditor": {
     "addProductTitle": "Add a Food",
