@@ -49,6 +49,10 @@
     "ongoingOrdersTitle": "Showing Ongoing Orders on your Shop.",
     "ongoingOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
   },
+  "logisticsHero": {
+    "ongoingOrdersTitle": "Showing Ongoing Requests for you.",
+    "ongoingOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+  },
   "menuEditor": {
     "addProductTitle": "Add a Food",
     "updateProductTitle": "Edit this Food",
