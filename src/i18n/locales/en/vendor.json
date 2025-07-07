@@ -53,6 +53,11 @@
     "ongoingOrdersTitle": "Showing Ongoing Requests for you.",
     "ongoingOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
   },
+  "requestCard": {
+    "pickupPoint": "Pickup Point",
+    "dropPoint": "Drop Point",
+    "viewFullRequest": "View Full Request"
+  },
   "menuEditor": {
     "addProductTitle": "Add a Food",
     "updateProductTitle": "Edit this Food",
