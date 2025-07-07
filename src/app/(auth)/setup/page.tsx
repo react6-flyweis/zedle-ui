@@ -1,5 +1,6 @@
 import { VendorFoodSignup } from "../components/VendorFoodSignup";
 import VendorGrocerySignup from "../components/VendorGrocerySignup";
+import { VendorLogisticsSignup } from "../components/VendorLogisticsSignup";
 
 export default async function page({
   searchParams,
@@ -23,6 +24,8 @@ export default async function page({
         return <VendorGrocerySignup />;
       case "Food Delivery":
         return <VendorFoodSignup />;
+      case "Logistics":
+        return <VendorLogisticsSignup />;
       // Add more categories as needed
       default:
         return <div>Unsupported vendor category: {category}</div>;
