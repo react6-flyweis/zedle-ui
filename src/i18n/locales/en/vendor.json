@@ -123,5 +123,16 @@
     "cheese": "Cheese",
     "mushroom": "Mushroom",
     "sweetcorn": "Sweet Corn"
+  },
+  "packageForm": {
+    "pickupPoint": "Pickup Point",
+    "dropPoint": "Drop Point",
+    "description": "Description",
+    "photosVideos": "Photos / videos",
+    "dimensionsOfGoods": "Dimensions of goods",
+    "weight": "Weight (kg)",
+    "pickupDate": "Pick Up date",
+    "pickupTime": "Pick Up time",
+    "makeAQuote": "Make A Quote"
   }
 }
