@@ -161,13 +161,13 @@ export const ImageInput = ({
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 w-full">
       {!shouldHideUploader && (
         <button
           type="button"
-          className={`relative ${className} ${
-            isMaxFilesReached ? "pointer-events-none opacity-50" : ""
-          }`}
+          className={cn("relative  w-full", className, {
+            "pointer-events-none opacity-50": isMaxFilesReached,
+          })}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
