@@ -33,7 +33,7 @@ const logisticsNavigation: NavigationItem[] = [
   },
   {
     title: "Orders",
-    href: "/vendor/logistics/Orders",
+    href: "/vendor/logistics/orders",
     type: "link",
   },
   {
