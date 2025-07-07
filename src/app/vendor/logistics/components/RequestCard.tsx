@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import requestCardBg from "../assets/request-card-bg.jpg";
+import { AvailableDriversDialog } from "./AvailableDrivers";
 
 export type OrderBase = {
   id: string;
@@ -218,12 +219,14 @@ export function RequestCard({ order }: { order: IOrder }) {
           )}
           {order.status === "running" && (
             <div className="px-8 flex justify-center transition-opacity duration-200">
-              <Button
-                className="w-full bg-yellow-500 hover:bg-yellow-600 text-foreground"
-                type="button"
-              >
-                {t("actions.start")}
-              </Button>
+              <AvailableDriversDialog>
+                <Button
+                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-foreground"
+                  type="button"
+                >
+                  {t("actions.start")}
+                </Button>
+              </AvailableDriversDialog>
             </div>
           )}
         </div>
