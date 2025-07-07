@@ -47,7 +47,7 @@ export function NewRequestCard({ request }: { request: INewRequest }) {
           priority
         />
         <div className="absolute h-full w-full inset-0 bg-black/40"></div>
-        <div className="relative w-full flex flex-col items-center justify-center ">
+        <div className="relative w-full flex flex-col items-center justify-center gap-2">
           {/* Rider Avatar */}
           <div className="flex flex-col items-center">
             <div className="rounded-full border-4 border-white shadow-lg overflow-hidden size-20  bg-white">
@@ -75,19 +75,17 @@ export function NewRequestCard({ request }: { request: INewRequest }) {
             </div>
           </div>
           {/* Hidden on initial, show on hover: addresses and button */}
-          <div className="flex md:hidden md:group-hover:flex flex-col">
-            <div className="w-full flex flex-col items-start gap-2 my-3">
-              <div className="flex items-center text-white/90 text-base">
-                <MapPin className="w-5 h-5 mr-2 text-green-400" />
-                <span>
-                  {t("pickupPoint")}: {request.pickupPoint}
-                </span>
-              </div>
-              <div className="flex items-center text-white/90 text-base">
-                <MapPin className="w-5 h-5 mr-2 text-blue-400" />
-                <span>
-                  {t("dropPoint")}: {request.dropPoint}
-                </span>
+          <div className="flex md:hidden md:group-hover:flex flex-col gap-2">
+            {/* Address */}
+            <div className="flex justify-center">
+              <div className="relative flex flex-col">
+                <div className="absolute left-0 top-1.5 h-[70%] w-1.5 border-r border-dashed border-white/70"></div>
+                {[request.pickupPoint, request.dropPoint].map((address) => (
+                  <div key={address} className="flex items-center mb-1">
+                    <div className="bg-green-400 mr-2 size-3 rounded-full z-10"></div>
+                    <p className="text-sm text-white/80 flex">{address}</p>
+                  </div>
+                ))}
               </div>
             </div>
             <Button
