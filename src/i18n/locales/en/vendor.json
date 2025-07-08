@@ -202,6 +202,7 @@
     "or": "or",
     "call": "Call",
     "close": "Close",
-    "messageRequired": "Message is required."
+    "messageRequired": "Message is required.",
+    "successfullySent": "Your Message Has Been Sent Successfully."
   }
 }

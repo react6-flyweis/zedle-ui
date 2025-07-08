@@ -13,6 +13,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/store/toastStore";
 
 interface SendMessageDialogProps {
   open: boolean;
@@ -34,6 +35,7 @@ export function SendMessageDialog({
 
   const onSubmit = () => {
     // handle send message (mock)
+    toast(t("successfullySent"));
     onOpenChange(false);
     form.reset();
   };
