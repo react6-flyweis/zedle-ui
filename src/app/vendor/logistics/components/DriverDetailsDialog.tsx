@@ -31,12 +31,15 @@ export interface DriverDetailsDialogProps {
   onAssign?: () => void;
 }
 
+import { useState } from "react";
+
 export function DriverDetailsDialog({
   driver,
   onAssign,
   children,
 }: PropsWithChildren<DriverDetailsDialogProps>) {
   const t = useTranslations("availableDrivers");
+  const [open, setOpen] = useState(false);
 
   // Zod schema for form (all fields readonly for now)
   const schema = z.object({
@@ -72,8 +75,15 @@ export function DriverDetailsDialog({
     },
   });
 
+  const onSubmit = (_data: z.infer<typeof schema>) => {
+    setOpen(false);
+    if (onAssign) {
+      onAssign();
+    }
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         className="sm:max-w-5xl max-h-[90vh] w-full rounded-2xl p-0"
@@ -93,7 +103,7 @@ export function DriverDetailsDialog({
         </DialogHeader>
         <div className="overflow-y-auto max-h-[70vh] p-5">
           <Form {...form}>
-            <form className="space-y-3">
+            <form className="space-y-3" onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 control={form.control}
                 name="name"
@@ -230,13 +240,13 @@ export function DriverDetailsDialog({
                 )}
               />
               {driver.vehiclePhotos && driver.vehiclePhotos.length > 0 && (
-                <FormItem>
+                <FormItem className="">
                   <FormLabel>{t("vehiclePhotos")}</FormLabel>
-                  <div className="flex gap-3">
+                  <div className="gap-3 grid grid-cols-2">
                     {driver.vehiclePhotos.map((photo) => (
                       <div
                         key={photo}
-                        className="relative w-32 h-20 rounded overflow-hidden border"
+                        className="relative h-40 rounded-md border border-dashed overflow-hidden"
                       >
                         <Image
                           src={photo}
@@ -249,11 +259,7 @@ export function DriverDetailsDialog({
                   </div>
                 </FormItem>
               )}
-              <Button
-                className="w-full mt-6 bg-black text-white hover:bg-gray-900"
-                onClick={onAssign}
-                type="button"
-              >
+              <Button className="w-full mt-6 bg-black text-white hover:bg-gray-900">
                 {t("assignDriver")}
               </Button>
             </form>
