@@ -90,7 +90,7 @@ const defaultNavigationItems: NavigationItem[] = [
       },
       {
         title: "Enterprise Hub",
-        href: "/vendor/enterprise-hub",
+        href: "/vendor/enterprise",
       },
     ],
   },
