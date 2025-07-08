@@ -153,5 +153,11 @@
   "packageDetails": {
     "title": "Package Details",
     "description": "View and manage the details of your package order."
+  },
+  "enterpriseHero": {
+    "ongoingRequestsTitle": "Showing Ongoing Requests on your Shop.",
+    "ongoingRequestsSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed.",
+    "dateWise": "Date Wise",
+    "moneyWise": "Money Wise"
   }
 }
