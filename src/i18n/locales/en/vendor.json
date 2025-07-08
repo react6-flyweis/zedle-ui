@@ -1,6 +1,7 @@
 {
   "requestDialog": {
     "serviceRequest": "Service Request.",
+    "serviceRequestTitle": "Service Request",
     "customerDetails": "Customer Details",
     "name": "Name",
     "email": "Email",
