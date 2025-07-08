@@ -1,7 +1,10 @@
 "use client";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { VendorHeroSection } from "@/components/VendorHero";
 
 import vendorEnterprisePoster from "../assets/vendor-enterprise-poster.jpg";
+import { AddClientDialog } from "../components/AddClientDialog";
 import { ClientCard } from "../components/ClientCard";
 
 type ClientType = "recurring" | "new";
@@ -97,20 +100,20 @@ const mockClients: Client[] = [
   },
 ];
 
-export default function page() {
-  // const t = useTranslations("enterpriseHero");
+export default function Page() {
+  const t = useTranslations("clients");
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <div className="space-y-8">
       <VendorHeroSection
-        title={"Display all the clients who have visited your shop."}
-        subtitle={
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed"
-        }
+        title={t("heroTitle")}
+        subtitle={t("heroSubtitle")}
         poster={vendorEnterprisePoster}
-        onAdd={() => {}}
-        addButtonText="Add Client"
+        onAdd={() => setDialogOpen(true)}
+        addButtonText={t("addClientButton")}
       />
+      <AddClientDialog open={dialogOpen} onOpenChange={setDialogOpen} />
       <div className="grid grid-cols-1 sm:grid-cols-2 mx-auto p-8 pt-0 max-w-5xl gap-6">
         {mockClients.map((client) => (
           <ClientCard key={client.name} {...client} />

@@ -217,5 +217,10 @@
     "phone": "Phone Number",
     "phonePlaceholder": "+1",
     "addButton": "Add"
+  },
+  "clients": {
+    "heroTitle": "Display all the clients who have visited your shop.",
+    "heroSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed",
+    "addClientButton": "Add Client"
   }
 }
