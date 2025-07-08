@@ -1,6 +1,5 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -8,7 +7,6 @@ import { Button } from "@/components/ui/button";
 // ...existing code...
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -63,11 +61,6 @@ export function AddClientDialog({ open, onOpenChange }: AddClientDialogProps) {
           <DialogTitle className="text-2xl font-semibold">
             {t("title")}
           </DialogTitle>
-          <DialogClose asChild>
-            <Button variant="ghost" size="icon" className="rounded-full">
-              <X className="w-6 h-6" />
-            </Button>
-          </DialogClose>
         </DialogHeader>
         <DialogDescription className="mb-4 text-sm text-muted-foreground">
           {t("description")}
