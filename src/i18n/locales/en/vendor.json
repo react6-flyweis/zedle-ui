@@ -95,6 +95,8 @@
     "customerName": "Customer Name",
     "shipmentStatus": "Shipment Status",
     "rating": "Rating",
+    "progress": "Progress",
+    "statusAssigned": "SP Assigned",
     "actions": {
       "withdraw": "Withdraw",
       "start": "Start"
