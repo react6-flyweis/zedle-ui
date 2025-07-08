@@ -1,9 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Camera, PlusIcon, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import { BusinessTypeSelector } from "@/components/BusinessTypeSelector";
 import { Button } from "@/components/ui/button";
@@ -26,6 +27,27 @@ import {
   StepperStep,
 } from "@/components/ui/stepper";
 
+const staffMemberSchema = z.object({
+  photo: z.any().optional(),
+  fullName: z.string().min(1, "required"),
+  profession: z.string().min(1, "required"),
+  experience: z.string().min(1, "required"),
+  mobile: z.string().min(1, "required"),
+});
+
+const AMENITY_KEYS = [
+  "cable",
+  "internet",
+  "electricity",
+  "satelliteTv",
+  "dryer",
+  "fireplace",
+  "laundryHookups",
+  "alarmSystem",
+] as const;
+type AmenityKey = (typeof AMENITY_KEYS)[number];
+type Amenities = Record<AmenityKey, boolean>;
+
 const companySignupSchema = z.object({
   companyName: z.string().min(1, "required"),
   companyAddress: z.string().min(1, "required"),
@@ -39,6 +61,19 @@ const companySignupSchema = z.object({
   videoTour: z.string().url("invalidUrl").optional(),
   companyPhoto: z.any().optional(),
   companyReviewImage: z.any().optional(),
+  numberOfSiting: z.coerce.number(),
+  floorNumber: z.coerce.number(),
+  squareFeet: z.coerce.number(),
+  amenities: z.object(
+    AMENITY_KEYS.reduce(
+      (acc, key) => {
+        acc[key] = z.boolean().optional();
+        return acc;
+      },
+      {} as Record<AmenityKey, z.ZodTypeAny>,
+    ),
+  ),
+  staff: z.array(staffMemberSchema).min(1, "atLeastOneStaff").optional(),
   agree: z.literal(true, {
     errorMap: () => ({ message: "mustAgree" }),
   }),
@@ -63,7 +98,28 @@ export function VendorEnterpriseSignup() {
       videoTour: "",
       companyPhoto: undefined,
       companyReviewImage: undefined,
+      amenities: Object.fromEntries(
+        AMENITY_KEYS.map((k) => [k, false]),
+      ) as Amenities,
+      staff: [
+        {
+          photo: undefined,
+          fullName: "",
+          profession: "",
+          experience: "",
+          mobile: "",
+        },
+      ],
     },
+  });
+
+  const {
+    fields: staffFields,
+    append: appendStaff,
+    remove: removeStaff,
+  } = useFieldArray({
+    control: form.control,
+    name: "staff",
   });
 
   const steps = [
@@ -259,9 +315,119 @@ export function VendorEnterpriseSignup() {
               onValidate={steps[2].onValidate}
             >
               <div className="space-y-4">
-                {/* TODO: Add shop details fields here */}
-                <div className="text-muted-foreground text-center py-8">
-                  {t("shopDetailsPlaceholder")}
+                <div className="flex gap-4">
+                  <FormField
+                    control={form.control}
+                    name="numberOfSiting"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormLabel>{t("numberOfSiting")}</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="number"
+                            min={0}
+                            autoComplete="off"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="floorNumber"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormLabel>{t("floorNumber")}</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="number"
+                            min={0}
+                            autoComplete="off"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="flex gap-4">
+                  <FormField
+                    control={form.control}
+                    name="squareFeet"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormLabel>{t("squareFeet")}</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="number"
+                            min={0}
+                            autoComplete="off"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="yearBuild"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormLabel>
+                          {t("yearBuild")}{" "}
+                          <span className="text-xs text-muted-foreground">
+                            ({t("optional")})
+                          </span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="number"
+                            min={1800}
+                            max={3000}
+                            autoComplete="off"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div>
+                  <FormLabel className="block mb-2">
+                    {t("utilitiesAmenities")}
+                  </FormLabel>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    {AMENITY_KEYS.map((key) => (
+                      <FormField
+                        key={key}
+                        control={form.control}
+                        name={`amenities.${key}` as const}
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-center space-x-2">
+                            <FormControl>
+                              <Checkbox
+                                checked={!!field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <FormLabel className="text-sm font-normal cursor-pointer">
+                              {t(key)}
+                            </FormLabel>
+                          </FormItem>
+                        )}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <div className="rounded-md border border-input bg-background px-3 py-2 text-xs text-muted-foreground">
+                    {t("shopDetailsInfoText")}
+                  </div>
                 </div>
               </div>
             </StepperStep>
@@ -380,10 +546,128 @@ export function VendorEnterpriseSignup() {
               label={steps[5].label}
               onValidate={steps[5].onValidate}
             >
-              <div className="space-y-4">
-                {/* TODO: Add staff members fields here */}
-                <div className="text-muted-foreground text-center py-8">
-                  {t("addStaffMembersPlaceholder")}
+              <div className="space-y-8">
+                {staffFields.map((staff, idx) => (
+                  <div key={staff.id} className="flex flex-col gap-4">
+                    {/* Staff photo upload */}
+                    <div className="flex items-start justify-start">
+                      <FormField
+                        control={form.control}
+                        name={`staff.${idx}.photo`}
+                        render={({ field }) => (
+                          <FormItem className="flex flex-col items-center justify-center">
+                            <FormLabel className="sr-only">
+                              {t("addStaffPhoto")}
+                            </FormLabel>
+                            <FormControl>
+                              <ImageInput {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1 w-full">
+                      <FormField
+                        control={form.control}
+                        name={`staff.${idx}.fullName`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{t("staffFullName")}</FormLabel>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                autoComplete="off"
+                                placeholder={t("staffFullNamePlaceholder")}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`staff.${idx}.profession`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{t("staffProfession")}</FormLabel>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                autoComplete="off"
+                                placeholder={t("staffProfessionPlaceholder")}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`staff.${idx}.experience`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{t("staffExperience")}</FormLabel>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                autoComplete="off"
+                                placeholder={t("staffExperiencePlaceholder")}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`staff.${idx}.mobile`}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{t("staffMobile")}</FormLabel>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                autoComplete="off"
+                                placeholder={t("staffMobilePlaceholder")}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    {staffFields.length > 1 &&
+                      idx !== staffFields.length - 1 && (
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          className="self-center mt-2"
+                          onClick={() => removeStaff(idx)}
+                        >
+                          <Trash2 className="w-4 h-4" />
+                          {t("removeStaffMember")}
+                        </Button>
+                      )}
+                  </div>
+                ))}
+                <div className="flex justify-center mt-4">
+                  <Button
+                    type="button"
+                    className="px-8 py-3 flex items-center gap-2"
+                    onClick={() =>
+                      appendStaff({
+                        photo: undefined,
+                        fullName: "",
+                        profession: "",
+                        experience: "",
+                        mobile: "",
+                      })
+                    }
+                  >
+                    {t("addStaffMemberButton")}
+                    <PlusIcon className="w-5 h-5" />
+                  </Button>
                 </div>
               </div>
             </StepperStep>
