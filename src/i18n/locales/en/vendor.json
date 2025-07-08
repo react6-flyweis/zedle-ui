@@ -204,5 +204,18 @@
     "close": "Close",
     "messageRequired": "Message is required.",
     "successfullySent": "Your Message Has Been Sent Successfully."
+  },
+  "addClient": {
+    "title": "Add A New Client",
+    "description": "Lorem Ipsum is simply dummy text",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "enter here...",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "enter here...",
+    "email": "Email ID",
+    "emailPlaceholder": "enter here...",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+1",
+    "addButton": "Add"
   }
 }
