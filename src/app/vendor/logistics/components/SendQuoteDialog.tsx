@@ -20,6 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { toast } from "@/store/toastStore";
 
 const quoteSchema = z.object({
   price: z.string().min(1),
@@ -51,10 +52,9 @@ export function SendQuoteDialog({
     defaultValues: { price: "" },
   });
 
-  const onSubmit = (quote: { price: string }) => {
+  const onSubmit = (_quote: QuoteFormValues) => {
     // handle quote submit
-    // eslint-disable-next-line no-console
-    console.log("Quote submitted:", quote);
+    toast(t("quoteSuccess"));
   };
 
   return (

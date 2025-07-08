@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/store/toastStore";
 import { SendQuoteDialog } from "./SendQuoteDialog";
 
 const packageDetailsSchema = z.object({
@@ -73,9 +72,7 @@ export function PackageDetailsForm() {
     },
   });
 
-  function onSubmit(_data: PackageDetailsFormValues) {
-    toast(t("quoteSuccess"));
-  }
+  function onSubmit(_data: PackageDetailsFormValues) {}
 
   return (
     <div>

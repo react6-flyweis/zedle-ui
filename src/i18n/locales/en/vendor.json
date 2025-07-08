@@ -138,8 +138,7 @@
     "pickupTime": "Pick Up time",
     "makeAQuote": "Make A Quote",
     "PickupDateAndTime": "Pick Up date & time",
-    "isToday": "Today",
-    "quoteSuccess": "The price quote has been successfully sent to the customer."
+    "isToday": "Today"
   },
   "sendQuoteDialog": {
     "itemsDimensions": "Items Dimensions",
@@ -148,7 +147,8 @@
     "shipmentStatus": "Shipment Status",
     "price": "Price",
     "pricePlaceholder": "Enter your quote",
-    "sendQuote": "Send Quote"
+    "sendQuote": "Send Quote",
+    "quoteSuccess": "The price quote has been successfully sent to the customer."
   },
   "packageDetails": {
     "title": "Package Details",
