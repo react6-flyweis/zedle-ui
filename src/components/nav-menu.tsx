@@ -64,7 +64,7 @@ const defaultNavigationItems: NavigationItem[] = [
       },
       {
         title: "Enterprise Hub",
-        href: "/users/enterprise-hub",
+        href: "/users/enterprise",
       },
     ],
   },
