@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/store/toastStore";
 import { DriverDetailsDialog } from "./DriverDetailsDialog";
 
 export interface IDriver {
@@ -39,8 +40,13 @@ export function DriverCard({ driver }: { driver: IDriver }) {
     vehicleYear: "2024",
     vehiclePhotos: [
       "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d",
-      "https://images.unsplash.com/photo-1511918984145-48de785d4c4e",
+      "https://images.unsplash.com/photo-1461632830798-3adb3034e4c8",
     ],
+  };
+
+  const handleAssignDriver = () => {
+    // Logic to assign the driver
+    toast(t("assignSuccess"));
   };
 
   return (
@@ -73,12 +79,18 @@ export function DriverCard({ driver }: { driver: IDriver }) {
 
       {/* Actions */}
       <div className="flex gap-3 ">
-        <DriverDetailsDialog driver={driverDetails} onAssign={() => {}}>
+        <DriverDetailsDialog
+          driver={driverDetails}
+          onAssign={handleAssignDriver}
+        >
           <Button className="bg-green-800 hover:bg-green-900 text-white">
             {t("seeDetails")}
           </Button>
         </DriverDetailsDialog>
-        <Button className="bg-green-700 hover:bg-green-800 text-white">
+        <Button
+          className="bg-green-700 hover:bg-green-800 text-white"
+          onClick={handleAssignDriver}
+        >
           {t("assignDriver")}
         </Button>
       </div>
