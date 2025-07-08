@@ -1,4 +1,18 @@
 {
+  "requestDialog": {
+    "serviceRequest": "Service Request.",
+    "customerDetails": "Customer Details",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "serviceDetails": "Service Details",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "requestId": "Request ID",
+    "requestReschedule": "Request Reschedule",
+    "accept": "Accept"
+  },
   "order": {
     "quantity": "Quantity",
     "removeFromList": "Remove From List",
