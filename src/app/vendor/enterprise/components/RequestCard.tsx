@@ -1,26 +1,26 @@
+"use client";
+
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { RequestDialog } from "./RequestDialog";
 
-export interface RequestCardProps {
+export interface IRequest {
   name: string;
   service: string;
   date: string;
   time: string;
-  status?: string;
+  status: string;
   imageUrl: string;
+  email: string;
+  phone: string;
+  requestId: string;
 }
 
-export function RequestCard({
-  name,
-  service,
-  date,
-  time,
-  status = "SP Assigned",
-  imageUrl,
-}: RequestCardProps) {
+export function RequestCard({ request }: { request: IRequest }) {
   const t = useTranslations("requestCard");
+  const { name, service, date, time, status, imageUrl } = request;
   return (
     <Card className="rounded-2xl overflow-hidden bg-white shadow p-0">
       <CardContent className="p-6 pb-0 flex flex-col gap-0">
@@ -54,9 +54,11 @@ export function RequestCard({
         </div>
       </CardContent>
       <CardFooter className="p-0">
-        <Button className="w-full font-semibold py-3 rounded-none bg-primary text-white hover:bg-primary/90">
-          {t("viewFullRequest")}
-        </Button>
+        <RequestDialog request={request}>
+          <Button className="w-full font-semibold py-3 rounded-none bg-primary text-white hover:bg-primary/90">
+            {t("viewFullRequest")}
+          </Button>
+        </RequestDialog>
       </CardFooter>
     </Card>
   );
