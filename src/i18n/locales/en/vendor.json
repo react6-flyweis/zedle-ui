@@ -144,5 +144,9 @@
     "price": "Price",
     "pricePlaceholder": "Enter your quote",
     "sendQuote": "Send Quote"
+  },
+  "packageDetails": {
+    "title": "Package Details",
+    "description": "View and manage the details of your package order."
   }
 }
