@@ -133,7 +133,8 @@
     "weight": "Weight (kg)",
     "pickupDate": "Pick Up date",
     "pickupTime": "Pick Up time",
-    "makeAQuote": "Make A Quote"
+    "makeAQuote": "Make A Quote",
+    "PickupDateAndTime": "Pick Up date & time"
   },
   "sendQuoteDialog": {
     "itemsDimensions": "Items Dimensions",

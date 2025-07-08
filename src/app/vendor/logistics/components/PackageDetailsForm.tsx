@@ -1,19 +1,13 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  CalendarIcon,
-  ClockIcon,
-  MailIcon,
-  PhoneIcon,
-  RulerIcon,
-  WeightIcon,
-} from "lucide-react";
+import { CalendarDaysIcon, ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import dimensionIcon from "@/assets/icons/dimension.png";
+import weightIcon from "@/assets/icons/weight.png";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -25,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { SendQuoteDialog } from "./SendQuoteDialog";
 
 const packageDetailsSchema = z.object({
   pickupPoint: z.string().min(1),
@@ -40,53 +35,43 @@ const packageDetailsSchema = z.object({
 type PackageDetailsFormValues = z.infer<typeof packageDetailsSchema>;
 
 export function PackageDetailsForm() {
+  const data = {
+    date: "8 May 2025, Mon",
+    pickup: "1901 Thornridge Cir. Shiloh, Hawaii",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    weight: "80 : 20 KG",
+    pickupDate: "22 / 12 / 2024",
+    pickupTime: "04 : 30 PM",
+    pickupPoint: "1901 Thornridge Cir. Shiloh, Hawaii",
+    dropPoint: "2464 Royal Ln. Mesa, New Jersey",
+    dimension1: "60",
+    dimension2: "60",
+    customer: "Chance Septimus",
+    phone: "+1 9876543210",
+    paymentMethod: "Cash",
+    status: "Pending",
+  };
+
   const t = useTranslations("packageForm");
   const form = useForm<PackageDetailsFormValues>({
     resolver: zodResolver(packageDetailsSchema),
     defaultValues: {
-      pickupPoint: "1901 Thornridge Cir. Shiloh, Hawaii",
-      dropPoint: "2464 Royal Ln. Mesa, New Jersey",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
-      dimensions1: "60 : 96 CM",
-      dimensions2: "60 : 96 CM",
-      weight: "80 : 20 KG",
-      pickupDate: "22 / 12 / 2024",
-      pickupTime: "04 : 30 PM",
+      pickupPoint: data.pickupPoint,
+      dropPoint: data.dropPoint,
+      description: data.description,
+      dimensions1: data.dimension1,
+      dimensions2: data.dimension2,
+      weight: data.weight,
+      pickupDate: data.pickupDate,
+      pickupTime: data.pickupTime,
     },
   });
 
-  function onSubmit(data: PackageDetailsFormValues) {
-    // handle submit
-    // eslint-disable-next-line no-console
-    console.log(data);
-  }
+  function onSubmit(_data: PackageDetailsFormValues) {}
 
   return (
     <div>
-      {/* User Info Section */}
-      <div className="flex items-center gap-4 bg-muted p-4 rounded-t-lg mb-6">
-        <Avatar className="size-20 border border-zinc-300">
-          <AvatarImage
-            src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=128&q=80"
-            alt="User profile"
-          />
-          <AvatarFallback>CS</AvatarFallback>
-        </Avatar>
-        <div>
-          <div className="text-xl font-semibold text-zinc-900">
-            Chance Septimus
-          </div>
-          <div className="flex items-center gap-2 text-zinc-700 text-sm mt-1">
-            <MailIcon className="h-4 w-4" aria-label="Email" />
-            <span>Email: chanceseptimus@gmail.com</span>
-          </div>
-          <div className="flex items-center gap-2 text-zinc-700 text-sm mt-1">
-            <PhoneIcon className="h-4 w-4" aria-label="Phone" />
-            <span>Phone: +19876543210</span>
-          </div>
-        </div>
-      </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Pickup Point */}
@@ -95,11 +80,15 @@ export function PackageDetailsForm() {
             name="pickupPoint"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-lg text-zinc-400">
+                <FormLabel className="text-lg text-muted-foreground">
                   {t("pickupPoint")}
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} className="bg-background rounded h-14" />
+                  <Input
+                    {...field}
+                    className="bg-background rounded h-14"
+                    disabled
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -111,11 +100,15 @@ export function PackageDetailsForm() {
             name="dropPoint"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-lg text-zinc-400">
+                <FormLabel className="text-lg text-muted-foreground">
                   {t("dropPoint")}
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} className="bg-background rounded h-14" />
+                  <Input
+                    {...field}
+                    className="bg-background rounded h-14"
+                    disabled
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -127,13 +120,14 @@ export function PackageDetailsForm() {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-lg text-zinc-400">
+                <FormLabel className="text-lg text-muted-foreground">
                   {t("description")}
                 </FormLabel>
                 <FormControl>
                   <Textarea
                     {...field}
                     className="bg-background rounded min-h-[100px]"
+                    disabled
                   />
                 </FormControl>
                 <FormMessage />
@@ -141,70 +135,82 @@ export function PackageDetailsForm() {
             )}
           />
           {/* Photos / videos & Dimensions */}
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
-              <FormLabel className="text-lg text-zinc-400">
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="">
+              <FormLabel className="text-lg text-muted-foreground">
                 {t("photosVideos")}
               </FormLabel>
-              <div className="flex gap-2 mt-2">
-                <Image
-                  src="https://images.unsplash.com/photo-1515168833906-d2a3b82b3029?auto=format&fit=crop&w=400&q=80"
-                  alt="Goods 1"
-                  width={120}
-                  height={80}
-                  className="rounded object-cover"
-                />
-                <Image
-                  src="https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=400&q=80"
-                  alt="Goods 2"
-                  width={120}
-                  height={80}
-                  className="rounded object-cover"
-                />
+              <div className="grid grid-cols-3 gap-2 mt-2">
+                <div className="col-span-2 overflow-hidden rounded">
+                  <Image
+                    src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+                    alt="Goods 1"
+                    width={200}
+                    height={200}
+                    className="object-cover w-full h-[7.5rem]"
+                  />
+                </div>
+                <div className="overflow-hidden rounded">
+                  <Image
+                    src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+                    alt="Goods 2"
+                    width={200}
+                    height={200}
+                    className="object-cover w-full h-[7.5rem]"
+                  />
+                </div>
               </div>
             </div>
-            <div className="flex-1 flex flex-col gap-2">
-              <FormLabel className="text-lg text-zinc-400">
+            <div className="space-y-2">
+              <FormLabel className="text-lg text-muted-foreground">
                 {t("dimensionsOfGoods")}
               </FormLabel>
-              <div className="flex gap-2">
-                <FormField
-                  control={form.control}
-                  name="dimensions1"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormControl>
-                        <div className="relative">
-                          <Input
-                            {...field}
-                            className="bg-background rounded h-14 pr-10"
-                          />
-                          <RulerIcon className="absolute right-2 top-2.5 h-5 w-5 text-zinc-400" />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="dimensions2"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormControl>
-                        <div className="relative">
-                          <Input
-                            {...field}
-                            className="bg-background rounded h-14 pr-10"
-                          />
-                          <RulerIcon className="absolute right-2 top-2.5 h-5 w-5 text-zinc-400 rotate-90" />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+              <FormField
+                control={form.control}
+                name="dimensions1"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          {...field}
+                          className="bg-background rounded h-14 pr-10"
+                          disabled
+                        />
+                        <Image
+                          src={dimensionIcon}
+                          alt="Dimension Icon"
+                          className="absolute right-2 top-1/2 -translate-y-1/2 max-h-6 max-w-6 text-muted-foreground rotate-90"
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="dimensions2"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          {...field}
+                          className="bg-background rounded h-14 pr-10"
+                          disabled
+                        />
+                        <Image
+                          src={dimensionIcon}
+                          alt="Dimension Icon"
+                          className="absolute right-2 top-1/2 -translate-y-1/2 max-h-6 max-w-6 text-muted-foreground"
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
           </div>
           {/* Weight */}
@@ -213,7 +219,7 @@ export function PackageDetailsForm() {
             name="weight"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-lg text-zinc-400">
+                <FormLabel className="text-lg text-muted-foreground">
                   {t("weight")}
                 </FormLabel>
                 <FormControl>
@@ -221,8 +227,13 @@ export function PackageDetailsForm() {
                     <Input
                       {...field}
                       className="bg-background rounded h-14 pr-10"
+                      disabled
                     />
-                    <WeightIcon className="absolute right-2 top-2.5 h-5 w-5 text-zinc-400" />
+                    <Image
+                      src={weightIcon}
+                      alt="Weight Icon"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 max-h-6 max-w-6 text-muted-foreground"
+                    />
                   </div>
                 </FormControl>
                 <FormMessage />
@@ -230,13 +241,16 @@ export function PackageDetailsForm() {
             )}
           />
           {/* Pick Up date & time */}
-          <div className="flex flex-col md:flex-row gap-2">
+          <div className="space-y-2">
+            <FormLabel className="text-lg text-muted-foreground">
+              {t("PickupDateAndTime")}
+            </FormLabel>
             <FormField
               control={form.control}
               name="pickupDate"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel className="text-lg text-zinc-400">
+                  <FormLabel className="text-lg text-muted-foreground sr-only">
                     {t("pickupDate")}
                   </FormLabel>
                   <FormControl>
@@ -244,8 +258,9 @@ export function PackageDetailsForm() {
                       <Input
                         {...field}
                         className="bg-background rounded h-14 pr-10"
+                        disabled
                       />
-                      <CalendarIcon className="absolute right-2 top-2.5 h-5 w-5 text-zinc-400" />
+                      <CalendarDaysIcon className="absolute right-2 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -257,7 +272,7 @@ export function PackageDetailsForm() {
               name="pickupTime"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel className="text-lg text-zinc-400">
+                  <FormLabel className="text-lg text-muted-foreground sr-only">
                     {t("pickupTime")}
                   </FormLabel>
                   <FormControl>
@@ -265,208 +280,23 @@ export function PackageDetailsForm() {
                       <Input
                         {...field}
                         className="bg-background rounded h-14 pr-10"
+                        disabled
                       />
-                      <ClockIcon className="absolute right-2 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-400" />
+                      <ClockIcon className="absolute right-2 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          </div>
-
-          {/* Pickup Point */}
-          <FormField
-            control={form.control}
-            name="pickupPoint"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg text-zinc-400">
-                  {t("pickupPoint")}
-                </FormLabel>
-                <FormControl>
-                  <Input {...field} className="bg-background rounded h-14" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* Drop Point */}
-          <FormField
-            control={form.control}
-            name="dropPoint"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg text-zinc-400">
-                  {t("dropPoint")}
-                </FormLabel>
-                <FormControl>
-                  <Input {...field} className="bg-background rounded h-14" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* Description */}
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg text-zinc-400">
-                  {t("description")}
-                </FormLabel>
-                <FormControl>
-                  <Textarea
-                    {...field}
-                    className="bg-background rounded min-h-[100px]"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* Photos / videos & Dimensions */}
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
-              <FormLabel className="text-lg text-zinc-400">
-                {t("photosVideos")}
-              </FormLabel>
-              <div className="flex gap-2 mt-2">
-                <Image
-                  src="https://images.unsplash.com/photo-1515168833906-d2a3b82b3029?auto=format&fit=crop&w=400&q=80"
-                  alt="Goods 1"
-                  width={120}
-                  height={80}
-                  className="rounded object-cover"
-                />
-                <Image
-                  src="https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=400&q=80"
-                  alt="Goods 2"
-                  width={120}
-                  height={80}
-                  className="rounded object-cover"
-                />
-              </div>
-            </div>
-            <div className="flex-1 flex flex-col gap-2">
-              <FormLabel className="text-lg text-zinc-400">
-                {t("dimensionsOfGoods")}
-              </FormLabel>
-              <div className="flex gap-2">
-                <FormField
-                  control={form.control}
-                  name="dimensions1"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormControl>
-                        <div className="relative">
-                          <Input
-                            {...field}
-                            className="bg-background rounded h-14 pr-10"
-                          />
-                          <RulerIcon className="absolute right-2 top-2.5 h-5 w-5 text-zinc-400" />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="dimensions2"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormControl>
-                        <div className="relative">
-                          <Input
-                            {...field}
-                            className="bg-background rounded h-14 pr-10"
-                          />
-                          <RulerIcon className="absolute right-2 top-2.5 h-5 w-5 text-zinc-400 rotate-90" />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </div>
-          </div>
-          {/* Weight */}
-          <FormField
-            control={form.control}
-            name="weight"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg text-zinc-400">
-                  {t("weight")}
-                </FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Input
-                      {...field}
-                      className="bg-background rounded h-14 pr-10"
-                    />
-                    <WeightIcon className="absolute right-2 top-2.5 h-5 w-5 text-zinc-400" />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* Pick Up date & time */}
-          <div className="flex flex-col md:flex-row gap-2">
-            <FormField
-              control={form.control}
-              name="pickupDate"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel className="text-lg text-zinc-400">
-                    {t("pickupDate")}
-                  </FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input
-                        {...field}
-                        className="bg-background rounded h-14 pr-10"
-                      />
-                      <CalendarIcon className="absolute right-2 top-2.5 h-5 w-5 text-zinc-400" />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="pickupTime"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel className="text-lg text-zinc-400">
-                    {t("pickupTime")}
-                  </FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input {...field} className="bg-white text-black pr-10" />
-                      <ClockIcon className="absolute right-2 top-2.5 h-5 w-5 text-zinc-400" />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="flex justify-end">
-            <Button
-              type="submit"
-              className=" px-8 py-3 rounded-lg text-lg font-semibold"
-            >
-              {t("makeAQuote")}
-            </Button>
           </div>
         </form>
       </Form>
+      <div className="flex justify-end mt-5">
+        <SendQuoteDialog orderDetails={data}>
+          <Button className="w-52 rounded-md h-14">{t("makeAQuote")}</Button>
+        </SendQuoteDialog>
+      </div>
     </div>
   );
 }
