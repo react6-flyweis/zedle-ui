@@ -13,6 +13,17 @@
     "requestReschedule": "Request Reschedule",
     "accept": "Accept"
   },
+  "rescheduleDialog": {
+    "requestRescheduleTitle": "Request Reschedule",
+    "whyReschedule": "Why are you requesting a reschedule?",
+    "whyRescheduleDesc": "Please provide a reason for your reschedule request. This helps us understand your situation.",
+    "enterDescription": "Enter description...",
+    "suggestedDateTime": "Your suggested date and time.",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "evening": "Evening",
+    "send": "Send"
+  },
   "order": {
     "quantity": "Quantity",
     "removeFromList": "Remove From List",
