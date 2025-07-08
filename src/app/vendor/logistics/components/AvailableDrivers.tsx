@@ -16,7 +16,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "1",
     name: "Omar",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.5,
     carBrand: "Hero",
@@ -25,7 +26,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "2",
     name: "Meron",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.8,
     carBrand: "Honda",
@@ -34,7 +36,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "3",
     name: "Livia",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.2,
     carBrand: "TVS",
@@ -43,7 +46,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "4",
     name: "Allison",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.7,
     carBrand: "Bajaj",
@@ -52,7 +56,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "5",
     name: "Cooper",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.3,
     carBrand: "Suzuki",
@@ -61,7 +66,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "6",
     name: "Craig",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.6,
     carBrand: "Yamaha",
@@ -70,7 +76,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "7",
     name: "Cienna",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.4,
     carBrand: "Hero",
@@ -79,7 +86,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "8",
     name: "Corey",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.1,
     carBrand: "Honda",
@@ -88,7 +96,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "9",
     name: "Kianna",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.9,
     carBrand: "Bajaj",
@@ -97,7 +106,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "10",
     name: "Giana",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.0,
     carBrand: "TVS",
@@ -106,7 +116,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "11",
     name: "Martin",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.5,
     carBrand: "Suzuki",
@@ -115,7 +126,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "12",
     name: "Desirae",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.3,
     carBrand: "Yamaha",
@@ -124,7 +136,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "13",
     name: "Ann",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.6,
     carBrand: "Hero",
@@ -133,7 +146,8 @@ const mockDrivers: IDriver[] = [
   {
     id: "14",
     name: "Zaire",
-    avatar: "/api/placeholder/40/40",
+    avatar:
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=256&h=256&facepad=2",
     price: 458,
     rating: 4.2,
     carBrand: "Honda",
