@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
+import { ToastContainer } from "@/components/ui/ToastContainer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           {children}
+          <ToastContainer />
         </NextIntlClientProvider>
       </body>
     </html>
