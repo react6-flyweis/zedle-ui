@@ -9,6 +9,7 @@ import * as z from "zod";
 import dimensionIcon from "@/assets/icons/dimension.png";
 import weightIcon from "@/assets/icons/weight.png";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -19,6 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/store/toastStore";
 import { SendQuoteDialog } from "./SendQuoteDialog";
 
 const packageDetailsSchema = z.object({
@@ -30,6 +32,7 @@ const packageDetailsSchema = z.object({
   weight: z.string().min(1),
   pickupDate: z.string().min(1),
   pickupTime: z.string().min(1),
+  isToday: z.boolean().optional(),
 });
 
 type PackageDetailsFormValues = z.infer<typeof packageDetailsSchema>;
@@ -51,6 +54,7 @@ export function PackageDetailsForm() {
     phone: "+1 9876543210",
     paymentMethod: "Cash",
     status: "Pending",
+    isToday: true,
   };
 
   const t = useTranslations("packageForm");
@@ -65,10 +69,13 @@ export function PackageDetailsForm() {
       weight: data.weight,
       pickupDate: data.pickupDate,
       pickupTime: data.pickupTime,
+      isToday: data.isToday,
     },
   });
 
-  function onSubmit(_data: PackageDetailsFormValues) {}
+  function onSubmit(_data: PackageDetailsFormValues) {
+    toast(t("quoteSuccess"));
+  }
 
   return (
     <div>
@@ -87,7 +94,7 @@ export function PackageDetailsForm() {
                   <Input
                     {...field}
                     className="bg-background rounded h-14"
-                    disabled
+                    readOnly
                   />
                 </FormControl>
                 <FormMessage />
@@ -107,7 +114,7 @@ export function PackageDetailsForm() {
                   <Input
                     {...field}
                     className="bg-background rounded h-14"
-                    disabled
+                    readOnly
                   />
                 </FormControl>
                 <FormMessage />
@@ -127,7 +134,7 @@ export function PackageDetailsForm() {
                   <Textarea
                     {...field}
                     className="bg-background rounded min-h-[100px]"
-                    disabled
+                    readOnly
                   />
                 </FormControl>
                 <FormMessage />
@@ -175,7 +182,7 @@ export function PackageDetailsForm() {
                         <Input
                           {...field}
                           className="bg-background rounded h-14 pr-10"
-                          disabled
+                          readOnly
                         />
                         <Image
                           src={dimensionIcon}
@@ -198,7 +205,7 @@ export function PackageDetailsForm() {
                         <Input
                           {...field}
                           className="bg-background rounded h-14 pr-10"
-                          disabled
+                          readOnly
                         />
                         <Image
                           src={dimensionIcon}
@@ -227,7 +234,7 @@ export function PackageDetailsForm() {
                     <Input
                       {...field}
                       className="bg-background rounded h-14 pr-10"
-                      disabled
+                      readOnly
                     />
                     <Image
                       src={weightIcon}
@@ -258,7 +265,7 @@ export function PackageDetailsForm() {
                       <Input
                         {...field}
                         className="bg-background rounded h-14 pr-10"
-                        disabled
+                        readOnly
                       />
                       <CalendarDaysIcon className="absolute right-2 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     </div>
@@ -280,7 +287,7 @@ export function PackageDetailsForm() {
                       <Input
                         {...field}
                         className="bg-background rounded h-14 pr-10"
-                        disabled
+                        readOnly
                       />
                       <ClockIcon className="absolute right-2 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     </div>
@@ -290,6 +297,25 @@ export function PackageDetailsForm() {
               )}
             />
           </div>
+
+          {/* Today Checkbox */}
+          <FormField
+            control={form.control}
+            name="isToday"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center space-x-3 ">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      className="size-6 bg-background"
+                    />
+                  </FormControl>
+                  <FormLabel className="font-medium">{t("isToday")}</FormLabel>
+                </div>
+              </FormItem>
+            )}
+          />
         </form>
       </Form>
       <div className="flex justify-end mt-5">

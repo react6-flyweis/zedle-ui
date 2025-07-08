@@ -17,9 +17,9 @@
     "twoWheeler": "Two Wheeler",
     "fourWheeler": "Four Wheeler",
     "seeAllTitle": "See all available drivers",
-    "driverName": "Driver:",
-    "carBrand": "Brand:",
-    "carModel": "Model:",
+    "driverName": "Driver's Name",
+    "carBrand": "Brand",
+    "carModel": "Model",
     "seeDetails": "See Details",
     "assignDriver": "Assign this Driver",
     "details": "'s Details",
@@ -34,7 +34,8 @@
     "carNumber": "Car Number",
     "vehicleModel": "Vehicle Model",
     "vehicleYear": "Vehicle Manufacturer year",
-    "vehiclePhotos": "Photos Of The Vehicle"
+    "vehiclePhotos": "Photos Of The Vehicle",
+    "assignSuccess": "You have successfully assigned a driver."
   },
   "hero": {
     "calendar": "Calendar",
@@ -136,7 +137,9 @@
     "pickupDate": "Pick Up date",
     "pickupTime": "Pick Up time",
     "makeAQuote": "Make A Quote",
-    "PickupDateAndTime": "Pick Up date & time"
+    "PickupDateAndTime": "Pick Up date & time",
+    "isToday": "Today",
+    "quoteSuccess": "The price quote has been successfully sent to the customer."
   },
   "sendQuoteDialog": {
     "itemsDimensions": "Items Dimensions",
