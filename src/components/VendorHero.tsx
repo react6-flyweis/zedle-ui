@@ -18,7 +18,7 @@ interface HeroSectionProps {
   subtitle: string;
   title: string;
   poster: string | StaticImageData;
-  onSort: (filters: string[]) => void;
+  onSort?: (filters: string[]) => void;
   onAdd?: () => void;
   addButtonText?: string;
   sortOptions?: string[];
