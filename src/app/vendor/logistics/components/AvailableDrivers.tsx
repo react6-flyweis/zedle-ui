@@ -166,7 +166,7 @@ export function AvailableDriversDialog({ children }: PropsWithChildren) {
       <DialogContent className="sm:max-w-5xl max-h-[90vh] p-0 flex overflow-hidden">
         {/* Sidebar */}
         <div className="w-60 bg-primary text-white p-6 flex flex-col">
-          <h3 className="text-xl font-semibold mb-6">Sort by</h3>
+          <h3 className="text-xl font-semibold mb-6">{t("sortBy")}</h3>
           <div className="space-y-4">
             <RadioGroup
               value={sortBy}
@@ -174,11 +174,13 @@ export function AvailableDriversDialog({ children }: PropsWithChildren) {
               className="space-y-2"
             >
               {[
-                { value: "relevance", label: "Relevance (Default)" },
-                { value: "closest", label: "Closest First" },
-                { value: "rating", label: "Rating" },
-                { value: "price-low", label: "Price: Low to High" },
-                { value: "price-high", label: "Price: High to Low" },
+                { value: "relevance", label: t("relevance") },
+                { value: "closest", label: t("closest") },
+                { value: "rating", label: t("rating") },
+                { value: "price-low", label: t("priceLow") },
+                { value: "price-high", label: t("priceHigh") },
+                { value: "two-wheeler", label: t("twoWheeler") },
+                { value: "four-wheeler", label: t("fourWheeler") },
               ].map((option) => (
                 <div key={option.value} className="flex items-center space-x-3">
                   <RadioGroupItem
@@ -203,7 +205,7 @@ export function AvailableDriversDialog({ children }: PropsWithChildren) {
           {/* Header */}
           <DialogHeader className="p-6 pb-0">
             <DialogTitle className="text-2xl font-bold text-center">
-              See all available drivers
+              {t("seeAllTitle")}
             </DialogTitle>
           </DialogHeader>
 

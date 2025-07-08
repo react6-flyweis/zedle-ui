@@ -14,6 +14,8 @@
     "rating": "Rating",
     "priceLow": "Price: Low to High",
     "priceHigh": "Price: High to Low",
+    "twoWheeler": "Two Wheeler",
+    "fourWheeler": "Four Wheeler",
     "seeAllTitle": "See all available drivers",
     "driverName": "Driver:",
     "carBrand": "Brand:",
