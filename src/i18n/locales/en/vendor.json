@@ -193,5 +193,15 @@
     "emailLabel": "Email ID: {email}",
     "recurringCustomer": "Recurring Customer",
     "newCustomer": "New Customer"
+  },
+  "sendMessage": {
+    "title": "Send A Message",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+    "messagePlaceholder": "enter here...",
+    "send": "Send",
+    "or": "or",
+    "call": "Call",
+    "close": "Close",
+    "messageRequired": "Message is required."
   }
 }
