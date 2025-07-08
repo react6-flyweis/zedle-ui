@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { SuccessToast } from "../SuccessToast";
+import { toast } from "@/store/toastStore";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { BankSelectionDialog } from "./BankSelectionDialog";
@@ -18,15 +18,13 @@ export function WithdrawDialog({ children }: { children: React.ReactNode }) {
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [selectedBank, setSelectedBank] = useState<string | null>(null);
   const [showBankDialog, setShowBankDialog] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleWithdrawConfirm = () => {
     setWithdrawAmount("");
     setSelectedBank(null);
     setShowBankDialog(false);
     setWithdrawOpen(false);
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 2500);
+    toast(t("successTitle"), { description: t("successDescription") });
   };
 
   return (
@@ -75,14 +73,6 @@ export function WithdrawDialog({ children }: { children: React.ReactNode }) {
         onClose={handleWithdrawConfirm}
         onSelect={setSelectedBank}
       />
-      {showSuccess && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/10">
-          <SuccessToast
-            title={t("successTitle")}
-            description={t("successDescription")}
-          />
-        </div>
-      )}
     </>
   );
 }
