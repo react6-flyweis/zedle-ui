@@ -1,3 +1,4 @@
+import { VendorEnterpriseSignup } from "../components/VendorEnterpriseSignup";
 import { VendorFoodSignup } from "../components/VendorFoodSignup";
 import VendorGrocerySignup from "../components/VendorGrocerySignup";
 import { VendorLogisticsSignup } from "../components/VendorLogisticsSignup";
@@ -26,7 +27,8 @@ export default async function page({
         return <VendorFoodSignup />;
       case "Logistics":
         return <VendorLogisticsSignup />;
-      // Add more categories as needed
+      case "Enterprise Hub":
+        return <VendorEnterpriseSignup />;
       default:
         return <div>Unsupported vendor category: {category}</div>;
     }
