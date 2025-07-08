@@ -678,10 +678,27 @@ export function VendorEnterpriseSignup() {
               onValidate={steps[6].onValidate}
             >
               <div className="space-y-4">
-                {/* TODO: Add services fields here */}
-                <div className="text-muted-foreground text-center py-8">
-                  {t("addServicesPlaceholder")}
-                </div>
+                {/* Service selection mockup, replace with real data as needed */}
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div
+                    key={i}
+                    className="rounded-lg border border-muted-foreground  px-4 py-3 flex items-center justify-between"
+                  >
+                    <div>
+                      <div className="font-medium text-base text-foreground">
+                        {i % 3 === 1
+                          ? t("womensHaircutLong")
+                          : i % 3 === 2
+                            ? t("womensHaircut")
+                            : t("mensHaircut")}
+                      </div>
+                      <div className="text-xs text-muted-foreground mt-1">
+                        {t("haircutIncludes")}
+                      </div>
+                    </div>
+                    <Checkbox />
+                  </div>
+                ))}
               </div>
             </StepperStep>
 
