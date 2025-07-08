@@ -187,5 +187,11 @@
     "ongoingRequestsSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed.",
     "dateWise": "Date Wise",
     "moneyWise": "Money Wise"
+  },
+  "clientCard": {
+    "phoneLabel": "Phone No: {phone}",
+    "emailLabel": "Email ID: {email}",
+    "recurringCustomer": "Recurring Customer",
+    "newCustomer": "New Customer"
   }
 }
