@@ -134,5 +134,14 @@
     "pickupDate": "Pick Up date",
     "pickupTime": "Pick Up time",
     "makeAQuote": "Make A Quote"
+  },
+  "sendQuoteDialog": {
+    "itemsDimensions": "Items Dimensions",
+    "paymentMethod": "Payment Method",
+    "customerName": "Customer Name",
+    "shipmentStatus": "Shipment Status",
+    "price": "Price",
+    "pricePlaceholder": "Enter your quote",
+    "sendQuote": "Send Quote"
   }
 }
