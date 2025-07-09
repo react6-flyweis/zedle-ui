@@ -375,5 +375,18 @@
     "price": "Price: {price}",
     "share": "Share",
     "download": "Download"
+  },
+  "hotelLodgeHero": {
+    "ongoingRequestsTitle": "Showing Ongoing Requests on your hotel.",
+    "ongoingRequestsSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed.",
+    "dateWise": "Date Wise",
+    "moneyWise": "Money Wise"
+  },
+  "hotel": {
+    "checkout": {
+      "heroTitle": "List all hotel & lodge clients ready for checkout.",
+      "heroSubtitle": "Manage your hotel and lodge clients efficiently and securely.",
+      "addClientButton": "Add Client"
+    }
   }
 }
