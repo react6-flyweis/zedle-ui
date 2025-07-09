@@ -23,6 +23,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import type { IStaff } from "./StaffCard";
 
 const staffSchema = z.object({
   name: z.string().min(1),
@@ -37,23 +38,35 @@ type StaffFormValues = z.infer<typeof staffSchema>;
 interface AddStaffDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  data?: StaffFormValues; // Optional data prop for pre-filling form
+  data?: IStaff;
 }
 
-export function StaffEditorDialog({ open, onOpenChange }: AddStaffDialogProps) {
+export function StaffEditorDialog({
+  open,
+  onOpenChange,
+  data,
+}: AddStaffDialogProps) {
   const t = useTranslations("staffs.addDialog");
+  const isEditMode = !!data;
+  const [imageUrl, setImageUrl] = useState<string>(data?.image || "");
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const form = useForm<StaffFormValues>({
     resolver: zodResolver(staffSchema),
     defaultValues: {
-      name: "",
-      profession: "",
-      yearsOfExperience: 0,
-      phone: "+1",
-      image: "",
+      name: data?.name || "",
+      profession: data?.profession || "",
+      yearsOfExperience: data?.yearsOfExperience ?? 0,
+      phone: data?.phone || "+1",
+      image: data?.image || "",
+    },
+    values: {
+      name: data?.name || "",
+      profession: data?.profession || "",
+      yearsOfExperience: data?.yearsOfExperience ?? 0,
+      phone: data?.phone || "+1",
+      image: imageUrl,
     },
   });
-  const [imageUrl, setImageUrl] = useState<string>("");
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -64,9 +77,8 @@ export function StaffEditorDialog({ open, onOpenChange }: AddStaffDialogProps) {
     }
   }
 
-  function onSubmit(_values: StaffFormValues) {
-    form.reset();
-    setImageUrl("");
+  function onSubmit(values: StaffFormValues) {
+    // handle save or add logic here
     onOpenChange(false);
   }
 
@@ -75,7 +87,9 @@ export function StaffEditorDialog({ open, onOpenChange }: AddStaffDialogProps) {
       <DialogContent className="max-w-lg rounded-3xl p-5">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-primary">
-            {t("title")}
+            {isEditMode
+              ? t("editTitle", { defaultValue: "Edit This Staff Member" })
+              : t("title")}
           </DialogTitle>
           <DialogDescription className="text-muted-foreground mb-2">
             {t("subtitle")}
@@ -178,7 +192,9 @@ export function StaffEditorDialog({ open, onOpenChange }: AddStaffDialogProps) {
                 type="submit"
                 className="w-full rounded-full bg-primary text-primary-foreground text-lg h-12"
               >
-                {useTranslations("staffs")("addStaffButton")}
+                {isEditMode
+                  ? t("saveButton", { defaultValue: "Save" })
+                  : t("addButton")}
               </Button>
             </div>
           </form>

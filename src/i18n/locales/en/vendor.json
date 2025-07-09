@@ -238,13 +238,15 @@
       "title": "Add A New Staff",
       "subtitle": "Lorem Ipsum is simply dummy text",
       "fullNameLabel": "Full Name",
-      "fullNamePlaceholder": "enter here...",
+      "fullNamePlaceholder": "Enter here...",
       "professionLabel": "Profession",
-      "professionPlaceholder": "enter here...",
+      "professionPlaceholder": "Enter here...",
       "experienceLabel": "Years of Experience",
-      "experiencePlaceholder": "enter here...",
+      "experiencePlaceholder": "Enter here...",
       "phoneLabel": "Phone Number",
-      "phonePlaceholder": "+1"
+      "phonePlaceholder": "+1",
+      "editTitle": "Edit This Staff Member",
+      "saveButton": "Save"
     }
   }
 }
