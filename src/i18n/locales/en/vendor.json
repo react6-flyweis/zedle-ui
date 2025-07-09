@@ -265,5 +265,31 @@
     },
     "phoneLabel": "Phone No: {phone}",
     "emailLabel": "Email ID: {email}"
+  },
+  "giveDiscount": {
+    "title": "Give Discount",
+    "subtitle": "Lorem Ipsum is simply dummy text",
+    "offerName": "Offer Name*",
+    "offerNamePlaceholder": "enter here...",
+    "couponCode": "Coupon Code*",
+    "couponCodePlaceholder": "enter here...",
+    "discountType": "Discount Type*",
+    "flatDiscount": "Flat Discount",
+    "percentageDiscount": "Percentage Discount",
+    "flatAmount": "Flat Discount Amount *",
+    "flatAmountPlaceholder": "$ Enter amount",
+    "percentageAmount": "Percentage Amount*",
+    "percentageAmountPlaceholder": "% Enter percentage",
+    "maxDiscount": "Max Discount Upto*",
+    "maxDiscountPlaceholder": "$ Enter amount",
+    "startDate": "Start Date*",
+    "startTime": "Start Time*",
+    "endDate": "End Date*",
+    "endTime": "End Time*",
+    "lifetime": "Check, if you want to see coupon validity to lifetime",
+    "send": "Send",
+    "required": "This field is required.",
+    "phoneLabel": "Phone No: {phone}",
+    "emailLabel": "Email ID: {email}"
   }
 }
