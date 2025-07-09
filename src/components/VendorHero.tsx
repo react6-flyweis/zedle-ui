@@ -36,7 +36,7 @@ export function VendorHeroSection({
   onAdd,
   addButtonText,
   onSearch,
-  showCalendar = true,
+  showCalendar,
   sortOptions = [],
   onSort,
 }: HeroSectionProps) {
@@ -61,6 +61,11 @@ export function VendorHeroSection({
       onSearch(query);
     }
   }, [query, onSearch]);
+
+  // Show calendar if showCalendar is true (default), unless explicitly set to false
+  // If showCalendar is undefined, show calendar only if onAdd is not provided
+  const toShowCalendar =
+    showCalendar === true || (showCalendar === undefined && !onAdd);
 
   return (
     <div className="relative py-20 flex flex-col justify-center items-center w-full">
@@ -91,20 +96,7 @@ export function VendorHeroSection({
             />
             <SearchIcon className="absolute right-5 text-white size-6" />
           </div>
-          {onAdd && (
-            <Button
-              type="button"
-              variant="secondary"
-              className="h-12 rounded font-bold w-36 text-primary "
-              onClick={onAdd}
-            >
-              <span className="shrink-0 flex items-center justify-center size-7 border-2 border-primary rounded-full">
-                <Plus className="size-5 text-primary" strokeWidth={2.5} />
-              </span>
-              {addButtonText || t("add")}
-            </Button>
-          )}
-          {showCalendar && !onAdd && (
+          {toShowCalendar && (
             <Button
               variant="secondary"
               className="flex gap-2 h-12  text-primary rounded font-bold w-32"
@@ -118,6 +110,19 @@ export function VendorHeroSection({
                 height={50}
               />
               {t("calendar")}
+            </Button>
+          )}
+          {onAdd && (
+            <Button
+              type="button"
+              variant="secondary"
+              className="h-12 rounded font-bold w-36 text-primary "
+              onClick={onAdd}
+            >
+              <span className="shrink-0 flex items-center justify-center size-7 border-2 border-primary rounded-full">
+                <Plus className="size-5 text-primary" strokeWidth={2.5} />
+              </span>
+              {addButtonText || t("add")}
             </Button>
           )}
           {/* Sort/Filter Button wrapped in DropdownMenu */}
