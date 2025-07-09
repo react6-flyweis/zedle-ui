@@ -25,12 +25,13 @@
 - Add strings keys in the `src/i18n/locales/en/{namespace}.json` files for translations.
     - auth.json for all authentication related strings.
     - common.json for common strings.
-    - vendor.json for vendor related strings.
-    - delivery.json for delivery partner related strings.
-    - locales/en.json for user related strings.
-
-
-- don't use translations for mock data, use hardcoded strings for mock data.
+    - locales/en.json for user related strings.  (app/users/*)
+    - vendor.json for vendor related strings. (app/vendor/*)
+    - delivery.json for delivery partner related strings. (app/delivery-partner/*)
+- Use `useTranslations` hook from `next-intl` for translations in components.
+- Add keys in grouped manner in the JSON files.
+- Don't change the constant values or defined translation
+- Don't use translations for mock data, use hardcoded strings for mock data.
 
 - if image is given for reference, try to match the design as closely as possible.
 
