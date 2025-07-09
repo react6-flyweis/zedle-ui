@@ -40,7 +40,7 @@ interface AddStaffDialogProps {
   data?: StaffFormValues; // Optional data prop for pre-filling form
 }
 
-export function AddStaffDialog({ open, onOpenChange }: AddStaffDialogProps) {
+export function StaffEditorDialog({ open, onOpenChange }: AddStaffDialogProps) {
   const t = useTranslations("staffs.addDialog");
   const form = useForm<StaffFormValues>({
     resolver: zodResolver(staffSchema),
