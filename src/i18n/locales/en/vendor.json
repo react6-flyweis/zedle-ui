@@ -292,5 +292,33 @@
     "phoneLabel": "Phone No: {phone}",
     "emailLabel": "Email ID: {email}",
     "successToast": "The coupon was sent successfully."
+  },
+  "addServices": {
+    "title": "Add Services",
+    "subtitle": "Lorem Ipsum is simply dummy text",
+    "phoneLabel": "Phone No: {phone}",
+    "emailLabel": "Email ID: {email}",
+    "serviceName": "Service Name",
+    "serviceNamePlaceholder": "enter here...",
+    "duration": "Duration (in hours)",
+    "durationPlaceholder": "enter here...",
+    "price": "Price",
+    "pricePlaceholder": "enter here...",
+    "details": "Additional Details",
+    "detailsPlaceholder": "enter here...",
+    "optional": "(optional)",
+    "send": "Send",
+    "required": "This field is required.",
+    "amenities": {
+      "title": "Utilities & Amenities",
+      "cable": "Cable",
+      "internet": "Internet",
+      "electricity": "Electricity",
+      "satelliteTv": "Satellite TV",
+      "dryer": "Dryer",
+      "fireplace": "Fireplace",
+      "laundryHookups": "Laundry Hookups",
+      "alarmSystem": "Alarm System"
+    }
   }
 }
