@@ -64,7 +64,7 @@ const foodNavigation: NavigationItem[] = [
 const hotelLodgeNavigation: NavigationItem[] = [
   {
     title: "Home",
-    href: "/vendor/travel-tourism",
+    href: "/vendor/travel-tourism/hotel-lodge",
     type: "link",
   },
   {
