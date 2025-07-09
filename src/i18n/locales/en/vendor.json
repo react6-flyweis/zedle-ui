@@ -233,6 +233,18 @@
   "staffs": {
     "heroTitle": "Display all the staff members who worked at your shop.",
     "heroSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed",
-    "addStaffButton": "Add Staff"
+    "addStaffButton": "Add Staff",
+    "addDialog": {
+      "title": "Add A New Staff",
+      "subtitle": "Lorem Ipsum is simply dummy text",
+      "fullNameLabel": "Full Name",
+      "fullNamePlaceholder": "enter here...",
+      "professionLabel": "Profession",
+      "professionPlaceholder": "enter here...",
+      "experienceLabel": "Years of Experience",
+      "experiencePlaceholder": "enter here...",
+      "phoneLabel": "Phone Number",
+      "phonePlaceholder": "+1"
+    }
   }
 }
