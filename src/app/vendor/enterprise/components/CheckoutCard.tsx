@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import type { IClient } from "../../types";
+import { GiveDiscountDialog } from "./GiveDiscountDialog";
 import { SendMessageDialog } from "./SendMessageDialog";
 
 export function CheckoutCard({ client }: { client: IClient }) {
@@ -40,14 +41,16 @@ export function CheckoutCard({ client }: { client: IClient }) {
         </CardContent>
         <CardFooter className="flex p-0">
           <div className="grid grid-cols-4 w-full">
-            <Button
-              type="button"
-              className="rounded-none h-12 flex items-center justify-center whitespace-pre-line text-center px-2"
-            >
-              <span className="block w-full break-words text-center">
-                {t("actions.giveDiscount")}
-              </span>
-            </Button>
+            <GiveDiscountDialog client={client}>
+              <Button
+                type="button"
+                className="rounded-none h-12 flex items-center justify-center whitespace-pre-line text-center px-2"
+              >
+                <span className="block w-full break-words text-center">
+                  {t("actions.giveDiscount")}
+                </span>
+              </Button>
+            </GiveDiscountDialog>
             <Button
               type="button"
               className="rounded-none h-12 flex items-center justify-center whitespace-pre-line text-center px-2 bg-secondary text-secondary-foreground hover:bg-secondary/80"
