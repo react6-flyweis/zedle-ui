@@ -336,5 +336,28 @@
     "selected": "Selected",
     "selectButton": "Select",
     "close": "Close"
+  },
+  "previewGenerateBill": {
+    "title": "Preview & Generate Bill",
+    "generateTab": "Generate Bill",
+    "previewTab": "Preview Bill",
+    "dateLabel": "Date: {date}",
+    "phoneLabel": "Phone No: {phone}",
+    "emailLabel": "Email ID: {email}",
+    "addressLabel": "Address: {address}",
+    "aboutClient": "About Client",
+    "clientName": "Client Name",
+    "emailLabelShort": "Email ID",
+    "mobileLabel": "Mobile Number",
+    "aboutService": "About Service",
+    "serviceNamePlaceholder": "Service Name",
+    "durationPlaceholder": "Duration (in hours)",
+    "pricePlaceholder": "Price",
+    "discountPlaceholder": "Discount Amount (if any)",
+    "gstPlaceholder": "GST%",
+    "totalPayable": "Total Payable Amount:",
+    "generateButton": "Generate",
+    "previewPlaceholder": "Preview will be shown here.",
+    "close": "Close"
   }
 }
