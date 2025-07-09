@@ -320,5 +320,21 @@
       "laundryHookups": "Laundry Hookups",
       "alarmSystem": "Alarm System"
     }
+  },
+  "paymentMethods": {
+    "title": "Payment Methods",
+    "subtitle": "Lorem Ipsum is simply dummy text",
+    "phoneLabel": "Phone No: {phone}",
+    "emailLabel": "Email ID: {email}",
+    "methods": {
+      "card": "Card",
+      "googlePay": "Google Pay",
+      "applePay": "Apple Pay",
+      "cash": "Cash"
+    },
+    "select": "Select",
+    "selected": "Selected",
+    "selectButton": "Select",
+    "close": "Close"
   }
 }
