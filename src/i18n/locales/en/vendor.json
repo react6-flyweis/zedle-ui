@@ -436,5 +436,9 @@
     "bathroom": "Bathroom",
     "roomImages": "Room Images",
     "add": "Add"
+  },
+  "rooms": {
+    "heroTitle": "Here are all the rooms you listed on this website.",
+    "heroSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed"
   }
 }
