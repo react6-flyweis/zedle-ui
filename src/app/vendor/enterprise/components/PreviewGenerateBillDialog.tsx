@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/store/toastStore";
 import type { IClient } from "../../types";
+import { InvoicePreviewCard } from "./InvoicePreviewCard";
 
 interface PreviewGenerateBillDialogProps {
   client: IClient;
@@ -45,13 +46,6 @@ export function PreviewGenerateBillDialog({
     console.log("Bill generated for", client.name);
     toast("Your Bill Is Generated Successfully.");
     setTab("preview"); // Switch to preview tab after generating the bill
-  };
-
-  const handleDownload = () => {
-    // Logic to download the bill can be added here
-    console.log("Bill downloaded for", client.name);
-    setOpen(false); // Close the dialog after downloading the bill
-    toast("Your Bill Is Downloaded Successfully.");
   };
 
   return (
@@ -175,54 +169,7 @@ export function PreviewGenerateBillDialog({
                 26/Sep/2024
               </div>
               <div className="p-3">
-                <div className="bg-accent rounded-xl shadow flex items-center justify-between overflow-hidden p-0.5">
-                  <div className="p-2 flex gap-4">
-                    <div className="w-28 h-18 rounded-full overflow-hidden flex-shrink-0 flex items-center justify-center">
-                      <span className="sr-only">Invoice</span>
-                      <div className="w-full h-full relative">
-                        <Image
-                          src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=facearea&w=128&q=80"
-                          alt="Invoice"
-                          fill
-                          className="object-cover rounded-full"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-bold text-lg text-black mb-1">
-                        Client: Mira Geidt
-                      </div>
-                      <div className="text-sm text-gray-700">
-                        Service: Women's haircut
-                      </div>
-                      <div className="text-sm text-gray-700">
-                        Payment Amount: $60.00
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col h-full overflow-hidden gap-0.5">
-                    <Button
-                      type="button"
-                      size="icon"
-                      variant="ghost"
-                      className="bg-white rounded-none rounded-tr-xl w-10 h-11 flex items-center justify-center"
-                      aria-label="Share"
-                    >
-                      <Share2 className="w-6 h-6 text-gray-700" />
-                    </Button>
-                    <Button
-                      type="button"
-                      size="icon"
-                      variant="ghost"
-                      className="bg-white rounded-none rounded-br-xl w-10 h-11 flex items-center justify-center"
-                      aria-label="Download"
-                      onClick={handleDownload}
-                    >
-                      <Download className="w-6 h-6 text-gray-700" />
-                    </Button>
-                  </div>
-                </div>
+                <InvoicePreviewCard />
               </div>
             </div>
           </TabsContent>
