@@ -248,5 +248,15 @@
       "editTitle": "Edit This Staff Member",
       "saveButton": "Save"
     }
+  },
+  "checkoutCard": {
+    "actions": {
+      "giveDiscount": "Give Discount",
+      "addServices": "Add Services",
+      "paymentMethods": "Payment Methods",
+      "previewGenerateBill": "Preview & Generate Bill"
+    },
+    "phoneLabel": "Phone No: {phone}",
+    "emailLabel": "Email ID: {email}"
   }
 }
