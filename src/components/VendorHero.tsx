@@ -20,6 +20,8 @@ interface HeroSectionProps {
   poster: string | StaticImageData;
   onSort?: (filters: string[]) => void;
   onAdd?: () => void;
+  showCalendar?: boolean;
+  onSelectDate?: (date: Date) => void;
   addButtonText?: string;
   sortOptions?: string[];
   filterOptions?: string[];
@@ -34,6 +36,7 @@ export function VendorHeroSection({
   onAdd,
   addButtonText,
   onSearch,
+  showCalendar = true,
   sortOptions = [],
   onSort,
 }: HeroSectionProps) {
@@ -72,7 +75,7 @@ export function VendorHeroSection({
         <div className="absolute inset-0 bg-black/30" />
       </div>
       <div className="w-full max-w-5xl mx-auto px-4 text-center">
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
             {title}
           </h1>
@@ -88,7 +91,7 @@ export function VendorHeroSection({
             />
             <SearchIcon className="absolute right-5 text-white size-6" />
           </div>
-          {onAdd ? (
+          {onAdd && (
             <Button
               type="button"
               variant="secondary"
@@ -100,7 +103,8 @@ export function VendorHeroSection({
               </span>
               {addButtonText || t("add")}
             </Button>
-          ) : (
+          )}
+          {showCalendar && !onAdd && (
             <Button
               variant="secondary"
               className="flex gap-2 h-12  text-primary rounded font-bold w-32"
