@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { type PropsWithChildren, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { RequestRescheduleDialog } from "@/components/RequestRescheduleDialog";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -23,7 +24,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/store/toastStore";
 import type { IRequest } from "./RequestCard";
-import { RequestRescheduleDialog } from "./RequestRescheduleDialog";
 
 export function RequestDialog({
   request,
