@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { SendMessageDialog } from "./SendMessageDialog";
+import { StaffEditorDialog } from "./StaffEditorDialog";
 
 export interface IStaff {
   name: string;
@@ -47,13 +47,17 @@ export function StaffCard({ staff }: { staff: IStaff }) {
           </div>
         </CardContent>
         <CardFooter className="text-center font-semibold p-0">
-          <Button type="button" className="w-full h-full rounded-t-none">
+          <Button
+            type="button"
+            className="w-full h-full rounded-t-none"
+            onClick={() => setOpen(true)}
+          >
             Edit details
           </Button>
         </CardFooter>
       </Card>
 
-      <SendMessageDialog open={open} onOpenChange={setOpen} />
+      <StaffEditorDialog open={open} onOpenChange={setOpen} data={staff} />
     </>
   );
 }
