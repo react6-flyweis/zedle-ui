@@ -5,6 +5,8 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import type { IClient } from "../../types";
 import { AddServicesDialog } from "./AddServicesDialog";
 import { GiveDiscountDialog } from "./GiveDiscountDialog";
+import { PaymentMethodsDialog } from "./PaymentMethodsDialog";
+import { PreviewGenerateBillDialog } from "./PreviewGenerateBillDialog";
 
 export function CheckoutCard({ client }: { client: IClient }) {
   const t = useTranslations("checkoutCard");
@@ -58,22 +60,34 @@ export function CheckoutCard({ client }: { client: IClient }) {
               </span>
             </Button>
           </AddServicesDialog>
-          <Button
-            type="button"
-            className="rounded-none h-12 flex items-center justify-center whitespace-pre-line text-center px-2"
+          <PaymentMethodsDialog client={client}>
+            <Button
+              type="button"
+              className="rounded-none h-12 flex items-center justify-center whitespace-pre-line text-center px-2"
+            >
+              <span className="block w-full break-words text-center">
+                {t("actions.paymentMethods")}
+              </span>
+            </Button>
+          </PaymentMethodsDialog>
+          <PreviewGenerateBillDialog
+            client={client}
+            shop={{
+              name: "Shop Name",
+              phone: "+1 1234567890",
+              email: "example@gmail.com",
+              address: "123 abc, main street, Austin",
+            }}
           >
-            <span className="block w-full break-words text-center">
-              {t("actions.paymentMethods")}
-            </span>
-          </Button>
-          <Button
-            type="button"
-            className="rounded-none h-12 flex items-center justify-center whitespace-pre-line text-center px-2 bg-secondary text-secondary-foreground hover:bg-secondary/80"
-          >
-            <span className="block w-full break-words text-center">
-              {t("actions.previewGenerateBill")}
-            </span>
-          </Button>
+            <Button
+              type="button"
+              className="rounded-none h-12 flex items-center justify-center whitespace-pre-line text-center px-2 bg-secondary text-secondary-foreground hover:bg-secondary/80"
+            >
+              <span className="block w-full break-words text-center">
+                {t("actions.previewGenerateBill")}
+              </span>
+            </Button>
+          </PreviewGenerateBillDialog>
         </div>
       </CardFooter>
     </Card>
