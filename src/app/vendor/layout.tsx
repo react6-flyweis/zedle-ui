@@ -61,29 +61,23 @@ const foodNavigation: NavigationItem[] = [
   },
 ];
 
-// const travelNavigation: NavigationItem[] = [
-//   {
-//     title: "Home",
-//     href: "/vendor/travel-tourism",
-//     type: "link",
-//   },
-//   {
-//     title: "Search",
-//     href: "/vendor/travel-tourism/search",
-//     type: "link",
-//   },
-
-//   {
-//     title: "Services",
-//     href: "/vendor/travel-tourism/services",
-//     type: "link",
-//   },
-//   {
-//     title: "Favorites",
-//     href: "/vendor/travel-tourism/favorites",
-//     type: "link",
-//   },
-// ];
+const hotelLodgeNavigation: NavigationItem[] = [
+  {
+    title: "Home",
+    href: "/vendor/travel-tourism",
+    type: "link",
+  },
+  {
+    title: "Rooms",
+    href: "/vendor/travel-tourism/hotel-lodge/rooms",
+    type: "link",
+  },
+  {
+    title: "Checkout",
+    href: "/vendor/travel-tourism/hotel-lodge/checkout",
+    type: "link",
+  },
+];
 
 const enterpriseNavigation: NavigationItem[] = [
   {
@@ -118,11 +112,11 @@ function getNavigationForPath(pathname: string): NavigationItem[] {
   if (pathname.startsWith("/vendor/food")) {
     return foodNavigation;
   }
-  //   if (pathname.startsWith("/vendor/travel-tourism")) {
-  //     return travelNavigation;
-  //   }
   if (pathname.startsWith("/vendor/enterprise")) {
     return enterpriseNavigation;
+  }
+  if (pathname.startsWith("/vendor/travel-tourism/hotel-lodge")) {
+    return hotelLodgeNavigation;
   }
 
   // Default to grocery navigation
