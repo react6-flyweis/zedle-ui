@@ -69,12 +69,16 @@ interface RoomEditorDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSubmit: (data: RoomFormValues) => void;
+  defaultValues?: Partial<RoomFormValues>;
 }
+
+import { useEffect } from "react";
 
 export function RoomEditorDialog({
   open,
   onOpenChange,
   onSubmit,
+  defaultValues,
 }: RoomEditorDialogProps) {
   const t = useTranslations("roomEditor");
   const form = useForm<RoomFormValues>({
@@ -82,8 +86,17 @@ export function RoomEditorDialog({
     defaultValues: {
       amenities: [],
       images: [],
+      ...defaultValues,
     },
   });
+
+  useEffect(() => {
+    form.reset({
+      amenities: [],
+      images: [],
+      ...defaultValues,
+    });
+  }, [defaultValues, form.reset]);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
