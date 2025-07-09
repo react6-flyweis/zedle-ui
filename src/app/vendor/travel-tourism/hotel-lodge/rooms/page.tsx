@@ -2,9 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
-import { type Room, RoomCard } from "@/components/RoomCard";
 import { VendorHeroSection } from "@/components/VendorHero";
 import hotelLodgePoster from "../assets/hotel-lodge-poster.jpg";
+import { type Room, RoomCard } from "../components/RoomCard";
 import { RoomEditorDialog } from "../components/RoomEditorDialog";
 
 // Mock data for rooms
