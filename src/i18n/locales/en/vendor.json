@@ -188,6 +188,13 @@
     "dateWise": "Date Wise",
     "moneyWise": "Money Wise"
   },
+  "staffCard": {
+    "phoneLabel": "Phone No: {phone}",
+    "emailLabel": "Email: {email}",
+    "professionLabel": "Profession: {profession}",
+    "experienceLabel": "Experience: {years} years",
+    "editDetails": "Edit details"
+  },
   "clientCard": {
     "phoneLabel": "Phone No: {phone}",
     "emailLabel": "Email ID: {email}",
