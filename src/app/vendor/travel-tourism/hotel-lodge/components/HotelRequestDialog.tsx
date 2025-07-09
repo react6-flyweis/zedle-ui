@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/store/toastStore";
-import type { IRequest } from "./RequestCard";
+import type { IRequest } from "./HotelRequestCard";
 
 export function HotelRequestDialog({
   request,
