@@ -1,6 +1,4 @@
 "use client";
-import { Download, Share2 } from "lucide-react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -14,11 +12,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/store/toastStore";
-import type { IClient } from "../../types";
+import type { IUser } from "@/types/user";
 import { InvoicePreviewCard } from "./InvoicePreviewCard";
 
 interface PreviewGenerateBillDialogProps {
-  client: IClient;
+  client: IUser;
   shop: {
     name: string;
     phone: string;

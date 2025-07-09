@@ -1,14 +1,14 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { GiveDiscountDialog } from "@/components/GiveDiscountDialog";
+import { PaymentMethodsDialog } from "@/components/PaymentMethodsDialog";
+import { PreviewGenerateBillDialog } from "@/components/PreviewGenerateBillDialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import type { IClient } from "../../types";
+import type { IUser } from "@/types/user";
 import { AddServicesDialog } from "./AddServicesDialog";
-import { GiveDiscountDialog } from "./GiveDiscountDialog";
-import { PaymentMethodsDialog } from "./PaymentMethodsDialog";
-import { PreviewGenerateBillDialog } from "./PreviewGenerateBillDialog";
 
-export function CheckoutCard({ client }: { client: IClient }) {
+export function CheckoutCard({ client }: { client: IUser }) {
   const t = useTranslations("checkoutCard");
 
   return (
@@ -17,7 +17,7 @@ export function CheckoutCard({ client }: { client: IClient }) {
         <div className="flex items-center gap-6">
           <div className="relative w-24 h-24 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
             <Image
-              src={client.imageUrl}
+              src={client.image}
               alt={client.name}
               className="object-cover"
               height={200}

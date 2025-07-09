@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import type { IClient } from "../../types";
+import type { IUser } from "@/types/user";
 
 const paymentMethods = [
   {
@@ -41,7 +41,7 @@ const paymentMethods = [
 ];
 
 interface PaymentMethodsDialogProps {
-  client: IClient;
+  client: IUser;
   children: React.ReactNode;
 }
 
@@ -69,7 +69,7 @@ export function PaymentMethodsDialog({
           <div className="flex items-center gap-4 mt-4 mb-6">
             <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
               <Image
-                src={client.imageUrl}
+                src={client.image}
                 alt={client.name}
                 width={64}
                 height={64}

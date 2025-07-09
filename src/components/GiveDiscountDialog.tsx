@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "@/store/toastStore";
+import type { IUser } from "@/types/user";
 
 const discountSchema = z.object({
   offerName: z.string().min(1),
@@ -38,12 +39,7 @@ const discountSchema = z.object({
 type DiscountFormValues = z.infer<typeof discountSchema>;
 
 interface GiveDiscountDialogProps {
-  client: {
-    name: string;
-    phone: string;
-    email: string;
-    imageUrl: string;
-  };
+  client: IUser;
 }
 
 export function GiveDiscountDialog({
@@ -94,7 +90,7 @@ export function GiveDiscountDialog({
             <div className="flex items-center gap-4 mb-6">
               <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
                 <Image
-                  src={client.imageUrl}
+                  src={client.image}
                   alt={client.name}
                   width={64}
                   height={64}
