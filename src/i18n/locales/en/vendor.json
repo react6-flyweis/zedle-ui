@@ -359,5 +359,21 @@
     "generateButton": "Generate",
     "previewPlaceholder": "Preview will be shown here.",
     "close": "Close"
+  },
+  "invoicePreview": {
+    "title": "Preview or Download Invoice",
+    "shopName": "Shop Name",
+    "dateLabel": "Date: {date}",
+    "phoneLabel": "Phone No: {phone}",
+    "emailLabel": "Email ID: {email}",
+    "addressLabel": "Address: {address}",
+    "aboutClient": "About Client",
+    "clientName": "Client Name: {name}",
+    "aboutService": "About Service",
+    "serviceName": "Service Name: {name}",
+    "duration": "Duration: {duration}",
+    "price": "Price: {price}",
+    "share": "Share",
+    "download": "Download"
   }
 }
