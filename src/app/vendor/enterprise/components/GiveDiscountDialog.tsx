@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { toast } from "@/store/toastStore";
 
 const discountSchema = z.object({
   offerName: z.string().min(1),
@@ -70,6 +71,7 @@ export function GiveDiscountDialog({
   const onSubmit = () => {
     // handle submit
     setOpen(false);
+    toast(t("successToast"));
   };
 
   return (

@@ -290,6 +290,7 @@
     "send": "Send",
     "required": "This field is required.",
     "phoneLabel": "Phone No: {phone}",
-    "emailLabel": "Email ID: {email}"
+    "emailLabel": "Email ID: {email}",
+    "successToast": "The coupon was sent successfully."
   }
 }
