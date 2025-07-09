@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import type { IUser } from "@/types/user";
 
 const addServiceSchema = z.object({
   serviceName: z.string().min(1),
@@ -28,12 +29,7 @@ const addServiceSchema = z.object({
 type AddServiceFormValues = z.infer<typeof addServiceSchema>;
 
 interface AddServicesDialogProps {
-  client: {
-    name: string;
-    phone: string;
-    email: string;
-    imageUrl: string;
-  };
+  client: IUser;
   children: React.ReactNode;
 }
 
@@ -94,7 +90,7 @@ export function AddServicesDialog({
             <div className="flex items-center gap-4 mb-6">
               <div className="relative w-14 h-14 rounded-full overflow-hidden bg-secondary flex-shrink-0">
                 <Image
-                  src={client.imageUrl}
+                  src={client.image}
                   alt={client.name}
                   width={56}
                   height={56}
