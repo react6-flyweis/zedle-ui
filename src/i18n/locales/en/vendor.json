@@ -188,6 +188,13 @@
     "dateWise": "Date Wise",
     "moneyWise": "Money Wise"
   },
+  "enterprise": {
+    "checkout": {
+      "heroTitle": "List all users who are ready to proceed with the checkout.",
+      "heroSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed",
+      "addClientButton": "Add Client"
+    }
+  },
   "staffCard": {
     "phoneLabel": "Phone No: {phone}",
     "emailLabel": "Email: {email}",
