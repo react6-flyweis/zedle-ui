@@ -388,5 +388,14 @@
       "heroSubtitle": "Manage your hotel and lodge clients efficiently and securely.",
       "addClientButton": "Add Client"
     }
+  },
+  "roomCard": {
+    "singleRoom": "Single Room",
+    "doubleRoom": "Double Room",
+    "deluxeRoom": "Deluxe Room",
+    "roomNo": "Room No.",
+    "roomSizeLabel": "Room Size:",
+    "edit": "Edit",
+    "delete": "Delete"
   }
 }
