@@ -1,7 +1,6 @@
-import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { cn } from "@/lib/utils";
+import { RadioGroup } from "@/components/ui/radio-group";
+import { BusinessTypeCard } from "./BusinessTypeCard";
 
 export type BusinessTypeOption = {
   value: string;
@@ -130,50 +129,27 @@ export function BusinessTypeSelector({
       value={value}
       onValueChange={onChange}
     >
-      {businessTypes.map((type) => {
-        const selected = value === type.value;
-        return (
-          <div key={type.value} className="flex flex-col items-center">
-            <label className="flex flex-col items-center cursor-pointer w-full">
-              <input
-                type="radio"
-                name="businessType"
-                value={type.value}
-                checked={selected}
-                onChange={() => onChange(type.value)}
-                className="sr-only"
-                aria-label={t(type.labelKey)}
-              />
-              <div
-                className={cn(
-                  "flex flex-col items-center justify-center p-4 border border-primary rounded-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary bg-background",
-                  selected ? "bg-primary shadow-lg" : "",
-                  "relative",
-                )}
-              >
-                <Image
-                  src={type.image}
-                  alt={t(type.labelKey)}
-                  width={80}
-                  height={80}
-                  className={cn(
-                    "object-cover w-20 h-20 transition-all",
-                    selected ? "rounded-md scale-110" : "rounded-full",
-                  )}
-                />
-              </div>
-              <span
-                className={cn(
-                  "mt-2 text-sm font-medium text-center block w-[120px] truncate",
-                  selected ? "text-primary" : "text-foreground",
-                )}
-              >
-                {t(type.labelKey)}
-              </span>
-            </label>
-          </div>
-        );
-      })}
+      {businessTypes.map((type) => (
+        <label
+          key={type.value}
+          className="flex flex-col items-center cursor-pointer w-full"
+        >
+          <input
+            type="radio"
+            name="businessType"
+            value={type.value}
+            checked={value === type.value}
+            onChange={() => onChange(type.value)}
+            className="sr-only"
+            aria-label={type.labelKey}
+          />
+          <BusinessTypeCard
+            label={t(type.labelKey)}
+            image={type.image}
+            highlighted={value === type.value}
+          />
+        </label>
+      ))}
     </RadioGroup>
   );
 }
