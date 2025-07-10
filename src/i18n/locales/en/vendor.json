@@ -12,7 +12,8 @@
     "time": "Time",
     "requestId": "Request ID",
     "requestReschedule": "Request Reschedule",
-    "accept": "Accept"
+    "accept": "Accept",
+    "makeAQuote": "Make A Quote"
   },
   "rescheduleDialog": {
     "requestRescheduleTitle": "Request Reschedule",
