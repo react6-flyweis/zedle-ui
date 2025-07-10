@@ -61,24 +61,6 @@ const foodNavigation: NavigationItem[] = [
   },
 ];
 
-const hotelLodgeNavigation: NavigationItem[] = [
-  {
-    title: "Home",
-    href: "/vendor/travel-tourism/hotel-lodge",
-    type: "link",
-  },
-  {
-    title: "Rooms",
-    href: "/vendor/travel-tourism/hotel-lodge/rooms",
-    type: "link",
-  },
-  {
-    title: "Checkout",
-    href: "/vendor/travel-tourism/hotel-lodge/checkout",
-    type: "link",
-  },
-];
-
 const enterpriseNavigation: NavigationItem[] = [
   {
     title: "Home",
@@ -102,6 +84,42 @@ const enterpriseNavigation: NavigationItem[] = [
   },
 ];
 
+const hotelLodgeNavigation: NavigationItem[] = [
+  {
+    title: "Home",
+    href: "/vendor/travel-tourism/hotel-lodge",
+    type: "link",
+  },
+  {
+    title: "Rooms",
+    href: "/vendor/travel-tourism/hotel-lodge/rooms",
+    type: "link",
+  },
+  {
+    title: "Checkout",
+    href: "/vendor/travel-tourism/hotel-lodge/checkout",
+    type: "link",
+  },
+];
+
+const tourBookingNavigation: NavigationItem[] = [
+  {
+    title: "Home",
+    href: "/vendor/travel-tourism/tour-booking",
+    type: "link",
+  },
+  {
+    title: "Tours",
+    href: "/vendor/travel-tourism/tour-booking/tours",
+    type: "link",
+  },
+  {
+    title: "Chat",
+    href: "/vendor/travel-tourism/tour-booking/chat",
+    type: "link",
+  },
+];
+
 function getNavigationForPath(pathname: string): NavigationItem[] {
   if (pathname.startsWith("/vendor/grocery")) {
     return groceryNavigation;
@@ -117,6 +135,9 @@ function getNavigationForPath(pathname: string): NavigationItem[] {
   }
   if (pathname.startsWith("/vendor/travel-tourism/hotel-lodge")) {
     return hotelLodgeNavigation;
+  }
+  if (pathname.startsWith("/vendor/travel-tourism/tour-booking")) {
+    return tourBookingNavigation;
   }
 
   // Default to grocery navigation
