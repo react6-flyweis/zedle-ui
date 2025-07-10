@@ -11,6 +11,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { CATEGORIES } from "@/constants/categories";
 import { cn } from "@/lib/utils";
 
 // Define navigation item types
@@ -34,6 +35,13 @@ export type NavigationItem =
       icon?: never;
     };
 
+function mapToUrl(userType: string, category: { title: string; key: string }) {
+  return {
+    title: category.title,
+    href: `/login?type=${userType}&category=${category.key}`,
+  };
+}
+
 // Default navigation structure
 const defaultNavigationItems: NavigationItem[] = [
   {
@@ -44,55 +52,12 @@ const defaultNavigationItems: NavigationItem[] = [
   {
     title: "Users",
     type: "dropdown" as const,
-    items: [
-      {
-        title: "Grocery Delivery",
-        href: "/users/grocery",
-      },
-
-      {
-        title: "Logistics",
-        href: "/users/logistics",
-      },
-      {
-        title: "Food Delivery",
-        href: "/users/food",
-      },
-      {
-        title: "Travel & Tourism",
-        href: "/users/travel-tourism",
-      },
-      {
-        title: "Enterprise Hub",
-        href: "/users/enterprise",
-      },
-    ],
+    items: CATEGORIES.map((category) => mapToUrl("user", category)),
   },
   {
     title: "Vendor",
     type: "dropdown" as const,
-    items: [
-      {
-        title: "Grocery Delivery",
-        href: "/vendor/grocery",
-      },
-      {
-        title: "Logistics",
-        href: "/vendor/logistics",
-      },
-      {
-        title: "Food Delivery",
-        href: "/vendor/food-delivery",
-      },
-      {
-        title: "Travel & Tourism",
-        href: "/vendor/travel-tourism",
-      },
-      {
-        title: "Enterprise Hub",
-        href: "/vendor/enterprise",
-      },
-    ],
+    items: CATEGORIES.map((category) => mapToUrl("vendor", category)),
   },
   {
     title: "Delivery Partner",

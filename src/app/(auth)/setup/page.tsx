@@ -1,3 +1,4 @@
+import type { ICategory } from "@/constants/categories";
 import { VendorEnterpriseSignup } from "../components/VendorEnterpriseSignup";
 import { VendorFoodSignup } from "../components/VendorFoodSignup";
 import VendorGrocerySignup from "../components/VendorGrocerySignup";
@@ -13,22 +14,26 @@ export default async function page({
     return null;
   }
   const type = params.type;
-  const category = params.category;
+  const category = params.category as ICategory["key"];
 
-  // if (type === "delivery") {
-  //   return < />;
-  // }
+  if (type === "delivery") {
+    return <div>Delivery partner signup is not implemented yet.</div>;
+  }
 
   if (type === "vendor") {
     switch (category) {
-      case "Grocery":
+      case "grocery":
         return <VendorGrocerySignup />;
-      case "Food Delivery":
+      case "food":
         return <VendorFoodSignup />;
-      case "Logistics":
+      case "logistics":
         return <VendorLogisticsSignup />;
-      case "Enterprise Hub":
+      case "enterprise":
         return <VendorEnterpriseSignup />;
+      case "travel-tourism":
+        return (
+          <div>Travel and Tourism vendor signup is not implemented yet.</div>
+        );
       default:
         return <div>Unsupported vendor category: {category}</div>;
     }

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import foodIcon from "@/assets/icons/food.png";
@@ -15,6 +15,7 @@ import vendorIcon from "@/assets/icons/vendor.png";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CATEGORIES, type ICategory } from "@/constants/categories";
 
 const userTypes = [
   {
@@ -36,26 +37,30 @@ const userTypes = [
     description: "Deliver orders and earn money",
   },
 ];
-const serviceOptions = [
+
+const serviceOptions: {
+  iconSrc: string | StaticImageData;
+  key: ICategory["key"];
+}[] = [
   {
     iconSrc: groceryIcon,
-    title: "Grocery Delivery",
+    key: "grocery",
   },
   {
     iconSrc: truckIcon,
-    title: "Logistics",
+    key: "logistics",
   },
   {
     iconSrc: foodIcon,
-    title: "Food Delivery",
+    key: "food",
   },
   {
     iconSrc: travelIcon,
-    title: "Travel & Tourism",
+    key: "travel-tourism",
   },
   {
     iconSrc: hairDresserIcon,
-    title: "Enterprise Hub",
+    key: "enterprise",
   },
 ];
 
@@ -102,9 +107,9 @@ const ServiceButtons = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const serviceButtonClickHandler = (serviceTitle: string) => {
+  const serviceButtonClickHandler = (serviceKey: string) => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set("category", serviceTitle);
+    newSearchParams.set("category", serviceKey);
     const targetPath = searchParams.get("signup")
       ? `/signup?${newSearchParams.toString()}`
       : `/login?${newSearchParams.toString()}`;
@@ -115,23 +120,24 @@ const ServiceButtons = () => {
     <div className="w-full space-y-2">
       {serviceOptions.map((service) => (
         <Card
-          key={service.title}
+          key={service.key}
           className="p-0 overflow-hidden border border-primary transition-colors"
         >
           <Button
             variant="ghost"
             className="w-full h-auto p-4 justify-start text-left hover:bg-pink-50 rounded-none"
-            onClick={() => serviceButtonClickHandler(service.title)}
+            onClick={() => serviceButtonClickHandler(service.key)}
           >
             <div className="relative mr-3">
               <Image
                 src={service.iconSrc}
-                alt={service.title}
+                alt={service.key}
                 className="max-h-8 max-w-8 object-contain"
               />
             </div>
             <div className="font-semibold text-gray-900 text-lg">
-              {service.title}
+              {CATEGORIES.find((category) => category.key === service.key)
+                ?.title || service.key}
             </div>
           </Button>
         </Card>
