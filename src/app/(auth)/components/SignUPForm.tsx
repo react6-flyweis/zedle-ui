@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -81,7 +82,6 @@ export function SignupForm() {
   const handleOtpVerify = () => {
     const type = searchParams.get("type");
     if (signupData) {
-      // Preserve all current params and add emailOrPhone if not present
       const params = new URLSearchParams(searchParams.toString());
       if (type === "user") {
         return router.push(`/login?${params.toString()}`);
@@ -202,13 +202,11 @@ export function SignupForm() {
               control={form.control}
               name="agreedToTerms"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-2 space-y-0">
+                <FormItem className="flex flex-row items-start space-x-2 space-y-0 mt-1">
                   <FormControl>
-                    <input
-                      type="checkbox"
+                    <Checkbox
                       checked={field.value}
-                      onChange={field.onChange}
-                      className="mt-1 h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
+                      onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
