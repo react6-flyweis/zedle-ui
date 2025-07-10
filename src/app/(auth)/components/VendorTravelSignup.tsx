@@ -10,6 +10,7 @@ import carRentalCategory from "../assets/car-rental-category.jpg";
 import guideCategory from "../assets/guide-category.jpg";
 import hotelLodgeCategory from "../assets/hotel-lodge-category.jpg";
 import tourBookingCategory from "../assets/tour-booking-category.jpg";
+import { CarRentalSignup } from "./CarRentalSignup";
 import { VendorHotelLodgeSignup } from "./HotelLodgeSignup";
 import { TourBookingSignup } from "./TourBookingSignup";
 
@@ -34,11 +35,13 @@ const businessTypes = [
     key: "localGuides",
     image: guideCategory,
   },
-];
+] as const;
 
 export default function VendorTravelSignup() {
   const t = useTranslations("businessTypeSelector");
-  const [selected, setSelected] = useState<string | undefined>();
+  const [selected, setSelected] = useState<
+    (typeof businessTypes)[number]["key"] | undefined
+  >();
   const [agreed, setAgreed] = useState(false);
   const [step, setStep] = useState<"select" | "form">("select");
 
@@ -48,6 +51,10 @@ export default function VendorTravelSignup() {
       case "hotelLodge":
         return <VendorHotelLodgeSignup />;
       case "tourBooking":
+        return <TourBookingSignup />;
+      case "transportCar":
+        return <CarRentalSignup />;
+      case "adventure":
         return <TourBookingSignup />;
       default:
         return null;
