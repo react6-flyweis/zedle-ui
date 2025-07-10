@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { cn } from "@/lib/utils";
 
 export interface BusinessTypeCardProps {
   label: string;
-  image: string;
+  image: string | StaticImageData;
   highlighted: boolean;
 }
 
@@ -13,31 +13,37 @@ export function BusinessTypeCard({
   highlighted,
 }: BusinessTypeCardProps) {
   return (
-    <div
-      className={cn(
-        "flex flex-col items-center justify-center p-4 border border-primary rounded-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary bg-background",
-        highlighted ? "bg-primary shadow-lg" : "",
-        "relative",
-      )}
-    >
-      <Image
-        src={image}
-        alt={label}
-        width={80}
-        height={80}
+    <div className="">
+      <div
         className={cn(
-          "object-cover w-20 h-20 transition-all",
-          highlighted ? "rounded-md scale-110" : "rounded-full",
+          "flex flex-col items-center justify-center p-4 border border-primary rounded-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary bg-background",
+          highlighted ? "bg-primary shadow-lg" : "",
+          "relative",
         )}
-      />
-      <span
+      >
+        <div
+          className={cn(
+            "w-20 h-20 overflow-hidden transition-all duration-300",
+            highlighted ? "rounded-md scale-110" : "rounded-full",
+          )}
+        >
+          <Image
+            src={image}
+            alt={label}
+            width={80}
+            height={80}
+            className="object-cover w-full h-full"
+          />
+        </div>
+      </div>
+      <p
         className={cn(
           "mt-2 text-sm font-medium text-center block w-[120px] truncate",
           highlighted ? "text-primary" : "text-foreground",
         )}
       >
         {label}
-      </span>
+      </p>
     </div>
   );
 }
