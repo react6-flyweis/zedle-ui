@@ -51,5 +51,11 @@
     "close": "Close",
     "yes": "Yes",
     "no": "No"
+  },
+  "languageSelector": {
+    "label": "Language",
+    "englishUS": "English ( US )",
+    "englishUK": "English ( UK )",
+    "french": "French"
   }
 }
