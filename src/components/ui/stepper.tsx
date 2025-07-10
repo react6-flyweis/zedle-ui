@@ -13,6 +13,7 @@ import {
   useCallback,
   useContext,
   useImperativeHandle,
+  useRef,
   useState,
 } from "react";
 import { cn } from "@/lib/utils";
@@ -66,116 +67,151 @@ function useStepper() {
 }
 
 /** Unified Stepper */
-const Stepper = forwardRef<
-  UnifiedStepperRef,
-  {
-    children: ReactNode;
-    defaultValue?: number;
-    indicatorStyle?: "line" | "dot" | "progress";
-  }
->(({ children, defaultValue = 1, indicatorStyle = "line" }, ref) => {
-  const [step, setStep] = useState(defaultValue);
-  const [loading, setLoading] = useState(false);
+interface StepperProps {
+  children: ReactNode;
+  defaultValue?: number;
+  indicatorStyle?: "line" | "dot" | "progress";
+  onFinish?: () => void | Promise<void>;
+}
 
-  // Filter children to only accept StepperStep, StepperHeader, StepperFooter
-  const validChildren = Children.toArray(children).filter((child) => {
-    if (!isValidElement(child)) return false;
-    return (
-      child.type === StepperStep ||
-      child.type === StepperHeader ||
-      child.type === StepperFooter
+const Stepper = forwardRef<UnifiedStepperRef, StepperProps>(
+  ({ children, defaultValue = 1, indicatorStyle = "line", onFinish }, ref) => {
+    const [step, setStep] = useState(defaultValue);
+    const [loading, setLoading] = useState(false);
+    const stepperRef = useRef<HTMLDivElement>(null);
+
+    // Filter children to only accept StepperStep, StepperHeader, StepperFooter
+    const validChildren = Children.toArray(children).filter((child) => {
+      if (!isValidElement(child)) return false;
+      return (
+        child.type === StepperStep ||
+        child.type === StepperHeader ||
+        child.type === StepperFooter
+      );
+    });
+
+    const stepChildren = validChildren.filter(
+      (child) => isValidElement(child) && child.type === StepperStep,
+    ) as ReactElement[];
+
+    const stepperHeader = validChildren.find(
+      (child) => isValidElement(child) && child.type === StepperHeader,
     );
-  });
 
-  const stepChildren = validChildren.filter(
-    (child) => isValidElement(child) && child.type === StepperStep,
-  ) as ReactElement[];
+    const stepperFooter = validChildren.find(
+      (child) => isValidElement(child) && child.type === StepperFooter,
+    );
 
-  const stepperHeader = validChildren.find(
-    (child) => isValidElement(child) && child.type === StepperHeader,
-  );
+    const steps: Step[] = stepChildren.map((child) => ({
+      element: child,
+      label: (child.props as StepperStepProps)?.label,
+      description: (child.props as StepperStepProps)?.description,
+      onValidate: (child.props as StepperStepProps)?.onValidate,
+      isLoading: (child.props as StepperStepProps)?.isLoading,
+    }));
 
-  const stepperFooter = validChildren.find(
-    (child) => isValidElement(child) && child.type === StepperFooter,
-  );
+    const totalSteps = steps.length;
+    const current = steps[step - 1];
+    const canGoNext = step < totalSteps;
+    const canGoPrev = step > 1;
 
-  const steps: Step[] = stepChildren.map((child) => ({
-    element: child,
-    label: (child.props as StepperStepProps)?.label,
-    description: (child.props as StepperStepProps)?.description,
-    onValidate: (child.props as StepperStepProps)?.onValidate,
-    isLoading: (child.props as StepperStepProps)?.isLoading,
-  }));
+    const nextStep = useCallback(() => {
+      if (step < totalSteps) setStep((s) => s + 1);
+    }, [step, totalSteps]);
 
-  const totalSteps = steps.length;
-  const current = steps[step - 1];
-  const canGoNext = step < totalSteps;
-  const canGoPrev = step > 1;
+    const prevStep = useCallback(() => {
+      if (step > 1) setStep((s) => s - 1);
+    }, [step]);
 
-  const nextStep = useCallback(() => {
-    if (step < totalSteps) setStep((s) => s + 1);
-  }, [step, totalSteps]);
+    const goToStep = useCallback(
+      (index: number) => {
+        if (index >= 1 && index <= totalSteps) setStep(index);
+      },
+      [totalSteps],
+    );
 
-  const prevStep = useCallback(() => {
-    if (step > 1) setStep((s) => s - 1);
-  }, [step]);
+    // Helper to submit the closest form
+    const submitClosestForm = useCallback(() => {
+      const form = stepperRef.current?.closest("form");
+      if (form) {
+        if (typeof (form as HTMLFormElement).requestSubmit === "function") {
+          (form as HTMLFormElement).requestSubmit();
+        } else {
+          (form as HTMLFormElement).submit();
+        }
+      }
+    }, []);
 
-  const goToStep = useCallback(
-    (index: number) => {
-      if (index >= 1 && index <= totalSteps) setStep(index);
-    },
-    [totalSteps],
-  );
+    const validateAndGoNext = useCallback(async () => {
+      if (current?.onValidate) {
+        setLoading(true);
+        const result = await current.onValidate();
+        setLoading(false);
+        if (result) {
+          if (step < totalSteps) {
+            nextStep();
+          } else if (step === totalSteps) {
+            if (onFinish) {
+              await onFinish();
+            } else {
+              submitClosestForm();
+            }
+          }
+        }
+      } else {
+        if (step < totalSteps) {
+          nextStep();
+        } else if (step === totalSteps) {
+          if (onFinish) {
+            await onFinish();
+          } else {
+            submitClosestForm();
+          }
+        }
+      }
+    }, [current, nextStep, step, totalSteps, onFinish, submitClosestForm]);
 
-  const validateAndGoNext = useCallback(async () => {
-    if (current?.onValidate) {
-      setLoading(true);
-      const result = await current.onValidate();
-      setLoading(false);
-      if (result) nextStep();
-    } else {
-      nextStep();
-    }
-  }, [current, nextStep]);
+    useImperativeHandle(ref, () => ({
+      goNext: nextStep,
+      goPrev: prevStep,
+      goToStep,
+      currentStep: step,
+      validateAndGoNext,
+    }));
 
-  useImperativeHandle(ref, () => ({
-    goNext: nextStep,
-    goPrev: prevStep,
-    goToStep,
-    currentStep: step,
-    validateAndGoNext,
-  }));
+    return (
+      <StepperContext.Provider
+        value={{
+          currentStep: step,
+          steps,
+          totalSteps,
+          nextStep,
+          prevStep,
+          goToStep,
+          canGoNext,
+          canGoPrev,
+          isLoading: loading,
+          setLoading: setLoading,
+          indicatorStyle,
+          validateAndGoNext,
+        }}
+      >
+        <div className="flex flex-col w-full space-y-4" ref={stepperRef}>
+          {/* Header - Fixed at top */}
+          {stepperHeader || <StepperHeader />}
 
-  return (
-    <StepperContext.Provider
-      value={{
-        currentStep: step,
-        steps,
-        totalSteps,
-        nextStep,
-        prevStep,
-        goToStep,
-        canGoNext,
-        canGoPrev,
-        isLoading: loading,
-        setLoading: setLoading,
-        indicatorStyle,
-        validateAndGoNext,
-      }}
-    >
-      <div className="flex flex-col w-full space-y-4">
-        {/* Header - Fixed at top */}
-        {stepperHeader || <StepperHeader />}
+          {/* Current Step Content */}
+          <div className="flex-1">
+            {current && cloneElement(current.element)}
+          </div>
 
-        {/* Current Step Content */}
-        <div className="flex-1">{current && cloneElement(current.element)}</div>
-
-        {/* Footer - Fixed at bottom */}
-        {stepperFooter || <StepperFooter />}
-      </div>
-    </StepperContext.Provider>
-  );
-});
+          {/* Footer - Fixed at bottom */}
+          {stepperFooter || <StepperFooter />}
+        </div>
+      </StepperContext.Provider>
+    );
+  },
+);
 
 Stepper.displayName = "Stepper";
 
@@ -253,10 +289,10 @@ function StepperNext({
   children,
   ...props
 }: StepperNextProps) {
-  const { canGoNext, isLoading } = useStepper();
+  const { canGoNext, isLoading, currentStep, totalSteps } = useStepper();
   const Comp = asChild ? Slot.Root : "button";
   const stepperContext = useStepper();
-  // Use validateAndGoNext for validation before moving next
+  // Use validateAndGoNext for validation before moving next or finishing
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (stepperContext.validateAndGoNext) {
@@ -264,22 +300,32 @@ function StepperNext({
     }
   };
 
+  // Enable button on last step for submission
+  const isFinalStep = currentStep === totalSteps;
+
   return (
     <Comp
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
         className,
       )}
+      type={canGoNext ? "button" : "submit"}
       onClick={handleClick}
-      disabled={!canGoNext || isLoading}
+      disabled={isLoading}
       {...props}
     >
-      {children || (
-        <>
-          Next
-          <ChevronRight className="ml-1 h-4 w-4" />
-        </>
-      )}
+      {children ||
+        (isFinalStep ? (
+          <>
+            Finish
+            <Check className="ml-1 h-4 w-4" />
+          </>
+        ) : (
+          <>
+            Next
+            <ChevronRight className="ml-1 h-4 w-4" />
+          </>
+        ))}
     </Comp>
   );
 }
@@ -305,6 +351,7 @@ function StepperBack({
         "inline-flex items-center justify-center gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
         className,
       )}
+      type="button"
       onClick={prevStep}
       disabled={!canGoPrev || isLoading}
       {...props}
