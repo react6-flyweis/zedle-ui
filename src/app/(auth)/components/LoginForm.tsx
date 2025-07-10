@@ -61,7 +61,7 @@ export function LoginForm() {
   const handleNext = () => {
     const category = searchParams.get("category") || "grocery";
     const userType = searchParams.get("type") || "users";
-    const userPath = userType === "delivery" ? "delivery-partner" : "users";
+    const userPath = userType === "delivery" ? "delivery-partner" : userType;
     const targetPath = `/${userPath}/${userType !== "delivery" ? category : ""}`;
     router.push(targetPath);
   };

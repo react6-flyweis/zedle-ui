@@ -79,9 +79,13 @@ export function SignupForm() {
   };
 
   const handleOtpVerify = () => {
+    const type = searchParams.get("type");
     if (signupData) {
       // Preserve all current params and add emailOrPhone if not present
       const params = new URLSearchParams(searchParams.toString());
+      if (type === "user") {
+        return router.push(`/login?${params.toString()}`);
+      }
       router.push(`/setup?${params.toString()}`);
     }
   };
