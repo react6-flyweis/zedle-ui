@@ -11,6 +11,7 @@ import guideCategory from "../assets/guide-category.jpg";
 import hotelLodgeCategory from "../assets/hotel-lodge-category.jpg";
 import tourBookingCategory from "../assets/tour-booking-category.jpg";
 import { VendorHotelLodgeSignup } from "./HotelLodgeSignup";
+import { TourBookingSignup } from "./TourBookingSignup";
 
 const businessTypes = [
   {
@@ -46,8 +47,8 @@ export default function VendorTravelSignup() {
     switch (selected) {
       case "hotelLodge":
         return <VendorHotelLodgeSignup />;
-      // case "tourBooking":
-      //   return <TourBookingSignup />;
+      case "tourBooking":
+        return <TourBookingSignup />;
       default:
         return null;
     }
