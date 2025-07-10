@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PlusIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -26,6 +27,7 @@ import {
   StepperStep,
 } from "@/components/ui/stepper";
 import { cn } from "@/lib/utils";
+import { toast } from "@/store/toastStore";
 
 const amenitiesKeys = [
   "cable",
@@ -77,6 +79,7 @@ type HotelLodgeSignupFormValues = z.infer<typeof hotelLodgeSignupSchema>;
 
 export function VendorHotelLodgeSignup() {
   const t = useTranslations("vendorSignup");
+  const router = useRouter();
   const form = useForm<HotelLodgeSignupFormValues>({
     resolver: zodResolver(hotelLodgeSignupSchema),
     defaultValues: {
@@ -130,6 +133,8 @@ export function VendorHotelLodgeSignup() {
     // handle submit
     // Optionally, use stepper's loading state if needed
     console.log(_data);
+    toast(t("accountCreatedSuccess"));
+    router.push("/vendor/travel-tourism/hotel-lodge/");
   };
 
   return (
