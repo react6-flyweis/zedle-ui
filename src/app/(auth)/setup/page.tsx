@@ -3,6 +3,7 @@ import { VendorEnterpriseSignup } from "../components/VendorEnterpriseSignup";
 import { VendorFoodSignup } from "../components/VendorFoodSignup";
 import VendorGrocerySignup from "../components/VendorGrocerySignup";
 import { VendorLogisticsSignup } from "../components/VendorLogisticsSignup";
+import VendorTravelSignup from "../components/VendorTravelSignup";
 
 export default async function page({
   searchParams,
@@ -31,9 +32,7 @@ export default async function page({
       case "enterprise":
         return <VendorEnterpriseSignup />;
       case "travel-tourism":
-        return (
-          <div>Travel and Tourism vendor signup is not implemented yet.</div>
-        );
+        return <VendorTravelSignup />;
       default:
         return <div>Unsupported vendor category: {category}</div>;
     }
