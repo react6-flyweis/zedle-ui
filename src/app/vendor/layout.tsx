@@ -133,7 +133,7 @@ export default function VendorLayout({
 
   return (
     <>
-      <Header navigation={navigation} chipMenuStyle />
+      <Header navigation={navigation} chipMenuStyle showLanguageSelector />
       <main>{children}</main>
       <Footer />
     </>
