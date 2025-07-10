@@ -17,7 +17,7 @@ export default getRequestConfig(async () => {
   messages.push(defaultMessages);
   const partnerMessages = (await import(`./locales/${locale}/delivery.json`))
     .default;
-  const userMessages = (await import(`./locales/${locale}.json`)).default;
+  const userMessages = (await import(`./locales/${locale}/user.json`)).default;
   const vendorMessages = await import(`./locales/${locale}/vendor.json`);
   const authMessages = (await import(`./locales/${locale}/auth.json`)).default;
   messages.push(partnerMessages, userMessages, authMessages, vendorMessages);
