@@ -13,6 +13,7 @@ import tourBookingCategory from "../assets/tour-booking-category.jpg";
 import { CarRentalSignup } from "./CarRentalSignup";
 import { VendorHotelLodgeSignup } from "./HotelLodgeSignup";
 import { TourBookingSignup } from "./TourBookingSignup";
+import { VendorGuideSignup } from "./VendorGuideSignup";
 
 const businessTypes = [
   {
@@ -56,6 +57,8 @@ export default function VendorTravelSignup() {
         return <CarRentalSignup />;
       case "adventure":
         return <TourBookingSignup />;
+      case "localGuides":
+        return <VendorGuideSignup />;
       default:
         return null;
     }
