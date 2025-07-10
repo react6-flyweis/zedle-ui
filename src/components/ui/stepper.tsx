@@ -56,6 +56,7 @@ type UnifiedStepperContextType = {
   setLoading: (loading: boolean) => void;
   indicatorStyle?: "line" | "dot" | "progress";
   validateAndGoNext: () => Promise<void>;
+  isLastStep: boolean;
 };
 
 const StepperContext = createContext<UnifiedStepperContextType | null>(null);
@@ -179,6 +180,7 @@ const Stepper = forwardRef<UnifiedStepperRef, StepperProps>(
       validateAndGoNext,
     }));
 
+    const isLastStep = step === totalSteps;
     return (
       <StepperContext.Provider
         value={{
@@ -194,6 +196,7 @@ const Stepper = forwardRef<UnifiedStepperRef, StepperProps>(
           setLoading: setLoading,
           indicatorStyle,
           validateAndGoNext,
+          isLastStep,
         }}
       >
         <div className="flex flex-col w-full space-y-4" ref={stepperRef}>
@@ -279,8 +282,9 @@ function StepperFooter({
 
 /** StepperNext */
 interface StepperNextProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   asChild?: boolean;
+  children?: ReactNode | ((args: { isLastStep: boolean }) => ReactNode);
 }
 
 function StepperNext({
@@ -289,7 +293,7 @@ function StepperNext({
   children,
   ...props
 }: StepperNextProps) {
-  const { canGoNext, isLoading, currentStep, totalSteps } = useStepper();
+  const { canGoNext, isLoading, isLastStep } = useStepper();
   const Comp = asChild ? Slot.Root : "button";
   const stepperContext = useStepper();
   // Use validateAndGoNext for validation before moving next or finishing
@@ -300,9 +304,25 @@ function StepperNext({
     }
   };
 
-  // Enable button on last step for submission
-  const isFinalStep = currentStep === totalSteps;
-
+  const renderChildren = () => {
+    if (typeof children === "function") {
+      return children({ isLastStep });
+    }
+    return (
+      children ||
+      (isLastStep ? (
+        <>
+          Finish
+          <Check className="ml-1 h-4 w-4" />
+        </>
+      ) : (
+        <>
+          Next
+          <ChevronRight className="ml-1 h-4 w-4" />
+        </>
+      ))
+    );
+  };
   return (
     <Comp
       className={cn(
@@ -314,18 +334,7 @@ function StepperNext({
       disabled={isLoading}
       {...props}
     >
-      {children ||
-        (isFinalStep ? (
-          <>
-            Finish
-            <Check className="ml-1 h-4 w-4" />
-          </>
-        ) : (
-          <>
-            Next
-            <ChevronRight className="ml-1 h-4 w-4" />
-          </>
-        ))}
+      {renderChildren()}
     </Comp>
   );
 }
