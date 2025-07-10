@@ -112,7 +112,7 @@ export function TourBookingSignup() {
   const onSubmit = (_data: TourBookingSignupFormValues) => {
     console.log("Form submitted successfully", _data);
     toast(t("accountCreatedSuccess"));
-    router.push("/vendor/travel-tourism/hotel-lodge/");
+    router.push("/vendor/travel-tourism/tour-booking/");
   };
 
   return (
