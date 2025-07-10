@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import logo from "@/assets/images/logo-horizontal.png";
+import { LanguageSelector } from "@/components/LanguageSelector";
 import { type NavigationItem, NavMenu } from "@/components/nav-menu";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,6 +19,7 @@ interface HeaderProps {
   navigation?: NavigationItem[];
   showAuthButtons?: boolean;
   centeredNavigation?: boolean;
+  showLanguageSelector?: boolean;
 }
 
 export default function Header({
@@ -25,6 +27,7 @@ export default function Header({
   navigation,
   showAuthButtons = true,
   centeredNavigation = false,
+  showLanguageSelector = false,
 }: HeaderProps) {
   const t = useTranslations("header");
 
@@ -42,8 +45,9 @@ export default function Header({
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center gap-4">
               <NavMenu navigationItems={navigation} chipStyle={chipMenuStyle} />
+              {showLanguageSelector && <LanguageSelector className="ml-2" />}
             </div>
 
             {/* Desktop Auth Buttons */}
@@ -78,6 +82,12 @@ export default function Header({
                     chipStyle={chipMenuStyle}
                     vertical
                   />
+                  {showLanguageSelector && (
+                    <div className="flex justify-center">
+                      <LanguageSelector />
+                    </div>
+                  )}
+
                   {showAuthButtons && (
                     <div className="flex flex-col gap-3 mt-4">
                       <Link href="/choose?signin=true">

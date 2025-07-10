@@ -14,7 +14,7 @@ import { useLanguageStore } from "@/store/LanguageStore";
 const languages = [
   { code: "en-US", label: "englishUS" },
   { code: "en-UK", label: "englishUK" },
-  { code: "fr", label: "french" },
+  // { code: "fr", label: "french" },
 ];
 export function LanguageSelector({ className }: { className?: string }) {
   const t = useTranslations("languageSelector");
