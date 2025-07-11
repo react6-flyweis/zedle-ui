@@ -27,6 +27,8 @@ export const MessageScreen = () => {
       isOnline: true,
       phone: "+1 987654-2210",
       email: "example@gmail.com",
+      isTyping: false,
+      isRead: false,
     },
     {
       id: "2",
@@ -39,6 +41,8 @@ export const MessageScreen = () => {
       isOnline: false,
       phone: "+1 987654-2211",
       email: "design@example.com",
+      isTyping: true,
+      isRead: true,
     },
     {
       id: "3",
@@ -51,6 +55,8 @@ export const MessageScreen = () => {
       isOnline: true,
       phone: "+1 987654-2212",
       email: "killian@example.com",
+      isTyping: false,
+      isRead: false,
     },
     {
       id: "4",
@@ -63,6 +69,8 @@ export const MessageScreen = () => {
       isOnline: false,
       phone: "+1 987654-2213",
       email: "claudia@example.com",
+      isTyping: false,
+      isRead: true,
     },
     {
       id: "5",
@@ -75,6 +83,8 @@ export const MessageScreen = () => {
       isOnline: true,
       phone: "+1 987654-2214",
       email: "novita@example.com",
+      isTyping: false,
+      isRead: false,
     },
     {
       id: "6",
@@ -87,6 +97,8 @@ export const MessageScreen = () => {
       isOnline: false,
       phone: "+1 987654-2215",
       email: "millie@example.com",
+      isTyping: false,
+      isRead: false,
     },
     {
       id: "7",
@@ -99,6 +111,8 @@ export const MessageScreen = () => {
       isOnline: true,
       phone: "+1 987654-2216",
       email: "ikhwan@example.com",
+      isTyping: false,
+      isRead: true,
     },
     {
       id: "8",
@@ -111,6 +125,8 @@ export const MessageScreen = () => {
       isOnline: false,
       phone: "+1 987654-2217",
       email: "aditya@example.com",
+      isTyping: false,
+      isRead: true,
     },
   ];
 
@@ -123,6 +139,8 @@ export const MessageScreen = () => {
           timestamp: "10:12 AM",
           status: "read",
           type: "text",
+          avatar: selectedContact.avatar,
+          senderName: selectedContact.name,
         },
         {
           id: "2",
@@ -131,6 +149,8 @@ export const MessageScreen = () => {
           timestamp: "10:12 AM",
           status: "read",
           type: "text",
+          avatar: selectedContact.avatar,
+          senderName: selectedContact.name,
         },
         {
           id: "3",
@@ -140,6 +160,8 @@ export const MessageScreen = () => {
           timestamp: "10:50 AM",
           status: "read",
           type: "text",
+          avatar: selectedContact.avatar,
+          senderName: selectedContact.name,
         },
         {
           id: "4",
@@ -148,6 +170,8 @@ export const MessageScreen = () => {
           timestamp: "10:50 AM",
           status: "read",
           type: "text",
+          avatar: selectedContact.avatar,
+          senderName: selectedContact.name,
         },
         {
           id: "5",
@@ -156,6 +180,9 @@ export const MessageScreen = () => {
           timestamp: "10:50 AM",
           status: "read",
           type: "text",
+          avatar:
+            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+          senderName: "You",
         },
       ]
     : [];

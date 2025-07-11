@@ -16,6 +16,8 @@ export interface Contact {
   isOnline: boolean;
   phone: string;
   email: string;
+  isTyping?: boolean;
+  isRead?: boolean;
 }
 
 interface ContactListProps {
