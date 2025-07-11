@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import requestCardBg from "../assets/car-rental-bg.jpg";
+import { AssignDriverDialog } from "./AssignDriverDialog";
 
 export type OrderBase = {
   id: string;
@@ -208,7 +209,7 @@ export function CarRentalRequest({ order }: { order: IOrder }) {
           {order.status === "pending" && (
             <div className="px-8 flex justify-between gap-4 transition-opacity duration-200">
               <Button
-                className="flex-1 bg-destructive hover:bg-destructive/90"
+                className="w-full bg-destructive hover:bg-destructive/90"
                 type="button"
                 variant="destructive"
               >
@@ -218,12 +219,14 @@ export function CarRentalRequest({ order }: { order: IOrder }) {
           )}
           {order.status === "running" && (
             <div className="px-8 flex justify-center transition-opacity duration-200">
-              <Button
-                className="w-full bg-yellow-500 hover:bg-yellow-600 text-foreground"
-                type="button"
-              >
-                {t("actions.start")}
-              </Button>
+              <AssignDriverDialog>
+                <Button
+                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-foreground"
+                  type="button"
+                >
+                  {t("actions.start")}
+                </Button>
+              </AssignDriverDialog>
             </div>
           )}
         </div>

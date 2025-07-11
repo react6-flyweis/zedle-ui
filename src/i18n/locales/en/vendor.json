@@ -511,5 +511,18 @@
     "runningOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed.",
     "completedOrdersTitle": "Showing Completed Requests by you.",
     "completedOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed."
+  },
+  "assignDriverDialog": {
+    "title": "Add A Driver",
+    "driverName": "Driver's Name",
+    "driverNamePlaceholder": "enter driver's name...",
+    "driverPhone": "Driver's Phone Number",
+    "driverPhonePlaceholder": "enter driver's phone number...",
+    "driverLicense": "Driver's License Number",
+    "driverLicensePlaceholder": "enter driver's license number...",
+    "carLicense": "Car License Number",
+    "carLicensePlaceholder": "enter car license number...",
+    "assignOrder": "Assign The Order",
+    "assignSuccess": "Your Successfully Assigned A Driver."
   }
 }
