@@ -6,6 +6,7 @@ import { type PropsWithChildren, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import type { IRequest } from "@/app/vendor/types/request";
+import { MakeAQuoteDialog } from "@/components/MakeAQuoteDialog";
 import { RequestRescheduleDialog } from "@/components/RequestRescheduleDialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,7 +25,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/store/toastStore";
-import { MakeAQuoteDialog } from "./MakeAQuoteDialog";
 
 export function TourRequestDialog({
   request,
