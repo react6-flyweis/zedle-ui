@@ -446,6 +446,15 @@
     "ongoingRequestsTitle": "Showing Ongoing Requests for you.",
     "ongoingRequestsSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed."
   },
+  "toursPage": {
+    "upcomingTours": "Upcoming Tours",
+    "pastTours": "Past Tours",
+    "ongoingTourRequestsTitle": "Showing Ongoing Tour Requests for you.",
+    "completedTourRequestsTitle": "Showing Completed Tour Requests for you.",
+    "tourRequestsSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed",
+    "pendingTourIconAlt": "Pending Tour",
+    "completedTourIconAlt": "Completed Tour"
+  },
   "tourCard": {
     "completedStatus": "Completed",
     "requestId": "Request ID",
