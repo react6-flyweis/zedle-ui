@@ -498,5 +498,18 @@
   "carRentalHero": {
     "ongoingRequestsTitle": "Showing Ongoing Requests for you.",
     "ongoingRequestsSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed"
+  },
+  "carRentalOrders": {
+    "tabs": {
+      "pendingOrders": "Pending Orders",
+      "runningOrders": "Running Orders",
+      "completedOrders": "Completed Orders"
+    },
+    "pendingOrdersTitle": "Showing Pending Requests for you.",
+    "pendingOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed.",
+    "runningOrdersTitle": "Showing Ongoing Requests for you.",
+    "runningOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed.",
+    "completedOrdersTitle": "Showing Completed Requests by you.",
+    "completedOrdersSubtitle": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed."
   }
 }
