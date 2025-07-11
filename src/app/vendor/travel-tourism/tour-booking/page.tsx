@@ -1,6 +1,6 @@
 import { Testimonials } from "@/components/testimonials";
 import { TourRequestCardGrid } from "./components/TourRequestCardGrid";
-import { VendorTourBookingHero } from "./components/VendorHotelLodgeHero";
+import { VendorTourBookingHero } from "./components/VendorTourBookingHero";
 import { VendorTourBookingPersonalized } from "./components/VendorTourBookingPersonalized";
 
 export default function page() {
