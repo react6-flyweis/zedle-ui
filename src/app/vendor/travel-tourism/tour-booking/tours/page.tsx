@@ -5,11 +5,10 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { VendorHeroSection } from "@/components/VendorHero";
-import completedTourIcon from "../assets/completed-tour.png";
-
-import pendingTourIcon from "../assets/pending-tour.png";
+import completedTourIcon from "../../assets/completed-tour.png";
+import pendingTourIcon from "../../assets/pending-tour.png";
 import tourBookingPoster from "../assets/vendor-tour-booking-poster.jpg";
-import { type ITour, VendorTourCard } from "./VendorTourCard";
+import { type ITour, VendorTourCard } from "../components/VendorTourCard";
 
 export default function ToursPage() {
   const t = useTranslations("toursPage");
