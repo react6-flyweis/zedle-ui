@@ -462,6 +462,7 @@
   "tourCard": {
     "completedStatus": "Completed",
     "requestId": "Request ID",
+    "priceLabel": "Price",
     "date": "Date",
     "time": "Time"
   },
