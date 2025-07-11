@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import { CalendarDialog } from "./CalendarDialog";
 
 interface HeroSectionProps {
@@ -21,12 +22,13 @@ interface HeroSectionProps {
   onSort?: (filters: string[]) => void;
   onAdd?: () => void;
   showCalendar?: boolean;
-  onSelectDate?: (date: Date) => void;
   addButtonText?: string;
   sortOptions?: string[];
   filterOptions?: string[];
   onSearch?: (query: string) => void;
   onFilterChange?: (filters: string[]) => void;
+  className?: string;
+  onSelectDate?: (date: Date | undefined) => void;
 }
 
 export function VendorHeroSection({
@@ -39,6 +41,8 @@ export function VendorHeroSection({
   showCalendar,
   sortOptions = [],
   onSort,
+  onSelectDate,
+  className,
 }: HeroSectionProps) {
   const t = useTranslations("hero");
   const [query, setQuery] = useState("");
@@ -67,8 +71,19 @@ export function VendorHeroSection({
   const toShowCalendar =
     showCalendar === true || (showCalendar === undefined && !onAdd);
 
+  const handleSelectDate = (date: Date | undefined) => {
+    if (onSelectDate) {
+      onSelectDate(date);
+    }
+  };
+
   return (
-    <div className="relative py-20 flex flex-col justify-center items-center w-full">
+    <div
+      className={cn(
+        "relative py-20 flex flex-col justify-center items-center w-full",
+        className,
+      )}
+    >
       <div className="absolute inset-0 -z-10">
         <Image
           src={poster}
@@ -167,7 +182,7 @@ export function VendorHeroSection({
       <CalendarDialog
         open={isCalendarOpen}
         onOpenChange={setIsCalendarOpen}
-        onSelectDate={() => {}}
+        onSelectDate={handleSelectDate}
       />
     </div>
   );
