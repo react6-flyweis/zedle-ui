@@ -16,7 +16,8 @@
     "dropoffPoint": "Dropoff Point",
     "requestReschedule": "Request Reschedule",
     "accept": "Accept",
-    "makeAQuote": "Make A Quote"
+    "makeAQuote": "Make A Quote",
+    "needHelpIn": "Need Help In"
   },
   "rescheduleDialog": {
     "requestRescheduleTitle": "Request Reschedule",

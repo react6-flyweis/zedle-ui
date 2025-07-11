@@ -1,0 +1,134 @@
+import { GuideRequestCard, type IGuideRequest } from "./GuideRequestCard";
+
+const mockRequests: IGuideRequest[] = [
+  {
+    name: "Chance Dokidis",
+    phone: "+1 123-456-7897",
+    email: "chance.dokidis@example.com",
+    requestId: "1669297459",
+    date: "16-May, 2025 Tue",
+    status: "SP Assigned",
+    imageUrl:
+      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=facearea&w=256&h=256&q=80",
+    needHelpIn: "Cultural Insights",
+    time: "16:30-17:00",
+  },
+  {
+    name: "Charlie Saris",
+    phone: "+1 123-456-7895",
+    email: "charlie.saris@example.com",
+    requestId: "1669297457",
+    date: "14-May, 2025 Sun",
+    status: "SP Assigned",
+    imageUrl:
+      "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=facearea&w=256&h=256&q=80",
+    needHelpIn: "Cultural Insights",
+    time: "16:30-17:00",
+  },
+  {
+    name: "Martin Ekstrom Bothman",
+    phone: "+1 123-456-7898",
+    email: "martin.bothman@example.com",
+    requestId: "1669297460",
+    date: "17-May, 2025 Wed",
+    status: "SP Assigned",
+    imageUrl:
+      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=256&h=256&q=80",
+    needHelpIn: "Cultural Insights",
+    time: "16:30-17:00",
+  },
+  {
+    name: "Roger Westervelt",
+    phone: "+1 123-456-7896",
+    email: "roger.westervelt@example.com",
+    requestId: "1669297458",
+    date: "15-May, 2025 Mon",
+    status: "SP Assigned",
+    imageUrl:
+      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=256&h=256&q=80",
+    needHelpIn: "Cultural Insights",
+    time: "16:30-17:00",
+  },
+  {
+    name: "James Septimus",
+    phone: "+1 123-456-7894",
+    email: "james.septimus@example.com",
+    requestId: "1669297456",
+    date: "13-May, 2025 Sat",
+    status: "SP Assigned",
+    imageUrl:
+      "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=facearea&w=256&h=256&q=80",
+    needHelpIn: "Cultural Insights",
+    time: "16:30-17:00",
+  },
+  {
+    name: "Livia Curtis",
+    phone: "+1 123-456-7893",
+    email: "livia.curtis@example.com",
+    requestId: "1669297455",
+    date: "12-May, 2025 Fri",
+    status: "SP Assigned",
+    imageUrl:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=256&h=256&q=80",
+    needHelpIn: "Cultural Insights",
+    time: "16:30-17:00",
+  },
+  {
+    name: "Nolan Bator",
+    phone: "+1 123-456-7899",
+    email: "nolan.bator@example.com",
+    requestId: "1669297461",
+    date: "18-May, 2025 Thu",
+    status: "SP Assigned",
+    imageUrl:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=256&h=256&q=80",
+    needHelpIn: "Cultural Insights",
+    time: "16:30-17:00",
+  },
+  {
+    name: "Gretchen Levin",
+    phone: "+1 123-456-7891",
+    email: "gretchen.levin@example.com",
+    requestId: "1669297453",
+    date: "10-May, 2025 Wed",
+    status: "SP Assigned",
+    imageUrl:
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=256&h=256&q=80",
+    needHelpIn: "Cultural Insights",
+    time: "16:30-17:00",
+  },
+  {
+    name: "Marilyn Lipshutz",
+    phone: "+1 123-456-7892",
+    email: "marilyn.lipshutz@example.com",
+    requestId: "1669297454",
+    date: "11-May, 2025 Thu",
+    status: "SP Assigned",
+    imageUrl:
+      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=256&h=256&q=80",
+    needHelpIn: "Cultural Insights",
+    time: "16:30-17:00",
+  },
+  {
+    name: "Chance Septimus",
+    phone: "+1 987-654-3210",
+    email: "chance.septimus@example.com",
+    requestId: "1669297452",
+    date: "09-May, 2025 Tue",
+    status: "SP Assigned",
+    imageUrl:
+      "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=256&h=256&q=80",
+    needHelpIn: "Cultural Insights",
+    time: "16:30-17:00",
+  },
+];
+
+export const GuideRequestGrid: React.FC = () => {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2  gap-6">
+      {mockRequests.map((req) => (
+        <GuideRequestCard key={req.name} request={req} />
+      ))}
+    </div>
+  );
+};
