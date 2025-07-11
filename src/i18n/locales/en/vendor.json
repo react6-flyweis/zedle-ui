@@ -179,7 +179,7 @@
     "shipmentStatus": "Shipment Status",
     "price": "Price",
     "pricePlaceholder": "Enter your quote",
-    "sendQuote": "Send Quote",
+    "sendQuote": "Send Your Price Quote",
     "quoteSuccess": "The price quote has been successfully sent to the customer."
   },
   "packageDetails": {
