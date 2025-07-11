@@ -120,6 +120,24 @@ const tourBookingNavigation: NavigationItem[] = [
   },
 ];
 
+const carRentalNavigation: NavigationItem[] = [
+  {
+    title: "Home",
+    href: "/vendor/travel-tourism/car-rental",
+    type: "link",
+  },
+  {
+    title: "Orders",
+    href: "/vendor/travel-tourism/car-rental/orders",
+    type: "link",
+  },
+  {
+    title: "Wallet",
+    href: "/vendor/travel-tourism/car-rental/wallet",
+    type: "link",
+  },
+];
+
 function getNavigationForPath(pathname: string): NavigationItem[] {
   if (pathname.startsWith("/vendor/grocery")) {
     return groceryNavigation;
@@ -138,6 +156,9 @@ function getNavigationForPath(pathname: string): NavigationItem[] {
   }
   if (pathname.startsWith("/vendor/travel-tourism/tour-booking")) {
     return tourBookingNavigation;
+  }
+  if (pathname.startsWith("/vendor/travel-tourism/car-rental")) {
+    return carRentalNavigation;
   }
 
   // Default to grocery navigation
