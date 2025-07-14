@@ -3,6 +3,7 @@
 import { format } from "date-fns";
 import { Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -204,12 +205,14 @@ export function OrderCard({ order }: { order: IOrder }) {
           )}
           {order.status === "running" && (
             <div className="px-8 flex justify-center transition-opacity duration-200">
-              <Button
-                className="w-full bg-yellow-500 hover:bg-yellow-600 text-foreground"
-                type="button"
-              >
-                {t("actions.start")}
-              </Button>
+              <Link className="w-full" href={`/delivery-partner/route`}>
+                <Button
+                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-foreground"
+                  type="button"
+                >
+                  {t("actions.start")}
+                </Button>
+              </Link>
             </div>
           )}
         </div>
