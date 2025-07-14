@@ -23,6 +23,14 @@
       "completed": "Completed"
     }
   },
+  "issueDialog": {
+    "havingIssueTitle": "Having an Issue",
+    "describeReasonTitle": "Describe the reason",
+    "describeReasonLabel": "Describe",
+    "describeReasonPlaceholder": "Type your reason here...",
+    "describeReasonRequired": "Reason is required",
+    "submit": "Submit"
+  },
   "orders": {
     "heroImageAlt": "Delivery partner hero image",
     "ongoingRequestsTitle": "Ongoing Delivery Requests",
