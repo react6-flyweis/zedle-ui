@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { CaptureImageDialog } from "./CaptureImageDialog";
+import { ReceivePaymentDialog } from "./ReceivePaymentDialog";
 import { StepRouteCard } from "./StepRouteCard";
+import { VerificationMethodDialog } from "./VerificationMethodDialog";
 
 export default function ParcelRouteCard() {
   const steps = [
@@ -37,6 +39,9 @@ export default function ParcelRouteCard() {
   ];
   const [currentStep, setCurrentStep] = useState(0);
   const [showCaptureDialog, setShowCaptureDialog] = useState(false);
+  const [showVerificationDialog, setShowVerificationDialog] = useState(false);
+  const [showReceivePaymentDialog, setShowReceivePaymentDialog] =
+    useState(false);
 
   const handleNextStep = () => {
     // If next step is 'Pick Up', show dialog
@@ -44,11 +49,11 @@ export default function ParcelRouteCard() {
       setShowCaptureDialog(true);
       return;
     }
-    setCurrentStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
-  };
-
-  const handleCloseDialog = () => {
-    setShowCaptureDialog(false);
+    // last step
+    if (currentStep === steps.length - 1) {
+      setShowVerificationDialog(true);
+      return;
+    }
     setCurrentStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
   };
 
@@ -60,7 +65,24 @@ export default function ParcelRouteCard() {
       />
       <CaptureImageDialog
         open={showCaptureDialog}
-        onClose={handleCloseDialog}
+        onClose={() => setShowCaptureDialog(false)}
+        onCapture={() => {
+          setShowCaptureDialog(false);
+          // Proceed to next step
+          setCurrentStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
+        }}
+      />
+      <VerificationMethodDialog
+        open={showVerificationDialog}
+        onOpenChange={() => setShowVerificationDialog(false)}
+        onVerify={() => {
+          setShowVerificationDialog(false);
+          setShowReceivePaymentDialog(true);
+        }}
+      />
+      <ReceivePaymentDialog
+        open={showReceivePaymentDialog}
+        onClose={() => {}}
       />
     </>
   );

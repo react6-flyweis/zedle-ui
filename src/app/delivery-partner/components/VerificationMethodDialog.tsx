@@ -18,7 +18,7 @@ interface VerificationMethodDialogProps {
   onVerify: (otp: string) => void;
 }
 
-export default function VerificationMethodDialog({
+export function VerificationMethodDialog({
   open,
   onOpenChange,
   onVerify,
