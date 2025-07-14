@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CaptureImageDialog } from "./CaptureImageDialog";
 import { StepRouteCard } from "./StepRouteCard";
 
 export default function ParcelRouteCard() {
@@ -35,10 +36,32 @@ export default function ParcelRouteCard() {
     // Add more steps as needed
   ];
   const [currentStep, setCurrentStep] = useState(0);
+  const [showCaptureDialog, setShowCaptureDialog] = useState(false);
+
   const handleNextStep = () => {
+    // If next step is 'Pick Up', show dialog
+    if (steps[currentStep + 1]?.label === "In Transit") {
+      setShowCaptureDialog(true);
+      return;
+    }
     setCurrentStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
   };
+
+  const handleCloseDialog = () => {
+    setShowCaptureDialog(false);
+    setCurrentStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
+  };
+
   return (
-    <StepRouteCard stepData={steps[currentStep]} onNextStep={handleNextStep} />
+    <>
+      <StepRouteCard
+        stepData={steps[currentStep]}
+        onNextStep={handleNextStep}
+      />
+      <CaptureImageDialog
+        open={showCaptureDialog}
+        onClose={handleCloseDialog}
+      />
+    </>
   );
 }

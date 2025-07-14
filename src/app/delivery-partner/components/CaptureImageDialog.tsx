@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,10 +10,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
+import { toast } from "@/store/toastStore";
 import captureIcon from "../assets/capture-button.png";
 import captureDialogBg from "../assets/capture-dialog-bg.jpg";
 import captureFocus from "../assets/capture-focus.png";
+import scanIcon from "../assets/scan-button.png";
 
 interface CaptureImageDialogProps {
   open: boolean;
@@ -23,7 +25,19 @@ export const CaptureImageDialog = ({
   open,
   onClose,
 }: CaptureImageDialogProps) => {
+  const [scanMode, setScanMode] = useState(false);
   const t = useTranslations("captureDialog");
+
+  const handleCaptureClick = () => {
+    setScanMode(true);
+  };
+
+  const handleScanClick = () => {
+    setScanMode(false);
+    toast("Your parcel has been dispatched from the location.");
+    onClose();
+  };
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-md rounded-xl p-6 flex flex-col gap-4">
@@ -52,17 +66,17 @@ export const CaptureImageDialog = ({
           <Button
             variant="ghost"
             className="flex flex-col items-center rounded-full size-12"
-            onClick={onClose}
+            onClick={scanMode ? handleScanClick : handleCaptureClick}
           >
             <Image
-              src={captureIcon}
+              src={scanMode ? scanIcon : captureIcon}
               alt="Capture"
               height={50}
               width={50}
               className="max-h-12 max-w-12"
             />
           </Button>
-          <span>{t("clickToCapture")}</span>
+          <span>{scanMode ? t("scanQRCode") : t("captureImage")}</span>
         </div>
       </DialogContent>
     </Dialog>
