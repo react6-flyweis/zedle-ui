@@ -82,5 +82,11 @@
     "itemImage": "Item Image",
     "clickItemImage": "Click the items/box image.",
     "clickToCapture": "Click to Capture"
+  },
+  "verificationMethod": {
+    "title": "Verification Method",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "otpVerification": "OTP Verification",
+    "scanQr": "Scan QR"
   }
 }
