@@ -3,6 +3,7 @@
 import { AlertTriangle, MessageCircle, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { HavingIssueDialog } from "./HavingIssueDialog";
 
 interface StepData {
   label: string;
@@ -64,12 +65,14 @@ export const StepRouteCard = ({
               {t("call")}
             </Button>
           </div>
-          <Button
-            size="icon"
-            className="bg-primary text-white rounded-full w-9 h-9 shadow-md"
-          >
-            <AlertTriangle className="w-5 h-5" />
-          </Button>
+          <HavingIssueDialog>
+            <Button
+              size="icon"
+              className="bg-primary text-white rounded-full w-9 h-9 shadow-md"
+            >
+              <AlertTriangle className="w-5 h-5" />
+            </Button>
+          </HavingIssueDialog>
         </div>
       </div>
       <div className="flex items-center mt-3">

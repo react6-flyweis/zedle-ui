@@ -12,7 +12,7 @@ import { DescribeReasonDialog } from "./DescribeReasonDialog";
 
 export const HavingIssueDialog = ({ children }: PropsWithChildren) => {
   const t = useTranslations("issueDialog");
-  const [open, setOpenChange] = useState(true);
+  const [open, setOpenChange] = useState(false);
   const issueKeys = [
     "badWeather",
     "trafficJams",
