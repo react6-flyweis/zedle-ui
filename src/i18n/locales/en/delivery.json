@@ -102,5 +102,12 @@
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     "scanQr": "Scan QR",
     "scanQrDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+  },
+  "receivePayment": {
+    "title": "Receive Payment",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "qr": "QR",
+    "card": "Card",
+    "cash": "Cash"
   }
 }
