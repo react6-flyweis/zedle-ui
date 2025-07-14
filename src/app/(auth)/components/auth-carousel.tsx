@@ -233,13 +233,36 @@ const vendorLogisticsCarouselImages = [
   },
 ];
 
+const vendorEnterpriseCarouselImages = [
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 1",
+    image: "/assets/vendor-enterprise-carousel-1.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 2",
+    image: "/assets/vendor-enterprise-carousel-2.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 3",
+    image: "/assets/vendor-enterprise-carousel-3.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 4",
+    image: "/assets/vendor-enterprise-carousel-4.jpg",
+  },
+];
+
 export function AuthCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const searchParams = useSearchParams();
 
   // Memoize carousel images to prevent re-computation on every render
   const carouselImages = useMemo(() => {
-    const type = searchParams.get("type");
+    const type = searchParams.get("type") as "delivery" | "user" | "vendor";
     const category = searchParams.get("category") as ICategory["key"];
 
     switch (type) {
@@ -267,6 +290,8 @@ export function AuthCarousel() {
             return vendorGroceryCarouselImages;
           case "logistics":
             return vendorLogisticsCarouselImages;
+          case "enterprise":
+            return vendorEnterpriseCarouselImages;
         }
         return authCarouselImages;
       default:
