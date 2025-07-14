@@ -19,11 +19,13 @@ import scanIcon from "../assets/scan-button.png";
 interface CaptureImageDialogProps {
   open: boolean;
   onClose: () => void;
+  onCapture: () => void;
 }
 
 export const CaptureImageDialog = ({
   open,
   onClose,
+  onCapture,
 }: CaptureImageDialogProps) => {
   const [scanMode, setScanMode] = useState(false);
   const t = useTranslations("captureDialog");
@@ -35,7 +37,7 @@ export const CaptureImageDialog = ({
   const handleScanClick = () => {
     setScanMode(false);
     toast("Your parcel has been dispatched from the location.");
-    onClose();
+    onCapture();
   };
 
   return (
