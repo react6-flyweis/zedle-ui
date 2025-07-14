@@ -110,9 +110,10 @@ const ServiceButtons = () => {
   const serviceButtonClickHandler = (serviceKey: string) => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
     newSearchParams.set("category", serviceKey);
-    const targetPath = searchParams.get("signup")
-      ? `/signup?${newSearchParams.toString()}`
-      : `/login?${newSearchParams.toString()}`;
+    const targetPath =
+      searchParams.get("tab") === "signup"
+        ? `/signup?${newSearchParams.toString()}`
+        : `/login?${newSearchParams.toString()}`;
     router.push(targetPath);
   };
 
@@ -150,22 +151,38 @@ const ServiceButtons = () => {
 function ChoosePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const defaultTab = searchParams.get("signup") ? "signup" : "login";
+  const defaultTab = searchParams.get("tab");
   const selectedType = searchParams.get("type");
   const [selectedUserType, setSelectedUserType] = useState(selectedType || "");
-  const [activeTab, setActiveTab] = useState(defaultTab);
+  const [activeTab, setActiveTab] = useState(defaultTab || "login");
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    setSelectedUserType(""); // Reset preferences when tab changes
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.delete("type"); // Remove type from URL as well
+    newSearchParams.set("tab", value);
+    router.push(`?${newSearchParams}`);
+  };
 
   const selectUserTypeHandler = (type: string) => {
-    setSelectedUserType(type);
     const newSearchParams = new URLSearchParams(searchParams.toString());
     newSearchParams.set("type", type.toLowerCase());
-    if (type === "delivery") return router.push(`/login?${newSearchParams}`);
+    if (type === "delivery")
+      return router.push(
+        `/${newSearchParams.get("tab") === "signup" ? "signup" : "login"}?${newSearchParams}`,
+      );
+    setSelectedUserType(type.toLowerCase());
     router.push(`?${newSearchParams}`);
   };
 
   return (
     <div className=" flex items-center justify-center">
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+      <Tabs
+        value={activeTab}
+        onValueChange={handleTabChange}
+        className="w-full"
+      >
         <TabsList className="grid w-full grid-cols-2 mb-8 bg-transparent">
           <TabsTrigger
             value="login"
