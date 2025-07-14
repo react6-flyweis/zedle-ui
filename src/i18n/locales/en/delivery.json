@@ -88,5 +88,13 @@
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     "otpVerification": "OTP Verification",
     "scanQr": "Scan QR"
+  },
+  "otpDialog": {
+    "otpVerificationTitle": "OTP Verification",
+    "otpVerificationDescription": "A 4 digit Delivery OTP code has been sent, Enter the code to complete Delivery.",
+    "verificationCode": "Verification Code",
+    "next": "Next",
+    "error": "OTP must be 4 digits",
+    "inputAriaLabel": "OTP digit"
   }
 }
