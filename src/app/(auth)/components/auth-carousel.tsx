@@ -1,41 +1,104 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+import type { ICategory } from "@/constants/categories";
 
-import carouselImage1 from "../assets/login-carousel-1.jpg";
-import carouselImage2 from "../assets/login-carousel-2.jpg";
-import carouselImage3 from "../assets/login-carousel-3.jpg";
-import carouselImage4 from "../assets/login-carousel-4.jpg";
-
-const carouselImages = [
+const authCarouselImages = [
   {
     title:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry 1",
-    image: carouselImage1,
+    image: "/assets/login-carousel-1.jpg",
   },
   {
     title:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry 2",
-    image: carouselImage2,
+    image: "/assets/login-carousel-2.jpg",
   },
   {
     title:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry 3",
-    image: carouselImage3,
+    image: "/assets/login-carousel-3.jpg",
   },
   {
     title:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry 4",
-    image: carouselImage4,
+    image: "/assets/login-carousel-4.jpg",
+  },
+];
+
+const foodCarouselImages = [
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 1",
+    image: "/assets/food-carousel-1.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 2",
+    image: "/assets/food-carousel-2.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 3",
+    image: "/assets/food-carousel-3.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 4",
+    image: "/assets/food-carousel-4.jpg",
+  },
+];
+
+const deliveryCarouselImages = [
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 1",
+    image: "/assets/delivery-carousel-1.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 1",
+    image: "/assets/delivery-carousel-2.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 1",
+    image: "/assets/delivery-carousel-3.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 1",
+    image: "/assets/delivery-carousel-4.jpg",
   },
 ];
 
 export function AuthCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const searchParams = useSearchParams();
+
+  // Memoize carousel images to prevent re-computation on every render
+  const carouselImages = useMemo(() => {
+    const type = searchParams.get("type");
+    const category = searchParams.get("category") as ICategory["key"];
+
+    switch (type) {
+      case "delivery":
+        return deliveryCarouselImages;
+      case "food":
+        return foodCarouselImages;
+      default:
+        switch (category) {
+          case "food":
+            return foodCarouselImages;
+        }
+        return authCarouselImages;
+    }
+  }, [searchParams]);
 
   // Auto-play functionality
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+      setCurrentSlide((prev) => (prev + 1) % 4);
     }, 3000);
 
     return () => clearInterval(timer);
@@ -55,7 +118,7 @@ export function AuthCarousel() {
             index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            backgroundImage: `url('${slide.image.src}')`,
+            backgroundImage: `url('${slide.image}')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
