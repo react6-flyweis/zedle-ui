@@ -96,5 +96,11 @@
     "next": "Next",
     "error": "OTP must be 4 digits",
     "inputAriaLabel": "OTP digit"
+  },
+  "qrDialog": {
+    "title": "Scan QR",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "scanQr": "Scan QR",
+    "scanQrDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
   }
 }
