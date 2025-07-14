@@ -1,4 +1,5 @@
 import type { ICategory } from "@/constants/categories";
+import { DeliverySignup } from "../components/DeliverySignup";
 import { VendorEnterpriseSignup } from "../components/VendorEnterpriseSignup";
 import { VendorFoodSignup } from "../components/VendorFoodSignup";
 import VendorGrocerySignup from "../components/VendorGrocerySignup";
@@ -18,7 +19,7 @@ export default async function page({
   const category = params.category as ICategory["key"];
 
   if (type === "delivery") {
-    return <div>Delivery partner signup is not implemented yet.</div>;
+    return <DeliverySignup />;
   }
 
   if (type === "vendor") {
