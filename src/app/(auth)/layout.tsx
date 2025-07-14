@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { AuthCarousel } from "./components/auth-carousel";
@@ -14,7 +15,9 @@ export default function AuthLayout({
         <div className="min-h-[85vh] grid md:grid-cols-2 lg:grid-cols-5">
           {/* Left side - Image and promotional content */}
           <div className="relative lg:col-span-2">
-            <AuthCarousel />
+            <Suspense fallback={<div>Loading carousel...</div>}>
+              <AuthCarousel />
+            </Suspense>
           </div>
 
           {/* Right side - Auth forms */}
