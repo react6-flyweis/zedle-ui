@@ -72,6 +72,29 @@ const grocerCarouselImages = [
   },
 ];
 
+const logisticsCarouselImages = [
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 1",
+    image: "/assets/logistic-carousel-1.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 2",
+    image: "/assets/logistic-carousel-2.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 3",
+    image: "/assets/logistic-carousel-3.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 4",
+    image: "/assets/logistic-carousel-4.jpg",
+  },
+];
+
 const deliveryCarouselImages = [
   {
     title:
@@ -115,6 +138,8 @@ export function AuthCarousel() {
             return foodCarouselImages;
           case "grocery":
             return grocerCarouselImages;
+          case "logistics":
+            return logisticsCarouselImages;
         }
         return authCarouselImages;
     }
