@@ -25,6 +25,37 @@
   },
   "issueDialog": {
     "havingIssueTitle": "Having an Issue",
+    "havingIssueDesc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "issues": {
+      "badWeather": {
+        "title": "Bad Weather",
+        "desc": "Heavy rain, snow, or extreme heat can make roads unsafe or slow down delivery."
+      },
+      "trafficJams": {
+        "title": "Traffic Jams",
+        "desc": "Roadblocks or heavy traffic can cause significant delays."
+      },
+      "vehicleProblems": {
+        "title": "Vehicle Problems",
+        "desc": "A breakdown, flat tire, or running out of fuel can halt the delivery."
+      },
+      "wrongAddress": {
+        "title": "Wrong Address",
+        "desc": "Incorrect or incomplete address details can prevent locating the customer."
+      },
+      "accidents": {
+        "title": "Accidents or Injuries",
+        "desc": "Personal accidents or sudden injuries while on duty can stop the delivery process."
+      },
+      "customerUnreachable": {
+        "title": "Customer Unreachable",
+        "desc": "Tried calling, no response."
+      },
+      "other": {
+        "title": "Other",
+        "desc": "Other issue not listed above."
+      }
+    },
     "describeReasonTitle": "Describe the reason",
     "describeReasonLabel": "Describe",
     "describeReasonPlaceholder": "Type your reason here...",
@@ -46,5 +77,10 @@
     "startButton": "Click here when you start",
     "chat": "Chat",
     "call": "Call"
+  },
+  "captureDialog": {
+    "itemImage": "Item Image",
+    "clickItemImage": "Click the items/box image.",
+    "clickToCapture": "Click to Capture"
   }
 }
