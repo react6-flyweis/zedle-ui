@@ -118,6 +118,29 @@ const travelTourismCarouselImages = [
   },
 ];
 
+const enterpriseCarouselImages = [
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 1",
+    image: "/assets/enterprise-carousel-1.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 2",
+    image: "/assets/enterprise-carousel-2.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 3",
+    image: "/assets/enterprise-carousel-3.jpg",
+  },
+  {
+    title:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry 4",
+    image: "/assets/enterprise-carousel-4.jpg",
+  },
+];
+
 const deliveryCarouselImages = [
   {
     title:
@@ -153,9 +176,7 @@ export function AuthCarousel() {
     switch (type) {
       case "delivery":
         return deliveryCarouselImages;
-      case "food":
-        return foodCarouselImages;
-      default:
+      case "user":
         switch (category) {
           case "food":
             return foodCarouselImages;
@@ -165,7 +186,11 @@ export function AuthCarousel() {
             return logisticsCarouselImages;
           case "travel-tourism":
             return travelTourismCarouselImages;
+          case "enterprise":
+            return enterpriseCarouselImages;
         }
+        return foodCarouselImages;
+      default:
         return authCarouselImages;
     }
   }, [searchParams]);
