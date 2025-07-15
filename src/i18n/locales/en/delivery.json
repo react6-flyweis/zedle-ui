@@ -118,6 +118,9 @@
     "card": "Card",
     "cash": "Cash",
     "qrTitle": "Show QR to accept Payment",
-    "qrDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    "qrDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "cardTitle": "Please Accept Payment through card",
+    "cardDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "done": "Done"
   }
 }
