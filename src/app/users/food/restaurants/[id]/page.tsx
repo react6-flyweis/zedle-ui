@@ -10,7 +10,7 @@ import { RestaurantHero } from "../../components/RestaurantHero";
 import { RestaurantInfoSection } from "../../components/RestaurantInfoSection";
 
 export default function Page() {
-  const t = useTranslations();
+  const t = useTranslations("cart");
   return (
     <div>
       <RestaurantHero />

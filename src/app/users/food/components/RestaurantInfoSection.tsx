@@ -1,4 +1,3 @@
-import { Clock, Contact, Info } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import contactInfoIcon from "../assets/contact-info.png";
@@ -80,7 +79,7 @@ export function RestaurantInfoSection() {
         </div>
       </div>
       {/* Right: Operational Times */}
-      <div className="bg-[#4A4A4A] text-white flex flex-col p-8 py-20 w-1/3">
+      <div className="bg-[#4A4A4A] text-white flex flex-col p-8 py-20 md:w-1/3">
         <div className="flex items-center gap-2 mb-4">
           <Image
             src={timeIcon}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import DeliveryAddress from "@/components/checkout/delivery-address";
 import OrderSummary from "@/components/checkout/order-summary";
@@ -19,6 +20,7 @@ interface CartItem {
 }
 
 export default function CartPage() {
+  const t = useTranslations("cart");
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
       id: "1",
@@ -82,7 +84,7 @@ export default function CartPage() {
     <div className="min-h-screen max-w-6xl mx-auto p-4">
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column - User Info, Address, Payment */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-6 ml-4">
           <div className="flex">
             <div className="w-4">
               <div className="h-full border-l-2 border-dashed border-gray-500"></div>
@@ -106,7 +108,7 @@ export default function CartPage() {
               size="lg"
               className="w-full rounded-full h-12"
             >
-              Pay Now
+              {t("payNow")}
             </Button>
           )}
         </div>
