@@ -82,7 +82,7 @@ export default function ParcelRouteCard() {
       />
       <ReceivePaymentDialog
         open={showReceivePaymentDialog}
-        onClose={() => {}}
+        onClose={() => setShowReceivePaymentDialog(false)}
       />
     </>
   );
