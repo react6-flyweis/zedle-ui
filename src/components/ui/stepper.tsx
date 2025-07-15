@@ -239,7 +239,7 @@ function StepperHeader({
   return (
     <Comp
       className={cn(
-        "flex w-full items-center justify-between border-b border-border pb-4",
+        "flex w-full items-center justify-between border-b border-border pb-4 overflow-x-auto",
         className,
       )}
       {...props}
@@ -415,7 +415,7 @@ function StepperIndicator({
                     )}
                   >
                     {isLoading && isActive ? (
-                      <LoaderCircle className="animate-spin size-4" />
+                      <LoaderCircle className="animate-spin size-3 sm:size-4" />
                     ) : isCompleted ? (
                       <Check className="size-4" />
                     ) : (
