@@ -10,7 +10,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { CardPaymentDialog } from "./CardPaymentDialog";
 import { CollectCashDialog } from "./CollectCashDialog";
+import { QrPaymentDialog } from "./QrPaymentDialog";
 
 interface ReceivePaymentDialogProps {
   open: boolean;
@@ -23,19 +25,32 @@ export function ReceivePaymentDialog({
 }: ReceivePaymentDialogProps) {
   const t = useTranslations("receivePayment");
   const [showCollectCash, setShowCollectCash] = useState(false);
+  const [showCard, setShowCard] = useState(false);
+  const [showQr, setShowQr] = useState(false);
 
-  const handleCashClick = () => {
-    setShowCollectCash(true);
-  };
+  const handleCashClick = () => setShowCollectCash(true);
+  const handleCardClick = () => setShowCard(true);
+  const handleQrClick = () => setShowQr(true);
 
   const handleCollectCashClose = () => {
     setShowCollectCash(false);
     onClose();
   };
+  const handleCardClose = () => {
+    setShowCard(false);
+    onClose();
+  };
+  const handleQrClose = () => {
+    setShowQr(false);
+    onClose();
+  };
 
   return (
     <>
-      <Dialog open={open && !showCollectCash} onOpenChange={onClose}>
+      <Dialog
+        open={open && !showCollectCash && !showCard && !showQr}
+        onOpenChange={onClose}
+      >
         <DialogContent className="rounded-2xl p-0 max-w-md">
           <div className="bg-white rounded-2xl">
             <DialogHeader className="px-6 pt-6 pb-2">
@@ -51,7 +66,7 @@ export function ReceivePaymentDialog({
               <Button
                 variant="default"
                 className="bg-[#3C0028] hover:bg-[#3C0028]/90 text-white flex items-center justify-center gap-2 text-lg font-medium rounded-lg h-12"
-                onClick={onClose}
+                onClick={handleQrClick}
               >
                 <QrCode size={24} />
                 {t("qr")}
@@ -59,7 +74,7 @@ export function ReceivePaymentDialog({
               <Button
                 variant="default"
                 className="bg-[#D8B13B] hover:bg-[#D8B13B]/90 text-white flex items-center justify-center gap-2 text-lg font-medium rounded-lg h-12"
-                onClick={onClose}
+                onClick={handleCardClick}
               >
                 <CreditCard size={24} />
                 {t("card")}
@@ -80,6 +95,8 @@ export function ReceivePaymentDialog({
         open={showCollectCash}
         onClose={handleCollectCashClose}
       />
+      <CardPaymentDialog open={showCard} onClose={handleCardClose} />
+      <QrPaymentDialog open={showQr} onClose={handleQrClose} />
     </>
   );
 }
