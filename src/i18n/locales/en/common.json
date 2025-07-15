@@ -68,5 +68,9 @@
     "sendMessage": "Send message",
     "attachImage": "Attach image",
     "back": "Back"
+  },
+  "locationSection": {
+    "phoneLabel": "Phone number",
+    "mapPointerAlt": "Map Pointer"
   }
 }
