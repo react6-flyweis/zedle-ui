@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import certifiedOrganic from "../assets/certified-organics.png";
@@ -17,52 +18,53 @@ import liquidDrinksImage from "../assets/liquid-drinks.png";
 const categories = [
   {
     id: 1,
-    name: "Fresh Vegetables",
+    key: "freshVegetables",
     image: freshVegetablesImage,
   },
   {
     id: 2,
-    name: "Fresh Fruits",
+    key: "freshFruits",
     image: freshFruitsImage,
   },
   {
     id: 3,
-    name: "Leafy Seasonings",
+    key: "leafySeasonings",
     image: leafySeasoningsImage,
   },
   {
     id: 4,
-    name: "Liquid Drinks",
+    key: "liquidDrinks",
     image: liquidDrinksImage,
   },
   {
     id: 5,
-    name: "Chips & Snacks",
+    key: "chipsSnacks",
     image: chipsImage,
   },
   {
     id: 6,
-    name: "Coffee & Tea",
+    key: "coffeeTea",
     image: coffeeImage,
   },
   {
     id: 7,
-    name: "Cookies & Biscuits",
+    key: "cookiesBiscuits",
     image: cookiesImage,
   },
   {
     id: 8,
-    name: "Exotic Fruits",
+    key: "exoticFruits",
     image: exoticFruits,
   },
   {
     id: 9,
-    name: "Certified Organic",
+    key: "certifiedOrganic",
     image: certifiedOrganic,
   },
 ];
 
 export default function ProductCategories() {
+  const t = useTranslations("user.grocery.categories");
   const [activeCategory, setActiveCategory] = useState<number>(1); // Default to first category active
   const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -123,7 +125,7 @@ export default function ProductCategories() {
 
   return (
     <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-      <h2 className="text-2xl font-bold p-5 text-center">Product Categories</h2>
+      <h2 className="text-2xl font-bold p-5 text-center">{t("title")}</h2>
       <div
         ref={scrollContainerRef}
         className="relative flex-1 overflow-y-auto max-h-[125vh]"
@@ -179,7 +181,7 @@ export default function ProductCategories() {
                     >
                       <Image
                         src={category.image}
-                        alt={category.name}
+                        alt={t(`${category.key}Alt`)}
                         className="object-contain max-h-full max-w-full"
                       />
                     </motion.div>
@@ -197,7 +199,7 @@ export default function ProductCategories() {
                       mass: 0.4,
                     }}
                   >
-                    {category.name}
+                    {t(category.key)}
                   </motion.h3>
                 </div>
               </motion.div>
