@@ -41,6 +41,19 @@ const loginSchema = z.object({
 
 type LoginForm = z.infer<typeof loginSchema>;
 
+const getUserPath = (userType: string) => {
+  switch (userType) {
+    case "user":
+      return "users";
+    case "delivery":
+      return "delivery-partner";
+    case "vendor":
+      return "vendors";
+    default:
+      return "users";
+  }
+};
+
 export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -63,8 +76,7 @@ export function LoginForm() {
   const handleNext = () => {
     const category = searchParams.get("category") || "grocery";
     const userType = searchParams.get("type") || "users";
-    const userPath = userType === "delivery" ? "delivery-partner" : userType;
-    const targetPath = `/${userPath}/${userType !== "delivery" ? category : ""}`;
+    const targetPath = `/${getUserPath(userType)}/${userType !== "delivery" ? category : ""}`;
     router.push(targetPath);
   };
 
