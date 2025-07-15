@@ -53,10 +53,10 @@ export default function Header({
             {/* Desktop Auth Buttons */}
             {showAuthButtons && (
               <div className="hidden md:flex items-center space-x-4">
-                <Link href="/choose?signin=true">
+                <Link href="/choose?tab=signin">
                   <Button className="rounded-full">{t("LogIn")}</Button>
                 </Link>
-                <Link href="/choose?signup=true">
+                <Link href="/choose?tab=signup">
                   <Button className="rounded-full">{t("SignUp")}</Button>
                 </Link>
               </div>
