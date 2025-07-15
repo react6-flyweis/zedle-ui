@@ -1,6 +1,7 @@
 "use client";
 import { ChevronDown, Settings2Icon } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import walletIcon from "@/assets/icons/wallet.png";
 import { Button } from "@/components/ui/button";
@@ -76,6 +77,7 @@ const transactions = [
 ];
 
 export default function VendorEarningPage() {
+  const t = useTranslations("wallet");
   const [filterValue, setFilterValue] = useState<string>("Daily");
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
 
@@ -90,15 +92,15 @@ export default function VendorEarningPage() {
       <Card className="border-0 p-0 gap-0">
         <CardHeader className="pt-4">
           <CardTitle className="text-lg font-semibold">
-            Wallet Balance
+            {t("walletBalanceTitle")}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-4 pt-0">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
             <div className="flex items-center gap-2">
               <Image
                 src={walletIcon}
-                alt="Wallet Icon"
+                alt={t("avatarAlt")}
                 className="max-h-10 max-w-10"
                 width={50}
                 height={50}
@@ -110,7 +112,7 @@ export default function VendorEarningPage() {
               {/* Withdraw Dialog */}
               <WithdrawDialog>
                 <Button variant="outline" className="border-primary">
-                  Withdraw
+                  {t("withdraw")}
                 </Button>
               </WithdrawDialog>
             </div>
@@ -123,7 +125,7 @@ export default function VendorEarningPage() {
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="text-lg font-semibold">
-              Wallet Balance Breakdown
+              {t("walletBreakdownTitle")}
             </CardTitle>
             <DropdownMenu
               open={filterMenuOpen}
@@ -137,7 +139,7 @@ export default function VendorEarningPage() {
                 >
                   <span className="flex items-center gap-2">
                     <Settings2Icon className="w-4 h-4" />
-                    Filter by
+                    {t("filterBy")}
                   </span>
                   <ChevronDown
                     className={cn(
@@ -174,10 +176,10 @@ export default function VendorEarningPage() {
           {/* Table Header */}
           <div className="bg-primary text-white px-6 py-4 rounded-md">
             <div className="grid grid-cols-4 gap-4 font-medium">
-              <div>Transactions</div>
-              <div>Date</div>
-              <div>Time</div>
-              <div className="text-right">Amount</div>
+              <div>{t("tableHeaders.transactions")}</div>
+              <div>{t("tableHeaders.date")}</div>
+              <div>{t("tableHeaders.time")}</div>
+              <div className="text-right">{t("tableHeaders.amount")}</div>
             </div>
           </div>
 
