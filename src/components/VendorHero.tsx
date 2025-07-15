@@ -111,72 +111,74 @@ export function VendorHeroSection({
             />
             <SearchIcon className="absolute right-5 text-white size-6" />
           </div>
-          {toShowCalendar && (
-            <Button
-              variant="secondary"
-              className="flex gap-2 h-12  text-primary rounded font-bold w-32"
-              onClick={() => setIsCalendarOpen(true)}
-            >
-              <Image
-                src={calendarClockIcon}
-                alt={t("calendarIconAlt")}
-                className="max-h-6 max-w-6"
-                width={50}
-                height={50}
-              />
-              {t("calendar")}
-            </Button>
-          )}
-          {onAdd && (
-            <Button
-              type="button"
-              variant="secondary"
-              className="h-12 rounded font-bold w-36 text-primary "
-              onClick={onAdd}
-            >
-              <span className="shrink-0 flex items-center justify-center size-7 border-2 border-primary rounded-full">
-                <Plus className="size-5 text-primary" strokeWidth={2.5} />
-              </span>
-              {addButtonText || t("add")}
-            </Button>
-          )}
-          {/* Sort/Filter Button wrapped in DropdownMenu */}
-          {sortOptions.length > 0 && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="secondary"
-                  className="flex h-12  rounded shadow bg-white text-primary "
-                >
-                  <Filter className="size-5 text-primary" />
-                  <span className="font-semibold">{t("sortBy")}</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-64 mt-2">
-                <div className="px-3 pt-2 pb-1 text-primary font-bold">
-                  {t("category")}
-                </div>
-                {sortOptions.map((option) => (
-                  <DropdownMenuItem
-                    key={option}
-                    onSelect={() => handleFilterToggle(option)}
-                    className="flex justify-between items-center text-primary focus:bg-primary/10 cursor-pointer"
+          <div className="flex gap-2">
+            {toShowCalendar && (
+              <Button
+                variant="secondary"
+                className="flex gap-2 h-12  text-primary rounded font-bold w-32"
+                onClick={() => setIsCalendarOpen(true)}
+              >
+                <Image
+                  src={calendarClockIcon}
+                  alt={t("calendarIconAlt")}
+                  className="max-h-6 max-w-6"
+                  width={50}
+                  height={50}
+                />
+                {t("calendar")}
+              </Button>
+            )}
+            {onAdd && (
+              <Button
+                type="button"
+                variant="secondary"
+                className="h-12 rounded font-bold w-36 text-primary "
+                onClick={onAdd}
+              >
+                <span className="shrink-0 flex items-center justify-center size-7 border-2 border-primary rounded-full">
+                  <Plus className="size-5 text-primary" strokeWidth={2.5} />
+                </span>
+                {addButtonText || t("add")}
+              </Button>
+            )}
+            {/* Sort/Filter Button wrapped in DropdownMenu */}
+            {sortOptions.length > 0 && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="secondary"
+                    className="flex h-12  rounded shadow bg-white text-primary "
                   >
-                    <span>{option}</span>
-                    <span className="flex items-center justify-center">
-                      <input
-                        type="checkbox"
-                        checked={selectedFilters.includes(option)}
-                        readOnly
-                        className="accent-primary w-5 h-5 rounded border border-primary cursor-pointer"
-                        tabIndex={-1}
-                      />
-                    </span>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
+                    <Filter className="size-5 text-primary" />
+                    <span className="font-semibold">{t("sortBy")}</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-64 mt-2">
+                  <div className="px-3 pt-2 pb-1 text-primary font-bold">
+                    {t("category")}
+                  </div>
+                  {sortOptions.map((option) => (
+                    <DropdownMenuItem
+                      key={option}
+                      onSelect={() => handleFilterToggle(option)}
+                      className="flex justify-between items-center text-primary focus:bg-primary/10 cursor-pointer"
+                    >
+                      <span>{option}</span>
+                      <span className="flex items-center justify-center">
+                        <input
+                          type="checkbox"
+                          checked={selectedFilters.includes(option)}
+                          readOnly
+                          className="accent-primary w-5 h-5 rounded border border-primary cursor-pointer"
+                          tabIndex={-1}
+                        />
+                      </span>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+          </div>
         </div>
       </div>
       <CalendarDialog
