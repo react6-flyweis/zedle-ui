@@ -57,5 +57,16 @@
     "englishUS": "English ( US )",
     "englishUK": "English ( UK )",
     "french": "French"
+  },
+  "messages": {
+    "title": "Message",
+    "avatarAlt": "User avatar",
+    "voiceInfo": "Quiche has been listening your voice",
+    "typeMessage": "Type a message",
+    "playVoice": "Play voice message",
+    "recordVoice": "Record voice",
+    "sendMessage": "Send message",
+    "attachImage": "Attach image",
+    "back": "Back"
   }
 }
