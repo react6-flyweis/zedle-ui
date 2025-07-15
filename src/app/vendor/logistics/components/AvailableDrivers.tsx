@@ -177,9 +177,9 @@ export function AvailableDriversDialog({ children }: PropsWithChildren) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-5xl max-h-[90vh] p-0 flex overflow-hidden">
+      <DialogContent className="sm:max-w-5xl max-h-[85vh] p-0 flex flex-col md:flex-row overflow-hidden">
         {/* Sidebar */}
-        <div className="w-60 bg-primary text-white p-6 flex flex-col">
+        <div className="w-full md:w-60 bg-primary text-white p-6 flex flex-col">
           <h3 className="text-xl font-semibold mb-6">{t("sortBy")}</h3>
           <div className="space-y-4">
             <RadioGroup
@@ -217,14 +217,14 @@ export function AvailableDriversDialog({ children }: PropsWithChildren) {
         {/* Main Content */}
         <div className="flex-1 flex flex-col">
           {/* Header */}
-          <DialogHeader className="p-6 pb-0">
+          <DialogHeader className="p-3 md:p-6 pb-0">
             <DialogTitle className="text-2xl font-bold text-center">
               {t("seeAllTitle")}
             </DialogTitle>
           </DialogHeader>
 
           {/* Providers Grid */}
-          <div className="flex-1 p-6 overflow-y-auto">
+          <div className="flex-1 p-6 overflow-y-scroll">
             <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
               {sortedDrivers.map((driver) => (
                 <DriverCard key={driver.id} driver={driver} />
