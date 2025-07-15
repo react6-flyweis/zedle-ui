@@ -5,9 +5,12 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+
 import orderCardPoster from "../assets/order-card-poster.jpg";
+import { CancellationDialogCard } from "./CancellationDialogCard";
 
 export type OrderBase = {
   id: string;
@@ -47,6 +50,7 @@ export type IOrder = CompletedOrder | PendingOrder | RunningOrder;
 
 export function OrderCard({ order }: { order: IOrder }) {
   const t = useTranslations("card");
+  const [openCancelDialog, setOpenCancelDialog] = useState(false);
 
   return (
     <Card className="relative overflow-hidden group p-0 rounded">
@@ -192,6 +196,7 @@ export function OrderCard({ order }: { order: IOrder }) {
                 className="flex-1 bg-destructive hover:bg-destructive/90"
                 type="button"
                 variant="destructive"
+                onClick={() => setOpenCancelDialog(true)}
               >
                 {t("actions.reject")}
               </Button>
@@ -201,6 +206,10 @@ export function OrderCard({ order }: { order: IOrder }) {
               >
                 {t("actions.accept")}
               </Button>
+              <CancellationDialogCard
+                open={openCancelDialog}
+                setOpen={setOpenCancelDialog}
+              />
             </div>
           )}
           {order.status === "running" && (

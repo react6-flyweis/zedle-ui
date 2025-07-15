@@ -62,6 +62,25 @@
     "describeReasonRequired": "Reason is required",
     "submit": "Submit"
   },
+  "cancel": {
+    "title": "Select a reason for cancelation",
+    "description": "Please select a reason for canceling the order.",
+    "reasonLabel": "Reason",
+    "reasonPlaceholder": "Enter reason or select any",
+    "reasonRequired": "Reason is required",
+    "describeLabel": "Describe",
+    "describePlaceholder": "Enter comment here...",
+    "submit": "Submit",
+    "reasonTraffic": "Heavy Traffic or Roadblock",
+    "reasonWeather": "Bad Weather Conditions",
+    "reasonEmergency": "Personal Emergency",
+    "reasonBreakdown": "Vehicle Breakdown",
+    "reasonAccident": "Accident or Injury",
+    "reasonRestaurant": "Restaurant Delay",
+    "reasonOther": "Other",
+    "optional": " (Optional)",
+    "successMessage": "Your reason for cancellation is successfully submitted"
+  },
   "orders": {
     "heroImageAlt": "Delivery partner hero image",
     "ongoingRequestsTitle": "Ongoing Delivery Requests",
