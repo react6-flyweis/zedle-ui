@@ -2,6 +2,7 @@
 
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -70,6 +71,7 @@ const popularItems: PopularItem[] = [
 ];
 
 export function PopularTray() {
+  const t = useTranslations("popularTray");
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
   const scroll = (dir: "left" | "right") => {
@@ -89,14 +91,14 @@ export function PopularTray() {
   return (
     <section className="p-8 relative">
       <div className="flex items-center justify-between mb-2">
-        <h2 className="text-2xl font-bold text-foreground">Popular</h2>
+        <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
         <div className="flex gap-2">
           <Button
             variant="outline"
             size="icon"
             className="border-primary bg-transparent rounded"
             onClick={() => scroll("left")}
-            aria-label="Scroll left"
+            aria-label={t("scrollLeft")}
           >
             <ChevronLeft className="size-6 text-primary" />
           </Button>
@@ -105,16 +107,13 @@ export function PopularTray() {
             size="icon"
             className="border-primary bg-transparent rounded"
             onClick={() => scroll("right")}
-            aria-label="Scroll right"
+            aria-label={t("scrollRight")}
           >
             <ChevronRight className="size-6 text-primary" />
           </Button>
         </div>
       </div>
-      <p className="text-muted-foreground mb-4">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
-      </p>
+      <p className="text-muted-foreground mb-4">{t("description")}</p>
       <div
         ref={scrollRef}
         className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide"
@@ -146,7 +145,7 @@ export function PopularTray() {
               </div>
               <div className="flex items-center justify-between mt-2">
                 <div className="text-xs text-muted-foreground">
-                  Start from <br />
+                  {t("startFrom")} <br />
                   <span className="text-green-900 font-semibold">
                     $ {item.price}/pax
                   </span>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { HotelCard } from "../components/HotelCard";
 
 // Sample hotel data
@@ -89,6 +90,7 @@ const hotels = [
 export default function Page() {
   const image =
     "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80";
+  const t = useTranslations("enterpriseFavorites");
   return (
     <div>
       <section
@@ -101,18 +103,17 @@ export default function Page() {
         <div className="absolute inset-0 bg-white/80 backdrop-blur-sm pointer-events-none z-0" />
         <div className="relative flex-1 mb-6 md:mb-0 md:mr-8">
           <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-            We know you love it!
+            {t("title")}
           </h1>
           <p className="text-muted-foreground text-base md:text-lg">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
+            {t("description")}
           </p>
         </div>
         <div className="relative flex-1 flex justify-center">
           <div className="rounded-xl overflow-hidden shadow-lg w-[320px] h-[200px] md:w-[400px] md:h-[250px]">
             <Image
               src={image}
-              alt="Mountain landscape"
+              alt={t("posterAlt")}
               width={400}
               height={250}
               className="object-cover w-full h-full"

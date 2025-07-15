@@ -5,6 +5,21 @@
     "viewCart": "View Cart",
     "cartIconAlt": "Cart icon"
   },
+  "popularTray": {
+    "title": "Popular",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "scrollLeft": "Scroll left",
+    "scrollRight": "Scroll right",
+    "startFrom": "Start from"
+  },
+  "facilities": {
+    "title": "Facilities",
+    "wifi": "Wifi",
+    "heater": "1 Heater",
+    "dinner": "Dinner",
+    "tub": "1 Tub",
+    "pool": "Pool"
+  },
   "ordersPage": {
     "title": "Your Order",
     "subtitle": "Your food is being prepared – sit back and relax, it's on the way!",

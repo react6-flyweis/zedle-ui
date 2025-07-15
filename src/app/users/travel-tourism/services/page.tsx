@@ -52,7 +52,7 @@ const services = [
 
 function page() {
   return (
-    <div className="max-w-6xl mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div className="max-w-6xl mx-auto py-10 px-5 md:px-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
       {services.map((service) => (
         <Link href={service.href || "#"} key={service.title}>
           <ServiceCard key={service.title} {...service} />

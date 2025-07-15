@@ -1,16 +1,18 @@
 import { Bath, ChevronDown, Flame, Utensils, Waves, Wifi } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-const facilities = [
-  { icon: Wifi, label: "Wifi" },
-  { icon: Flame, label: "1 Heater" },
-  { icon: Utensils, label: "Dinner" },
-  { icon: Bath, label: "1 Tub" },
-  { icon: Waves, label: "Pool" },
+const facilitiesKeys = [
+  { icon: Wifi, labelKey: "wifi" },
+  { icon: Flame, labelKey: "heater" },
+  { icon: Utensils, labelKey: "dinner" },
+  { icon: Bath, labelKey: "tub" },
+  { icon: Waves, labelKey: "pool" },
 ];
 
 function DescriptionSection() {
+  const t = useTranslations("");
   return (
     <div className="">
       <div className="mb-2">
@@ -31,22 +33,23 @@ function DescriptionSection() {
         size="sm"
         className="px-0 text-primary font-medium flex items-center gap-1"
       >
-        Read more <ChevronDown className="w-4 h-4" />
+        {t("actions.readMore")} <ChevronDown className="w-4 h-4" />
       </Button>
     </div>
   );
 }
 
 export function FacilitiesSection() {
+  const t = useTranslations("facilities");
   return (
     <section className="p-8 py-12 container mx-auto space-y-8">
       <DescriptionSection />
       <div>
-        <h2 className="text-2xl font-semibold mb-4">Facilities</h2>
+        <h2 className="text-2xl font-semibold mb-4">{t("title")}</h2>
         <div className="flex flex-wrap gap-4">
-          {facilities.map(({ icon: Icon, label }) => (
+          {facilitiesKeys.map(({ icon: Icon, labelKey }) => (
             <Card
-              key={label}
+              key={labelKey}
               className="w-36 h-36 flex flex-col items-center justify-center border-2 rounded border-muted-foreground bg-transparent hover:bg-primary hover:border-primary hover:text-white group transition"
             >
               <CardContent className="flex flex-col items-center justify-center p-4">
@@ -55,7 +58,7 @@ export function FacilitiesSection() {
                   strokeWidth={2.2}
                 />
                 <span className="text-base font-medium text-muted-foreground group-hover:text-white transition-colors">
-                  {label}
+                  {t(`facilities.${labelKey}`)}
                 </span>
               </CardContent>
             </Card>
