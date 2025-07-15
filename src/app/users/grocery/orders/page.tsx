@@ -2,6 +2,7 @@
 
 import { Package, SearchIcon } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import shoppingBagIcon from "@/assets/icons/shopping-bag.png";
 import { OrderCard } from "@/components/orders/order-card";
 import { Button } from "@/components/ui/button";
@@ -53,22 +54,40 @@ const orders: Order[] = [
 ];
 
 export default function OrdersPage() {
+  const t = useTranslations("ordersPage");
   return (
     <div className="">
-      <section className="h-[57vh] bg-gray-50 flex items-center justify-between px-8 lg:px-16">
-        <div className="flex-1 max-w-lg">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Your Order
+      <section className="relative h-[57vh] flex flex-col md:flex-row items-center md:justify-between px-8 lg:px-16 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={ordersImage}
+            alt={t("heroBgAlt")}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
+
+        {/* Content */}
+        <div className="relative z-20 flex-1 max-w-lg">
+          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            {t("title")}
           </h1>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            Your food is being prepared – sit back and relax, it's on the way!
+          <p className="text-lg text-white/90 leading-relaxed">
+            {t("subtitle")}
           </p>
         </div>
-        <div className="flex-1 flex justify-end">
+
+        {/* Image Card */}
+        <div className="relative z-20 flex-1 flex justify-end">
           <div className="relative">
             <Image
               src={ordersImage}
-              alt="Person with shopping basket"
+              alt={t("heroImgAlt")}
               width={400}
               height={300}
               className="object-contain rounded-md"
@@ -82,7 +101,7 @@ export default function OrdersPage() {
           <div className="relative flex-1 max-w-xl">
             <Input
               type="text"
-              placeholder="Search for groceries..."
+              placeholder={t("searchPlaceholder")}
               // value={searchQuery}
               // onChange={(e) => setSearchQuery(e.target.value)}
               // onKeyPress={(e) => {
@@ -97,7 +116,7 @@ export default function OrdersPage() {
           <Button variant="ghost" size="icon">
             <Image
               src={shoppingBagIcon}
-              alt="Shopping Bag"
+              alt={t("foodSearchPage.shoppingBagAlt")}
               width={24}
               height={24}
             />
@@ -117,14 +136,10 @@ export default function OrdersPage() {
               <CardContent>
                 <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  No orders yet
+                  {t("emptyTitle")}
                 </h3>
-                <p className="text-gray-600 mb-6">
-                  When you place your first order, it will appear here.
-                </p>
-                <Button className="bg-purple-700 hover:bg-purple-800 text-white">
-                  Start Shopping
-                </Button>
+                <p className="text-gray-600 mb-6">{t("emptyDescription")}</p>
+                <Button>{t("startShopping")}</Button>
               </CardContent>
             </Card>
           )}

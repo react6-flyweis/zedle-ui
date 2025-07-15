@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 import chipsBeveragesImg from "./assets/chips-bevarages.png";
 import dairyImg from "./assets/dairy.png";
@@ -105,21 +106,20 @@ const hotDeals = [
 ];
 
 export default function GroceryPage() {
+  const t = useTranslations("grocery");
+
   return (
     <div>
       {/* Hero Section */}
       <GroceryHero />
 
-      <div className="py-10 sm:px-6 lg:px-8">
+      <div className="py-10 px-5 lg:px-8">
         {/* Header Section */}
         <div className="text-left my-5">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Our Categories
+            {t("categories.title")}
           </h2>
-          <p className="text-lg text-gray-600">
-            Lorem ipsum is simply dummy text of the printing and typesetting
-            industry.
-          </p>
+          <p className="text-lg text-gray-600">{t("categories.description")}</p>
         </div>
 
         {/* Categories Grid */}
@@ -139,11 +139,10 @@ export default function GroceryPage() {
         <div>
           {/* Header Section */}
           <div className="text-left my-5">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Hot Deals</h2>
-            <p className="text-lg text-gray-600">
-              Lorem ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              {t("hotDeals.title")}
+            </h2>
+            <p className="text-lg text-gray-600">{t("hotDeals.description")}</p>
           </div>
 
           {/* Hot Deals Grid */}
@@ -166,7 +165,7 @@ export default function GroceryPage() {
       <div className="px-10">
         <Image
           src={personalisedImage}
-          alt="Personalised Recommendations"
+          alt={t("personalizedRecommendations")}
           className="w-full h-auto object-cover"
         />
       </div>

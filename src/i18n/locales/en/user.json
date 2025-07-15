@@ -1,4 +1,17 @@
 {
+  "cart": {
+    "payNow": "Pay Now"
+  },
+  "ordersPage": {
+    "title": "Your Order",
+    "subtitle": "Your food is being prepared – sit back and relax, it's on the way!",
+    "heroBgAlt": "Person with shopping basket background",
+    "heroImgAlt": "Person with shopping basket",
+    "emptyTitle": "No orders yet",
+    "emptyDescription": "When you place your first order, it will appear here.",
+    "startShopping": "Start Shopping",
+    "searchPlaceholder": "Search for groceries..."
+  },
   "common": {
     "view": "View",
     "avgServicePrice": "Avg service price"
@@ -127,6 +140,7 @@
   },
   "categories": {
     "topCategories": "Top Categories",
+    "suggestedCategories": "Suggested Categories",
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     "restaurants": "Restaurants",
     "scrollLeft": "Scroll left",
@@ -170,7 +184,7 @@
     "restaurant": "Restaurant"
   },
   "foodSearchPage": {
-    "searchPlaceholder": "Search for groceries...",
+    "searchPlaceholder": "Search your orders...",
     "shoppingBagAlt": "Shopping Bag",
     "recentKeywords": "Recent Keywords",
     "clearAll": "Clear All",
@@ -214,5 +228,16 @@
     "searchTitle": "Search any service you need from this salon",
     "searchPlaceholder": "Search from services...",
     "servicesTitle": "Services"
+  },
+  "grocery": {
+    "categories": {
+      "title": "Our Categories",
+      "description": "Lorem ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    "hotDeals": {
+      "title": "Hot Deals",
+      "description": "Lorem ipsum is simply dummy text of the printing and typesetting industry."
+    },
+    "personalizedRecommendations": "Personalised Recommendations"
   }
 }

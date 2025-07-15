@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,6 +27,7 @@ export default function GroceryCard({
   discount,
   image,
 }: GroceryCardProps) {
+  const t = useTranslations("");
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   const handleAddToCart = () => {
@@ -92,7 +94,7 @@ export default function GroceryCard({
               variant="outline"
               className="w-full bg-green-100 hover:bg-green-200 rounded-lg text-green-600 py-2.5 font-medium transition-colors duration-200"
             >
-              ADD
+              {t("actions.add")}
             </Button>
           </div>
         </div>

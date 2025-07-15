@@ -80,13 +80,13 @@ export default function ProductsPage() {
         characterImage={productsHeroCharacter}
         backgroundImage={productsHeroBg}
       />
-      <section className="p-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-1">
+      <section className="p-5 md:p-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="md:col-span-1">
             <ProductCategories />
           </div>
-          <div className="lg:col-span-2">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="md:col-span-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {products.map((product) => (
                 <GroceryCard
                   key={product.id}

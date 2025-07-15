@@ -2,6 +2,7 @@
 
 import { SearchIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import shoppingBagIcon from "@/assets/icons/shopping-bag.png";
 import { Button } from "@/components/ui/button";
@@ -74,14 +75,15 @@ export default function GrocerySearchPage() {
     setRecentKeywordsList([]);
   };
 
+  const t = useTranslations("foodSearchPage");
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen p-5 md:p-8">
       {/* Search Header */}
       <div className="bg-white flex items-center justify-between p-4 rounded-md">
         <div className="relative flex-1 max-w-xl">
           <Input
             type="text"
-            placeholder="Search for groceries..."
+            placeholder={t("searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyPress={(e) => {
@@ -96,7 +98,7 @@ export default function GrocerySearchPage() {
         <Button variant="ghost" size="icon">
           <Image
             src={shoppingBagIcon}
-            alt="Shopping Bag"
+            alt={t("shoppingBagAlt")}
             width={24}
             height={24}
           />
@@ -109,7 +111,7 @@ export default function GrocerySearchPage() {
           <div className="mb-8">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold text-gray-800">
-                Recent Keywords
+                {t("recentKeywords")}
               </h2>
               <Button
                 variant="ghost"
@@ -117,7 +119,7 @@ export default function GrocerySearchPage() {
                 onClick={clearAllRecent}
                 className="text-gray-500 hover:text-gray-700"
               >
-                Clear All
+                {t("clearAll")}
               </Button>
             </div>
             <ScrollArea className="w-full whitespace-nowrap">
@@ -142,14 +144,13 @@ export default function GrocerySearchPage() {
         {/* Suggested Categories */}
         <div className="mb-8">
           <h2 className="text-lg font-semibold text-gray-800 mb-4">
-            Suggested Categories
+            {t("suggestedCategories")}
           </h2>
           <div className="space-y-10 flex flex-col">
             {suggestedCategories.map((category) => (
-              <div className="">
+              <div className="" key={category.id}>
                 <button
                   type="button"
-                  key={category.id}
                   onClick={() => handleKeywordClick(category.name)}
                 >
                   <div className="flex items-center">
