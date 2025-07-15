@@ -1,7 +1,9 @@
+"use client";
 import { MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import logo from "@/assets/images/logo-horizontal.png";
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { type NavigationItem, NavMenu } from "@/components/nav-menu";
@@ -30,6 +32,11 @@ export default function Header({
   showLanguageSelector = false,
 }: HeaderProps) {
   const t = useTranslations("header");
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const handleLinkClick = () => {
+    setIsSheetOpen(false);
+  };
 
   return (
     <>
@@ -63,7 +70,7 @@ export default function Header({
             )}
 
             {/* Mobile menu button */}
-            <Sheet>
+            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
@@ -81,6 +88,7 @@ export default function Header({
                     navigationItems={navigation}
                     chipStyle={chipMenuStyle}
                     vertical
+                    onLinkClick={handleLinkClick}
                   />
                   {showLanguageSelector && (
                     <div className="flex justify-center">
@@ -90,12 +98,18 @@ export default function Header({
 
                   {showAuthButtons && (
                     <div className="flex flex-col gap-3 mt-4">
-                      <Link href="/choose?signin=true">
+                      <Link
+                        href="/choose?signin=true"
+                        onClick={handleLinkClick}
+                      >
                         <Button className="rounded-full w-full">
                           {t("LogIn")}
                         </Button>
                       </Link>
-                      <Link href="/choose?signup=true">
+                      <Link
+                        href="/choose?signup=true"
+                        onClick={handleLinkClick}
+                      >
                         <Button className="rounded-full w-full">
                           {t("SignUp")}
                         </Button>

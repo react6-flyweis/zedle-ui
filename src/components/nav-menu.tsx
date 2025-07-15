@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronsDown } from "lucide-react";
+import { useState } from "react";
 import { ActiveLink } from "@/components/ui/active-link";
 import {
   NavigationMenu,
@@ -75,13 +76,25 @@ interface NavMenuProps {
   navigationItems?: NavigationItem[];
   chipStyle?: boolean;
   vertical?: boolean;
+  onLinkClick?: () => void; // Callback for when a link is clicked (useful for closing mobile menus)
 }
 
 export function NavMenu({
   chipStyle = false,
   navigationItems = defaultNavigationItems,
   vertical = false,
+  onLinkClick,
 }: NavMenuProps) {
+  const [openDropdowns, setOpenDropdowns] = useState<string[]>([]);
+
+  const toggleDropdown = (title: string) => {
+    setOpenDropdowns((prev) =>
+      prev.includes(title)
+        ? prev.filter((item) => item !== title)
+        : [...prev, title],
+    );
+  };
+
   if (vertical) {
     return (
       <nav>
@@ -97,35 +110,58 @@ export function NavMenu({
                   )}
                   activeClassName="bg-primary text-white"
                   exact={true}
+                  onClick={onLinkClick}
                 >
                   {item.title}
                 </ActiveLink>
               </li>
             ) : (
-              <li key={item.title + "dropdown"} className="relative group">
-                <span className="block w-full px-4 py-2 rounded-md text-base font-medium cursor-pointer select-none group-hover:bg-accent">
-                  {item.title}
-                </span>
-                <ul className="hidden group-hover:block absolute left-full top-0 min-w-[180px] bg-card border rounded-lg shadow-lg z-50 p-2 ml-2">
-                  {item.items.map((subItem) => (
-                    <li key={subItem.href}>
-                      <ActiveLink
-                        href={subItem.href}
-                        className="block px-3 py-2 rounded-md text-sm hover:bg-accent hover:text-primary transition-colors"
-                        activeClassName="bg-primary/10 text-primary font-medium"
-                      >
-                        <div className="flex flex-col">
-                          <span>{subItem.title}</span>
-                          {subItem.description && (
-                            <span className="text-xs text-muted-foreground mt-1">
-                              {subItem.description}
-                            </span>
-                          )}
-                        </div>
-                      </ActiveLink>
-                    </li>
-                  ))}
-                </ul>
+              <li key={item.title + "dropdown"} className="relative">
+                <button
+                  type="button"
+                  onClick={() => toggleDropdown(item.title)}
+                  className={cn(
+                    "flex items-center justify-between w-full px-4 py-2 rounded-md text-base font-medium transition-colors hover:bg-accent hover:text-primary text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+                    chipStyle && "rounded-full",
+                  )}
+                  aria-expanded={openDropdowns.includes(item.title)}
+                  aria-controls={`dropdown-${item.title.toLowerCase().replace(/\s+/g, "-")}`}
+                >
+                  <span>{item.title}</span>
+                  <ChevronsDown
+                    className={cn(
+                      "size-4 transition-transform duration-200 text-muted-foreground",
+                      openDropdowns.includes(item.title) && "rotate-180",
+                    )}
+                  />
+                </button>
+                {openDropdowns.includes(item.title) && (
+                  <ul
+                    className="mt-2 ml-4 space-y-1 border-l border-border pl-4"
+                    id={`dropdown-${item.title.toLowerCase().replace(/\s+/g, "-")}`}
+                    aria-label={`${item.title} submenu`}
+                  >
+                    {item.items.map((subItem) => (
+                      <li key={subItem.href}>
+                        <ActiveLink
+                          href={subItem.href}
+                          className="block px-3 py-2 rounded-md text-sm hover:bg-accent hover:text-primary transition-colors"
+                          activeClassName="bg-primary/10 text-primary font-medium"
+                          onClick={onLinkClick}
+                        >
+                          <div className="flex flex-col">
+                            <span>{subItem.title}</span>
+                            {subItem.description && (
+                              <span className="text-xs text-muted-foreground mt-1">
+                                {subItem.description}
+                              </span>
+                            )}
+                          </div>
+                        </ActiveLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ),
           )}
@@ -135,9 +171,14 @@ export function NavMenu({
   }
 
   return (
-    <div className="hidden md:block">
+    <div className="hidden sm:block">
       <NavigationMenu viewport={false}>
-        <NavigationMenuList className={cn(chipStyle && "gap-3 xl:gap-5")}>
+        <NavigationMenuList
+          className={cn(
+            chipStyle && "gap-1 sm:gap-3 xl:gap-5",
+            "flex-wrap sm:flex-nowrap",
+          )}
+        >
           {navigationItems.map((item) => (
             <NavigationMenuItem
               key={item.title + item.type + item.href}
@@ -148,10 +189,10 @@ export function NavMenu({
                   <ActiveLink
                     className={cn(
                       navigationMenuTriggerStyle(),
-                      "flex-row transition-all duration-200 ease-in-out",
+                      "flex-row transition-all duration-200 ease-in-out text-sm sm:text-base",
                       chipStyle
-                        ? "bg-transparent hover:bg-primary hover:text-white rounded-full px-4 py-2 flex items-center gap-2 font-medium hover:[&>svg]:text-white! hover:[&>img]:invert hover:[&>img]:brightness-0"
-                        : "bg-transparent hover:bg-muted hover:text-primary px-3 py-2 rounded-md font-medium",
+                        ? "bg-transparent hover:bg-primary hover:text-white rounded-full px-2 sm:px-4 py-2 flex items-center gap-2 font-medium hover:[&>svg]:text-white! hover:[&>img]:invert hover:[&>img]:brightness-0"
+                        : "bg-transparent hover:bg-muted hover:text-primary px-2 sm:px-3 py-2 rounded-md font-medium",
                     )}
                     activeClassName={cn(
                       chipStyle
@@ -169,10 +210,10 @@ export function NavMenu({
                 <>
                   <NavigationMenuTrigger
                     className={cn(
-                      "group/nav transition-all duration-200 ease-in-out",
+                      "group/nav transition-all duration-200 ease-in-out text-sm sm:text-base",
                       chipStyle
-                        ? "bg-transparent hover:bg-primary hover:text-white hover:shadow-md rounded-full px-4 py-2 border border-transparent hover:border-primary/20 data-[state=open]:bg-primary data-[state=open]:text-white data-[state=open]:shadow-md data-[active]:bg-primary data-[active]:text-white focus:bg-primary focus:text-white font-medium [&>svg]:hidden"
-                        : "bg-transparent hover:bg-muted hover:text-primary px-3 py-2 rounded-md data-[state=open]:bg-muted data-[state=open]:text-primary data-[active]:bg-muted data-[active]:text-primary focus:bg-muted focus:text-primary font-medium [&>svg]:hidden",
+                        ? "bg-transparent hover:bg-primary hover:text-white hover:shadow-md rounded-full px-2 sm:px-4 py-2 border border-transparent hover:border-primary/20 data-[state=open]:bg-primary data-[state=open]:text-white data-[state=open]:shadow-md data-[active]:bg-primary data-[active]:text-white focus:bg-primary focus:text-white font-medium [&>svg]:hidden"
+                        : "bg-transparent hover:bg-muted hover:text-primary px-2 sm:px-3 py-2 rounded-md data-[state=open]:bg-muted data-[state=open]:text-primary data-[active]:bg-muted data-[active]:text-primary focus:bg-muted focus:text-primary font-medium [&>svg]:hidden",
                     )}
                   >
                     <span className="flex items-center gap-1">
