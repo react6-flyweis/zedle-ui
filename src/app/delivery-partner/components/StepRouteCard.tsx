@@ -4,6 +4,7 @@ import { AlertTriangle, MessageCircle, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { HavingIssueDialog } from "./HavingIssueDialog";
+import MessagesDialog from "./MessagesDialog";
 
 interface StepData {
   label: string;
@@ -48,14 +49,16 @@ export const StepRouteCard = ({
         </div>
         <div className="flex flex-col items-end gap-2 ml-4">
           <div className="flex gap-2">
-            <Button
-              size="sm"
-              variant="outline"
-              className="bg-green-600 hover:bg-green-700 text-white px-3 py-2"
-            >
-              <MessageCircle className="w-4 h-4 mr-1" />
-              {t("chat")}
-            </Button>
+            <MessagesDialog>
+              <Button
+                size="sm"
+                variant="outline"
+                className="bg-green-600 hover:bg-green-700 text-white px-3 py-2"
+              >
+                <MessageCircle className="w-4 h-4 mr-1" />
+                {t("chat")}
+              </Button>
+            </MessagesDialog>
             <Button
               size="sm"
               variant="outline"
