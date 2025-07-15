@@ -48,7 +48,7 @@ const getUserPath = (userType: string) => {
     case "delivery":
       return "delivery-partner";
     case "vendor":
-      return "vendors";
+      return "vendor";
     default:
       return "users";
   }
