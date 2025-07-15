@@ -1,5 +1,7 @@
+"use client";
 import { HeartIcon, Star } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,6 +13,7 @@ interface SalonCardProps {
   address: string;
   avgPrice: number;
   isFavorite?: boolean;
+  id: string;
 }
 
 export function SalonCard({
@@ -20,8 +23,13 @@ export function SalonCard({
   address,
   avgPrice,
   isFavorite = false,
+  id,
 }: SalonCardProps) {
   const t = useTranslations("common");
+  const router = useRouter();
+  const handleViewClick = () => {
+    router.push(`/users/enterprise/salon/${id}`);
+  };
   return (
     <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 p-0">
       <CardContent className="p-0">
@@ -63,6 +71,7 @@ export function SalonCard({
               <Button
                 variant="outline"
                 className="w-full bg-green-100 hover:bg-green-200 rounded-lg text-green-700 font-medium px-6 py-2 border-0 shadow-none"
+                onClick={handleViewClick}
               >
                 {t("view")}
               </Button>

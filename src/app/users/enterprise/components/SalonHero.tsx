@@ -22,7 +22,7 @@ export const SalonHero = () => {
   };
   return (
     <section
-      className="flex h-[50vh] p-10  relative mb-8"
+      className="flex flex-col md:flex-row md:h-[50vh] p-5 md:p-8  relative mb-8"
       style={{
         background: `url(${image}) center center / cover no-repeat`,
       }}
@@ -30,7 +30,7 @@ export const SalonHero = () => {
       {/* White overlay */}
       <div className="absolute inset-0 bg-white/90  pointer-events-none z-0" />
       {/* Left: Info */}
-      <div className="flex-1 flex flex-col gap-4 justify-end relative z-10 pb-5">
+      <div className="flex-1 flex flex-col gap-4 justify-end  z-10 pb-5">
         <h1 className="text-3xl lg:text-4xl font-bold text-foreground">
           Salon Name
         </h1>
@@ -38,7 +38,7 @@ export const SalonHero = () => {
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry.
         </p>
-        <div className="flex flex-row gap-3 mt-2">
+        <div className="flex flex-col md:flex-row gap-3 mt-2">
           <Badge className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium">
             <Image
               src={orderIcon}

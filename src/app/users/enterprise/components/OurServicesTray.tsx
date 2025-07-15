@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import * as React from "react";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -54,7 +54,7 @@ const serviceItems: ServiceItem[] = [
 
 export function OurServicesTray() {
   const t = useTranslations("OurServicesTray");
-  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (dir: "left" | "right") => {
     if (scrollRef.current) {
@@ -71,7 +71,7 @@ export function OurServicesTray() {
   };
 
   return (
-    <section className="p-8 relative">
+    <section className="p-5 md:p-8 relative">
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
         <div className="flex gap-2">

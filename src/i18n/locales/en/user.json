@@ -203,6 +203,12 @@
     "heading": "Popular Salons",
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
   },
+  "enterpriseFavorites": {
+    "title": "We know you love it!",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "posterAlt": "Enterprise Favorites",
+    "salonGridAlt": "Favorite salons grid"
+  },
   "services": {
     "ourServices": "Our Services"
   },

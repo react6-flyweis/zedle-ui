@@ -135,9 +135,9 @@ export function EnterpriseAllServices() {
   };
 
   return (
-    <section className="p-10">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-1">
+    <section className="p-5 md:p-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-1">
           <ServicesCategories
             categories={categories}
             activeCategory={activeCategory}
@@ -145,11 +145,12 @@ export function EnterpriseAllServices() {
             title={t("ourServices")}
           />
         </div>
-        <div className="lg:col-span-2 flex flex-col gap-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="md:col-span-2 flex flex-col gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {salons.map((salon) => (
               <SalonCard
                 key={salon.id}
+                id={salon.id.toString()}
                 name={salon.name}
                 address={salon.address}
                 avgPrice={salon.avgPrice}
