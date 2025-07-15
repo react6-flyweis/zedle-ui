@@ -75,7 +75,7 @@ export default function DeliveryAddress({
           </p>
 
           {/* Display saved addresses */}
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
             {savedAddresses.map((address) => (
               <button
                 key={address.id}
