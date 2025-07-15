@@ -81,7 +81,10 @@
   "captureDialog": {
     "itemImage": "Item Image",
     "clickItemImage": "Click the items/box image.",
-    "clickToCapture": "Click to Capture"
+    "clickToCapture": "Click to Capture",
+    "captureImage": "Capture Image",
+    "scanQRCode": "Scan QR Code",
+    "parcelDispatched": "Your parcel has been dispatched from the location."
   },
   "verificationMethod": {
     "title": "Verification Method",

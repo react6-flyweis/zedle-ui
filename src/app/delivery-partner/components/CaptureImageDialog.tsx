@@ -36,7 +36,7 @@ export const CaptureImageDialog = ({
 
   const handleScanClick = () => {
     setScanMode(false);
-    toast("Your parcel has been dispatched from the location.");
+    toast(t("parcelDispatched"));
     onCapture();
   };
 
