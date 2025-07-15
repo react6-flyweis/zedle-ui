@@ -16,7 +16,7 @@ export default function Footer() {
   return (
     <footer className="bg-accent border-t">
       {/* Main Footer Content */}
-      <div className="p-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+      <div className="p-5 md:p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
         {/* Logo and store */}
         <div className="space-y-8 lg:col-span-2">
           <Image src={logo} alt="Logo" className="h-10 w-auto mr-3" />
