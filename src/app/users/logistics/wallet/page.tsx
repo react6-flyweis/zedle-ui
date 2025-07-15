@@ -119,7 +119,7 @@ export default function WalletPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-4 pt-0">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row gap-5 items-center justify-between">
             <div className="flex items-center gap-2">
               <Image
                 src={walletIcon}
@@ -128,7 +128,7 @@ export default function WalletPage() {
                 width={50}
                 height={50}
               />
-              <span className="text-3xl font-bold">$14,235.34</span>
+              <span className="text-xl md:text-3xl font-bold">$14,235.34</span>
               <span className="text-lg opacity-90">USD</span>
             </div>
             <div className="flex gap-2">
