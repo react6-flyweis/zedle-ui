@@ -1,4 +1,5 @@
 import { Utensils } from "lucide-react";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { RestaurantCard } from "./RestaurantCard";
 
@@ -68,13 +69,18 @@ export function RestaurantsGrid() {
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
         {restaurants.map((r) => (
-          <RestaurantCard
+          <Link
             key={r.id}
-            name={r.name}
-            type={r.type}
-            discount={r.discount}
-            image={r.image}
-          />
+            href={`/users/food/restaurants/${r.id}`}
+            className="block"
+          >
+            <RestaurantCard
+              name={r.name}
+              type={r.type}
+              discount={r.discount}
+              image={r.image}
+            />
+          </Link>
         ))}
       </div>
     </section>

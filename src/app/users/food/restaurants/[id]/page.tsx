@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import cartIcon from "@/assets/icons/cart-icon.png";
 import { CustomerReviewsSection } from "@/components/CustomerReviewsSection";
 import { LocationSection } from "@/components/map/LocationSection";
@@ -9,6 +10,7 @@ import { RestaurantHero } from "../../components/RestaurantHero";
 import { RestaurantInfoSection } from "../../components/RestaurantInfoSection";
 
 export default function Page() {
+  const t = useTranslations();
   return (
     <div>
       <RestaurantHero />
@@ -27,12 +29,12 @@ export default function Page() {
 
       <div className="fixed bottom-0 w-full px-10">
         <Button className="h-12 flex w-full justify-between rounded-t rounded-b-none text-lg px-5">
-          <p>0 item added</p>
+          <p>{t("itemsAdded", { count: 0 })}</p>
           <span className="flex items-center gap-2">
-            view cart
+            {t("viewCart")}
             <Image
               src={cartIcon}
-              alt="Cart Icon"
+              alt={t("cartIconAlt")}
               width={24}
               height={24}
               className="size-4 invert brightness-0"

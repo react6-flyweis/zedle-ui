@@ -1,6 +1,9 @@
 {
   "cart": {
-    "payNow": "Pay Now"
+    "payNow": "Pay Now",
+    "itemsAdded": "{count} items added",
+    "viewCart": "View Cart",
+    "cartIconAlt": "Cart icon"
   },
   "ordersPage": {
     "title": "Your Order",

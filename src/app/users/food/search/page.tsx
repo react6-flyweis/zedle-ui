@@ -74,9 +74,9 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="p-5 md:p-8">
       {/* Search Header */}
-      <div className="bg-white flex items-center justify-between p-4 rounded-md">
+      <div className="bg-white flex items-center justify-between p-3 md:p-4 rounded-md">
         <div className="relative flex-1 max-w-xl">
           <Input
             type="text"
