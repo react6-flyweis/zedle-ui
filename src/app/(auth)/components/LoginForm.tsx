@@ -54,7 +54,7 @@ export function LoginForm() {
     },
   });
 
-  const onSubmit = (data: LoginForm) => {
+  const onSubmit = (_data: LoginForm) => {
     setOtpDialogOpen(true);
   };
 
@@ -64,6 +64,11 @@ export function LoginForm() {
     const userPath = userType === "delivery" ? "delivery-partner" : userType;
     const targetPath = `/${userPath}/${userType !== "delivery" ? category : ""}`;
     router.push(targetPath);
+  };
+
+  const handleCreateAccount = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    router.push(`/signup?${params.toString()}`);
   };
 
   return (
@@ -77,9 +82,13 @@ export function LoginForm() {
         <h1 className="text-2xl font-bold text-gray-900 mb-2">LOG IN</h1>
         <p className="text-sm text-gray-600">
           Don't have an account?{" "}
-          <Link href="/signup" className=" font-medium">
+          <Button
+            variant="link"
+            onClick={handleCreateAccount}
+            className=" font-medium"
+          >
             Create Account
-          </Link>
+          </Button>
         </p>
       </div>
       <div className="space-y-6">

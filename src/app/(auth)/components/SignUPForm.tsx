@@ -90,6 +90,11 @@ export function SignupForm() {
     }
   };
 
+  const handleLogin = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    router.push(`/login?${params.toString()}`);
+  };
+
   return (
     <div className="w-full">
       <OtpVerificationDialog
@@ -103,9 +108,9 @@ export function SignupForm() {
         </h1>
         <p className="text-sm text-gray-600">
           Already have an account?{" "}
-          <Link href="/login" className="font-medium">
+          <Button variant="link" onClick={handleLogin} className="font-medium">
             Log In
-          </Link>
+          </Button>
         </p>
       </div>
 
