@@ -27,7 +27,7 @@ export function ConfirmDialog({
   confirmLabel,
   cancelLabel,
 }: PropsWithChildren<ConfirmDialogProps>) {
-  const t = useTranslations("common");
+  const t = useTranslations("actions");
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
