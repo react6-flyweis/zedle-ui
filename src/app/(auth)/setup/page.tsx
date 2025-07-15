@@ -23,19 +23,27 @@ export default async function page({
   }
 
   if (type === "vendor") {
-    switch (category) {
-      case "grocery":
-        return <VendorGrocerySignup />;
-      case "food":
-        return <VendorFoodSignup />;
-      case "logistics":
-        return <VendorLogisticsSignup />;
-      case "enterprise":
-        return <VendorEnterpriseSignup />;
-      case "travel-tourism":
-        return <VendorTravelSignup />;
-      default:
-        return <div>Unsupported vendor category: {category}</div>;
-    }
+    const VendorComponent = (() => {
+      switch (category) {
+        case "grocery":
+          return <VendorGrocerySignup />;
+        case "food":
+          return <VendorFoodSignup />;
+        case "logistics":
+          return <VendorLogisticsSignup />;
+        case "enterprise":
+          return <VendorEnterpriseSignup />;
+        case "travel-tourism":
+          return <VendorTravelSignup />;
+        default:
+          return <div>Unsupported vendor category: {category}</div>;
+      }
+    })();
+
+    return (
+      <div className="w-full max-w-[100vw] sm:max-w-full overflow-hidden">
+        {VendorComponent}
+      </div>
+    );
   }
 }
