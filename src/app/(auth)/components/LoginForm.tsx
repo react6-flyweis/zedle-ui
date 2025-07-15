@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -45,6 +46,7 @@ export function LoginForm() {
   const searchParams = useSearchParams();
   const [showPassword, setShowPassword] = useState(false);
   const [otpDialogOpen, setOtpDialogOpen] = useState(false);
+  const t = useTranslations("login");
 
   const form = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
@@ -78,16 +80,16 @@ export function LoginForm() {
         onOpenChange={setOtpDialogOpen}
         onVerify={handleNext}
       />
-      <div className="flex justify-between">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">LOG IN</h1>
+      <div className="flex  flex-col md:flex-row justify-between mb-2">
+        <h1 className="text-2xl font-bold text-gray-900">{t("title")}</h1>
         <p className="text-sm text-gray-600">
-          Don't have an account?{" "}
+          {t("noAccount")}
           <Button
             variant="link"
             onClick={handleCreateAccount}
             className=" font-medium"
           >
-            Create Account
+            {t("createAccount")}
           </Button>
         </p>
       </div>
@@ -101,7 +103,7 @@ export function LoginForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm font-medium text-gray-700">
-                    Email / Phone Number
+                    {t("emailOrPhone")}
                   </FormLabel>
                   <FormControl>
                     <Input {...field} type="text" />
@@ -117,7 +119,7 @@ export function LoginForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm font-medium text-gray-700">
-                    Password
+                    {t("password")}
                   </FormLabel>
                   <FormControl>
                     <div className="relative">
@@ -143,7 +145,7 @@ export function LoginForm() {
                       href="/forgot-password"
                       className="text-sm text-primary hover:text-purple-700"
                     >
-                      Forgot password?
+                      {t("forgotPassword")}
                     </Link>
                   </div>
                   <FormMessage />
@@ -156,7 +158,7 @@ export function LoginForm() {
               className="w-full h-12 rounded-full"
               disabled={form.formState.isSubmitting}
             >
-              {form.formState.isSubmitting ? "Logging in..." : "Log In"}
+              {form.formState.isSubmitting ? t("loggingIn") : t("loginButton")}
             </Button>
           </form>
         </Form>
@@ -166,7 +168,9 @@ export function LoginForm() {
             <div className="w-full border-t border-gray-300" />
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-accent text-gray-500">OR</span>
+            <span className="px-2 bg-accent text-gray-500">
+              {t("orDivider")}
+            </span>
           </div>
         </div>
         {/* Social Login Buttons */}
@@ -177,7 +181,7 @@ export function LoginForm() {
             size="lg"
             className="w-full rounded-full"
           >
-            Continue with Google
+            {t("continueWithGoogle")}
           </Button>
           <Button
             type="button"
@@ -185,7 +189,7 @@ export function LoginForm() {
             size="lg"
             className="w-full rounded-full"
           >
-            Continue with Facebook
+            {t("continueWithFacebook")}
           </Button>
         </div>
       </div>

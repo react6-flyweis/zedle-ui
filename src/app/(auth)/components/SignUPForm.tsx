@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -21,48 +22,54 @@ import { Input } from "@/components/ui/input";
 import { OtpVerificationDialog } from "../components/OtpVerificationDialog";
 
 // Zod schema for form validation
-const signupSchema = z
-  .object({
-    emailOrPhone: z
-      .string()
-      .min(1, "Email or phone number is required")
-      .refine(
-        (value) => {
-          // Check if it's a valid email or phone number
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          const phoneRegex = /^\+?[\d\s-()]{10,}$/;
-          return emailRegex.test(value) || phoneRegex.test(value);
-        },
-        {
-          message: "Please enter a valid email address or phone number",
-        },
-      ),
-    password: z
-      .string()
-      .min(8, "Password must be at least 8 characters")
-      .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-        "Password must contain at least one uppercase letter, one lowercase letter, and one number",
-      ),
-    confirmPassword: z.string().min(1, "Please confirm your password"),
-    agreedToTerms: z.boolean().refine((val) => val === true, {
-      message: "You must agree to the terms and conditions",
-    }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ["confirmPassword"],
-  });
+const createSignupSchema = (t: (key: string) => string) =>
+  z
+    .object({
+      emailOrPhone: z
+        .string()
+        .min(1, t("validation.emailOrPhoneRequired"))
+        .refine(
+          (value) => {
+            // Check if it's a valid email or phone number
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^\+?[\d\s-()]{10,}$/;
+            return emailRegex.test(value) || phoneRegex.test(value);
+          },
+          {
+            message: t("validation.invalidEmailOrPhone"),
+          },
+        ),
+      password: z
+        .string()
+        .min(8, t("validation.passwordMinLength"))
+        .regex(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+          t("validation.passwordComplexity"),
+        ),
+      confirmPassword: z
+        .string()
+        .min(1, t("validation.confirmPasswordRequired")),
+      agreedToTerms: z.boolean().refine((val) => val === true, {
+        message: t("validation.agreeToTerms"),
+      }),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: t("validation.passwordMismatch"),
+      path: ["confirmPassword"],
+    });
 
-type SignupForm = z.infer<typeof signupSchema>;
+type SignupForm = z.infer<ReturnType<typeof createSignupSchema>>;
 
 export function SignupForm() {
+  const t = useTranslations("signup");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [otpDialogOpen, setOtpDialogOpen] = useState(false);
   const [signupData, setSignupData] = useState<SignupForm | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const signupSchema = createSignupSchema(t);
 
   const form = useForm<SignupForm>({
     resolver: zodResolver(signupSchema),
@@ -102,14 +109,12 @@ export function SignupForm() {
         onOpenChange={setOtpDialogOpen}
         onVerify={handleOtpVerify}
       />
-      <div className="flex justify-between">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">
-          CREATE ACCOUNT
-        </h1>
+      <div className="flex flex-col md:flex-row justify-between  mb-2">
+        <h1 className="text-2xl font-bold text-gray-900">{t("title")}</h1>
         <p className="text-sm text-gray-600">
-          Already have an account?{" "}
+          {t("alreadyHaveAccount")}{" "}
           <Button variant="link" onClick={handleLogin} className="font-medium">
-            Log In
+            {t("login")}
           </Button>
         </p>
       </div>
@@ -124,7 +129,7 @@ export function SignupForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm font-medium text-gray-700">
-                    Email / Phone Number
+                    {t("emailOrPhone")}
                   </FormLabel>
                   <FormControl>
                     <Input {...field} type="text" />
@@ -141,7 +146,7 @@ export function SignupForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm font-medium text-gray-700">
-                    Password
+                    {t("password")}
                   </FormLabel>
                   <FormControl>
                     <div className="relative">
@@ -174,7 +179,7 @@ export function SignupForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm font-medium text-gray-700">
-                    Re-enter Password
+                    {t("confirmPassword")}
                   </FormLabel>
                   <FormControl>
                     <div className="relative">
@@ -216,13 +221,19 @@ export function SignupForm() {
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel className="text-sm text-gray-600 leading-relaxed">
-                      By creating an account, I agree to our{" "}
-                      <Link href="/terms" className="text-primary nowrap">
-                        Terms of use
+                      {t("termsAgreement")}{" "}
+                      <Link
+                        href="/terms"
+                        className="text-primary hover:underline"
+                      >
+                        {t("termsOfUse")}
                       </Link>{" "}
-                      and{" "}
-                      <Link href="/privacy" className="text-primary nowrap">
-                        Privacy Policy
+                      {t("and")}{" "}
+                      <Link
+                        href="/privacy"
+                        className="text-primary hover:underline"
+                      >
+                        {t("privacyPolicy")}
                       </Link>
                     </FormLabel>
                     <FormMessage />
@@ -238,8 +249,8 @@ export function SignupForm() {
               disabled={form.formState.isSubmitting}
             >
               {form.formState.isSubmitting
-                ? "Creating Account..."
-                : "Create Account"}
+                ? t("creatingAccount")
+                : t("createAccount")}
             </Button>
           </form>
         </Form>
@@ -250,7 +261,9 @@ export function SignupForm() {
             <div className="w-full border-t border-gray-300" />
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-accent text-gray-500">OR</span>
+            <span className="px-2 bg-accent text-gray-500">
+              {t("orDivider")}
+            </span>
           </div>
         </div>
 
@@ -281,7 +294,7 @@ export function SignupForm() {
                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
               />
             </svg>
-            Continue with Google
+            {t("continueWithGoogle")}
           </Button>
 
           <Button
@@ -298,7 +311,7 @@ export function SignupForm() {
               <title>Facebook logo</title>
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
             </svg>
-            Continue with Facebook
+            {t("continueWithFacebook")}
           </Button>
         </div>
       </div>
