@@ -86,7 +86,7 @@ export function RequestDialog({
               <div className="font-bold text-base mb-4 text-black">
                 {t("customerDetails")}
               </div>
-              <div className="flex gap-8 items-start">
+              <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-start">
                 <div className="relative size-56 rounded-2xl overflow-hidden bg-gray-200 flex-shrink-0 border border-gray-300">
                   <Image
                     src={imageUrl}
