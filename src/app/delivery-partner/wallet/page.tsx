@@ -1,24 +1,18 @@
 "use client";
 import { ChevronDown, Settings2Icon } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import walletIcon from "@/assets/icons/wallet.png";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
+import { WithdrawDialog } from "@/components/wallet/WithdrawDialog";
 import { cn } from "@/lib/utils";
 
 // Mock transaction data
@@ -82,6 +76,7 @@ const transactions = [
 ];
 
 export default function WalletPage() {
+  const t = useTranslations("wallet");
   const [filterValue, setFilterValue] = useState<string>("Daily");
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
 
@@ -106,11 +101,11 @@ export default function WalletPage() {
       <Card className="border-0 p-0 gap-0">
         <CardHeader className="pt-4">
           <CardTitle className="text-lg font-semibold">
-            Wallet Balance
+            {t("walletBalanceTitle")}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-4 pt-0">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center flex-col md:flex-row gap-3 justify-between">
             <div className="flex items-center gap-2">
               <Image
                 src={walletIcon}
@@ -124,44 +119,11 @@ export default function WalletPage() {
             </div>
             <div className="flex gap-2">
               {/* Withdraw Dialog */}
-              <Dialog open={withdrawOpen} onOpenChange={setWithdrawOpen}>
-                <DialogTrigger asChild>
-                  <Button variant="outline" className="border-primary">
-                    Withdraw
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-                  <DialogHeader className="space-y-4">
-                    <DialogTitle className="text-xl font-semibold text-left">
-                      Enter Your withdraw Amount
-                    </DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-6 mt-6">
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="redeem-amount"
-                        className="text-sm font-medium text-gray-700"
-                      >
-                        Enter your amount
-                      </label>
-                      <Input
-                        id="redeem-amount"
-                        placeholder="Enter amount"
-                        value={withdrawAmount}
-                        onChange={(e) => setWithdrawAmount(e.target.value)}
-                        className="h-12 text-base"
-                      />
-                    </div>
-                    <Button
-                      onClick={handleWithDraw}
-                      className="w-full h-12 font-medium"
-                      disabled={!withdrawAmount.trim()}
-                    >
-                      NEXT
-                    </Button>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              <WithdrawDialog>
+                <Button variant="outline" className="border-primary">
+                  {t("withdraw")}
+                </Button>
+              </WithdrawDialog>
             </div>
           </div>
         </CardContent>
@@ -172,7 +134,7 @@ export default function WalletPage() {
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="text-lg font-semibold">
-              Wallet Balance Breakdown
+              {t("walletBreakdownTitle")}
             </CardTitle>
             <DropdownMenu
               open={filterMenuOpen}
@@ -186,7 +148,7 @@ export default function WalletPage() {
                 >
                   <span className="flex items-center gap-2">
                     <Settings2Icon className="w-4 h-4" />
-                    Filter by
+                    {t("filterBy")}
                   </span>
                   <ChevronDown
                     className={cn(
@@ -200,7 +162,12 @@ export default function WalletPage() {
                 align="end"
                 className="bg-primary text-white p-0 min-w-[140px] border-0 shadow-lg rounded-lg origin-top animate-slideDown"
               >
-                {["Daily", "Weekly", "Monthly", "Yearly"].map((option) => {
+                {[
+                  t("filterByOptions.daily"),
+                  t("filterByOptions.weekly"),
+                  t("filterByOptions.monthly"),
+                  t("filterByOptions.yearly"),
+                ].map((option) => {
                   return (
                     <DropdownMenuItem
                       key={option}
@@ -223,10 +190,10 @@ export default function WalletPage() {
           {/* Table Header */}
           <div className="bg-primary text-white px-6 py-4 rounded-md">
             <div className="grid grid-cols-4 gap-4 font-medium">
-              <div>Transactions</div>
-              <div>Date</div>
-              <div>Time</div>
-              <div className="text-right">Amount</div>
+              <div>{t("tableHeaders.transactions")}</div>
+              <div>{t("tableHeaders.date")}</div>
+              <div>{t("tableHeaders.time")}</div>
+              <div className="text-right">{t("tableHeaders.amount")}</div>
             </div>
           </div>
 

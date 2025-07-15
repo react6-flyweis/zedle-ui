@@ -73,5 +73,23 @@
   "locationSection": {
     "phoneLabel": "Phone number",
     "mapPointerAlt": "Map Pointer"
+  },
+  "wallet": {
+    "walletBalanceTitle": "Wallet Balance",
+    "walletBreakdownTitle": "Wallet Balance Breakdown",
+    "filterBy": "Filter by",
+    "filterByOptions": {
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "yearly": "Yearly"
+    },
+    "tableHeaders": {
+      "transactions": "Transactions",
+      "date": "Date",
+      "time": "Time",
+      "amount": "Amount"
+    },
+    "withdraw": "Withdraw"
   }
 }
