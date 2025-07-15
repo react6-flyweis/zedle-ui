@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Camera, PlusIcon, Trash2 } from "lucide-react";
+import { PlusIcon, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -48,6 +48,65 @@ const AMENITY_KEYS = [
 type AmenityKey = (typeof AMENITY_KEYS)[number];
 type Amenities = Record<AmenityKey, boolean>;
 
+const ALL_SERVICES = [
+  {
+    key: "womens-haircut-long-1",
+    name: "Women’s hair-cut long hair",
+    description: "Shampoo, cut and blow dry are included",
+    selected: false,
+    duration: undefined,
+    amount: undefined,
+  },
+  {
+    key: "womens-haircut-1",
+    name: "Women’s haircut",
+    description: "Shampoo, cut and blow dry are included",
+    selected: false,
+    duration: undefined,
+    amount: undefined,
+  },
+  {
+    key: "mens-haircut-1",
+    name: "Men’s haircut",
+    description: "Shampoo, cut and blow dry are included",
+    selected: false,
+    duration: undefined,
+    amount: undefined,
+  },
+  {
+    key: "womens-haircut-long-2",
+    name: "Women’s hair-cut long hair",
+    description: "Shampoo, cut and blow dry are included",
+    selected: false,
+    duration: undefined,
+    amount: undefined,
+  },
+  {
+    key: "womens-haircut-2",
+    name: "Women’s haircut",
+    description: "Shampoo, cut and blow dry are included",
+    selected: false,
+    duration: undefined,
+    amount: undefined,
+  },
+  {
+    key: "mens-haircut-2",
+    name: "Men’s haircut",
+    description: "Shampoo, cut and blow dry are included",
+    selected: false,
+    duration: undefined,
+    amount: undefined,
+  },
+];
+
+const serviceSchema = z.object({
+  name: z.string().min(1, "required"),
+  description: z.string().min(1, "required"),
+  selected: z.boolean(),
+  duration: z.coerce.number().min(0.1, "required").optional(),
+  amount: z.coerce.number().min(0, "required").optional(),
+});
+
 const companySignupSchema = z.object({
   companyName: z.string().min(1, "required"),
   companyAddress: z.string().min(1, "required"),
@@ -74,6 +133,7 @@ const companySignupSchema = z.object({
     ),
   ),
   staff: z.array(staffMemberSchema).min(1, "atLeastOneStaff").optional(),
+  services: z.array(serviceSchema).min(1, "atLeastOneService").optional(),
   agree: z.literal(true, {
     errorMap: () => ({ message: "mustAgree" }),
   }),
@@ -142,7 +202,13 @@ export function VendorEnterpriseSignup() {
     },
     {
       label: t("shopDetails"),
-      onValidate: () => Promise.resolve(true), // Placeholder for shop details
+      onValidate: () =>
+        form.trigger([
+          "numberOfSiting",
+          "floorNumber",
+          "squareFeet",
+          "amenities",
+        ]),
     },
     {
       label: t("listingDescription"),
@@ -151,15 +217,15 @@ export function VendorEnterpriseSignup() {
     },
     {
       label: t("photosVideos"),
-      onValidate: () => Promise.resolve(true), // Placeholder
+      onValidate: () => form.trigger(["videoTour", "companyPhoto"]),
     },
     {
       label: t("addStaffMembers"),
-      onValidate: () => Promise.resolve(true), // Placeholder for staff members
+      onValidate: () => form.trigger("staff"),
     },
     {
       label: t("addServices"),
-      onValidate: () => Promise.resolve(true), // Placeholder for services
+      onValidate: () => form.trigger("services"),
     },
   ];
 
@@ -461,7 +527,7 @@ export function VendorEnterpriseSignup() {
                         <textarea
                           {...field}
                           rows={6}
-                          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                          className="w-full rounded-md border border-input px-3 py-2 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         />
                       </FormControl>
                       <FormMessage />
@@ -517,7 +583,7 @@ export function VendorEnterpriseSignup() {
                           {...field}
                           type="url"
                           placeholder={t("videoTourPlaceholder")}
-                          className="bg-background border border-input rounded-md px-3 py-2 w-full"
+                          className="rounded-md px-3 py-2 w-full"
                         />
                       </FormControl>
                       <FormMessage />
@@ -675,28 +741,86 @@ export function VendorEnterpriseSignup() {
             {/* Step 7: Add Services */}
             <StepperStep
               label={steps[6].label}
-              onValidate={steps[6].onValidate}
+              onValidate={() => form.trigger("services")}
             >
               <div className="space-y-4">
-                {/* Service selection mockup, replace with real data as needed */}
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div
-                    key={i}
-                    className="rounded-lg border border-muted-foreground  px-4 py-3 flex items-center justify-between"
-                  >
-                    <div>
-                      <div className="font-medium text-base text-foreground">
-                        {i % 3 === 1
-                          ? t("womensHaircutLong")
-                          : i % 3 === 2
-                            ? t("womensHaircut")
-                            : t("mensHaircut")}
-                      </div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        {t("haircutIncludes")}
+                {ALL_SERVICES.map((service, idx) => (
+                  <div className="">
+                    <div
+                      key={service.key}
+                      className="rounded-lg border border-muted-foreground bg-muted px-4 py-3 flex flex-col gap-2"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="font-medium text-base text-foreground">
+                            {service.name}
+                          </div>
+                          <div className="text-xs text-muted-foreground mt-1">
+                            {service.description}
+                          </div>
+                        </div>
+                        <FormField
+                          control={form.control}
+                          name={`services.${idx}.selected` as const}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <Checkbox
+                                  checked={field.value}
+                                  onCheckedChange={field.onChange}
+                                />
+                              </FormControl>
+                            </FormItem>
+                          )}
+                        />
                       </div>
                     </div>
-                    <Checkbox />
+                    {form.watch(`services.${idx}.selected`) && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2 px-2">
+                        <FormField
+                          control={form.control}
+                          name={`services.${idx}.duration` as const}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="font-medium">
+                                Duration (in hours)
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  {...field}
+                                  type="number"
+                                  min={0.1}
+                                  step={0.1}
+                                  className="bg-muted"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name={`services.${idx}.amount` as const}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="font-medium">
+                                Amount
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  {...field}
+                                  type="number"
+                                  min={0}
+                                  step={0.01}
+                                  className="bg-muted"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
