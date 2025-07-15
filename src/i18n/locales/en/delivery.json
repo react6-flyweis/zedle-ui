@@ -86,6 +86,11 @@
     "scanQRCode": "Scan QR Code",
     "parcelDispatched": "Your parcel has been dispatched from the location."
   },
+  "collectCashDialog": {
+    "title": "Collect Cash",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    "done": "Done"
+  },
   "verificationMethod": {
     "title": "Verification Method",
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
