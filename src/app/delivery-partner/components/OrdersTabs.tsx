@@ -225,7 +225,7 @@ export default function OrdersTabs() {
         onValueChange={(value: string) => setTab(value as OrderStatus)}
         className="w-full"
       >
-        <TabsList className="z-10 w-full flex justify-center bg-transparent rounded-lg mb-16 gap-5">
+        <TabsList className="z-10 w-full flex justify-start md:justify-center overflow-x-auto h-16 bg-transparent rounded-lg mb-16 gap-5">
           {statusTabs.map((tabItem) => (
             <TabsTrigger
               key={tabItem.key}
