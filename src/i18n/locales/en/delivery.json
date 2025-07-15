@@ -116,6 +116,8 @@
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     "qr": "QR",
     "card": "Card",
-    "cash": "Cash"
+    "cash": "Cash",
+    "qrTitle": "Show QR to accept Payment",
+    "qrDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
   }
 }
