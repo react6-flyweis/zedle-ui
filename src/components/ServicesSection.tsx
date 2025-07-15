@@ -63,8 +63,8 @@ const mockServices = [
 export function ServicesSection() {
   const t = useTranslations("servicesSection");
   return (
-    <div className="px-6 py-8 bg-gray-50">
-      <div className="flex justify-between items-center mb-8">
+    <div className="px-6 py-8 mt-5 bg-gray-50">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-5">
         <h3 className="text-xl font-semibold">{t("searchTitle")}</h3>
         {/* Search Bar */}
         <div className="relative w-60">

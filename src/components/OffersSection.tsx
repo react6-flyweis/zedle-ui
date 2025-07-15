@@ -76,8 +76,8 @@ export function OffersSection() {
         {t("allOffersFrom", { restaurant: "McDonald's New York" })}
       </h2>
       <Tabs defaultValue="offers" className="w-full">
-        <div className="flex justify-between items-center mb-4 gap-10">
-          <TabsList className=" whitespace-nowrap rounded-full bg-transparent p-1 flex gap-2">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-10">
+          <TabsList className="w-full whitespace-nowrap rounded-full bg-transparent p-1 flex gap-2 overflow-x-scroll">
             {offerCategories.map((tab) => (
               <TabsTrigger
                 key={tab.value}
