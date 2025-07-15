@@ -15,7 +15,7 @@ export function SuccessToast({
   description,
   className,
 }: SuccessToastProps) {
-  const t = useTranslations("common");
+  const t = useTranslations("");
   return (
     <Card
       className={cn(
