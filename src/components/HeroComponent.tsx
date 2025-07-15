@@ -20,23 +20,23 @@ export function HeroComponent({
   backgroundImage?: string | StaticImageData;
 }) {
   return (
-    <section className="relative overflow-hidden h-[60vh]">
+    <section className="relative overflow-hidden md:h-[60vh]">
       {/* Main Container */}
 
       {/* Character Image */}
-      <div className="absolute left-0 flex flex-col md:flex-row justify-center items-end w-full h-full z-20">
+      <div className="absolute left-0 bottom-0 md:-bottom-20 flex justify-center items-end w-full z-20">
         <Image
           src={characterImage}
           alt="Grocery delivery person"
-          className="object-contain max-w-72 -mb-12"
+          className="object-contain max-w-52 md:max-w-72"
           priority
         />
       </div>
 
-      <div className="flex justify-between items-center h-full">
+      <div className="flex flex-col md:flex-row justify-between items-center h-full">
         {/* Left Content */}
-        <div className="flex-1 z-10 p-8">
-          <div className="w-2/3">
+        <div className="flex-1 z-10 p-5 md:p-8">
+          <div className="md:w-2/3">
             {/* Subtitle */}
             <p className="text-gray-800 font-medium">{subtitle}</p>
 
