@@ -116,12 +116,12 @@ export function NavMenu({
                 </ActiveLink>
               </li>
             ) : (
-              <li key={item.title + "dropdown"} className="relative">
+              <li key={`${item.title}dropdown`} className="relative">
                 <button
                   type="button"
                   onClick={() => toggleDropdown(item.title)}
                   className={cn(
-                    "flex items-center justify-between w-full px-4 py-2 rounded-md text-base font-medium transition-colors hover:bg-accent hover:text-primary text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+                    "flex items-center justify-between w-full px-4 py-2 rounded-md text-base font-medium transition-colors hover:bg-accent hover:text-primary text-left",
                     chipStyle && "rounded-full",
                   )}
                   aria-expanded={openDropdowns.includes(item.title)}
